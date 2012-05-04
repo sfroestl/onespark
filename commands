@@ -1,0 +1,9 @@
+Rails commands
+
+rails new <name> --skip-test-unit
+
+bundle install --binstubs
+
+rake db:migrate db:test:prepare
+
+rails generate controller <name> <methods> --no-test-framework
