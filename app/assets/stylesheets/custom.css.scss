@@ -72,10 +72,15 @@ textarea {
 	text-align:left;
 }
 
+.profile {
+	margin-top:50px;
+}
+
 /* forms */
 label {
 	font-size:1.3em;
 }
+
 
 .signup input, textarea, select, .uneditable-input {
 	width: 100%;
@@ -84,6 +89,19 @@ label {
 	margin-bottom: 15px;
 	@include box_sizing
 }
+
+#error_explanation {
+  color:#f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+ }
 
 /* footer */
 
