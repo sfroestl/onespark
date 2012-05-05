@@ -2,7 +2,7 @@
 
 /* colors*/
 $grayMediumLight: #eaeaea;
-$onesparkOrange: #FF7400;
+$onesparkOrange: #ea5b0b;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -40,13 +40,16 @@ textarea {
 /* header */
 
 #logo {
+  background-image: url('logo.png');
+  background-repeat:no-repeat;
   float: left;
   margin-right: 10px;
   font-size: 1.9em;
   color: $onesparkOrange;
   /*text-transform: uppercase;*/
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 23px;
+  padding-left:38px;
   font-weight: bold;
   line-height: 1;
   &:hover {
@@ -55,6 +58,32 @@ textarea {
   }
 }
 
+.navbar .container {
+	padding-top:5px;
+}
+.navbar .nav.pull-right  {
+	padding-top: 23px;
+}
+
+/* content */
+
+.signup {
+	margin-top:50px;
+	text-align:left;
+}
+
+/* forms */
+label {
+	font-size:1.3em;
+}
+
+.signup input, textarea, select, .uneditable-input {
+	width: 100%;
+	padding: 8px;
+	height: auto;
+	margin-bottom: 15px;
+	@include box_sizing
+}
 
 /* footer */
 
@@ -67,6 +96,7 @@ footer {
 	    color: $gray;
 	    &:hover { 
 	      color: $onesparkOrange;
+		  text-decoration:none;
 	    }
 	}
 	small { 
@@ -84,15 +114,17 @@ footer {
 
 /* modified bootstrap */
 
-
 .hero-unit {
+	margin-top:50px;
 	.btn-large {
 		margin-top:25px;
-		margin-right:15px;
-		margin-left:15px;
+	}
+	p {
+		margin-top:25px;
 	}
 }
 
+/* */
 
 /* debug */
 

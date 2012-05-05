@@ -2,8 +2,20 @@ Rails commands
 
 rails new <name> --skip-test-unit
 
+bundle exec annotate --position before
+
 bundle install --binstubs
 
 rake db:migrate db:test:prepare
 
 rails generate controller <name> <methods> --no-test-framework
+
+rails generate integration_test <controller_name>
+
+#generates new model
+rails g model <name> <attribut_name>:<attribut_type>
+
+# adds new attribute to model
+rails generate migration add_password_digest_to_users password_digest:string
+
+rake db:reset

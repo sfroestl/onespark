@@ -16,6 +16,8 @@ subject { page }
 
       it_should_behave_like "all static pages"
       it { should_not have_selector 'title', text: '| Home' }
+      it { should have_selector '.btn-large', text: 'Sign up now' }
+      it { should have_selector '.btn-large', text: 'Learn more' }
     end
 
 end
