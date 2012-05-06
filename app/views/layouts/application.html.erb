@@ -10,15 +10,18 @@
   <body>
     <%= render 'layouts/header' %>
 	 <div class="container">
-		
+		<div class ="error">	
 	      <% flash.each do |key, value| %>
 		        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
 		  <% end %>
+		</div>
+		
 	      <%= yield %>
-	<div class = "footer">
+	
+		<div class = "footer">
 	      <%= render 'layouts/footer' %>
 	      <%= debug(params) if Rails.env.development? %>
-	</div>
+		</div>
 	</div>
   </body>
 </html>
