@@ -5,4 +5,7 @@ class StaticPagesController < ApplicationController
   def imprint
   end
  
+ def goodbye
+  
+ end
 end
