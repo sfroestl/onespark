@@ -2,19 +2,25 @@
 
 <div class="center hero-unit">
   <h1>Sign in</h1>
-  <div class="row signup">
-  	<div class="span4 offset3">
-    	<%= form_for(:session, url: sessions_path) do |f| %>
-	  		<%= f.label :email %>
-	      	<%= f.text_field :email %>
 
-	      	<%= f.label :password %>
-	      	<%= f.password_field :password %>
+	<div class="row signin">
+		<div class="span4 offset3">
+		<%= form_tag (sessions_path) do %>
+		
+		  	<%= label_tag :email %>
+			<%= text_field_tag :email, params[:email] %>
+			
+			<%= label_tag :password %>
+			<%= password_field_tag :password, params[:password]%>
 
-	      	<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-	    <% end %>
-
-	    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
+			<%= submit_tag 'Sign in', :class => "btn btn-large btn-primary" %>
+		<% end %>
+		
+		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+		
+	  </div>
+	</div>
 </div>
-</div>
+
+
+	

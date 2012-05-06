@@ -1,7 +1,12 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "One Spark", root_path, id: "logo" %>
+	<% if signed_in? %>
+      <%= link_to "One Spark", current_user, id: "logo" %>
+	<% else %>
+	  <%= link_to "One Spark", root_path, id: "logo" %>
+	<% end %>
+	
 		<nav>
 			<ul class="nav pull-right">
 			

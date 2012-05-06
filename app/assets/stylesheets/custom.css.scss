@@ -67,9 +67,17 @@ textarea {
 
 /* content */
 
-.signup {
+.signup, .signin {
 	margin-top:50px;
 	text-align:left;
+	
+	input, textarea, select, .uneditable-input {
+		width: 100%;
+		padding: 8px;
+		height: auto;
+		margin-bottom: 15px;
+		@include box_sizing
+	}
 }
 
 .profile {
@@ -79,15 +87,6 @@ textarea {
 /* forms */
 label {
 	font-size:1.3em;
-}
-
-
-.signup input, textarea, select, .uneditable-input {
-	width: 100%;
-	padding: 8px;
-	height: auto;
-	margin-bottom: 15px;
-	@include box_sizing
 }
 
 #error_explanation {

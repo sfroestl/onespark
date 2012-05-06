@@ -4,24 +4,24 @@
   <h1>Sign up to One Spark</h1>
   <p>To create your One Spark account, just type in your information and you'll be set up in less then a minute!</p>
   <div class="row signup">
-  <div class="span4 offset3">
-    <%= form_for(@user) do |f| %>
-	  <%= render 'shared/user_error_messages' %>
+  	<div class="span4 offset3">
+	    <%= form_for(@user) do |f| %>
+		  <%= render 'shared/user_error_messages' %>
 	
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => "autofocus"%>
+	      <%= f.label :name %>
+	      <%= f.text_field :name, :autofocus => "autofocus"%>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+	      <%= f.label :email %>
+	      <%= f.text_field :email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+	      <%= f.label :password %>
+	      <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+	      <%= f.label :password_confirmation, "Confirmation" %>
+	      <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
-</div>
+	      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	    <% end %>
+	  </div>
+	</div>
 </div>
