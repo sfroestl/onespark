@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Documents/rubyWorkspace/onespark/app/views/sessions/new.html.erb</string>
+	<string>app/views/layouts/application.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,7 +21,7 @@
 	<integer>402</integer>
 	<key>metaData</key>
 	<dict>
-		<key>Documents/rubyWorkspace/onespark/Gemfile</key>
+		<key>Gemfile</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -51,7 +51,7 @@
 				<integer>29</integer>
 			</dict>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/assets/javascripts/application.js</key>
+		<key>app/assets/javascripts/application.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -65,7 +65,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/assets/stylesheets/application.css</key>
+		<key>app/assets/javascripts/sessions.js.coffee</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -79,21 +79,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/assets/stylesheets/custom.css.scss</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>19</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/assets/stylesheets/static_pages.css.scss</key>
+		<key>app/assets/stylesheets/application.css</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -107,7 +93,35 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/assets/stylesheets/users.css.scss</key>
+		<key>app/assets/stylesheets/custom.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>10</integer>
+				<key>line</key>
+				<integer>69</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>48</integer>
+		</dict>
+		<key>app/assets/stylesheets/static_pages.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/assets/stylesheets/users.css.scss</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -121,7 +135,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/controllers/application_controller.rb</key>
+		<key>app/controllers/application_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -135,49 +149,49 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/controllers/sessions_controller.rb</key>
+		<key>app/controllers/sessions_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>8</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/controllers/static_pages_controller.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
 				<integer>7</integer>
-				<key>line</key>
-				<integer>18</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/controllers/static_pages_controller.rb</key>
+		<key>app/controllers/users_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>39</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>4</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/controllers/users_controller.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>51</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/helpers/application_helper.rb</key>
+		<key>app/helpers/application_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -207,14 +221,14 @@
 				<integer>9</integer>
 			</dict>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/helpers/sessions_helper.rb</key>
+		<key>app/helpers/sessions_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>8</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>2</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -225,19 +239,19 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>2</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>11</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>2</integer>
 			</dict>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/helpers/static_pages_helper.rb</key>
+		<key>app/helpers/static_pages_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -251,7 +265,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/helpers/users_helper.rb</key>
+		<key>app/helpers/users_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -265,7 +279,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/models/user.rb</key>
+		<key>app/models/user.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -279,7 +293,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/layouts/_footer.html.erb</key>
+		<key>app/views/layouts/_footer.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -293,21 +307,21 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/layouts/_header.html.erb</key>
+		<key>app/views/layouts/_header.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>81</integer>
 				<key>line</key>
-				<integer>23</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/layouts/_shim.html.erb</key>
+		<key>app/views/layouts/_shim.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -321,35 +335,35 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/layouts/application.html.erb</key>
+		<key>app/views/layouts/application.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>25</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/sessions/new.html.erb</key>
+		<key>app/views/sessions/new.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>29</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/shared/_user_error_messages.html.erb</key>
+		<key>app/views/shared/_user_error_messages.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -363,7 +377,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/static_pages/contact.html.erb</key>
+		<key>app/views/static_pages/contact.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -377,12 +391,12 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/static_pages/home.html.erb</key>
+		<key>app/views/static_pages/goodbye.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>76</integer>
+				<integer>82</integer>
 				<key>line</key>
 				<integer>6</integer>
 			</dict>
@@ -391,7 +405,37 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/static_pages/imprint.html.erb</key>
+		<key>app/views/static_pages/home.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>76</integer>
+				<key>line</key>
+				<integer>6</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+		</dict>
+		<key>app/views/static_pages/imprint.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -405,7 +449,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/static_pages/more.html.erb</key>
+		<key>app/views/static_pages/more.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -419,21 +463,51 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/users/new.html.erb</key>
+		<key>app/views/users/edit.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>27</integer>
+				<integer>35</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/app/views/users/show.html.erb</key>
+		<key>app/views/users/new.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>25</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>26</integer>
+			</dict>
+		</dict>
+		<key>app/views/users/show.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -447,7 +521,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/commands</key>
+		<key>commands</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -461,7 +535,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/config.ru</key>
+		<key>config.ru</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -475,7 +549,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/config/application.rb</key>
+		<key>config/application.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -489,7 +563,7 @@
 			<key>firstVisibleLine</key>
 			<integer>1</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/config/environments/test.rb</key>
+		<key>config/environments/test.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -503,7 +577,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/config/locales/en.yml</key>
+		<key>config/locales/en.yml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -517,37 +591,21 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/config/routes.rb</key>
+		<key>config/routes.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>46</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>13</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>10</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>16</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/development.sqlite3</key>
+		<key>db/development.sqlite3</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -561,7 +619,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/migrate/20120505174130_add_index_to_users_email.rb</key>
+		<key>db/migrate/20120505174130_add_index_to_users_email.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -575,7 +633,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/migrate/20120505174255_add_password_digest_to_users.rb</key>
+		<key>db/migrate/20120505174255_add_password_digest_to_users.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -589,7 +647,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/migrate/20120506131340_add_remember_token_to_users.rb</key>
+		<key>db/migrate/20120506131340_add_remember_token_to_users.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -603,7 +661,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/schema.rb</key>
+		<key>db/schema.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -617,7 +675,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/seeds.rb</key>
+		<key>db/seeds.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -631,7 +689,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/db/test.sqlite3</key>
+		<key>db/test.sqlite3</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -645,7 +703,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/features/static_pages.feature</key>
+		<key>features/static_pages.feature</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -659,7 +717,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/features/support/env.rb</key>
+		<key>features/support/env.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -689,7 +747,7 @@
 				<integer>6</integer>
 			</dict>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/factories.rb</key>
+		<key>spec/factories.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -703,7 +761,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/models/user_spec.rb</key>
+		<key>spec/models/user_spec.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -717,21 +775,21 @@
 			<key>firstVisibleLine</key>
 			<integer>48</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/requests/authentication_pages_spec.rb</key>
+		<key>spec/requests/authentication_pages_spec.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>32</integer>
+				<integer>9</integer>
 				<key>line</key>
-				<integer>30</integer>
+				<integer>94</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/requests/static_pages_spec.rb</key>
+		<key>spec/requests/static_pages_spec.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -745,21 +803,21 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/requests/user_pages_spec.rb</key>
+		<key>spec/requests/user_pages_spec.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>37</integer>
 				<key>line</key>
-				<integer>56</integer>
+				<integer>105</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>6</integer>
+			<integer>56</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/spec_helper.rb</key>
+		<key>spec/spec_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -773,14 +831,14 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>Documents/rubyWorkspace/onespark/spec/support/utilities.rb</key>
+		<key>spec/support/utilities.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>7</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -790,59 +848,62 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>Documents/rubyWorkspace/onespark/config/application.rb</string>
-		<string>Documents/rubyWorkspace/onespark/features/support/env.rb</string>
-		<string>Documents/rubyWorkspace/onespark/Gemfile</string>
-		<string>Documents/rubyWorkspace/onespark/spec/factories.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/static_pages/home.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/static_pages/contact.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/static_pages/imprint.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/static_pages/more.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/controllers/static_pages_controller.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/assets/javascripts/application.js</string>
-		<string>Documents/rubyWorkspace/onespark/app/helpers/users_helper.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/assets/stylesheets/application.css</string>
-		<string>Documents/rubyWorkspace/onespark/app/assets/stylesheets/static_pages.css.scss</string>
-		<string>Documents/rubyWorkspace/onespark/app/assets/stylesheets/custom.css.scss</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/layouts/application.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/layouts/_header.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/layouts/_footer.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/layouts/_shim.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/commands</string>
-		<string>Documents/rubyWorkspace/onespark/app/models/user.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/migrate/20120505174255_add_password_digest_to_users.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/migrate/20120505174130_add_index_to_users_email.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/schema.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/development.sqlite3</string>
-		<string>Documents/rubyWorkspace/onespark/config.ru</string>
-		<string>Documents/rubyWorkspace/onespark/db/seeds.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/test.sqlite3</string>
-		<string>Documents/rubyWorkspace/onespark/app/controllers/users_controller.rb</string>
-		<string>Documents/rubyWorkspace/onespark/spec/models/user_spec.rb</string>
-		<string>Documents/rubyWorkspace/onespark/spec/requests/static_pages_spec.rb</string>
-		<string>Documents/rubyWorkspace/onespark/db/migrate/20120506131340_add_remember_token_to_users.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/users/show.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/users/new.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/config/locales/en.yml</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/shared/_user_error_messages.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/spec/requests/user_pages_spec.rb</string>
-		<string>Documents/rubyWorkspace/onespark/spec/requests/authentication_pages_spec.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/controllers/sessions_controller.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/views/sessions/new.html.erb</string>
-		<string>Documents/rubyWorkspace/onespark/config/environments/test.rb</string>
-		<string>Documents/rubyWorkspace/onespark/spec/support/utilities.rb</string>
-		<string>Documents/rubyWorkspace/onespark/features/static_pages.feature</string>
-		<string>Documents/rubyWorkspace/onespark/spec/spec_helper.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/helpers/application_helper.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/helpers/static_pages_helper.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/controllers/application_controller.rb</string>
-		<string>Documents/rubyWorkspace/onespark/config/routes.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/helpers/sessions_helper.rb</string>
-		<string>Documents/rubyWorkspace/onespark/app/assets/stylesheets/users.css.scss</string>
+		<string>config/application.rb</string>
+		<string>features/support/env.rb</string>
+		<string>Gemfile</string>
+		<string>spec/factories.rb</string>
+		<string>app/views/static_pages/home.html.erb</string>
+		<string>app/views/static_pages/contact.html.erb</string>
+		<string>app/views/static_pages/imprint.html.erb</string>
+		<string>app/views/static_pages/more.html.erb</string>
+		<string>app/controllers/static_pages_controller.rb</string>
+		<string>app/views/static_pages/goodbye.html.erb</string>
+		<string>app/assets/javascripts/application.js</string>
+		<string>app/helpers/users_helper.rb</string>
+		<string>app/assets/stylesheets/application.css</string>
+		<string>app/assets/stylesheets/static_pages.css.scss</string>
+		<string>app/assets/stylesheets/custom.css.scss</string>
+		<string>app/views/layouts/application.html.erb</string>
+		<string>app/views/layouts/_header.html.erb</string>
+		<string>app/views/layouts/_footer.html.erb</string>
+		<string>app/views/layouts/_shim.html.erb</string>
+		<string>commands</string>
+		<string>app/models/user.rb</string>
+		<string>db/migrate/20120505174255_add_password_digest_to_users.rb</string>
+		<string>db/migrate/20120505174130_add_index_to_users_email.rb</string>
+		<string>db/schema.rb</string>
+		<string>db/development.sqlite3</string>
+		<string>config.ru</string>
+		<string>db/seeds.rb</string>
+		<string>db/test.sqlite3</string>
+		<string>app/controllers/users_controller.rb</string>
+		<string>spec/models/user_spec.rb</string>
+		<string>spec/requests/static_pages_spec.rb</string>
+		<string>db/migrate/20120506131340_add_remember_token_to_users.rb</string>
+		<string>app/views/users/show.html.erb</string>
+		<string>app/views/users/new.html.erb</string>
+		<string>app/views/users/edit.html.erb</string>
+		<string>config/locales/en.yml</string>
+		<string>app/views/shared/_user_error_messages.html.erb</string>
+		<string>spec/requests/user_pages_spec.rb</string>
+		<string>spec/requests/authentication_pages_spec.rb</string>
+		<string>app/controllers/sessions_controller.rb</string>
+		<string>app/views/sessions/new.html.erb</string>
+		<string>app/assets/javascripts/sessions.js.coffee</string>
+		<string>config/environments/test.rb</string>
+		<string>spec/support/utilities.rb</string>
+		<string>features/static_pages.feature</string>
+		<string>spec/spec_helper.rb</string>
+		<string>app/helpers/application_helper.rb</string>
+		<string>app/helpers/static_pages_helper.rb</string>
+		<string>app/controllers/application_controller.rb</string>
+		<string>config/routes.rb</string>
+		<string>app/helpers/sessions_helper.rb</string>
+		<string>app/assets/stylesheets/users.css.scss</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{762, 107}, {1130, 1024}}</string>
+	<string>{{235, 96}, {1130, 1024}}</string>
 </dict>
 </plist>
