@@ -97,6 +97,10 @@ label {
   }
 }
 
+.two_edit_buttons input{
+	width:49%;
+}
+
 .field_with_errors {
   @extend .control-group;
   @extend .error;
