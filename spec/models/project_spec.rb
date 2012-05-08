@@ -17,12 +17,12 @@ describe Project do
   end
   
   describe "with no due date" do 
-    before { @projec.due_date = nil }
+    before { @project.due_date = nil }
     it { should be_valid }
   end
   
   describe "with due date in past" do 
-    before { @projec.due_date = 5.days.go }
+    before { @project.due_date = 5.days.ago }
     it { should_not be_valid }
   end
   
