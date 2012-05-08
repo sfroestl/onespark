@@ -1,0 +1,8 @@
+<ul>
+	<h4 class="title"><%= activity.title %></h4>
+	<span class="description"><%= activity.description %></span>
+
+	<% if activity.due_date %>
+		<span class="due_date"># Due Date: <%= time_ago_in_words(activity.due_date) %></span>
+	<% end %>
+</ul>

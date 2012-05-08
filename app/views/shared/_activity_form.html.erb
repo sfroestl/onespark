@@ -1,0 +1,10 @@
+<div class ="form">
+<%= form_for(@activity) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.text_field :title, placeholder: "Create a new activity..." %>
+
+  <%= f.submit "Create Activity", class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
