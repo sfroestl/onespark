@@ -43,19 +43,35 @@ describe "Authentication" do
        describe "for non-signed-in users" do
         let(:user) { FactoryGirl.create(:user) }
 
-        describe "in the Users controller" do
+          describe "in the Users controller" do
 
-          describe "visiting the edit page" do
-            before { visit edit_user_path(user) }
-            it { should have_selector('title', text: 'Sign in') }
-          end
+              describe "visiting the edit page" do
+                before { visit edit_user_path(user) }
+                it { should have_selector('title', text: 'Sign in') }
+              end
 
-          describe "submitting to the update action" do
-            before { put user_path(user) }
-            specify { response.should redirect_to(signin_path) }
+              describe "submitting to the update action" do
+                before { put user_path(user) }
+                specify { response.should redirect_to(signin_path) }
+              end
           end
+          
+          describe "in the Activities controller" do
+
+              describe "submitting to the create action" do
+                before { post activities_path }
+                specify { response.should redirect_to(signin_path) }
+              end
+
+              describe "submitting to the destroy action" do
+                before do
+                  activity = FactoryGirl.create(:activity)
+                  delete activity_path(activity)
+                end
+                  specify { response.should redirect_to(signin_path) }
+              end
+            end
         end
-      end
       
       describe "as wrong user" do
           let(:user) { FactoryGirl.create(:user) }

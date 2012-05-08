@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   
   def show
      @user = User.find(params[:id])
+     @activities = @user.activities.all
+     @activity = @user.activities.build if signed_in?
   end
   
   def create

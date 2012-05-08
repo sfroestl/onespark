@@ -66,6 +66,12 @@ textarea {
 }
 
 /* content */
+.form input, textarea, select, .uneditable-input {
+	padding: 8px;
+	height: auto;
+	text-align:left;
+	@include box_sizing
+}
 
 .signup, .signin {
 	margin-top:50px;
@@ -101,6 +107,10 @@ label {
   @extend .control-group;
   @extend .error;
  }
+
+.two_edit_buttons input{
+	width:49%;
+}
 
 /* footer */
 

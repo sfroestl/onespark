@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 
 <div class="row profile">
-  <aside class="span4">
+  <div class="span4">
     <section>
       <h1>
         <%= @user.name %>
@@ -10,5 +10,16 @@
 		<%= @user.email %>
       </p>
     </section>
-  </aside>
+  </div>
 </div>
+  	<%= render 'shared/activity_form' %>
+
+	<% if @user.activities.any? %>
+		<div class="activities">
+			<h2>Your Activities (<%= @user.activities.count %>)</h2>
+			<ol>
+				<%= render @activities %>
+			</ol>
+		</div>
+	<% end %>
+

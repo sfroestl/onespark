@@ -13,10 +13,23 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+    let!(:activity1) { FactoryGirl.create(:activity, user: user, title: "Example Project", description: "Example Description", due_date: 5.days.from_now) }
+    let!(:activity2) { FactoryGirl.create(:activity, user: user, title: "Example Project") }
 
+    before do 
+      sign_in user
+      visit user_path(user) 
+    end
+    
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
+    
+      describe "activities" do
+          it { should have_content(activity1.title) }
+          it { should have_content(activity2.title) }
+          it { should have_content(user.activities.count) }
+        end
+      
   end
   
   describe "signup" do

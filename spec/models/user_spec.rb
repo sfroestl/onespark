@@ -26,6 +26,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:activities) }
   
   it { should be_valid }
   
@@ -101,6 +102,29 @@ describe User do
   describe "remember token" do
       before { @user.save }
       its(:remember_token) { should_not be_blank }
-    end
+  end
   
+  describe "activities associations" do
+
+    before { @user.save }
+    let!(:far_activity) do 
+      FactoryGirl.create(:activity, title:"far away due date activity", user: @user, due_date: 6.day.from_now)
+    end
+    let!(:close_activity) do
+      FactoryGirl.create(:activity, title:"close due date activity", user: @user, due_date: 1.days.from_now)
+    end
+
+    it "should have the right activities in the right order" do
+      @user.activities.should == [close_activity, far_activity]
+      @user.activities.should_not == [far_activity, close_activity]
+    end
+    
+    it "should destroy associated activities" do
+      activities = @user.activities
+      @user.destroy
+      activities.each do |activity|
+        Activity.find_by_id(activity.id).should be_nil
+      end
+    end
+  end
 end
