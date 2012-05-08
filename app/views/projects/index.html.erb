@@ -2,16 +2,7 @@
   <div class="row-fluid">
     <div class="span3">
 		<div class="sidebar-nav">
-			<ul class="nav nav-list well">
-				<li class="nav-header">Projects</li>
-				<% if @projects.any? %>
-					<% @projects.each do |project|%>
-						<li><%= link_to project.title, project_path(project) %></li>
-					<% end %>
-				<% else%>
-					<li><%= link_to "Create Project...", new_project_path %>
-				<% end %>
-			</ul>
+				<%= render 'navigation'%>
 		</div>
  	</div>
 
@@ -20,7 +11,7 @@
 	<h1>Your current projects</h1>
 	<% @projects.each do |project|%>
 		<h3><%= link_to project.title, project_path(project) %></h3> 
-		<p># Due date <%= %></p>
+		<p># Due date <%= time_ago_in_words(project.due_date) %>  |  <%= project.due_date.strftime('%d.%m.%Y')%></p>
 	<% end %>
   </div>
 </div>

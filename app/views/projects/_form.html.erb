@@ -1,7 +1,16 @@
 <%= form_for(@project) do |f| %>
+ <%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <%= f.label :title %>
+  <%= f.text_field :title, :autofocus => "autofocus"%>
 
-  <%= f.submit %>
+  <%= f.label :desc %>
+  <%= f.text_field :desc %>
+
+  <%= f.label :due_date %>
+  <%= f.text_field :due_date %>
+	<div class="">
+		<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>
+		<%= f.submit "Create project", class: "btn btn-large btn-primary" %>
+	</div>
 <% end %>

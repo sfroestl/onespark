@@ -2,13 +2,12 @@
   <div class="row-fluid">
     <div class="span3">
 		<div class="sidebar-nav">
-				<%= render 'navigation'%>
+			<%= render 'navigation'%>
 		</div>
  	</div>
 
 	
   <div class="span8 well">
-		<h1><%= @project.title %></h1>
-		<p><%= @project.desc %></p>
+		<%= render  'form' %>
   </div>
 </div>

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
 def new
+  @projects = Project.all
   @project = Project.new
 end
 
