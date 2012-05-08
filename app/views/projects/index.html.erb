@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+	<div class="well sidebar-nav">
+		<ul class="nav nav-list">
+			<li class="nav-header">Projects</li>
+			<%= @projects.all.each do |project|%>
+				<li><%= link_to project_path(project)%></li>
+			<% end %>
+		              
+		         
+		</div>
+ 	</div>
+	
+	<div class="span10">
+      content
+    </div>
+  </div>
+</div>
