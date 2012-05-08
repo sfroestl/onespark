@@ -17,10 +17,7 @@
 
 	
   <div class="span8 well">
-	<h1>Your current projects</h1>
-	<% @projects.each do |project|%>
-		<h3><%= link_to project.title, project_path(project) %></h3> 
-		<p># Due date <%= %></p>
-	<% end %>
+		<h1><%= @project.title %></h1>
+		<p><%= @project.desc %></p>
   </div>
 </div>
