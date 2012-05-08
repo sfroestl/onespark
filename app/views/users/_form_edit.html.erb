@@ -1,5 +1,5 @@
 <%= form_for(@user) do |f| %>
- <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :name %>
   <%= f.text_field :name, :autofocus => "autofocus"%>
@@ -13,5 +13,10 @@
   <%= f.label :password_confirmation, "Confirmation" %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+
+	<div class="two_edit_buttons">
+		<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>
+		<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+	</div>
+
 <% end %>
