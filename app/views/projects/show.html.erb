@@ -1,14 +1,24 @@
+<%= provide(:title, @project.title) %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span3">
+    
+
+	
+  <div class="span8 well show_project">
+		<h1><%= link_to @project.title, edit_project_path(@project)  %></h1> 
+		<% if @project.due_date %>
+			<h4><i class="icon-calendar"></i> Due date: <%= @project.due_date.strftime('%d.%m.%Y')%></h4>
+		<% end %>
+		<p><%= @project.desc %></p>
+		<div class="project_actions">
+			<%= link_to "Edit", edit_project_path(@project) %>
+			<%= link_to "Delete?", @project, method: :delete, confirm: "Are you sure? This action can NOT be undone!"%>
+		</div>	
+  </div>
+	<div class="span3">
 		<div class="sidebar-nav">
 				<%= render 'navigation'%>
 		</div>
- 	</div>
-
-	
-  <div class="span8 well">
-		<h1><%= @project.title %></h1>
-		<p><%= @project.desc %></p>
+	</div>
   </div>
 </div>

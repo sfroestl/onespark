@@ -1,17 +1,19 @@
+<%= provide(:title, 'All projects') %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span3">
+  	<div class="span8 well">
+		<h1>Your current projects</h1>
+		<% @projects.each do |project|%>
+			<h3><%= link_to project.title, project_path(project) %></h3> 
+			<% if project.due_date %>
+			<p># Due date <%= time_ago_in_words(project.due_date) %>  |  <%= project.due_date.strftime('%d.%m.%Y')%></p>
+			<% end %>
+		<% end %>
+	 </div>
+	 <div class="span3">
 		<div class="sidebar-nav">
 				<%= render 'navigation'%>
 		</div>
- 	</div>
-
-	
-  <div class="span8 well">
-	<h1>Your current projects</h1>
-	<% @projects.each do |project|%>
-		<h3><%= link_to project.title, project_path(project) %></h3> 
-		<p># Due date <%= time_ago_in_words(project.due_date) %>  |  <%= project.due_date.strftime('%d.%m.%Y')%></p>
-	<% end %>
+ 	 </div>
   </div>
 </div>

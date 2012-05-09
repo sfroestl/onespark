@@ -1,11 +1,12 @@
-<%= provide(:title, 'New project') %>
+<%= provide(:title, 'Edit project') %>
 <div class="container-fluid">
   <div class="row-fluid">
-  	<div class="span8 well">
-		<h1>Create a new project:</h1>
-		<div class ="width350">
-			<%= render  'form' %>
-		</div>
+    
+  <div class="span8 well">
+	<h2>Edit: "<%= @project.title %>"</h2>
+	<div class ="width350">
+		<%= render  'form' %>
+	</div>
 	</div>
 	<div class="span3">
 		<div class="sidebar-nav">

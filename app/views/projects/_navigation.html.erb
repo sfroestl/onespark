@@ -1,9 +1,11 @@
 <ul class="nav nav-list well">
-	<li class="nav-header">Projects</li>
+	<li class="nav-header">Your Projects</li>
 	<% if @projects.any? %>
 		<% @projects.each do |project|%>
 			<li><%= link_to project.title, project_path(project) %></li>
 		<% end %>
 	<% end %>
 		<li style="padding-top:10px"><%= link_to "> Create new project...", new_project_path %>
+			
+	<li class="nav-header">Your Tasks</li>
 </ul>

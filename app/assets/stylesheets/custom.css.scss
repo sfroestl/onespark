@@ -71,7 +71,9 @@ textarea {
 }
 
 /* content */
-
+.content_whrapper {
+	min-height:480px;
+}
 .signup, .signin {
 	margin-top:50px;
 	text-align:left;
@@ -87,6 +89,23 @@ textarea {
 
 .profile {
 	margin-top:50px;
+}
+
+/* content projects */
+.project_actions {
+	margin-top:35px;
+	a {
+		padding-right:15px;
+	}
+}
+.show_project h1{
+	a {
+		color:$grayDark;	
+	}
+	a:hover {
+		color:$linkColorHover;
+		text-decoration: none;
+	}
 }
 
 /* forms */
@@ -110,6 +129,10 @@ label {
   @extend .control-group;
   @extend .error;
  }
+
+.width350{
+	width:350px;
+}
 
 /* footer */
 
@@ -140,6 +163,13 @@ footer {
 
 /* modified bootstrap */
 
+h1 {
+	margin-bottom:25px;
+}
+h2 {
+	margin-bottom:15px;
+}
+
 .hero-unit {
 	margin-top:50px;
 	.btn-large {
@@ -149,6 +179,24 @@ footer {
 		margin-top:25px;
 	}
 }
+.well {
+	background-color:#f2f6fa;
+	a {
+		text-decoration:none;
+	}
+}
+.sidebar-nav .nav li a:hover {
+	background-color:#e2e6ec;
+}
+
+input, textarea, select {
+	width:350px;
+}
+textarea {
+	height:200px;
+}
+
+
 
 /* messages */
 
