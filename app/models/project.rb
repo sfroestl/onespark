@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   attr_accessible :desc, :due_date, :title
+  has_many :tickets
   
   validates :title, presence:true
   

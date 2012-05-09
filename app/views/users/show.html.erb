@@ -1,14 +1,23 @@
 <% provide(:title, @user.name) %>
 
-<div class="row profile">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @user.name %>
-	  </h1>
-	  <p>
-		<%= @user.email %>
-      </p>
-    </section>
-  </aside>
+<div class = "container-fluid">
+	<div class="row-fluid">
+		<div class="span8 well">
+			<div class="pull-right">
+				
+			</div>
+	      		<h1><%= link_to @user.name, edit_user_path(@user) %></h1>
+				<h5><%= @user.email %></h5>
+				<hr/>
+				<details class = "block">
+					<p><h5>Details</h5></p>
+					<p>
+						Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
+						Account type: Free user
+					</p>
+		  			<hr/>
+				</details>
+			</div>
+		</div>
+	</div>
 </div>

@@ -60,5 +60,30 @@ describe "Project Pages" do
         should have_selector('a', text: 'Delete')
       end
     end
+
+    describe "visit a project " do
+      before { visit project_path(project) }
+      it { should have_selector('title', text: project.title) }
+      it { should have_content('Create new ticket') }
+      
+      describe "create new ticket with valid information" do
+        before do
+          click_link 'new ticket'
+          fill_in "Title",    with: "Example Ticket"
+          fill_in "Desc",     with: "Example ticket foobar test test"
+          fill_in "Due date", with: "12.1.2020"
+          click_button 'create ticket'
+        end
+        it { should have_content('Project created') }
+        it { should have_content('Example Ticket') }
+      end
+      describe "create new ticket with invalid information" do
+        before do
+          click_link 'new ticket'
+          click_button 'create ticket'
+        end
+        it { should have_content('error') }
+      end
+    end
   end
 end

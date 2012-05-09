@@ -5,7 +5,10 @@
 			<li><%= link_to project.title, project_path(project) %></li>
 		<% end %>
 	<% end %>
-		<li style="padding-top:10px"><%= link_to "> Create new project...", new_project_path %>
+		<li style="padding-top:10px">
+			<%= link_to new_project_path do %>
+				<i class='icon-plus'></i> Create new project... 
+			<% end %></li>
 			
-	<li class="nav-header">Your Tasks</li>
+	<li class="nav-header">Your next actions</li>
 </ul>

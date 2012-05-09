@@ -70,6 +70,9 @@ textarea {
 	padding-top: 23px;
 }
 
+.link_icon {
+	color:$linkColor;
+}
 /* content */
 .content_whrapper {
 	min-height:480px;
@@ -93,7 +96,7 @@ textarea {
 
 /* content projects */
 .project_actions {
-	margin-top:35px;
+	padding-top:2px;
 	a {
 		padding-right:15px;
 	}
@@ -180,7 +183,7 @@ h2 {
 	}
 }
 .well {
-	background-color:#f2f6fa;
+	background-color:grayLighter;
 	a {
 		text-decoration:none;
 	}

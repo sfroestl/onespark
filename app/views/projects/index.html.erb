@@ -6,8 +6,9 @@
 		<% @projects.each do |project|%>
 			<h3><%= link_to project.title, project_path(project) %></h3> 
 			<% if project.due_date %>
-			<p># Due date <%= time_ago_in_words(project.due_date) %>  |  <%= project.due_date.strftime('%d.%m.%Y')%></p>
+			<p><i class="icon-calendar"></i> <%= time_ago_in_words(project.due_date) %> to due date at <%= project.due_date.strftime('%d.%m.%Y')%></p>
 			<% end %>
+			<hr/>
 		<% end %>
 	 </div>
 	 <div class="span3">

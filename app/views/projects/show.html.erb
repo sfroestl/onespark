@@ -5,15 +5,26 @@
 
 	
   <div class="span8 well show_project">
-		<h1><%= link_to @project.title, edit_project_path(@project)  %></h1> 
-		<% if @project.due_date %>
-			<h4><i class="icon-calendar"></i> Due date: <%= @project.due_date.strftime('%d.%m.%Y')%></h4>
-		<% end %>
-		<p><%= @project.desc %></p>
-		<div class="project_actions">
+		
+		<div class="project_actions pull-right">
 			<%= link_to "Edit", edit_project_path(@project) %>
 			<%= link_to "Delete?", @project, method: :delete, confirm: "Are you sure? This action can NOT be undone!"%>
-		</div>	
+		</div>
+		<div class="project">
+			<h1><%= link_to @project.title, edit_project_path(@project)  %></h1> 
+			<p><%= @project.desc %></p>
+			<% if @project.due_date %>
+				<h4><i class="icon-calendar"></i> Due date: <%= @project.due_date.strftime('%d.%m.%Y')%></h4>
+			<% end %>
+			<hr/>
+			<div class ="tickets">
+				<h4>Tickets</h4>
+				<%= link_to '#' do %>
+					<i class='icon-plus'></i> Create new ticket...
+				<% end %>
+				<hr/>
+			</div>
+		</div>
   </div>
 	<div class="span3">
 		<div class="sidebar-nav">
