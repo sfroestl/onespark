@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 before_filter :get_all_projects
+before_filter :signed_in_user
 
 def new
   @project = Project.new
@@ -52,6 +53,12 @@ def update
 end
 
 private
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Ups, please sign in!"
+    end
+  end
 
   def get_all_projects
     @projects = Project.all
