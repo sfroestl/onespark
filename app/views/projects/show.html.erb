@@ -5,30 +5,21 @@
 
 	
   <div class="span8 well show_project">
-		
-		<div class="project_actions pull-right">
-			<%= link_to "Edit", edit_project_path(@project) %>
-			<%= link_to "Delete?", @project, method: :delete, confirm: "Are you sure? This action can NOT be undone!"%>
-		</div>
-		<div class="project">
-			<h1><%= link_to @project.title, edit_project_path(@project)  %></h1> 
-			<p><%= @project.desc %></p>
-			<% if @project.due_date %>
-				<h4><i class="icon-calendar"></i> Due date: <%= @project.due_date.strftime('%d.%m.%Y')%></h4>
+		<%= render 'shared/project_scaffold'%>
+		<div class ="tickets">
+			<h4>Tickets</h4>
+			<ul><%= render 'tickets/all'%></ul>
+			<p class ="new_ticket">
+			<%= link_to new_project_ticket_path(@project) do %>
+				<i class='icon-plus-sign'></i> Create new ticket...
 			<% end %>
+			</p>
 			<hr/>
-			<div class ="tickets">
-				<h4>Tickets</h4>
-				<%= link_to '#' do %>
-					<i class='icon-plus'></i> Create new ticket...
-				<% end %>
-				<hr/>
-			</div>
-		</div>
+		</div>	
   </div>
 	<div class="span3">
 		<div class="sidebar-nav">
-				<%= render 'navigation'%>
+			<%= render 'shared/project_navigation'%>
 		</div>
 	</div>
   </div>

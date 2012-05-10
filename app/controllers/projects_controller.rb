@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
 before_filter :get_all_projects
 before_filter :signed_in_user
 
+# TODO: make project only accesible for admin and invited users
+
 def new
   @project = Project.new
 end
@@ -46,7 +48,7 @@ def update
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated"
       get_all_projects
-      render 'index'
+      redirect_to @project
     else
       render 'edit'
   end

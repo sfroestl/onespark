@@ -72,15 +72,15 @@ describe "Project Pages" do
           fill_in "Title",    with: "Example Ticket"
           fill_in "Desc",     with: "Example ticket foobar test test"
           fill_in "Due date", with: "12.1.2020"
-          click_button 'create ticket'
+          click_button 'Create ticket'
         end
-        it { should have_content('Project created') }
+        it { should have_content('Ticket created') }
         it { should have_content('Example Ticket') }
       end
       describe "create new ticket with invalid information" do
         before do
           click_link 'new ticket'
-          click_button 'create ticket'
+          click_button 'Create ticket'
         end
         it { should have_content('error') }
       end

@@ -1,0 +1,13 @@
+<div class="project_actions pull-right">
+	<%= link_to "Edit", edit_project_path(@project) %>
+	<%= link_to "Delete?", @project, method: :delete, confirm: "Delete project: " + @project.title + "?" %>
+</div>
+<div class= "project_headline">
+	<h1><%= link_to @project.title, project_path(@project)  %></h1> 
+	<% if @project.due_date %>
+		<span class="due_date bubble"><%= @project.due_date.strftime('%d.%m.%Y')%></span>
+	<% end %>
+	<p><%= @project.desc %></p>
+</div>
+<hr/>
+	

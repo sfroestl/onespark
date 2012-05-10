@@ -1,0 +1,16 @@
+<% @project.tickets.each do |ticket|%>
+	<li>
+		<%= link_to ticket.title, project_ticket_path(@project, ticket)%>
+		<% if ticket.due_date %>
+			<span class = "bubble">
+				<%=ticket.due_date.strftime('%d.%m.%Y - %H:%M')%> 
+			</span>
+		<% end %>
+		<span class = "edit_icons">
+				<i class = "icon-ok-sign"></i>
+				<%= link_to  [@project, ticket], method: :delete, confirm: "Delete ticket: " + ticket.title + "?" do%>
+				<i class = "icon-remove-sign"></i>
+				<% end %>
+		</span>
+	</li>
+<% end %>

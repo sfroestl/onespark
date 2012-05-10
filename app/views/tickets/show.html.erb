@@ -1,0 +1,33 @@
+<%= provide(:title, @project.title) %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    
+
+	
+  	<div class="span8 well show_project">
+		<%= render 'shared/project_scaffold'%>
+			<div class="ticket_actions pull-right">
+				<%= link_to "Edit", edit_project_ticket_path(@project, @ticket) %>
+				<%= link_to "Delete?", [@project, @ticket], method: :delete, confirm: "Delete ticket: " + @ticket.title + "?" %>
+			</div>
+			<div class ="tickets">
+				
+				<div class ="show_ticket">
+					<%= link_to edit_project_ticket_path(@project, @ticket) do%>
+					<h4>Ticket: <%= @ticket.title %></h4>
+					<% end %>
+					<span class="due_date bubble"><%= @project.due_date.strftime('%d.%m.%Y')%></span>
+					<p><%= @ticket.desc %></p>
+				</div>
+				<hr/>
+			</div>
+			
+	</div>
+  </div>
+	<div class="span3">
+		<div class="sidebar-nav">
+				<%= render 'shared/project_navigation'%>
+		</div>
+	</div>
+  </div>
+</div>

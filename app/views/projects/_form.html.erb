@@ -9,8 +9,10 @@
 
   <%= f.label :due_date %>
   <%= f.text_field :due_date %>
-		<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>
-	<div class = "pull-right">
-		<%= f.submit "Create project", class: "btn btn-large btn-primary" %>
-	</div>
+		<div class = "buttons">	
+			<%= link_to "Cancel", projects_path, :class => "btn btn-medium" %>
+			<div class = "pull-right">
+			<%= submit_tag("Create project",  :name => 'create', :class => "btn btn-primary" )%>
+			</div>
+		</div>
 <% end %>

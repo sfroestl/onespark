@@ -6,3 +6,7 @@ en:
       attributes:
         user:
           password_digest: "Password"
+        ticket:
+            desc: "Description"
+        project:
+            desc: "Description"

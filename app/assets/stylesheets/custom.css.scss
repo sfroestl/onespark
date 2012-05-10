@@ -3,6 +3,8 @@
 /* colors*/
 $grayMediumLight: #eaeaea;
 $onesparkOrange: #ea5b0b;
+$bubbleBlue: #39ade6;
+$backgroundLightBlue: #e2e6ec;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -10,6 +12,15 @@ $onesparkOrange: #ea5b0b;
   box-sizing: border-box;
 }
 
+@mixin link_gray_blue {
+	a {
+		color:$grayDark;	
+	}
+	a:hover {
+		color:$linkColorHover;
+		text-decoration: none;
+	}
+}
 /* universal */
 
 html {
@@ -94,23 +105,105 @@ textarea {
 	margin-top:50px;
 }
 
+span.bubble {
+	border: 1px solid transparent;
+	border-radius: 5px 5px 5px 5px;
+    color: #666666;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+	padding: 0 7px;
+	white-space: nowrap;
+	background: none repeat scroll 0 0 $backgroundLightBlue;
+}
+
 /* content projects */
+.show_project h1{
+	@include link_gray_blue
+}
+
+.project_headline {
+	h1, h4 {
+		display:inline;
+	}
+	p {
+		padding-left:12px;
+		margin-top:10px;
+	}
+	.due_date {
+		margin-left:25px;
+	}
+	.bubble {
+		font-size:1.2em;
+	 	border: 4px solid transparent;
+	}
+	
+	
+}
 .project_actions {
-	padding-top:2px;
+	padding-top:15px;
 	a {
-		padding-right:15px;
+		padding-right:8px;
 	}
 }
-.show_project h1{
-	a {
-		color:$grayDark;	
+/* tickets */
+
+.show_ticket {
+	h4 {
+	display:inline;
 	}
-	a:hover {
+	p {
+		padding-left:12px;
+		margin-top:10px;	
+	}
+	a:hover h4{
 		color:$linkColorHover;
-		text-decoration: none;
+	}
+}
+.new_ticket {
+	font-size:12px;
+	
+	label {
+		font-size:11px;
+	}
+	textarea {
+		height:60px;
+	}
+	.buttons {
+		width:360px;
+		input {
+			width:152px;
+			padding:5px 4px 5px 4px;
+		}
+		a {
+			width:130px;
+		}
+		a:hover {
+			color:$grayDark;
+		}
+		
 	}
 }
 
+.tickets {
+	ul {
+		margin-left:0px;
+	}
+	li {
+		padding: 4px 0px 0px 12px;
+		list-style-type:none;
+	}
+	.edit_icons {
+		display:inline;
+		margin-left:10px;
+	}
+	@include link_gray_blue	
+}
+.ticket_actions {
+	a {
+		padding-right:8px;
+	}
+}
 /* forms */
 label {
 	font-size:1.3em;
@@ -135,6 +228,11 @@ label {
 
 .width350{
 	width:350px;
+}
+
+.ticket_form {
+	margin-top:10px;
+	font-size:0.85em;
 }
 
 /* footer */
@@ -189,7 +287,7 @@ h2 {
 	}
 }
 .sidebar-nav .nav li a:hover {
-	background-color:#e2e6ec;
+	background-color:$backgroundLightBlue;
 }
 
 input, textarea, select {

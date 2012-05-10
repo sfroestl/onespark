@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20120509211342) do
 
+  create_table "activities", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "due_date"
+  end
+
   add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
 
   create_table "projects", :force => true do |t|
