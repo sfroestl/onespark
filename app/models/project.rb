@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   attr_accessible :desc, :due_date, :title
-  has_many :tickets
+  # ensures to destroy all tickets related to project
+  has_many :tickets,  dependent: :destroy
   
   validates :title, presence:true
   

@@ -7,8 +7,8 @@
   	<div class="span8 well show_project">
 		<%= render 'shared/project_scaffold'%>
 			<div class="ticket_actions pull-right">
-				<%= link_to "Edit", edit_project_ticket_path(@project, @ticket) %>
-				<%= link_to "Delete?", [@project, @ticket], method: :delete, confirm: "Delete ticket: " + @ticket.title + "?" %>
+				<%= link_to "Edit ticket", edit_project_ticket_path(@project, @ticket) %>
+				<%= link_to "Delete ticket?", [@project, @ticket], method: :delete, confirm: "Delete ticket: " + @ticket.title + "?" %>
 			</div>
 			<div class ="tickets">
 				

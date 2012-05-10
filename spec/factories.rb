@@ -11,4 +11,11 @@ FactoryGirl.define do
     desc    "example project's description here"
     due_date 3.days.from_now
   end
+  
+  factory :ticket do
+    title   "Example Ticket"
+    desc    "example ticket here"
+    due_date 3.days.from_now
+    project
+  end
 end
