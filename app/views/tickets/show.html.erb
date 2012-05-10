@@ -1,17 +1,15 @@
 <%= provide(:title, @project.title) %>
 <div class="container-fluid">
   <div class="row-fluid">
-    
-
-	
-  	<div class="span8 well show_project">
+ 	<div class="span8 well show_project">
 		<%= render 'shared/project_scaffold'%>
+		
 			<div class="ticket_actions pull-right">
-				<%= link_to "Edit ticket", edit_project_ticket_path(@project, @ticket) %>
-				<%= link_to "Delete ticket?", [@project, @ticket], method: :delete, confirm: "Delete ticket: " + @ticket.title + "?" %>
+				<p><%= link_to "Edit ticket", edit_project_ticket_path(@project, @ticket) %></p>
+				<p><%= link_to "Delete ticket?", [@project, @ticket], method: :delete, confirm: "Delete ticket: " + @ticket.title + "?" %></p>
 			</div>
+			
 			<div class ="tickets">
-				
 				<div class ="show_ticket">
 					<%= link_to edit_project_ticket_path(@project, @ticket) do%>
 					<h4>Ticket: <%= @ticket.title %></h4>
@@ -21,8 +19,6 @@
 				</div>
 				<hr/>
 			</div>
-			
-	</div>
   </div>
 	<div class="span3">
 		<div class="sidebar-nav">
