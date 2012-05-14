@@ -1,0 +1,26 @@
+<div class = "container-fluid">
+	<div class="row-fluid">
+		<div class="span8 well">
+			<div class="pull-right">
+			<!-- right menu here -->	
+			</div>
+			
+	      		
+				<% unless @git_repos.nil?%>
+					<h3>Your github.com repositories (<%= @git_repos.count %>)</h3>
+					<hr/>
+					<% @git_repos.each do |repo|%>
+						<h5><%= link_to repo["name"], user_path + "/repos/"+repo["name"] %></h5>
+						<br/>
+						<p>Description: <%= repo["description"] %></p>
+						<p>Last update: <%= repo["updated_at"].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></p>	
+						<p><%= link_to 'View on github.com', repo["html_url"], :target => "_blank"%></p>	
+						<hr/>
+					<% end %>
+				<%end%>
+				
+				
+				
+		</div>
+	</div>
+</div>

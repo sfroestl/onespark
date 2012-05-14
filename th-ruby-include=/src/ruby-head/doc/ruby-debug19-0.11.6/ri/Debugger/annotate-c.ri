@@ -1,0 +1,2 @@
+U:RDoc::Attr[iI"annotate:EFI"Debugger::annotate;FI"RW;F:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I";gdb-style annotation mode. Used in GNU Emacs interface;T:
+@fileI"cli/ruby-debug.rb;TT@

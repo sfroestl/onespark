@@ -1,0 +1,20 @@
+<div class = "container-fluid">
+	<div class="row-fluid">
+		<div class="span8 well">
+			<div class="pull-right">
+				
+			</div>
+			<%= form_tag (user_path + "/repos/link_account") do %>
+
+			  	<%= label_tag :username %>
+				<%= text_field_tag :username, params[:username] %>
+	
+				<%= label_tag :password %>
+				<%= password_field_tag :password, params[:password]%>
+				<div>
+				<%= submit_tag 'Link account', :class => "btn btn-large btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

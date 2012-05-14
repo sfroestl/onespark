@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Debugger - ruby-debug19-0.11.6 Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>cli/ruby-debug/command.rb
+    <li>cli/ruby-debug/commands/breakpoints.rb
+    <li>cli/ruby-debug/commands/catchpoint.rb
+    <li>cli/ruby-debug/commands/condition.rb
+    <li>cli/ruby-debug/commands/continue.rb
+    <li>cli/ruby-debug/commands/control.rb
+    <li>cli/ruby-debug/commands/display.rb
+    <li>cli/ruby-debug/commands/edit.rb
+    <li>cli/ruby-debug/commands/enable.rb
+    <li>cli/ruby-debug/commands/eval.rb
+    <li>cli/ruby-debug/commands/finish.rb
+    <li>cli/ruby-debug/commands/frame.rb
+    <li>cli/ruby-debug/commands/help.rb
+    <li>cli/ruby-debug/commands/info.rb
+    <li>cli/ruby-debug/commands/irb.rb
+    <li>cli/ruby-debug/commands/jump.rb
+    <li>cli/ruby-debug/commands/kill.rb
+    <li>cli/ruby-debug/commands/list.rb
+    <li>cli/ruby-debug/commands/method.rb
+    <li>cli/ruby-debug/commands/quit.rb
+    <li>cli/ruby-debug/commands/reload.rb
+    <li>cli/ruby-debug/commands/save.rb
+    <li>cli/ruby-debug/commands/set.rb
+    <li>cli/ruby-debug/commands/show.rb
+    <li>cli/ruby-debug/commands/source.rb
+    <li>cli/ruby-debug/commands/stepping.rb
+    <li>cli/ruby-debug/commands/threads.rb
+    <li>cli/ruby-debug/commands/tmate.rb
+    <li>cli/ruby-debug/commands/trace.rb
+    <li>cli/ruby-debug/commands/variables.rb
+    <li>cli/ruby-debug/helper.rb
+    <li>cli/ruby-debug/interface.rb
+    <li>cli/ruby-debug/processor.rb
+    <li>cli/ruby-debug.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-run_init_script">::run_init_script</a>
+    
+    <li><a href="#method-c-run_script">::run_script</a>
+    
+    <li><a href="#method-c-settings">::settings</a>
+    
+    <li><a href="#method-c-start_client">::start_client</a>
+    
+    <li><a href="#method-c-start_remote">::start_remote</a>
+    
+    <li><a href="#method-c-start_server">::start_server</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Debugger.html">Debugger</a>
+  
+    <li><a href="./Debugger/AddBreakpoint.html">Debugger::AddBreakpoint</a>
+  
+    <li><a href="./Debugger/ContinueCommand.html">Debugger::ContinueCommand</a>
+  
+    <li><a href="./Debugger/DeleteBreakpointCommand.html">Debugger::DeleteBreakpointCommand</a>
+  
+    <li><a href="./Debugger/FinishCommand.html">Debugger::FinishCommand</a>
+  
+    <li><a href="./Debugger/HelpCommand.html">Debugger::HelpCommand</a>
+  
+    <li><a href="./Debugger/IRBCommand.html">Debugger::IRBCommand</a>
+  
+    <li><a href="./Debugger/InfoCommand.html">Debugger::InfoCommand</a>
+  
+    <li><a href="./Debugger/JumpCommand.html">Debugger::JumpCommand</a>
+  
+    <li><a href="./Debugger/KillCommand.html">Debugger::KillCommand</a>
+  
+    <li><a href="./Debugger/ListCommand.html">Debugger::ListCommand</a>
+  
+    <li><a href="./Debugger/LocalInterface.html">Debugger::LocalInterface</a>
+  
+    <li><a href="./Debugger/LocalInterface/Debugger.html">Debugger::LocalInterface::Debugger</a>
+  
+    <li><a href="./Debugger/MethodCommand.html">Debugger::MethodCommand</a>
+  
+    <li><a href="./Debugger/MethodSigCommand.html">Debugger::MethodSigCommand</a>
+  
+    <li><a href="./Debugger/NextCommand.html">Debugger::NextCommand</a>
+  
+    <li><a href="./Debugger/ParseFunctions.html">Debugger::ParseFunctions</a>
+  
+    <li><a href="./Debugger/Processor.html">Debugger::Processor</a>
+  
+    <li><a href="./Debugger/QuitCommand.html">Debugger::QuitCommand</a>
+  
+    <li><a href="./Debugger/ReloadCommand.html">Debugger::ReloadCommand</a>
+  
+    <li><a href="./Debugger/SetCommand.html">Debugger::SetCommand</a>
+  
+    <li><a href="./Debugger/ShowCommand.html">Debugger::ShowCommand</a>
+  
+    <li><a href="./Debugger/SourceCommand.html">Debugger::SourceCommand</a>
+  
+    <li><a href="./Debugger/StepCommand.html">Debugger::StepCommand</a>
+  
+    <li><a href="./Debugger/VarClassVarCommand.html">Debugger::VarClassVarCommand</a>
+  
+    <li><a href="./Debugger/VarInheritCommand.html">Debugger::VarInheritCommand</a>
+  
+    <li><a href="./Debugger/VarLocalCommand.html">Debugger::VarLocalCommand</a>
+  
+    <li><a href="./Debugger/WhereCommand.html">Debugger::WhereCommand</a>
+  
+    <li><a href="./Kernel.html">Kernel</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Debugger</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="HOME_DIR">HOME_DIR
+        
+        <dd class="description">
+        
+      
+        <dt id="INITFILE">INITFILE
+        
+        <dd class="description"><p>Of course MS Windows has to be different</p>
+        
+      
+        <dt id="PORT">PORT
+        
+        <dd class="description"><p>the port number used for remote debugging</p>
+        
+      
+        <dt id="RUBY_DEBUG_DIR">RUBY_DEBUG_DIR
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-c-annotate" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">annotate</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>gdb-style annotation mode. Used in GNU Emacs interface</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-control_thread" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">control_thread</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-start_sentinal" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">start_sentinal</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>If set, a string to look for in caller() and is used to see if the call
+stack is truncated.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-thread" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">thread</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-wait_connection" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">wait_connection</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>in remote mode, wait for the remote connection</p>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-run_init_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_init_script</span><span
+            class="method-args">(out = handler.interface)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs normal debugger initialization scripts Reads and executes the commands
+from init file (if any) in the current working directory.  This is only
+done if the current directory is different from your home directory.  Thus,
+you can have more than one init file, one generic in your home directory,</p>
+
+<pre>and another, specific to the program you are debugging, in the</pre>
+
+<p>directory where you invoke ruby-debug.</p>
+          
+
+          
+          <div class="method-source-code" id="run_init_script-source">
+            <pre><span class="ruby-comment"># File cli/ruby-debug.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_init_script</span>(<span class="ruby-identifier">out</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">interface</span>)
+  <span class="ruby-identifier">cwd_script_file</span>  = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;.&quot;</span>, <span class="ruby-constant">INITFILE</span>))
+  <span class="ruby-identifier">run_script</span>(<span class="ruby-identifier">cwd_script_file</span>, <span class="ruby-identifier">out</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">cwd_script_file</span>)
+
+  <span class="ruby-identifier">home_script_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">HOME_DIR</span>, <span class="ruby-constant">INITFILE</span>))
+  <span class="ruby-identifier">run_script</span>(<span class="ruby-identifier">home_script_file</span>, <span class="ruby-identifier">out</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">home_script_file</span>) <span class="ruby-keyword">and</span> 
+    <span class="ruby-identifier">cwd_script_file</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">home_script_file</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run_init_script-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run_init_script-method -->
+
+    
+      <div id="method-c-run_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_script</span><span
+            class="method-args">(file, out = handler.interface, verbose=false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs a script file</p>
+          
+
+          
+          <div class="method-source-code" id="run_script-source">
+            <pre><span class="ruby-comment"># File cli/ruby-debug.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_script</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">out</span> = <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">interface</span>, <span class="ruby-identifier">verbose</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">interface</span> = <span class="ruby-constant">ScriptInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">file</span>), <span class="ruby-identifier">out</span>)
+  <span class="ruby-identifier">processor</span> = <span class="ruby-constant">ControlCommandProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">interface</span>)
+  <span class="ruby-identifier">processor</span>.<span class="ruby-identifier">process_commands</span>(<span class="ruby-identifier">verbose</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run_script-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run_script-method -->
+
+    
+      <div id="method-c-settings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">settings</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns setting object. Use <a
+href="Debugger.html#method-c-settings">::settings</a>[] and <a
+href="Debugger.html#method-c-settings">::settings</a>[]= methods to query
+and set debugger settings. These settings are available:</p>
+<ul><li>
+<p>:autolist - automatically calls ‘list’ command on breakpoint</p>
+</li><li>
+<p>:autoeval - evaluates input in the current binding if it’s not recognized
+as a debugger command</p>
+</li><li>
+<p>:autoirb - automatically calls ‘irb’ command on breakpoint</p>
+</li><li>
+<p>:stack_trace_on_error - shows full stack trace if eval command results with
+an exception</p>
+</li><li>
+<p>:frame_full_path - displays full paths when showing frame stack</p>
+</li><li>
+<p>:frame_class_names - displays method’s class name when showing frame stack</p>
+</li><li>
+<p>:reload_source_on_change - makes ‘list’ command to always display
+up-to-date source code</p>
+</li><li>
+<p>:force_stepping - stepping command asways move to the new line</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="settings-source">
+            <pre><span class="ruby-comment"># File cli/ruby-debug/command.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">settings</span>
+  <span class="ruby-constant">Command</span>.<span class="ruby-identifier">settings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- settings-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- settings-method -->
+
+    
+      <div id="method-c-start_client" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_client</span><span
+            class="method-args">(host = 'localhost', port = PORT)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Connects to the remote debugger</p>
+          
+
+          
+          <div class="method-source-code" id="start_client-source">
+            <pre><span class="ruby-comment"># File cli/ruby-debug.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_client</span>(<span class="ruby-identifier">host</span> = <span class="ruby-string">'localhost'</span>, <span class="ruby-identifier">port</span> = <span class="ruby-constant">PORT</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;socket&quot;</span>
+  <span class="ruby-identifier">interface</span> = <span class="ruby-constant">Debugger</span><span class="ruby-operator">::</span><span class="ruby-constant">LocalInterface</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">socket</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Connected.&quot;</span>
+  
+  <span class="ruby-identifier">catch</span>(<span class="ruby-value">:exit</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">gets</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">line</span> 
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r^PROMPT (.*)$/</span>
+        <span class="ruby-identifier">input</span> = <span class="ruby-identifier">interface</span>.<span class="ruby-identifier">read_command</span>(<span class="ruby-node">$1</span>)
+        <span class="ruby-identifier">throw</span> <span class="ruby-value">:exit</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">input</span>
+        <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">input</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r^CONFIRM (.*)$/</span>
+        <span class="ruby-identifier">input</span> = <span class="ruby-identifier">interface</span>.<span class="ruby-identifier">confirm</span>(<span class="ruby-node">$1</span>)
+        <span class="ruby-identifier">throw</span> <span class="ruby-value">:exit</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">input</span>
+        <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">input</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_client-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- start_client-method -->
+
+    
+      <div id="method-c-start_remote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_remote</span><span
+            class="method-args">(host = nil, port = PORT, post_mortem = false) { || ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Starts a remote debugger.</p>
+          
+
+          
+          <div class="method-source-code" id="start_remote-source">
+            <pre><span class="ruby-comment"># File cli/ruby-debug.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_remote</span>(<span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-constant">PORT</span>, <span class="ruby-identifier">post_mortem</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@thread</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">started?</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">start</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">post_mortem</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_mortem</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">port</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-identifier">cmd_port</span>, <span class="ruby-identifier">ctrl_port</span> = <span class="ruby-identifier">port</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">cmd_port</span>, <span class="ruby-identifier">ctrl_port</span> = <span class="ruby-identifier">port</span>, <span class="ruby-identifier">port</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">start_control</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">ctrl_port</span>)
+  
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+  
+  <span class="ruby-identifier">mutex</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">proceed</span> = <span class="ruby-constant">ConditionVariable</span>.<span class="ruby-identifier">new</span>
+  
+  <span class="ruby-ivar">@thread</span> = <span class="ruby-constant">DebugThread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">server</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">cmd_port</span>)
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">session</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">accept</span>)
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-constant">RemoteInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">session</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">wait_connection</span>
+        <span class="ruby-identifier">mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">proceed</span>.<span class="ruby-identifier">signal</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">wait_connection</span>
+    <span class="ruby-identifier">mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">proceed</span>.<span class="ruby-identifier">wait</span>(<span class="ruby-identifier">mutex</span>)
+    <span class="ruby-keyword">end</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_remote-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Debugger.html#method-c-start_server">start_server</a>
+        </div>
+        
+
+        
+      </div><!-- start_remote-method -->
+
+    
+      <div id="method-c-start_server" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">start_server</span><span
+            class="method-args">(host = nil, port = PORT, post_mortem = false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Debugger.html#method-c-start_remote">start_remote</a>
+        </div>
+        
+      </div><!-- start_server-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Debugger - ruby-debug-ide19-0.4.12 Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/ruby-debug/command.rb
+    <li>lib/ruby-debug/commands/breakpoints.rb
+    <li>lib/ruby-debug/commands/catchpoint.rb
+    <li>lib/ruby-debug/commands/condition.rb
+    <li>lib/ruby-debug/commands/control.rb
+    <li>lib/ruby-debug/commands/enable.rb
+    <li>lib/ruby-debug/commands/eval.rb
+    <li>lib/ruby-debug/commands/frame.rb
+    <li>lib/ruby-debug/commands/inspect.rb
+    <li>lib/ruby-debug/commands/jump.rb
+    <li>lib/ruby-debug/commands/load.rb
+    <li>lib/ruby-debug/commands/pause.rb
+    <li>lib/ruby-debug/commands/set_type.rb
+    <li>lib/ruby-debug/commands/stepping.rb
+    <li>lib/ruby-debug/commands/threads.rb
+    <li>lib/ruby-debug/commands/variables.rb
+    <li>lib/ruby-debug/event_processor.rb
+    <li>lib/ruby-debug/helper.rb
+    <li>lib/ruby-debug/interface.rb
+    <li>lib/ruby-debug/processor.rb
+    <li>lib/ruby-debug/xml_printer.rb
+    <li>lib/ruby-debug-ide.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-debug_program">::debug_program</a>
+    
+    <li><a href="#method-c-interrupt">::interrupt</a>
+    
+    <li><a href="#method-c-interrupt_last">::interrupt_last</a>
+    
+    <li><a href="#method-c-print_debug">::print_debug</a>
+    
+    <li><a href="#method-c-run_prog_script">::run_prog_script</a>
+    
+    <li><a href="#method-c-start_control">::start_control</a>
+    
+    <li><a href="#method-c-start_server">::start_server</a>
+    
+    <li><a href="#method-c-without_stderr">::without_stderr</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Debugger.html">Debugger</a>
+  
+    <li><a href="./Debugger/Context.html">Debugger::Context</a>
+  
+    <li><a href="./Debugger/EventProcessor.html">Debugger::EventProcessor</a>
+  
+    <li><a href="./Debugger/InspectCommand.html">Debugger::InspectCommand</a>
+  
+    <li><a href="./Debugger/JumpCommand.html">Debugger::JumpCommand</a>
+  
+    <li><a href="./Debugger/Kernel.html">Debugger::Kernel</a>
+  
+    <li><a href="./Debugger/LoadCommand.html">Debugger::LoadCommand</a>
+  
+    <li><a href="./Debugger/ParseFunctions.html">Debugger::ParseFunctions</a>
+  
+    <li><a href="./Debugger/PauseCommand.html">Debugger::PauseCommand</a>
+  
+    <li><a href="./Debugger/SetTypeCommand.html">Debugger::SetTypeCommand</a>
+  
+    <li><a href="./TCPSocket.html">TCPSocket</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Debugger</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-c-cli_debug" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cli_debug</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-control_thread" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">control_thread</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-event_processor" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">event_processor</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-xml_debug" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">xml_debug</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-debug_program" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug_program</span><span
+            class="method-args">(options)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="debug_program-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_program</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">start_server</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">port</span>)
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Control thread did not start (#{@control_thread}}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@control_thread</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@control_thread</span>.<span class="ruby-identifier">alive?</span>
+  
+  <span class="ruby-ivar">@mutex</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@proceed</span> = <span class="ruby-constant">ConditionVariable</span>.<span class="ruby-identifier">new</span>
+  
+  <span class="ruby-comment"># wait for 'start' command</span>
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@proceed</span>.<span class="ruby-identifier">wait</span>(<span class="ruby-ivar">@mutex</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">bt</span> = <span class="ruby-identifier">debug_load</span>(<span class="ruby-constant">Debugger</span><span class="ruby-operator">::</span><span class="ruby-constant">PROG_SCRIPT</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stop</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">load_mode</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">bt</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">bt</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;\t#{l}&quot;</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>), <span class="ruby-string">&quot;\n&quot;</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Uncaught exception: #{bt}\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- debug_program-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- debug_program-method -->
+
+    
+      <div id="method-c-interrupt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interrupt</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Interrupts the current thread</p>
+          
+
+          
+          <div class="method-source-code" id="interrupt-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interrupt</span>
+  <span class="ruby-identifier">current_context</span>.<span class="ruby-identifier">interrupt</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- interrupt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- interrupt-method -->
+
+    
+      <div id="method-c-interrupt_last" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interrupt_last</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Interrupts the last debugged thread</p>
+          
+
+          
+          <div class="method-source-code" id="interrupt_last-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interrupt_last</span>
+  <span class="ruby-identifier">skip</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">context</span> = <span class="ruby-identifier">last_context</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">context</span>.<span class="ruby-identifier">thread</span>.<span class="ruby-identifier">alive?</span>
+      <span class="ruby-identifier">context</span>.<span class="ruby-identifier">interrupt</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">context</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- interrupt_last-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- interrupt_last-method -->
+
+    
+      <div id="method-c-print_debug" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">print_debug</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prints to the stderr using printf(*args) if debug logging flag (-d) is on.</p>
+          
+
+          
+          <div class="method-source-code" id="print_debug-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">print_debug</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Debugger</span>.<span class="ruby-identifier">cli_debug</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span>(*<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">flush</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- print_debug-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- print_debug-method -->
+
+    
+      <div id="method-c-run_prog_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_prog_script</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run_prog_script-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_prog_script</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@mutex</span>
+  <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@proceed</span>.<span class="ruby-identifier">signal</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run_prog_script-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run_prog_script-method -->
+
+    
+      <div id="method-c-start_control" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_control</span><span
+            class="method-args">(host, port)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_control-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_control</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Debugger is not started&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">started?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@control_thread</span>
+  <span class="ruby-ivar">@control_thread</span> = <span class="ruby-constant">DebugThread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span> <span class="ruby-node">&quot;Fast Debugger (ruby-debug-ide 0.4.9) listens on #{host}:#{port}\n&quot;</span>
+      <span class="ruby-comment"># 127.0.0.1 seemingly works with all systems and with IPv6 as well.</span>
+      <span class="ruby-comment"># &quot;localhost&quot; and nil on have problems on some systems.</span>
+      <span class="ruby-identifier">host</span> <span class="ruby-operator">||=</span> <span class="ruby-string">'127.0.0.1'</span>
+      <span class="ruby-identifier">server</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+      <span class="ruby-keyword">while</span> (<span class="ruby-identifier">session</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">accept</span>)
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">interface</span> = <span class="ruby-constant">RemoteInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">session</span>)
+          <span class="ruby-ivar">@event_processor</span> = <span class="ruby-constant">EventProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">interface</span>)
+          <span class="ruby-constant">ControlCommandProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">interface</span>).<span class="ruby-identifier">process_commands</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-constant">ScriptError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ex</span>
+          <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span> <span class="ruby-node">&quot;Exception in DebugThread loop: #{ex}\n&quot;</span>
+          <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span> <span class="ruby-node">&quot;Exception in DebugThread: #$!\n&quot;</span>
+      <span class="ruby-identifier">exit</span> <span class="ruby-value">2</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_control-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- start_control-method -->
+
+    
+      <div id="method-c-start_server" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_server</span><span
+            class="method-args">(host = nil, port = 1234)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_server-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_server</span>(<span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-value">1234</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">started?</span>
+  <span class="ruby-identifier">start</span>
+  <span class="ruby-identifier">start_control</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_server-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- start_server-method -->
+
+    
+      <div id="method-c-without_stderr" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_stderr</span><span
+            class="method-args">() { || ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="without_stderr-source">
+            <pre><span class="ruby-comment"># File lib/ruby-debug-ide.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">without_stderr</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r(win32|mingw32)/</span>
+      <span class="ruby-identifier">$stderr</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">'NUL'</span>, <span class="ruby-string">'w'</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">$stderr</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">'/dev/null'</span>, <span class="ruby-string">'w'</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-identifier">$stderr</span> = <span class="ruby-constant">STDERR</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- without_stderr-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- without_stderr-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

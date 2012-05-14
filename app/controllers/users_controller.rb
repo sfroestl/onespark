@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
   
   def show
-     @user = User.find(params[:id])
+    Rails.logger.info ">> UsersController: linked_git_account = " + @linked_git_account
+    @user = User.find(params[:id])
   end
   
   def create
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
     flash[:success] = "Your account has been deleted."
     redirect_to goodbye_path
   end
-  
+
   private
 
     def signed_in_user

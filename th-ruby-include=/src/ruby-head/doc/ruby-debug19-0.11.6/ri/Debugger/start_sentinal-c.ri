@@ -1,0 +1,2 @@
+U:RDoc::Attr[iI"start_sentinal:EFI"Debugger::start_sentinal;FI"RW;F:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I"@If set, a string to look for in caller() and is used to see;TI"$if the call stack is truncated.;T:
+@fileI"cli/ruby-debug.rb;TT@

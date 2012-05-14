@@ -11,6 +11,7 @@ group :development do
   gem 'rspec-rails', '2.9.0'
   gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'rest-client', '~> 1.6.7'
 end
 
 # Gems used only for assets and not required

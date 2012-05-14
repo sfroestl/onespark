@@ -1,0 +1,2 @@
+U:RDoc::Attr[iI"written:EFI"9Archive::Tar::Minitar::Writer::BoundedStream#written;FI"R;F:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I"CThe current total number of bytes written to this data stream.;T:
+@fileI"lib/archive/tar/minitar.rb;TF@

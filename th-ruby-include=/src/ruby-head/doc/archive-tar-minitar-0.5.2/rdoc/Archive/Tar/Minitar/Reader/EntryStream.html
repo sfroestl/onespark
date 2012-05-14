@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Archive::Tar::Minitar::Reader::EntryStream - archive-tar-minitar-0.5.2 Documentation</title>
+
+<link type="text/css" media="screen" href="../../../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../../../index.html">Home</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/archive/tar/minitar.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-bytes_read">#bytes_read</a>
+    
+    <li><a href="#method-i-close">#close</a>
+    
+    <li><a href="#method-i-directory">#directory</a>
+    
+    <li><a href="#method-i-directory-3F">#directory?</a>
+    
+    <li><a href="#method-i-eof-3F">#eof?</a>
+    
+    <li><a href="#method-i-file">#file</a>
+    
+    <li><a href="#method-i-file-3F">#file?</a>
+    
+    <li><a href="#method-i-full_name">#full_name</a>
+    
+    <li><a href="#method-i-getc">#getc</a>
+    
+    <li><a href="#method-i-pos">#pos</a>
+    
+    <li><a href="#method-i-read">#read</a>
+    
+    <li><a href="#method-i-rewind">#rewind</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../../../ChangeLog.html">ChangeLog</a>
+  
+    <li class="file"><a href="../../../../Install.html">Install</a>
+  
+    <li class="file"><a href="../../../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../../Archive.html">Archive</a>
+  
+    <li><a href="../../../../Archive/Tar.html">Archive::Tar</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar.html">Archive::Tar::Minitar</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/BlockRequired.html">Archive::Tar::Minitar::BlockRequired</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/ClosedStream.html">Archive::Tar::Minitar::ClosedStream</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command.html">Archive::Tar::Minitar::Command</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandCreate.html">Archive::Tar::Minitar::Command::CommandCreate</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandExtract.html">Archive::Tar::Minitar::Command::CommandExtract</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandHelp.html">Archive::Tar::Minitar::Command::CommandHelp</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandList.html">Archive::Tar::Minitar::Command::CommandList</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandPattern.html">Archive::Tar::Minitar::Command::CommandPattern</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandPattern/AbstractCommandError.html">Archive::Tar::Minitar::Command::CommandPattern::AbstractCommandError</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandPattern/CommandAlreadyExists.html">Archive::Tar::Minitar::Command::CommandPattern::CommandAlreadyExists</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/CommandPattern/UnknownCommandError.html">Archive::Tar::Minitar::Command::CommandPattern::UnknownCommandError</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Command/ProgressBar.html">Archive::Tar::Minitar::Command::ProgressBar</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/FileNameTooLong.html">Archive::Tar::Minitar::FileNameTooLong</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Input.html">Archive::Tar::Minitar::Input</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/NonSeekableStream.html">Archive::Tar::Minitar::NonSeekableStream</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Output.html">Archive::Tar::Minitar::Output</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Reader.html">Archive::Tar::Minitar::Reader</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Reader/EntryStream.html">Archive::Tar::Minitar::Reader::EntryStream</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Reader/InvalidEntryStream.html">Archive::Tar::Minitar::Reader::InvalidEntryStream</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/UnexpectedEOF.html">Archive::Tar::Minitar::UnexpectedEOF</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Writer.html">Archive::Tar::Minitar::Writer</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Writer/BoundedStream.html">Archive::Tar::Minitar::Writer::BoundedStream</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Writer/BoundedStream/FileOverflow.html">Archive::Tar::Minitar::Writer::BoundedStream::FileOverflow</a>
+  
+    <li><a href="../../../../Archive/Tar/Minitar/Writer/RestrictedStream.html">Archive::Tar::Minitar::Writer::RestrictedStream</a>
+  
+    <li><a href="../../../../Archive/Tar/PosixHeader.html">Archive::Tar::PosixHeader</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Archive::Tar::Minitar::Reader::EntryStream</h1>
+
+  <div id="description" class="description">
+    
+<p>EntryStreams are pseudo-streams on top of the main data stream.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(header, anIO)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 464</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">header</span>, <span class="ruby-identifier">anIO</span>)
+  <span class="ruby-ivar">@io</span>       = <span class="ruby-identifier">anIO</span>
+  <span class="ruby-ivar">@name</span>     = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@mode</span>     = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">mode</span>
+  <span class="ruby-ivar">@uid</span>      = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">uid</span>
+  <span class="ruby-ivar">@gid</span>      = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gid</span>
+  <span class="ruby-ivar">@size</span>     = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-ivar">@mtime</span>    = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">mtime</span>
+  <span class="ruby-ivar">@checksum</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">checksum</span>
+  <span class="ruby-ivar">@typeflag</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">typeflag</span>
+  <span class="ruby-ivar">@linkname</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">linkname</span>
+  <span class="ruby-ivar">@magic</span>    = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">magic</span>
+  <span class="ruby-ivar">@version</span>  = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">version</span>
+  <span class="ruby-ivar">@uname</span>    = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">uname</span>
+  <span class="ruby-ivar">@gname</span>    = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gname</span>
+  <span class="ruby-ivar">@devmajor</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">devmajor</span>
+  <span class="ruby-ivar">@devminor</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">devminor</span>
+  <span class="ruby-ivar">@prefix</span>   = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">prefix</span>
+  <span class="ruby-ivar">@read</span>     = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@orig_pos</span> = <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">pos</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-bytes_read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bytes_read</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bytes_read-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 536</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bytes_read</span>
+  <span class="ruby-ivar">@read</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- bytes_read-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- bytes_read-method -->
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Closes the entry.</p>
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 550</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+  <span class="ruby-identifier">invalidate</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-directory" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">directory</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="EntryStream.html#method-i-directory-3F">directory?</a>
+        </div>
+        
+      </div><!-- directory-method -->
+
+    
+      <div id="method-i-directory-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">directory?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the entry represents a directory.</p>
+          
+
+          
+          <div class="method-source-code" id="directory-3F-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 507</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">directory?</span>
+  <span class="ruby-ivar">@typeflag</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;5&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- directory-3F-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="EntryStream.html#method-i-directory">directory</a>
+        </div>
+        
+
+        
+      </div><!-- directory-3F-method -->
+
+    
+      <div id="method-i-eof-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eof?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the current read pointer is at the end of the
+<a href="EntryStream.html">EntryStream</a> data.</p>
+          
+
+          
+          <div class="method-source-code" id="eof-3F-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 520</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">eof?</span>
+  <span class="ruby-ivar">@read</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- eof-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- eof-3F-method -->
+
+    
+      <div id="method-i-file" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">file</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="EntryStream.html#method-i-file-3F">file?</a>
+        </div>
+        
+      </div><!-- file-method -->
+
+    
+      <div id="method-i-file-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">file?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the entry represents a plain file.</p>
+          
+
+          
+          <div class="method-source-code" id="file-3F-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 513</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">file?</span>
+  <span class="ruby-ivar">@typeflag</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;0&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- file-3F-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="EntryStream.html#method-i-file">file</a>
+        </div>
+        
+
+        
+      </div><!-- file-3F-method -->
+
+    
+      <div id="method-i-full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the full and proper name of the entry.</p>
+          
+
+          
+          <div class="method-source-code" id="full_name-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 541</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_name</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@prefix</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@prefix</span>, <span class="ruby-ivar">@name</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@name</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- full_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- full_name-method -->
+
+    
+      <div id="method-i-getc" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getc</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reads one byte from the entry. Returns <code>nil</code> if there is no more
+data to read.</p>
+          
+
+          
+          <div class="method-source-code" id="getc-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 499</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getc</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@read</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@size</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">getc</span>
+  <span class="ruby-ivar">@read</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ret</span>
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getc-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getc-method -->
+
+    
+      <div id="method-i-pos" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pos</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the current read pointer in the <a
+href="EntryStream.html">EntryStream</a>.</p>
+          
+
+          
+          <div class="method-source-code" id="pos-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 525</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pos</span>
+  <span class="ruby-ivar">@read</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pos-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pos-method -->
+
+    
+      <div id="method-i-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">(len = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reads <code>len</code> bytes (or all remaining data) from the entry.
+Returns <code>nil</code> if there is no more data to read.</p>
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 488</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">read</span>(<span class="ruby-identifier">len</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@read</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@size</span>
+  <span class="ruby-identifier">len</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@size</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@read</span>
+  <span class="ruby-identifier">max_read</span> = [<span class="ruby-identifier">len</span>, <span class="ruby-ivar">@size</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@read</span>].<span class="ruby-identifier">min</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">max_read</span>)
+  <span class="ruby-ivar">@read</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- read-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- read-method -->
+
+    
+      <div id="method-i-rewind" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rewind</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the current read pointer to the beginning of the <a
+href="EntryStream.html">EntryStream</a>.</p>
+          
+
+          
+          <div class="method-source-code" id="rewind-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 530</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rewind</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">NonSeekableStream</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:pos=</span>)
+  <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">pos</span> = <span class="ruby-ivar">@orig_pos</span>
+  <span class="ruby-ivar">@read</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rewind-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rewind-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

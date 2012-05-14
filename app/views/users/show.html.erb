@@ -9,7 +9,7 @@
 	      		<h1><%= link_to @user.name, edit_user_path(@user) %></h1>
 				<h5><%= @user.email %></h5>
 				<hr/>
-				<details class = "block">
+				<div class = "">
 					<p><h5>Details</h5></p>
 					<p>
 						Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
@@ -17,8 +17,10 @@
 					</p>
 		  			<hr/>
 			<h5>Linked Accounts</h5>
-			<%= link_to 'Link github.com account', '#'%>
-				</details>
+		
+			<p>	Linked account: <%= @linked_git_account %></p>
+				<%= link_to 'Link github.com account', user_path + "/repos/new"%> <br/>
+				<%= link_to "Test get projects", user_path + "/repos" %>
 			</div>
 		</div>
 	</div>

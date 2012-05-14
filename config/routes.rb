@@ -4,8 +4,12 @@ Onespark::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :projects do
-    resources :tickets
+  resources :tickets
   end
+  match 'users/:id/repos/link_account', :controller => 'rest_github', :action => 'link_account'
+  match 'users/:id/repos/new', :controller => 'rest_github', :action => 'new'
+  match 'users/:id/repos', :controller => 'rest_github', :action => 'index'
+  match 'users/:id/repos/:repo_name', :controller => 'rest_github', :action => 'show'
   
   root to: 'static_pages#home'
   

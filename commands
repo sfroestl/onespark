@@ -12,7 +12,7 @@ rails generate controller <name> <methods> --no-test-framework
 
 rails generate integration_test <controller_name>
 
-#generates new model
+# generates new model
 rails g model <name> <attribut_name>:<attribut_type>
 
 # adds new attribute to model

@@ -1,0 +1,15 @@
+<div class = "container-fluid">
+	<div class="row-fluid">
+		<div class="span8 well">
+			<div class="pull-right">
+				
+			</div>
+				<% unless @git_repo.nil? %>
+					<h1><%= @git_repo['name'] %></h1>
+					<% @git_repo.each_pair do |key, value| %>
+						<p>Key: <%= key %> Value: <%= value %></p>
+					<% end %>
+				<%end%>
+		</div>
+	</div>
+</div>

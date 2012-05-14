@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Archive::Tar::PosixHeader - archive-tar-minitar-0.5.2 Documentation</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/archive/tar/minitar.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-c-new_from_stream">::new_from_stream</a>
+    
+    <li><a href="#method-i-empty-3F">#empty?</a>
+    
+    <li><a href="#method-i-to_s">#to_s</a>
+    
+    <li><a href="#method-i-update_checksum">#update_checksum</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../ChangeLog.html">ChangeLog</a>
+  
+    <li class="file"><a href="../../Install.html">Install</a>
+  
+    <li class="file"><a href="../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../Archive.html">Archive</a>
+  
+    <li><a href="../../Archive/Tar.html">Archive::Tar</a>
+  
+    <li><a href="../../Archive/Tar/Minitar.html">Archive::Tar::Minitar</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/BlockRequired.html">Archive::Tar::Minitar::BlockRequired</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/ClosedStream.html">Archive::Tar::Minitar::ClosedStream</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command.html">Archive::Tar::Minitar::Command</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandCreate.html">Archive::Tar::Minitar::Command::CommandCreate</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandExtract.html">Archive::Tar::Minitar::Command::CommandExtract</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandHelp.html">Archive::Tar::Minitar::Command::CommandHelp</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandList.html">Archive::Tar::Minitar::Command::CommandList</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandPattern.html">Archive::Tar::Minitar::Command::CommandPattern</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandPattern/AbstractCommandError.html">Archive::Tar::Minitar::Command::CommandPattern::AbstractCommandError</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandPattern/CommandAlreadyExists.html">Archive::Tar::Minitar::Command::CommandPattern::CommandAlreadyExists</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/CommandPattern/UnknownCommandError.html">Archive::Tar::Minitar::Command::CommandPattern::UnknownCommandError</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Command/ProgressBar.html">Archive::Tar::Minitar::Command::ProgressBar</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/FileNameTooLong.html">Archive::Tar::Minitar::FileNameTooLong</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Input.html">Archive::Tar::Minitar::Input</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/NonSeekableStream.html">Archive::Tar::Minitar::NonSeekableStream</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Output.html">Archive::Tar::Minitar::Output</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Reader.html">Archive::Tar::Minitar::Reader</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Reader/EntryStream.html">Archive::Tar::Minitar::Reader::EntryStream</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Reader/InvalidEntryStream.html">Archive::Tar::Minitar::Reader::InvalidEntryStream</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/UnexpectedEOF.html">Archive::Tar::Minitar::UnexpectedEOF</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Writer.html">Archive::Tar::Minitar::Writer</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Writer/BoundedStream.html">Archive::Tar::Minitar::Writer::BoundedStream</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Writer/BoundedStream/FileOverflow.html">Archive::Tar::Minitar::Writer::BoundedStream::FileOverflow</a>
+  
+    <li><a href="../../Archive/Tar/Minitar/Writer/RestrictedStream.html">Archive::Tar::Minitar::Writer::RestrictedStream</a>
+  
+    <li><a href="../../Archive/Tar/PosixHeader.html">Archive::Tar::PosixHeader</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Archive::Tar::PosixHeader</h1>
+
+  <div id="description" class="description">
+    
+<h1 id="label-Archive%3A%3ATar%3A%3APosixHeader"><a href="PosixHeader.html">Archive::Tar::PosixHeader</a></h1>
+
+<p>Implements the POSIX tar header as a Ruby class. The structure of the POSIX
+tar header is:</p>
+
+<pre>struct tarfile_entry_posix
+{                      //                               pack/unpack
+   char name[100];     // ASCII (+ Z unless filled)     a100/Z100
+   char mode[8];       // 0 padded, octal, null         a8  /A8
+   char uid[8];        // ditto                         a8  /A8
+   char gid[8];        // ditto                         a8  /A8
+   char size[12];      // 0 padded, octal, null         a12 /A12
+   char mtime[12];     // 0 padded, octal, null         a12 /A12
+   char checksum[8];   // 0 padded, octal, null, space  a8  /A8
+   char typeflag[1];   // see below                     a   /a
+   char linkname[100]; // ASCII + (Z unless filled)     a100/Z100
+   char magic[6];      // &quot;ustar\0&quot;                     a6  /A6
+   char version[2];    // &quot;00&quot;                          a2  /A2
+   char uname[32];     // ASCIIZ                        a32 /Z32
+   char gname[32];     // ASCIIZ                        a32 /Z32
+   char devmajor[8];   // 0 padded, octal, null         a8  /A8
+   char devminor[8];   // 0 padded, octal, null         a8  /A8
+   char prefix[155];   // ASCII (+ Z unless filled)     a155/Z155
+};</pre>
+
+<p>The <code>typeflag</code> may be one of the following known values:</p>
+<dl class="rdoc-list note-list"><dt><code>&quot;0&quot;</code>
+<dd>
+<p>Regular file. NULL should be treated as a synonym, for compatibility
+purposes.</p>
+</dd><dt><code>&quot;1&quot;</code>
+<dd>
+<p>Hard link.</p>
+</dd><dt><code>&quot;2&quot;</code>
+<dd>
+<p>Symbolic link.</p>
+</dd><dt><code>&quot;3&quot;</code>
+<dd>
+<p>Character device node.</p>
+</dd><dt><code>&quot;4&quot;</code>
+<dd>
+<p>Block device node.</p>
+</dd><dt><code>&quot;5&quot;</code>
+<dd>
+<p>Directory.</p>
+</dd><dt><code>&quot;6&quot;</code>
+<dd>
+<p>FIFO node.</p>
+</dd><dt><code>&quot;7&quot;</code>
+<dd>
+<p>Reserved.</p>
+</dd></dl>
+
+<p>POSIX indicates that “A POSIX-compliant implementation must treat any
+unrecognized typeflag value as a regular file.”</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="FIELDS">FIELDS
+        
+        <dd class="description">
+        
+      
+        <dt id="HEADER_PACK_FORMAT">HEADER_PACK_FORMAT
+        
+        <dd class="description">
+        
+      
+        <dt id="HEADER_UNPACK_FORMAT">HEADER_UNPACK_FORMAT
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(vals)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="PosixHeader.html">PosixHeader</a>. A <a
+href="PosixHeader.html">PosixHeader</a> cannot be created unless the name,
+size, prefix, and mode are provided.</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">vals</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">vals</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vals</span>[<span class="ruby-value">:size</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vals</span>[<span class="ruby-value">:prefix</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">vals</span>[<span class="ruby-value">:mode</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">vals</span>[<span class="ruby-value">:mtime</span>]    <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">vals</span>[<span class="ruby-value">:checksum</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">vals</span>[<span class="ruby-value">:typeflag</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;0&quot;</span>
+  <span class="ruby-identifier">vals</span>[<span class="ruby-value">:magic</span>]    <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;ustar&quot;</span>
+  <span class="ruby-identifier">vals</span>[<span class="ruby-value">:version</span>]  <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;00&quot;</span>
+
+  <span class="ruby-constant">FIELDS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{field}&quot;</span>, <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">field</span>.<span class="ruby-identifier">intern</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@empty</span> = <span class="ruby-identifier">vals</span>[<span class="ruby-value">:empty</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-new_from_stream" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_from_stream</span><span
+            class="method-args">(stream)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="PosixHeader.html">PosixHeader</a> from a data
+stream.</p>
+          
+
+          
+          <div class="method-source-code" id="new_from_stream-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_from_stream</span>(<span class="ruby-identifier">stream</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">512</span>)
+  <span class="ruby-identifier">fields</span>    = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-constant">HEADER_UNPACK_FORMAT</span>)
+  <span class="ruby-identifier">name</span>      = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">mode</span>      = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">uid</span>       = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">gid</span>       = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">size</span>      = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">mtime</span>     = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">checksum</span>  = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">typeflag</span>  = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">linkname</span>  = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">magic</span>     = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">version</span>   = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">uname</span>     = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">gname</span>     = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+  <span class="ruby-identifier">devmajor</span>  = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">devminor</span>  = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>.<span class="ruby-identifier">oct</span>
+  <span class="ruby-identifier">prefix</span>    = <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">shift</span>
+
+  <span class="ruby-identifier">empty</span> = (<span class="ruby-identifier">data</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;\00&quot;&quot;</span> * <span class="ruby-value">512</span>)
+
+  <span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>, <span class="ruby-value">:mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mode</span>, <span class="ruby-value">:uid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">uid</span>, <span class="ruby-value">:gid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gid</span>,
+      <span class="ruby-value">:size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">size</span>, <span class="ruby-value">:mtime</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mtime</span>, <span class="ruby-value">:checksum</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">checksum</span>,
+      <span class="ruby-value">:typeflag</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">typeflag</span>, <span class="ruby-value">:magic</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">magic</span>, <span class="ruby-value">:version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">version</span>,
+      <span class="ruby-value">:uname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">uname</span>, <span class="ruby-value">:gname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gname</span>, <span class="ruby-value">:devmajor</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">devmajor</span>,
+      <span class="ruby-value">:devminor</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">devminor</span>, <span class="ruby-value">:prefix</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">prefix</span>, <span class="ruby-value">:empty</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">empty</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_from_stream-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_from_stream-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-empty-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">empty?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="empty-3F-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">empty?</span>
+  <span class="ruby-ivar">@empty</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- empty-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- empty-3F-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">update_checksum</span>
+  <span class="ruby-identifier">header</span>(<span class="ruby-ivar">@checksum</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+      <div id="method-i-update_checksum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_checksum</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Update the checksum field.</p>
+          
+
+          
+          <div class="method-source-code" id="update_checksum-source">
+            <pre><span class="ruby-comment"># File lib/archive/tar/minitar.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_checksum</span>
+  <span class="ruby-identifier">hh</span> = <span class="ruby-identifier">header</span>(<span class="ruby-string">&quot; &quot;</span> * <span class="ruby-value">8</span>)
+  <span class="ruby-ivar">@checksum</span> = <span class="ruby-identifier">oct</span>(<span class="ruby-identifier">calculate_checksum</span>(<span class="ruby-identifier">hh</span>), <span class="ruby-value">6</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_checksum-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_checksum-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
