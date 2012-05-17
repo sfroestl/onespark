@@ -55,7 +55,7 @@ class RestGithubController < ApplicationController
   end
   
   def link_oauth
-    puts "Linking GitHub Account for user
+    puts "Linking GitHub Account for user"
     redirect_to "https://github.com/login/oauth/authorize?client_id=#{OAUTH2_CONFIG['github_client_id']}"
   end
   
