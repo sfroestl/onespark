@@ -1,15 +1,15 @@
 class GithubOauth
   
-  require 'oauth/consumer'
+  require 'rest_client'
   
-  def initialize
-    @consumer = OAuth::Consumer.new "02cd371ab6bde5f10077", "d52dca3fd70f1cad8f83420564d4c6644e99dad0", {:site=>"https://github.com"}            
-    @request_token=@consumer.get_request_token
-    redirect_to @request_token.authorize_url
-    
-    @access_token=@request_token.get_access_token
-    
-    # Request all your users agreements
-    @response=@access_token.get "/agreements.xml"
-  end
+  def validate_oauth_token(oauth_verifier, callback_url)
+    puts "GithubOauth: Starting validation..."
+    response = RestClient.get('https://github.com/login/oauth/access_token', :params => { client_id: OAUTH2_CONFIG['github_client_id'], code: oauth_verifier, client_secret:OAUTH2_CONFIG['github_client_secret']})
+    puts "GithubOauth: response: \n #{response}" 
+    resp_hash = Hash.from_xml(response)
+    puts resp_hash
+    token = resp_hash['OAuth']['access_token']
+    puts "Access Token: " + token
+    return token
+  end  
 end

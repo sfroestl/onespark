@@ -11,7 +11,7 @@ class LinkedAccount < ActiveRecord::Base
    
   def initialize(name, username, password, user)
     super()
-    Rails.logger.info(">>>>>>>>>> TEST")
+    Rails.logger.info(">> TEST")
       self.name = name
       self.username = username
       self.user_id = user.id

@@ -1,5 +1,5 @@
 # Config File for toring oauth2 based information
 
 # Github Client and Secret
-github_clinet_id: a5fa1c2fbd6525c71a6f
-github_secret: 01897c54a396c2dc0eca7937d0cb424f78dc9aa6
+github_client_id: 249dd27c464f04c247c9
+github_client_secret: d7c8a7455a919220d763bd1c318bb39efa0fc6f7

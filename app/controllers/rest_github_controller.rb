@@ -1,8 +1,9 @@
 class RestGithubController < ApplicationController
   
   GITHUB_ACCOUNT = 'github'
-  require 'oauth2'
   require 'rest-clients/github'
+  require 'rest-clients/github_oauth'
+  require 'rest_client'
   
   def index
     Rails.logger.info "Github controller loaded index"
@@ -54,31 +55,31 @@ class RestGithubController < ApplicationController
   end
   
   def link_oauth
-    redirect_to "https://github.com/login/oauth/authorize?client_id=03f39de03ec45a7c3523"     
+    puts "Linking GitHub Account for user
+    redirect_to "https://github.com/login/oauth/authorize?client_id=#{OAUTH2_CONFIG['github_client_id']}"
   end
   
-  def link_oauth2    
-    @client = OAuth2::Client.new(OAUTH2_CONFIG['github_client_id'], OAUTH2_CONFIG['github_client_secret'], {:token_url => '/oauth/access_token',:site => 'https://github.com/login'})
-    @client.auth_code.authorize_url(:redirect_uri => 'http://localhost:3000/git/oauth2/callback')
-    code = params[:code]
-    #puts "Returnded token: " + code
-    @token = @client.auth_code.get_token(params[:code], :redirect_uri => user_path)
-    puts @token
-    render user_path
-  end
-  
-
   def return_oauth2
-    code = params[:code]
-    puts "Returnded token: " + code
-    @token = @client.auth_code.get_token(:code => code, :redirect_uri => user_path)
-    puts @token
-    render 'callback'
+    puts "first callback landed"
+    #callback from GitHub | instatiate client
+    github_client = GithubOauth.new
     
-    #redirect_to "https://github.com/login/oauth/access_toke?code=#{code}&client_id=de64951d04de304adf5b&secret=a341a8114d3b8e49b509f14ea7e9974e936998dd&redirect_to=localhost:3000/back_again"
-    #params = {:code => 'e3783c0f47a376b56c47', :client_id => '03f39de03ec45a7c3523', :client_secret => 'fb114499bd1ddfe9f1db5e7bebaa016cb6c93ad7', :redirect_uri => 'http://localhost:3000/back_again'}
-    #resp = RestClient.post 'https://github.com/login/oauth/access_toke', params
-    
-    #puts resp
+    if params[:error_reason] && !params[:error_reason].empty?
+      # Any errors? falsh and log them + redirect
+      puts "Unable to activate github: #{params[:error_reason]}"
+      flash[:error] = "Unable to activate github: #{params[:error_reason]}"
+      redirect_to current_user
+     
+    elsif params[:code] && !params[:code].empty?
+      # reqested code exists as query parameter
+      code = params[:code]
+      puts "No error! Returnded code: " + code
+      puts "starting authentication..."
+      # Authenticates with code
+      @token = github_client.validate_oauth_token(code, 'https://github.com/login/oauth/access_token' )
+      puts "Response confirmed"
+      flash[:success] = "Your GitHub account has been authentificated"
+      redirect_to current_user
+    end
   end
 end
