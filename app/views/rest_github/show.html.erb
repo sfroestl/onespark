@@ -6,9 +6,28 @@
 			</div>
 				<% unless @git_repo.nil? %>
 					<h1><%= @git_repo['name'] %></h1>
-					<% @git_repo.each_pair do |key, value| %>
-						<p>Key: <%= key %> Value: <%= value %></p>
-					<% end %>
+					<hr/>
+					<h5>Information</h5> 
+					<ul>
+					<li>Repository Git URL: <%= @git_repo['git_url'] %></li>
+
+					<li>Repository Clone URL: <%= @git_repo['clone_url'] %></li>
+					<li>Created at: <%= @git_repo['created_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
+					<li>Updated at: <%= @git_repo['updated_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
+					<li>Pushed at: <%= @git_repo['pushed_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
+					<li>Owner: <%= @git_repo['owner']['login'] %></li>
+					<li>Language: <%= @git_repo['language'] %></li>
+					</ul>
+					<hr/>
+					<h5>Lastest 3 commits of <%= @git_repo_commits.count %></h5>
+					<ul>
+					<li><%= @git_repo_commits.first['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.first['commit']['message'] %></li>
+					<li><%= @git_repo_commits.second['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.second['commit']['message'] %></li>
+					<li><%= @git_repo_commits.third['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.third['commit']['message'] %></li>
+					
+					</ul>
+					<hr/>
+					<%=link_to 'back', user_path + "/git/repos"%>
 				<%end%>
 		</div>
 	</div>

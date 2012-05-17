@@ -16,11 +16,17 @@
 						Account type: Free user
 					</p>
 		  			<hr/>
-			<h5>Linked Accounts</h5>
-		
-			<p>	Linked account: <%= @linked_git_account %></p>
-				<%= link_to 'Link github.com account', user_path + "/repos/new"%> <br/>
-				<%= link_to "Test get projects", user_path + "/repos" %>
+				<h5>Linked Accounts</h5>
+				<br/>
+				<% if @github_account %>
+				<ul>
+				<li>Github account: <%= @github_account.username %> | <%= link_to 'unlink Github account', user_path + "/git/unlink" %> </li>
+					<%= link_to "Test get projects", user_path + "/git/repos" %>
+				<% else %>
+					<%= link_to 'Link Github account', user_path + "/git/new"%> <br/>	
+					<%= link_to 'Authorize Github account', "/git/oauth2/auth"%> <br/>	
+				<% end %>
+				</ul>
 			</div>
 		</div>
 	</div>

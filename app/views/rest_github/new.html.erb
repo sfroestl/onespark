@@ -4,7 +4,7 @@
 			<div class="pull-right">
 				
 			</div>
-			<%= form_tag (user_path + "/repos/link_account") do %>
+			<%= form_tag (user_path + "/git/link_account") do %>
 
 			  	<%= label_tag :username %>
 				<%= text_field_tag :username, params[:username] %>
@@ -14,6 +14,9 @@
 				<div>
 				<%= submit_tag 'Link account', :class => "btn btn-large btn-primary" %>
 				</div>
+				<br/>
+				<br/>
+				<%= link_to 'back to user', user_path(current_user)%>
 			<% end %>
 		</div>
 	</div>

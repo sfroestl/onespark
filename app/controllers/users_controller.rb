@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    Rails.logger.info ">> UsersController: linked_git_account = " + @linked_git_account
+    @github_account = LinkedAccount.find_by_user_id_and_name(current_user, "github")
     @user = User.find(params[:id])
   end
   

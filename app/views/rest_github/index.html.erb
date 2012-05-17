@@ -10,15 +10,15 @@
 					<h3>Your github.com repositories (<%= @git_repos.count %>)</h3>
 					<hr/>
 					<% @git_repos.each do |repo|%>
-						<h5><%= link_to repo["name"], user_path + "/repos/"+repo["name"] %></h5>
+						<h5><%= link_to repo["name"], user_path + "/git/repos/"+repo["name"] %></h5>
 						<br/>
 						<p>Description: <%= repo["description"] %></p>
-						<p>Last update: <%= repo["updated_at"].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></p>	
+						<p>Last commit: <%= repo["updated_at"].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></p>
 						<p><%= link_to 'View on github.com', repo["html_url"], :target => "_blank"%></p>	
 						<hr/>
-					<% end %>
+						<% end %>
 				<%end%>
-				
+				<%= link_to 'create new repository', user_path + "/git/repos/new"%>
 				
 				
 		</div>

@@ -6,10 +6,11 @@ module RestGithubHelper
   end
   
   def linked_git_account
-     @linked_git_account
+     linked_git_account
   end
   
   def remove_linked_git_account
     @linked_git_account = nil
   end
+
 end

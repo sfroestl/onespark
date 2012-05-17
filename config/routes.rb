@@ -6,10 +6,15 @@ Onespark::Application.routes.draw do
   resources :projects do
   resources :tickets
   end
-  match 'users/:id/repos/link_account', :controller => 'rest_github', :action => 'link_account'
-  match 'users/:id/repos/new', :controller => 'rest_github', :action => 'new'
-  match 'users/:id/repos', :controller => 'rest_github', :action => 'index'
-  match 'users/:id/repos/:repo_name', :controller => 'rest_github', :action => 'show'
+  match '/git/oauth2/auth', :controller => 'rest_github', :action => 'link_oauth2'
+  match '/git/oauth2/callback', :controller => 'rest_github', :action => 'return_oauth2'
+  
+  match 'users/:id/git/link_oauth', :controller => 'rest_github', :action => 'link_oauth'
+  match 'users/:id/git/link_account', :controller => 'rest_github', :action => 'link_account'
+  match 'users/:id/git/unlink', :controller => 'rest_github', :action => 'unlink_account'
+  match 'users/:id/git/new', :controller => 'rest_github', :action => 'new'
+  match 'users/:id/git/repos', :controller => 'rest_github', :action => 'index'
+  match 'users/:id/git/repos/:repo_name', :controller => 'rest_github', :action => 'show'
   
   root to: 'static_pages#home'
   
