@@ -13,4 +13,7 @@ module RestGithubHelper
     @linked_git_account = nil
   end
 
+  def repo_path(repo)
+    "/users/#{current_user.id}/git/repos/#{repo['name']}?repo_owner=#{repo['owner']['login']}"
+  end
 end

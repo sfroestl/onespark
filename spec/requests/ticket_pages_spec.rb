@@ -21,7 +21,7 @@ describe "Ticket Pages" do
     end
     
     describe "with user signed in" do
-      before { sign_in(user) }      
+      before { sign_in user }      
       it { should have_selector('h4', text: ticket.title) }
       it { should have_content ticket.title }
       it { should have_link 'Edit ticket' }

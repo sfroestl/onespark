@@ -25,8 +25,10 @@
 				<% else %>
 					<%= link_to 'Link Github account', user_path + "/git/new"%> <br/>	
 					<%= link_to 'Authorize Github account', "/git/oauth2/auth"%> <br/>	
+					<%= link_to "Test get projects", user_path + "/git/repos" %>
 				<% end %>
 				</ul>
+				
 			</div>
 		</div>
 	</div>

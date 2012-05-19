@@ -6,29 +6,42 @@
 			</div>
 				<% unless @git_repo.nil? %>
 					<h1><%= @git_repo['name'] %></h1>
+					<p>Description: <%= @git_repo['description'] %>
+					<p><%= link_to 'View on github.com', @git_repo["html_url"], :target => "_blank"%></p>
 					<hr/>
 					<h5>Information</h5> 
 					<ul>
 					<li>Repository Git URL: <%= @git_repo['git_url'] %></li>
 
 					<li>Repository Clone URL: <%= @git_repo['clone_url'] %></li>
-					<li>Created at: <%= @git_repo['created_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
-					<li>Updated at: <%= @git_repo['updated_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
-					<li>Pushed at: <%= @git_repo['pushed_at'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></li>
+					<li>Created at: <%= date_format @git_repo['created_at'] %></li>
+					<li>Updated at: <%= date_format @git_repo['updated_at'] %></li>
+					<li>Pushed at: <%= @git_repo['pushed_at'] %></li>
 					<li>Owner: <%= @git_repo['owner']['login'] %></li>
 					<li>Language: <%= @git_repo['language'] %></li>
+					<li>Open Issues: <%= @git_repo['open_issues'] %></li>
 					</ul>
 					<hr/>
 					<h5>Lastest 3 commits of <%= @git_repo_commits.count %></h5>
 					<ul>
-					<li><%= @git_repo_commits.first['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.first['commit']['message'] %></li>
-					<li><%= @git_repo_commits.second['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.second['commit']['message'] %></li>
-					<li><%= @git_repo_commits.third['commit']['author']['date'].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %> - <%= @git_repo_commits.third['commit']['message'] %></li>
+					<li><%= @git_repo_commits.first['commit']['author']['date'] %> - <%= @git_repo_commits.first['commit']['message'] %></li>
+					<li><%= @git_repo_commits.second['commit']['author']['date'] %> - <%= @git_repo_commits.second['commit']['message'] %></li>
+					<li><%= @git_repo_commits.third['commit']['author']['date'] %> - <%= @git_repo_commits.third['commit']['message'] %></li>
 					
 					</ul>
+					
 					<hr/>
-					<%=link_to 'back', user_path + "/git/repos"%>
+					<h5>Collaboators </h5>
+					<ul>
+						<% @git_repo_collaborators.each do |collaborator|%>
+						<li><%= collaborator['login'] %> </li>
+						<% end %>
+					</ul>
+					
+					<%=link_to 'back to repositories', user_path + "/git/repos"%>
 				<%end%>
+				<%= debug @git_repo%>
+			
 		</div>
 	</div>
 </div>

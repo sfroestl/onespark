@@ -13,5 +13,14 @@
   <%= f.label :password_confirmation, "Confirmation" %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	<% if params[:action].eql? "new" or params[:action].eql? "create"%>
+	<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	<% elsif params[:action].eql? "edit" or params[:action].eql? "update"%>
+		<div class="two_edit_buttons">
+			<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		</div>
+	<% end %>
+  
+<%= debug params %>
 <% end %>

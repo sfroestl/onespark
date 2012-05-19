@@ -8,7 +8,7 @@ describe "Project Pages" do
   
   describe "visit as unsigned user" do
      before { visit project_path(project) }
-     it { should have_selector('div.alert.alert-notice', text: 'Ups, please sign in') }
+     it { should have_selector('div.alert.alert-notice', text: 'Please sign in') }
   end
   
   describe "as signed user" do
@@ -74,7 +74,7 @@ describe "Project Pages" do
           fill_in "Due date", with: "12.1.2020"
           click_button 'Create ticket'
         end
-        it { should have_content('Ticket created') }
+        it { should have_content('Ticket was successfully created.') }
         it { should have_content('Example Ticket') }
       end
       describe "create new ticket with invalid information" do

@@ -1,3 +1,0 @@
-U:RDoc::Attr[iI"
-limit:EFI"7Archive::Tar::Minitar::Writer::BoundedStream#limit;FI"R;F:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I"AThe maximum number of bytes that may be written to this data;TI"stream.;T:
-@fileI"lib/archive/tar/minitar.rb;TF@

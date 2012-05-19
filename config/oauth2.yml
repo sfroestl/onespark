@@ -1,5 +1,8 @@
 # Config File for toring oauth2 based information
 
 # Github Client and Secret
-github_client_id: 249dd27c464f04c247c9
-github_client_secret: d7c8a7455a919220d763bd1c318bb39efa0fc6f7
+github_client_id: 260209c808c421b6e630
+github_client_secret: cb9c4b4f6b4cb5c24923338d436f8ea879bcaf00
+github_client_auth_url: https://github.com/login/oauth/authorize
+github_client_token_url: https://github.com/login/oauth/access_token
+github_client_basic_url: https://api.github.com
