@@ -7,7 +7,8 @@
 			
 	      		
 				<% unless @git_repos.nil?%>
-					<h3>Your github.com repositories (<%= @git_repos.count %>)</h3>
+					<h3>Your repositories hosted on GitHub.com(<%= @git_repos.count %>)</h3>
+					<%= link_to 'Back to profile', user_path %>
 					<hr/>
 					<% @git_repos.each do |repo|%>
 						<h5><%= link_to repo["name"], repo_path(repo)  %></h5>

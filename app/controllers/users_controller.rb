@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @github_account = LinkedAccount.find_by_user_id_and_name(current_user, "github")
+    @github_account = GithubAccount.find_by_user_id(current_user.id)
     @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb

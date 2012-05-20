@@ -18,4 +18,6 @@ rails g model <name> <attribut_name>:<attribut_type>
 # adds new attribute to model
 rails generate migration add_password_digest_to_users password_digest:string
 
+rails generate scaffold NAME ATTRIBUTES
+
 rake db:reset
