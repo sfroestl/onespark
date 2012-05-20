@@ -11,18 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518132625) do
+ActiveRecord::Schema.define(:version => 20120520142835) do
 
-  create_table "linked_accounts", :force => true do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "password"
+  create_table "github_accounts", :force => true do |t|
+    t.string   "access_token"
+    t.integer  "app_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "linked_accounts", ["user_id"], :name => "index_linked_accounts_on_user_id"
+  add_index "github_accounts", ["user_id"], :name => "index_github_accounts_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"

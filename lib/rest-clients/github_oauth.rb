@@ -43,19 +43,43 @@ class GithubOauth
     response = getMethodReturnJson(url)    
   end
   
+  def getAuthorisations
+    url = "#{basic_url}/authorizations"
+    Rails.logger.info "GithubOauth - getAuthorisations call #{url}"
+    response = getMethodReturnJson(url)
+  end
+
+  def deleteAuthorisations(app_id)
+    url = "#{basic_url}/authorizations/#{app_id}" 
+    Rails.logger.info "GithubOauth - deleteAuthorisations call #{url}"
+    response = deleteMethod(url) 
+  end
   
   private 
   
   def getMethodReturnJson(url)
-    json_response = RestClient.get url
-    
     Rails.logger.info ">> GithubOauth: getMethodReturnJson, URL: #{url}" 
+    json_response = RestClient.get url
+     
     response_hash = JSON.parse(json_response)
     
     Rails.logger.info ">> GithubOauth: json response code: #{json_response.code}" 
     return response_hash
   end
   
+  def postMethod(url, params)
+    Rails.logger.info ">> GithubOauth: postMethod, URL: #{url}" 
+    json_response = RestClient.post url, params: params
+    Rails.logger.info ">> GithubOauth: postMethod response code: #{json_response.code}"
+
+  end
+
+  def deleteMethod(url)
+    Rails.logger.info ">> GithubOauth: deleteMethod, URL: #{url}" 
+    json_response = RestClient.delete url
+    Rails.logger.info ">> GithubOauth: deleteMethod response code: #{json_response.code}"
+  end
+
   def basic_url
     OAUTH2_CONFIG['github_client_basic_url']
   end

@@ -18,15 +18,13 @@
 		  			<hr/>
 				<h5>Linked Accounts</h5>
 				<br/>
-				<% if @github_account %>
 				<ul>
-				<li>Github account: <%= @github_account.username %> | <%= link_to 'unlink Github account', user_path + "/git/unlink" %> </li>
-					<%= link_to "Test get projects", user_path + "/git/repos" %>
-				<% else %>
-					<%= link_to 'Link Github account', user_path + "/git/new"%> <br/>	
-					<%= link_to 'Authorize Github account', "/git/oauth2/auth"%> <br/>	
-					<%= link_to "Test get projects", user_path + "/git/repos" %>
-				<% end %>
+					<% if @github_account.nil? %>
+						<li><%= link_to 'Authorize GitHub account', "/git/oauth2/auth"%> </li>
+					<% else %>
+						<li><%= link_to "Your GitHub repositories", user_path + "/git/repos" %> </li>
+						<li><%= link_to 'Unlink Github account', "/git/oauth2/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%></li>
+					<% end %>
 				</ul>
 				
 			</div>
