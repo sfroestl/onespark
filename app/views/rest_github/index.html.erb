@@ -7,12 +7,12 @@
 			
 	      		
 				<% unless @git_repos.nil?%>
-					<h3>Your repositories hosted on GitHub.com(<%= @git_repos.count %>)</h3>
+					<h3>Your repositories hosted on GitHub.com (<%= @git_repos.count %>)</h3>
 					<%= link_to 'Back to profile', user_path %>
 					<hr/>
 					<% @git_repos.each do |repo|%>
 						<h5><%= link_to repo["name"], repo_path(repo)  %></h5>
-						<%= debug repo["owner"]["login"]%>
+						<%= debug repo["owner"]["login"] if Rails.env.development? %>
 						<br/>
 						<p>Description: <%= repo["description"] %></p>
 						<p>Last commit: <%= repo["updated_at"].to_datetime.strftime('%d.%m.%Y - %H:%M:%S') %></p>
@@ -20,8 +20,9 @@
 						<hr/>
 						<% end %>
 				<%end%>
-				<%= link_to 'create new repository', user_path + "/git/repos/new"%>
-				<%= debug @git_repos.first%>
+				<%= link_to user_path + "/git/repos/new" do %>
+					<i class='icon-plus-sign'></i> Create new repository... 
+				<% end %>
 				
 		</div>
 	</div>

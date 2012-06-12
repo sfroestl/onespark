@@ -1,3 +1,3 @@
-RAILS_ROOT = "/Users/Sebastian/Documents/rubyWorkspace/onespark"
 
-OAUTH2_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/oauth2.yml")
+
+OAUTH2_CONFIG = YAML.load_file("#{Rails.root}/config/oauth2.yml")

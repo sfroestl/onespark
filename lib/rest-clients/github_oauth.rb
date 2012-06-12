@@ -5,22 +5,22 @@ class GithubOauth
   require 'rest_client'
   
   def initialize_token(access_token)
+    #TODO problem with direct url 
     Rails.logger.info "init GithubOauth access token"
     @@access_token = access_token
   end
   
   def validate_oauth_token(oauth_verifier, callback_url)
-    
     Rails.logger.info "GithubOauth: Starting validation..."
     response = RestClient.get(token_url, :params => { client_id: client_id, code: oauth_verifier, client_secret: client_secret })
     
-    Rails.logger.info "GithubOauth: response: \n #{response}" 
+    Rails.logger.info "GithubOauth: response: \n #{response}"
     resp_hash = Hash.from_xml(response)
     token = resp_hash['OAuth']['access_token']
   end
   
   def getReposList
-    url = "#{basic_url}/user/repos?access_token=#{@@access_token}"
+    url = "#{basic_url}/user/repos"
     Rails.logger.info "GithubOauth - getRepos call url #{url}"
     response = getMethodReturnJson(url)
   end
@@ -42,11 +42,13 @@ class GithubOauth
     Rails.logger.info "GithubOauth - getRepoCollaboratorsList call #{url}"
     response = getMethodReturnJson(url)    
   end
-  
-  def getAuthorisations
-    url = "#{basic_url}/authorizations"
-    Rails.logger.info "GithubOauth - getAuthorisations call #{url}"
-    response = getMethodReturnJson(url)
+
+  def createRepo(repo_name, repo_desc)
+    url = "#{basic_url}/user/repos"
+    params = {name: repo_name, description: repo_desc}
+    headers = {access_token: @@access_token}
+    Rails.logger.info "GithubOauth - createRepo with name: #{repo_name} call #{url} \n #{params.to_s}"
+    response = postMethod url, params, headers 
   end
 
   def deleteAuthorisations(app_id)
@@ -58,26 +60,34 @@ class GithubOauth
   private 
   
   def getMethodReturnJson(url)
+    url = "#{url}"#?access_token=#{@@access_token}"
     Rails.logger.info ">> GithubOauth: getMethodReturnJson, URL: #{url}" 
-    json_response = RestClient.get url
-     
-    response_hash = JSON.parse(json_response)
     
-    Rails.logger.info ">> GithubOauth: json response code: #{json_response.code}" 
+    json_response = RestClient.get(url, { :accept => :json, :authorization => "token #{@@access_token}" }) 
+    response_hash = JSON.parse(json_response)
+    rescue RestClient::Unauthorized, RestClient::Conflict
+      Rails.logger.error ">> GithubOauth: getMethodReturnJson: Error not found or conflict"
     return response_hash
   end
   
-  def postMethod(url, params)
-    Rails.logger.info ">> GithubOauth: postMethod, URL: #{url}" 
-    json_response = RestClient.post url, params: params
-    Rails.logger.info ">> GithubOauth: postMethod response code: #{json_response.code}"
+  def postMethod(url, params, headers)
+  
+    Rails.logger.info ">> GithubOauth: postMethod, URL: #{url} \n + Parameters: #{params.to_s} \n + access_token: #{@@access_token}" 
+    
+    response = RestClient.post(url, JSON.generate(params), { :accept => :json, :authorization => "token #{@@access_token}" })
+    rescue RestClient::Unauthorized 
+      Rails.logger.error ">> GithubOauth: postMethod Error unauthorized"
+    rescue RestClient::ResourceNotFound
+      Rails.logger.error ">> GithubOauth: postMethod Error not found"
 
+    return response
   end
 
   def deleteMethod(url)
     Rails.logger.info ">> GithubOauth: deleteMethod, URL: #{url}" 
     json_response = RestClient.delete url
     Rails.logger.info ">> GithubOauth: deleteMethod response code: #{json_response.code}"
+    return json_response
   end
 
   def basic_url

@@ -6,20 +6,35 @@ class RestGithubController < ApplicationController
   @@client = GithubOauth.new
   
   def index
-    Rails.logger.info "Github controller loaded index"
+    Rails.logger.info "Github controller index"
     github_account = GithubAccount.find_by_user_id(current_user.id)
     @@client.initialize_token(github_account.access_token)
     @git_repos = @@client.getReposList
   end
   
   def show
-    Rails.logger.info ">> Params: #{params[:repo_owner]}"
+    Rails.logger.info ">> Github controller show"
     @git_repo = @@client.getRepoDetails(params[:repo_owner], params[:repo_name])
     @git_repo_commits = @@client.getRepoCommitsList(params[:repo_owner], params[:repo_name])
     @git_repo_collaborators = @@client.getRepoCollaboratorsList(params[:repo_owner], params[:repo_name])
   end
   
-  
+  def new
+    Rails.logger.info ">> Github controller new"
+  end
+
+  def create
+    Rails.logger.info ">> Github controller create new repo: name: #{params[:repo_name]}"
+    @git_repo = @@client.createRepo(params[:repo_name], params[:repo_desc])
+    unless @git_repo.nil?
+      flash[:success] ='New GitHub repository has been created'     
+      redirect_to current_user
+    else
+      flash[:error] = 'New GitHub repository has not been created' 
+      render 'new'
+    end
+  end
+
   def unlink_oauth2
     Rails.logger.info "Unlink GitHub account"
     github_account = GithubAccount.find_by_user_id(current_user.id)
@@ -29,7 +44,7 @@ class RestGithubController < ApplicationController
   
   def link_oauth2
     Rails.logger.info "Linking GitHub Account for user"
-    redirect_to "#{OAUTH2_CONFIG['github_client_auth_url']}?client_id=#{OAUTH2_CONFIG['github_client_id']}"
+    redirect_to "#{OAUTH2_CONFIG['github_client_auth_url']}?client_id=#{OAUTH2_CONFIG['github_client_id']}&scope=user,repo"
   end
   
   def return_oauth2
