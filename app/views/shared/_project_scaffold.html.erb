@@ -5,9 +5,8 @@
 <div class= "project_headline">
 	<h1><%= link_to @project.title, project_path(@project)  %></h1> 
 	<% if @project.due_date %>
-		<span class="due_date bubble"><%= @project.due_date.strftime('%d.%m.%Y')%></span>
+		<span class="due_date bubble"><%= format_date(@project.due_date)%></span>
 	<% end %>
 	<p><%= @project.desc %></p>
 </div>
-<hr/>
 	

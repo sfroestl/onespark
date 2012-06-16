@@ -2,23 +2,28 @@
 <div class="container-fluid">
   <div class="row-fluid">
 	
-  <div class="span8 well show_project">
+	
+  <div class="span12 show_project">
 		<%= render 'shared/project_scaffold'%>
-		<div class ="tickets">
-			<h4>Tickets</h4>
-			<ul><%= render 'tickets/all'%></ul>
-			<p class ="new_ticket">
-			<%= link_to new_project_ticket_path(@project) do %>
-				<i class='icon-plus-sign'></i> Create new ticket...
-			<% end %>
-			</p>
-			<hr/>
-		</div>	
-  </div>
-	<div class="span3">
-		<div class="sidebar-nav">
-			<%= render 'shared/project_navigation'%>
+		<br/>
+		<div class="tabbable tabs-left" style="margin-left:-107px"> <!-- Only required for left/right tabs -->
+		  <ul class="nav nav-tabs" style=" min-height:300px">
+		    <li class="active"><a href="#tab1" data-toggle="tab">Dashboard</a></li>
+		    <li><a href="#tab2" data-toggle="tab">Tasks</a></li>
+			<li><a href="#tab3" data-toggle="tab">Dialogs</a></li>
+		  </ul>
+		  <div class="tab-content">
+			
+		    <div class="tab-pane active" id="tab1">
+		      <h2>Dashboard</h2>
+		    </div>
+		    <div class="tab-pane" id="tab2">
+		      <h2>Tasks</h2>
+		    </div>
+			<div class="tab-pane" id="tab3">
+		      <h2>Dialogs</h2>
+		    </div>
+		  </div>
 		</div>
-	</div>
   </div>
 </div>

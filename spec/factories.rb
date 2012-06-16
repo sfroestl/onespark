@@ -5,17 +5,20 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
   end
+
   
   factory :project do
     title   "Example project"
     desc    "example project's description here"
+    user
     due_date 3.days.from_now
   end
   
-  factory :ticket do
-    title   "Example Ticket"
-    desc    "example ticket here"
+  factory :milestone do
+    title   "Milestone 1"
+    desc    "example milestone description here"
     due_date 3.days.from_now
     project
+    user
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120520142835) do
+ActiveRecord::Schema.define(:version => 20120616104749) do
 
   create_table "github_accounts", :force => true do |t|
     t.string   "access_token"
@@ -23,24 +23,27 @@ ActiveRecord::Schema.define(:version => 20120520142835) do
 
   add_index "github_accounts", ["user_id"], :name => "index_github_accounts_on_user_id"
 
+  create_table "milestones", :force => true do |t|
+    t.string   "title"
+    t.text     "desc"
+    t.text     "goal"
+    t.date     "due_date"
+    t.integer  "creator_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "milestones", ["creator_id"], :name => "index_milestones_on_creator_id"
+
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "desc"
     t.datetime "due_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "creator_id"
   end
-
-  create_table "tickets", :force => true do |t|
-    t.string   "title"
-    t.text     "desc"
-    t.integer  "project_id"
-    t.datetime "due_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "tickets", ["project_id"], :name => "index_tickets_on_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

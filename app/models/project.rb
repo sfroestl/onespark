@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   attr_accessible :desc, :due_date, :title
-  # ensures to destroy all tickets related to project
-  has_many :tickets,  dependent: :destroy
+  has_many :milestones, :dependent => :destroy # ensures to destroy all milestones related to project
+  belongs_to :user, :foreign_key => "creator_id"
   
   validates :title, presence:true
   
@@ -14,4 +14,6 @@ class Project < ActiveRecord::Base
       errors.add(:due_date, 'You can\'t complete tasks in the past!')
     end
   end
+  
 end
+

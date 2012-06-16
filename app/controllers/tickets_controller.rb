@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
   before_filter :signed_in_user
   before_filter :get_all_projects
-  before_filter :find_project
+  # before_filter :find_project
   
   # GET /projects/1/tickets/1
   # GET /projects/1/tickets/1.json
