@@ -13,6 +13,7 @@ group :development do
   gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'rest-client', '~> 1.6.7'
+  gem 'nifty-generators'
 end
 
 # Gems used only for assets and not required

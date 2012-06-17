@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120616104749) do
+ActiveRecord::Schema.define(:version => 20120616221808) do
 
   create_table "github_accounts", :force => true do |t|
     t.string   "access_token"
@@ -28,13 +28,25 @@ ActiveRecord::Schema.define(:version => 20120616104749) do
     t.text     "desc"
     t.text     "goal"
     t.date     "due_date"
-    t.integer  "creator_id"
     t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
-  add_index "milestones", ["creator_id"], :name => "index_milestones_on_creator_id"
+  add_index "milestones", ["user_id"], :name => "index_milestones_on_owner_id"
+
+  create_table "project_permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "permission", :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "project_permissions", ["project_id"], :name => "index_project_permissions_on_project_id"
+  add_index "project_permissions", ["user_id", "project_id"], :name => "index_project_permissions_on_user_id_and_project_id", :unique => true
+  add_index "project_permissions", ["user_id"], :name => "index_project_permissions_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -42,8 +54,10 @@ ActiveRecord::Schema.define(:version => 20120616104749) do
     t.datetime "due_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "creator_id"
+    t.integer  "user_id"
   end
+
+  add_index "projects", ["user_id"], :name => "index_projects_on_owner_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

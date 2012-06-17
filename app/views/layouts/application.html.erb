@@ -20,13 +20,13 @@
 		</div>
 		<div class = "footer">
 	      <%= render 'layouts/footer' %>
-	      <%= debug(params) if Rails.env.development? %>
-			<% if Rails.env.development? %>
 			<pre class = "debug_dump">
-			  <%= "#{request.ip()}" %>
+			  <%= "Request IP #{request.ip()}" %>
 			</pre>
-			
-			<% end %>
+	      <% if Rails.env.development? %>
+	      	<%= debug(params) %>
+			<%= debug(current_user) if current_user %>		
+		  <% end %>
 		</div>
 	</div>
   </body>

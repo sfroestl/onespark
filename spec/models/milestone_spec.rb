@@ -12,7 +12,7 @@ describe Milestone do
   it { should respond_to(:title) }
   it { should respond_to(:desc) }
   it { should respond_to(:due_date) }
-  it { should respond_to(:creator_id) }
+  it { should respond_to(:user_id) }
 
   describe "Create Milestone" do
 

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "Project Pages" do
 
   subject { page }
-  let(:project) { FactoryGirl.create(:project) }
   let(:user) { FactoryGirl.create(:user) }
+  let(:project) { FactoryGirl.create(:project, user: user) }
   
   describe "visit as unsigned user" do
      before { visit project_path(project) }
@@ -61,29 +61,29 @@ describe "Project Pages" do
       end
     end
 
-    describe "visit a project " do
-      before { visit project_path(project) }
-      it { should have_selector('title', text: project.title) }
-      it { should have_content('Create new ticket') }
+    # describe "visit a project " do
+    #   before { visit project_path(project) }
+    #   it { should have_selector('title', text: project.title) }
+    #   it { should have_content('Create new ticket') }
       
-      describe "create new ticket with valid information" do
-        before do
-          click_link 'new ticket'
-          fill_in "Title",    with: "Example Ticket"
-          fill_in "Desc",     with: "Example ticket foobar test test"
-          fill_in "Due date", with: "12.1.2020"
-          click_button 'Create ticket'
-        end
-        it { should have_content('Ticket was successfully created.') }
-        it { should have_content('Example Ticket') }
-      end
-      describe "create new ticket with invalid information" do
-        before do
-          click_link 'new ticket'
-          click_button 'Create ticket'
-        end
-        it { should have_content('error') }
-      end
-    end
+    #   describe "create new ticket with valid information" do
+    #     before do
+    #       click_link 'new ticket'
+    #       fill_in "Title",    with: "Example Ticket"
+    #       fill_in "Desc",     with: "Example ticket foobar test test"
+    #       fill_in "Due date", with: "12.1.2020"
+    #       click_button 'Create ticket'
+    #     end
+    #     it { should have_content('Ticket was successfully created.') }
+    #     it { should have_content('Example Ticket') }
+    #   end
+    #   describe "create new ticket with invalid information" do
+    #     before do
+    #       click_link 'new ticket'
+    #       click_button 'Create ticket'
+    #     end
+    #     it { should have_content('error') }
+    #   end
+    # end
   end
 end
