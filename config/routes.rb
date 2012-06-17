@@ -1,13 +1,16 @@
 Onespark::Application.routes.draw do
+  
   # match '/users/:username', :to => 'users#show'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :projects do
-   resources :tickets
   end
-  resources :tickets, :only => [:index, :show]
   
+  
+  resources :friendships, only: [:new, :create, :destroy]
+
+
   match '/git/oauth2/auth', :controller => 'rest_github', :action => 'link_oauth2'
   match '/git/oauth2/return_oauth2', :controller => 'rest_github', :action => 'return_oauth2'
   match '/git/oauth2/unlink', :controller => 'rest_github', :action => 'unlink_oauth2'

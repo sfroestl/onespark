@@ -1,0 +1,11 @@
+one:
+  user_id: 1
+  friend_id: 1
+  status: MyString
+  accepted_at: 2012-06-17 13:37:44
+
+two:
+  user_id: 1
+  friend_id: 1
+  status: MyString
+  accepted_at: 2012-06-17 13:37:44
