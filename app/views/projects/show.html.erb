@@ -2,6 +2,7 @@
 
 <div class="container-fluid">
 	<div class = "span10 offset1">
+		<% if @projects %>
 		<h1><%= @project.title %></h1> 
 			<div class="pull-right">
 				<%= link_to "Edit", edit_project_path(@project) %> | 
@@ -41,5 +42,6 @@
 		    </div>
 		  </div>
 		</div>
+		<% end %>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <h1> All profiles (<%= @profiles.count unless @profiles.nil? %>) </h1>
   <hr class="soften"/>
-    <div class="span11 offset1">
+    <div class="span10 offset2">
       <table class="table">
         <thead>
           <tr>
@@ -22,8 +22,8 @@
               <td><%= profile.surname %></td>
               <td><%= profile.city %></td>
               <td width="100px">
-                <%= link_to "Add to friends", friendships_path(:friend_id => profile.user_id), :method => :post %><br/>
-                <%= link_to "Show", profile %>
+                <%= link_to "Add friend", friendships_path(:friend_id => profile.user_id), :method => :post %><br/>
+                <%= link_to "Show profile", profile %>
               </td>
             </tr>
           <% end %>

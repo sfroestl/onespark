@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>    
-  </head>
-  <body>
-    <%= render 'layouts/header' %>
-	 <div class="container">
-		<div class ="error">	
-	      <% flash.each do |key, value| %>
-		        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-		  <% end %>
-		</div>
-		<div class ="content_whrapper">
-	      <%= yield %>
-		</div>
-		<div class = "footer">
-	      <%= render 'layouts/footer' %>
-			<pre class = "debug_dump">
-			  <%= "Request IP #{request.ip()}" %>
-			</pre>
-	      <% if Rails.env.development? %>
-	      	<%= debug(params) %>
-			<%= debug(current_user) if current_user %>		
-		  <% end %>
-		</div>
-	</div>
-  </body>
+	<head>
+		<title><%= full_title(yield(:title)) %></title>
+		<%= stylesheet_link_tag    "application", media: "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+
+		<%= render 'layouts/shim' %>    
+	</head>
+
+	<body>
+		<%= render 'layouts/header' %>
+
+		<div class="container">
+			<div class ="flash">
+				<% flash.each do |key, value| %>
+				<button class="close" data-dismiss="alert">×</button>	
+			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+			<% end %>
+			</div>
+			<div class ="content_whrapper">
+			<%= yield %>
+			</div>
+		</div>	
+
+		<%= render 'layouts/footer' %>
+
+	</body>
 </html>

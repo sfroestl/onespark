@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
-  before_filter :get_all_projects
+  # before_filter :get_all_projects
+  before_filter :get_user_projects
   before_filter :signed_in_user
 
   # GET /projects
   # GET /projects.json
   def index
     # TODO: make project only accesible for admin and invited users
-    @projects = Project.find(:all, order: "due_date")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -97,6 +97,10 @@ class ProjectsController < ApplicationController
 
     def get_all_projects
       @projects = Project.all
+    end
+
+    def get_user_projects
+      @projects = Project.by_user(current_user)
     end
   
     def find_project(id)

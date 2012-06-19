@@ -1,10 +1,9 @@
 <%= provide(:title, 'Sign in') %>
 
-<div class="center hero-unit">
+<div class="center">
   <h1>Sign in</h1>
 
-	<div class="row signin">
-		<div class="span4 offset3">
+	<div class="row signin span5 offset5">
 		<%= form_tag (sessions_path) do %>
 		
 		  	<%= label_tag :email_or_username %>
@@ -17,8 +16,6 @@
 		<% end %>
 		
 		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
-		
-	  </div>
 	</div>
 </div>
 

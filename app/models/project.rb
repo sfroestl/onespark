@@ -12,6 +12,12 @@ class Project < ActiveRecord::Base
   
   validate :due_date_not_in_past_but_can_be_empty
 
+  default_scope :order => 'due_date ASC'
+
+  def self.by_user(user)
+    where(:user_id => user.id)
+  end
+
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
     "#{self.id}-#{normalized_name}"

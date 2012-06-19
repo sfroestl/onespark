@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:show, :edit, :update, :destroy]
-  before_filter :correct_user,   only: [:edit, :update, :destroy]
+  before_filter :correct_user
  
   # GET /users/new
   # GET /users/new.json
@@ -85,7 +85,7 @@ private
   
   def correct_user
     @user = User.find_by_username(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
+    render 'public/404' unless current_user?(@user)
   end
   
 end

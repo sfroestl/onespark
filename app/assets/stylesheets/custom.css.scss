@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-/* colors*/
+/* ================ colors  ================ */
 $grayMediumLight: #eaeaea;
 $onesparkOrange: #ea5b0b;
 $osOrange: #FF6600;
@@ -22,7 +22,7 @@ $backgroundLightBlue: #e2e6ec;
 		text-decoration: none;
 	}
 }
-/* universal */
+ /* ================  universal  ================ */
 
 html {
   overflow-y: scroll;
@@ -47,9 +47,22 @@ textarea {
   }
 }
 
+.flash {
+	border-radius: 4px 4px 4px 4px;
+	border:none;
+	position:absolute;
+	z-index:333;
+	margin-left:210px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	width:760px;
+	button {
+		border:none;
+	}
+}
 
 
-/* header */
+
+/* ================ header  ================ */
 
 #logo {
   background-image: url('logo.png');
@@ -70,10 +83,10 @@ textarea {
   }
 }
 
-/* navigation 
+/* ================ navigation  ================ */
 .active {
 	color:#FF0000;
-}*/
+}
 
 .navbar .container {
 	padding-top:5px;
@@ -85,7 +98,7 @@ textarea {
 .link_icon {
 	color:$linkColor;
 }
-/* content */
+/* ================ content ================ */
 .content_whrapper {
 	min-height:480px;
 }
@@ -117,7 +130,7 @@ span.bubble {
 	background: none repeat scroll 0 0 $backgroundLightBlue;
 }
 
-/* content projects */
+/* ================ content projects ================ */
 .show_project h1{
 	@include link_gray_blue
 }
@@ -144,13 +157,17 @@ span.bubble {
 	
 	
 }
+
+.project_buttons {
+	width:470px;
+}
 .project_actions {
 	padding-top:15px;
 	a {
 		padding-right:8px;
 	}
 }
-/* tickets */
+/* ================ tickets ================ */
 
 .show_ticket {
 	h4 {
@@ -208,7 +225,7 @@ span.bubble {
 		padding-right:8px;
 	}
 }
-/* forms */
+/* ================ forms ================ */
 label {
 	font-size:1.3em;
 }
@@ -239,10 +256,11 @@ label {
 	font-size:0.85em;
 }
 
-/* footer */
+/* ================ footer ================ */
 
 footer {
   margin-top:50px;
+  margin-bottom:50px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
@@ -266,7 +284,9 @@ footer {
 	  }
 }
 
-/* modified bootstrap */
+
+/* ================ modified bootstrap ================ */
+
 hr.soften {
     background-image: -moz-linear-gradient(left center , transparent, rgba(0, 0, 0, 0.1), transparent);
     border: 0 none;
@@ -276,8 +296,10 @@ hr.soften {
 .container {
 	width:1180px;
 }
+
 .navbar-inner {
 }
+
 h1 {
 	font-size: 40px;
     font-weight: 300;
@@ -312,7 +334,7 @@ h3 {
 }
 
 input, textarea, select {
-	width:350px;
+	width:460px;
 }
 textarea {
 	height:200px;
@@ -322,10 +344,14 @@ textarea {
 	margin-bottom:15px;
 }
 
+.alert {
+	margin-bottom:0px;
+}
 
-/* messages */
 
-/* debug */
+/* ================ messages ================ */
+
+/* ================ debug ================ */
 
 .debug_dump {
   clear: both;

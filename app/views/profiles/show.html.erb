@@ -1,16 +1,20 @@
 <% provide(:title, "#{@user.username}") %>
 
-<h1><%= @user.username %></h1>
-<div class = "span11 offset1">
-  <div class="pull-right">
-        <%= link_to "Edit", "/profiles/#{@user.username}/edit" %> |
-        <%= link_to "View All", profiles_path %>
-  </div>
+<% if @user == current_user %>
+  <h1>Welcome <%= @user.username %></h1>
+    <div class="pull-right button" style = "margin-right:200px">
+        <%= link_to "Edit", edit_profile_path(@user.username)%>
+    </div>
+<% else %>
+  <h1><%= @user.username %></h1>
+<% end %>
+
+
 
   <hr class="soften">
-  <div class="row-fluid offset2">
+  <div class="row-fluid offset3">
     
-    <div class="span5">
+    <div class="span4">
       <div class = "profile-avatar">
       <%= image_tag "avatars/avatar.png", size: "100x100" %>
     </div>
@@ -32,26 +36,24 @@
         <strong>About:</strong>
         <%= @profile.about %>
       </p>
-      <p>
-        <strong>Avatar Url:</strong>
-        <%= @profile.avatar_url %>
-      </p>
 
       
       <br/>
     </div>
-    <div class="span5">
-      <h2>Friends </h2>
+    <div class="span4">
+      <h2>Friends</h2>
       <ul>
         <% for friend in @friends %>
          <li>
-            <%= friend.username %> | 
-            <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+            <%= friend.username %> 
+            <% if @user == current_user %>
+            | <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+            <% end %>
         </li>
         <%end%>
       </ul>
       <br/>
-
+      <% if @user == current_user %>
       <h2>Pending friendships </h2>
       <ul>
         <% for friend in @pending_friends %>
@@ -73,6 +75,6 @@
           </li>
         <%end%>
       </ul>
+      <% end %>
     </div>
   </div>
-</div>

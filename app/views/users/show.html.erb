@@ -1,33 +1,29 @@
 <% provide(:title, @user.username) %>
 
-<div class = "container-fluid">
-	<div class="row-fluid">
-		<div class="span8 well">
-			<div class="pull-right">
-				
-			</div>
-	      		<h1><%= link_to @user.username, edit_user_path(@user) %></h1>
-				<h5><%= @user.email %></h5>
-				<hr/>
-				<div class = "">
-					<p><h5>Details</h5></p>
-					<p>
-						Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
-						Account type: Free user
-					</p>
-		  			<hr/>
-				<h5>Linked Accounts</h5>
-				<br/>
+<% if @user == current_user %>
+  <h1>Settings of <%= @user.username %></h1>
+<% end %>
+  <hr class="soften">
+  <div class="row-fluid offset3">
+    
+    <div class="span4">
+    	<h2>Account details</h2>
+			<h5><%= @user.email %></h5> <br/>
+			Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
+			<p>Account type: Free user</p>
+			<p><%= link_to "Edit account", edit_profile_path(@user.username)%></p>
+		</div>
+		<div class="span4">
+			<h2>Linked tools</h2>
 				<ul>
 					<% if @github_account.nil? %>
-						<li><%= link_to 'Authorize GitHub account', "/git/oauth2/auth"%> </li>
+						<li><%= link_to 'Add GitHub account', "/git/oauth2/auth"%> </li>
 					<% else %>
-						<li><%= link_to "Your GitHub repositories", user_path + "/git/repos" %> </li>
-						<li><%= link_to 'Unlink Github account', "/git/oauth2/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%></li>
+						<li><%= link_to "View your GitHub repositories", user_path + "/git/repos" %> </li>
+						<li><%= link_to 'remove Github account', "/git/oauth2/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%></li>
 					<% end %>
 				</ul>
-				
-			</div>
 		</div>
 	</div>
-</div>
+	
+	
