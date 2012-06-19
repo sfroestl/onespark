@@ -100,7 +100,7 @@ class ProjectsController < ApplicationController
     end
 
     def get_user_projects
-      @projects = Project.by_user(current_user)
+      @projects = Project.by_user(current_user) unless current_user.nil?
     end
   
     def find_project(id)
