@@ -4,6 +4,8 @@ gem 'rails', '3.2.3'
 gem 'oauth2'
 gem 'bootstrap-sass', '2.0.0'
 gem 'therubyracer'
+gem 'populator'
+gem 'faker'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -30,7 +32,7 @@ gem 'jquery-rails'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'rspec-rails', '2.9.0'
-  gem 'factory_girl_rails', '1.4.0'
+  gem 'factory_girl_rails', '~> 3.2.0'
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
 end
@@ -53,4 +55,3 @@ end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-

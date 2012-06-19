@@ -1,0 +1,23 @@
+<% provide(:title, "Profiles") %>
+<h1> All profiles (<%= @profiles.count unless @profiles.nil? %>) </h1>
+<table>
+  <tr>
+    <th>Forename</th>
+    <th>Surname</th>
+    <th>City</th>
+    <th>About</th>
+    <th>Avatar Url</th>
+  </tr>
+  <% for profile in @profiles %>
+    <tr>
+      <td><%= profile.forename %></td>
+      <td><%= profile.surname %></td>
+      <td><%= profile.city %></td>
+      <td><%= profile.about %></td>
+      <td><%= profile.avatar_url %></td>
+      <td><%= link_to "Show", profile %></td>
+      <td>
+        <%= link_to "Add Friend", friendships_path(:friend_id => profile.user_id), :method => :post %></td>
+    </tr>
+  <% end %>
+</table>

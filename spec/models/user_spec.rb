@@ -14,13 +14,15 @@ require 'spec_helper'
 
 describe User do
   
-  before do
-    @user = User.new(name: "Testuser", email:"test@example.org", password: "foobar", password_confirmation: "foobar")
-  end
+  let!(:user) { FactoryGirl.create(:user) }
+  let(:user_with_same_email) { FactoryGirl.create(:user) }
+  # before do
+  #   @user = User.new(name: "Testuser", email:"test@example.org", password: "foobar", password_confirmation: "foobar")
+  # end
   
-  subject { @user }
+  subject { user }
   
-  it { should respond_to(:name) }
+  it { should respond_to(:username) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -32,17 +34,17 @@ describe User do
   it { should be_valid }
   
   describe "when name is not present" do
-    before { @user.name = "" }
+    before { user.username = "" }
     it { should_not be_valid }
   end
   
   describe "when email is not present" do
-      before { @user.email = " " }
+      before { user.email = " " }
       it { should_not be_valid }
   end
   
   describe "when username too long " do
-    before { @user.name = "x"*51 }
+    before { user.username = "x" * 51 }
     it { should_not be_valid }
   end
   
@@ -50,8 +52,8 @@ describe User do
     it "should be invalid" do
       emails = %w[xyz.me.de 123@asd @mail.de asd@mail www@foo,com]
       emails.each do |invalid_email| 
-        @user.email = invalid_email
-        @user.should_not be_valid
+        user.email = invalid_email
+        user.should_not be_valid
       end
     end
   end
@@ -60,48 +62,50 @@ describe User do
     it "should be valid" do
       emails = %w[xyz@me.de 123@asd.com me@mail.de asd@mail.org www@foo.com]
       emails.each do |valid_email| 
-        @user.email = valid_email
-        @user.should be_valid
+        user.email = valid_email
+        user.should be_valid
       end
     end
   end
   
   describe "when email address is already taken" do
       before do
-        user_with_same_email = @user.dup
-        user_with_same_email.email = @user.email.upcase
-        user_with_same_email.save
+        user.save
+        user_with_same_email.email = user.email.upcase
       end
-      it { should_not be_valid }
+      it "user should not be valid" do
+        user_with_same_email.should_not be_valid
+        expect{user_with_same_email.save}.not_to change{User.count} 
+      end
   end
 
   describe "when password is not present" do
-    before { @user.password = @user.password_confirmation = " " }
+    before { user.password = user.password_confirmation = " " }
     it { should_not be_valid }
   end
 
   describe "when password doesn't match confirmation" do
-    before { @user.password_confirmation = "mismatch" }
+    before { user.password_confirmation = "mismatch" }
     it { should_not be_valid }
   end
   
   describe "with a password that's too short" do
-    before { @user.password = @user.password_confirmation = "a" * 5 }
+    before { user.password = user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
   
   describe "when password confirmation is nil" do
-    before { @user.password_confirmation = nil }
+    before { user.password_confirmation = nil }
     it { should_not be_valid }
   end
   
   describe "return value of authenticate method" do
-    before { @user.save }
+    before { user.save }
     it { should be_true }
   end
   
   describe "remember token" do
-      before { @user.save }
+      before { user.save }
       its(:remember_token) { should_not be_blank }
     end
   

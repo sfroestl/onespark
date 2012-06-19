@@ -1,10 +1,11 @@
+
 FactoryGirl.define do
 
   factory :user do
-    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:username)  { |n| "person#{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}   
     password "foobar"
-    password_confirmation "foobar"
+    password_confirmation "foobar" 
   end
 
   factory :project do
@@ -19,6 +20,13 @@ FactoryGirl.define do
     desc    "example milestone description here"
     due_date 3.days.from_now
     project
+    user
+  end
+  
+
+  factory :profile do
+    sequence(:forename) { |n| "Vorname #{n}" }
+    sequence(:surname) { |n| "Namchname #{n}" }
     user
   end
 end

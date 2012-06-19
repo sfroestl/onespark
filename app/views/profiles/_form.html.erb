@@ -1,0 +1,25 @@
+<%= form_for @profile, url: "/profiles/#{@user.username}", method: "put"  do |f| %>
+ <%= render 'shared/error_messages', object: f.object %>
+  
+
+    <%= f.label :forename %>
+    <%= f.text_field :forename %>
+
+
+    <%= f.label :surname %>
+    <%= f.text_field :surname %>
+
+
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+
+
+    <%= f.label :about %>
+    <%= f.text_area :about %>
+
+
+    <%= f.label :avatar_url %>
+    <%= f.text_field :avatar_url %>
+    <br/>
+    <%= f.submit %>
+<% end %>

@@ -6,10 +6,18 @@ Onespark::Application.routes.draw do
   
   resources :projects do
   end
-  
-  
-  resources :friendships, only: [:new, :create, :destroy]
 
+  # resources :profiles , only: [:show, :index]
+
+  resources :friendships, only: [:create, :destroy, :update]
+
+  post 'friendship/accept/:friend_id', :to => 'friendships#accept'
+  post 'friendship/remove/:friend_id', :to => 'friendships#remove'
+
+  get '/profiles/:username', :to => 'profiles#show', as: 'profile'
+  put '/profiles/:username', :to => 'profiles#update'
+  get '/profiles/:username/edit', :to => 'profiles#edit', as: 'edit_profile'
+  get '/profiles', :to => 'profiles#index', as: 'profiles'
 
   match '/git/oauth2/auth', :controller => 'rest_github', :action => 'link_oauth2'
   match '/git/oauth2/return_oauth2', :controller => 'rest_github', :action => 'return_oauth2'

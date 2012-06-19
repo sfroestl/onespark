@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-      
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @github_account = GithubAccount.find_by_user_id(current_user.id)
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -27,12 +26,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-      @user = User.new(params[:user])
-      
+    @user = User.new(params[:user])
       respond_to do |format|
         if @user.save
+          @user.create_profile
           sign_in @user
-          format.html { redirect_to @user, :flash => { :success => 'Welcome to the One Spark!' }}
+          format.html { redirect_to "/profiles/#{@user.username}", :flash => { :success => 'Welcome to the One Spark!' }}
           format.json { render json: @user, status: :created, location: @user }
         else
           format.html { render action: "new" }
@@ -43,13 +42,13 @@ class UsersController < ApplicationController
     
   # GET /users/1/edit
   def edit
-      @user = User.find(params[:id])
+      @user = User.find_by_username(params[:id])
   end
   
   # PUT /users/1
   # PUT /users/1.json
   def update
-      @user = User.find(params[:id])
+      @user = User.find_by_username(params[:id])
       
       respond_to do |format|
         if @user.update_attributes(params[:user])
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     @user.destroy
     respond_to do |format|
       format.html { redirect_to goodbye_path, :flash => { :success => 'Your account has been deleted.' }}
@@ -75,18 +74,18 @@ class UsersController < ApplicationController
   end
 
 
-  private
+private
 
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_path, notice: "Please sign in."
-      end
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
     end
-    
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
-    end
-    
+  end
+  
+  def correct_user
+    @user = User.find_by_username(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+  
 end

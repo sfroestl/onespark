@@ -7,8 +7,8 @@
 		<div class="span4 offset3">
 		<%= form_tag (sessions_path) do %>
 		
-		  	<%= label_tag :email %>
-			<%= text_field_tag :email, params[:email] %>
+		  	<%= label_tag :email_or_username %>
+			<%= text_field_tag :email_or_username, params[:email_or_username] %>
 			
 			<%= label_tag :password %>
 			<%= password_field_tag :password, params[:password]%>

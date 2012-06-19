@@ -18,7 +18,7 @@ class Friendship < ActiveRecord::Base
         # create(:user => user, :friend => friend, :status => 'pending')
         # create(:user => friend, :friend => user, :status => 'requested')
       end
-	end
+	  end
   end
 
   # Accept a friend request.

@@ -1,0 +1,61 @@
+<% provide(:title, "#{@user.username}") %>
+<h1><%= @user.username %></h1>
+<p>
+  <strong>Forename:</strong>
+  <%= @profile.forename %>
+</p>
+<p>
+  <strong>Surname:</strong>
+  <%= @profile.surname %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @profile.city %>
+</p>
+<p>
+  <strong>About:</strong>
+  <%= @profile.about %>
+</p>
+<p>
+  <strong>Avatar Url:</strong>
+  <%= @profile.avatar_url %>
+</p>
+
+<p>
+  <%= link_to "Edit", "/profiles/#{@user.username}/edit" %> |
+  <%= link_to "View All", profiles_path %>
+</p>
+<br/>
+
+<h3>Friends </h3>
+<ul>
+  <% for friend in @friends %>
+   <li>
+      <%= friend.username %> | 
+      <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+  </li>
+  <%end%>
+</ul>
+<br/>
+
+<h3>Pending friendships </h3>
+<ul>
+  <% for friend in @pending_friends %>
+    <li>
+      <%= friend.username %> |    
+      <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
+    </li>
+  <%end%>
+</ul>
+<br/>
+
+<h3>Requested friendships </h3>
+<ul>
+  <% for friend in @requested_friends %>
+    <li>
+      <%= friend.username %> | 
+      <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
+      <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
+    </li>
+  <%end%>
+</ul>
