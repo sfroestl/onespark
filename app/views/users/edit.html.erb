@@ -1,15 +1,12 @@
-<%= provide(:title, 'Edit user') %>
+<%= provide(:title, 'Edit Account') %>
 
-<div class = "offset3">	
-  <h1>Update your profile</h1>
- 
-  	<div class="row signup">
-	  	<div class="span4">
-		    <%= render 'form'%>
-		
-		<%= link_to "Delete your account?", current_user, method: :delete, confirm: "Are you sure? This action can NOT be undone and deletes your account on One Spark!" %>
+<div class="container-fluid">
+  <h1>Update your account <%= @user.username %></h1>
+ 	<hr class="soften"/>
+	<div class = "span10 offset4">
+			<%= render 'form'%>		
+			<%= link_to "Delete your account?", 
+				current_user, method: :delete, confirm: "Are you sure? This action can NOT be undone and deletes your account on One Spark!" %>
 	</div>
-	
-  </div>
 </div>
 

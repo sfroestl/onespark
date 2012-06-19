@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter :get_all_projects
-  # before_filter :get_user_projects
+  # before_filter :get_all_projects
+  before_filter :get_user_projects
   before_filter :signed_in_user
 
   # GET /projects

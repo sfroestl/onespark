@@ -11,7 +11,7 @@
 			<h5><%= @user.email %></h5> <br/>
 			Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
 			<p>Account type: Free user</p>
-			<p><%= link_to "Edit account", edit_profile_path(@user.username)%></p>
+			<p><%= link_to "Edit account", edit_user_path(@user.username)%></p>
 		</div>
 		<div class="span4">
 			<h2>Linked tools</h2>
