@@ -11,7 +11,12 @@ class Project < ActiveRecord::Base
   validates :user_id, presence: true
   
   validate :due_date_not_in_past_but_can_be_empty
-  
+
+  def to_param
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
+    "#{self.id}-#{normalized_name}"
+  end
+
   def admin?(user)
     user_right = project_permissions.find_by_user_id(user.id)
     user_right.permission == 3

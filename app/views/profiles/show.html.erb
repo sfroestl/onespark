@@ -1,61 +1,78 @@
 <% provide(:title, "#{@user.username}") %>
+
 <h1><%= @user.username %></h1>
-<p>
-  <strong>Forename:</strong>
-  <%= @profile.forename %>
-</p>
-<p>
-  <strong>Surname:</strong>
-  <%= @profile.surname %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @profile.city %>
-</p>
-<p>
-  <strong>About:</strong>
-  <%= @profile.about %>
-</p>
-<p>
-  <strong>Avatar Url:</strong>
-  <%= @profile.avatar_url %>
-</p>
+<div class = "span11 offset1">
+  <div class="pull-right">
+        <%= link_to "Edit", "/profiles/#{@user.username}/edit" %> |
+        <%= link_to "View All", profiles_path %>
+  </div>
 
-<p>
-  <%= link_to "Edit", "/profiles/#{@user.username}/edit" %> |
-  <%= link_to "View All", profiles_path %>
-</p>
-<br/>
+  <hr class="soften">
+  <div class="row-fluid offset2">
+    
+    <div class="span5">
+      <div class = "profile-avatar">
+      <%= image_tag "avatars/avatar.png", size: "100x100" %>
+    </div>
+    <br/>
+      <h2>Details</h2>
+      <p>
+        <strong>Forename:</strong>
+        <%= @profile.forename %>
+      </p>
+      <p>
+        <strong>Surname:</strong>
+        <%= @profile.surname %>
+      </p>
+      <p>
+        <strong>City:</strong>
+        <%= @profile.city %>
+      </p>
+      <p>
+        <strong>About:</strong>
+        <%= @profile.about %>
+      </p>
+      <p>
+        <strong>Avatar Url:</strong>
+        <%= @profile.avatar_url %>
+      </p>
 
-<h3>Friends </h3>
-<ul>
-  <% for friend in @friends %>
-   <li>
-      <%= friend.username %> | 
-      <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
-  </li>
-  <%end%>
-</ul>
-<br/>
+      
+      <br/>
+    </div>
+    <div class="span5">
+      <h2>Friends </h2>
+      <ul>
+        <% for friend in @friends %>
+         <li>
+            <%= friend.username %> | 
+            <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+        </li>
+        <%end%>
+      </ul>
+      <br/>
 
-<h3>Pending friendships </h3>
-<ul>
-  <% for friend in @pending_friends %>
-    <li>
-      <%= friend.username %> |    
-      <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
-    </li>
-  <%end%>
-</ul>
-<br/>
+      <h2>Pending friendships </h2>
+      <ul>
+        <% for friend in @pending_friends %>
+          <li>
+            <%= friend.username %> |    
+            <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
+          </li>
+        <%end%>
+      </ul>
+      <br/>
 
-<h3>Requested friendships </h3>
-<ul>
-  <% for friend in @requested_friends %>
-    <li>
-      <%= friend.username %> | 
-      <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
-      <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
-    </li>
-  <%end%>
-</ul>
+      <h2>Requested friendships </h2>
+      <ul>
+        <% for friend in @requested_friends %>
+          <li>
+            <%= friend.username %> | 
+            <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
+            <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</div>

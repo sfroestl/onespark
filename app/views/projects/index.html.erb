@@ -1,20 +1,15 @@
 <%= provide(:title, 'All projects') %>
 <div class="container-fluid">
-  <div class="row-fluid">
-  	<div class="span8 well">
-		<h1>Your current projects</h1>
-		<% @projects.each do |project|%>
-			<h3><%= link_to project.title, project_path(project) %></h3> 
-			<% if project.due_date %>
-			<p><i class="icon-calendar"></i> <%= time_ago_in_words(project.due_date) %>  <span class="bubble"><%= project.due_date.strftime('%d.%m.%Y')%></span></p>
-			<% end %>
-			<hr/>
+	<h1>Current projects</h1>
+	<hr class="soften"/>
+	<div class="row offset1">
+	<% @projects.each do |project|%>
+	  <div class="span3">
+		<h3><%= link_to project.title, project_path(project) %></h3> 
+		<% if project.due_date %>
+		<p><i class="icon-calendar"></i> <%= time_ago_in_words(project.due_date) %>  <span class="bubble"><%= project.due_date.strftime('%d.%m.%Y')%></span></p>
 		<% end %>
-	 </div>
-	 <div class="span3">
-		<div class="sidebar-nav">
-			<%= render 'shared/project_navigation'%>
-		</div>
- 	 </div>
-  </div>
+	  </div>
+	<% end %>
+
 </div>

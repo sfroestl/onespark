@@ -2,7 +2,7 @@
 	<p><%= link_to "Edit project", edit_project_path(@project) %><p/>
 	<p><%= link_to "Delete project?", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %></p>
 </div>
-<div class= "project_headline">
+<div class= "">
 	<h1><%= link_to @project.title, project_path(@project)  %></h1> 
 	<% if @project.due_date %>
 		<span class="due_date bubble"><%= format_date(@project.due_date)%></span>

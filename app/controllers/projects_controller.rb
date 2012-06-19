@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     # TODO: make project only accesible for admin and invited users
-    @projects = Project.all
+    @projects = Project.find(:all, order: "due_date")
     
     respond_to do |format|
       format.html # index.html.erb

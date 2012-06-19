@@ -3,6 +3,7 @@
 /* colors*/
 $grayMediumLight: #eaeaea;
 $onesparkOrange: #ea5b0b;
+$osOrange: #FF6600;
 $bubbleBlue: #39ade6;
 $backgroundLightBlue: #e2e6ec;
 
@@ -56,7 +57,7 @@ textarea {
   float: left;
   margin-right: 10px;
   font-size: 1.9em;
-  color: $onesparkOrange;
+  color: $osOrange;
   /*text-transform: uppercase;*/
   letter-spacing: -1px;
   padding-top: 23px;
@@ -64,7 +65,7 @@ textarea {
   font-weight: bold;
   line-height: 1;
   &:hover {
- 	color: $onesparkOrange;
+ 	color: $osOrange;
     text-decoration: none;
   }
 }
@@ -110,7 +111,6 @@ span.bubble {
 	border-radius: 5px 5px 5px 5px;
     color: #666666;
     display: inline-block;
-    font-size: 12px;
     line-height: 16px;
 	padding: 0 7px;
 	white-space: nowrap;
@@ -120,6 +120,10 @@ span.bubble {
 /* content projects */
 .show_project h1{
 	@include link_gray_blue
+}
+.due_date {
+	margin:auto;
+	font-size:16px;
 }
 
 .project_headline {
@@ -263,11 +267,28 @@ footer {
 }
 
 /* modified bootstrap */
-
+hr.soften {
+    background-image: -moz-linear-gradient(left center , transparent, rgba(0, 0, 0, 0.1), transparent);
+    border: 0 none;
+    height: 1px;
+    margin: 54px 0;
+}
+.container {
+	width:1180px;
+}
+.navbar-inner {
+}
 h1 {
-	margin-bottom:25px;
+	font-size: 40px;
+    font-weight: 300;
+    margin: 36px 0 27px;
+    text-align: center;
 }
 h2 {
+	font-weight: 300;
+	margin-bottom:15px;
+}
+h3 {
 	margin-bottom:15px;
 }
 
@@ -297,6 +318,9 @@ textarea {
 	height:200px;
 }
 
+.span3 {
+	margin-bottom:15px;
+}
 
 
 /* messages */

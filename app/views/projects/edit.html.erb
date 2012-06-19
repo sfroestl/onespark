@@ -1,17 +1,10 @@
 <%= provide(:title, 'Edit project') %>
 <div class="container-fluid">
-  <div class="row-fluid">
-    
-  <div class="span8 well">
-	<h1>Edit: "<%= @project.title %>"</h1>
-	<div class ="width350">
-		<%= render  'form' %>
-	</div>
-	</div>
-	<div class="span3">
-		<div class="sidebar-nav">
-			<%= render 'shared/project_navigation'%>
+	<div class = "span10 offset1">
+		<h1>Edit: "<%= @project.title %>"</h1>
+		<hr class="soften"/>
+	  	<div class="offset2"  style="width:360px">
+			<%= render  'form' %>
 		</div>
- 	</div>
- </div>
+	</div>
 </div>

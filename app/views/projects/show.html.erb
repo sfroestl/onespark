@@ -1,12 +1,28 @@
 <%= provide(:title, @project.title) %>
+
 <div class="container-fluid">
-  <div class="row-fluid">
-	
-	
-  <div class="span12 show_project">
-		<%= render 'shared/project_scaffold'%>
+	<div class = "span10 offset1">
+		<h1><%= @project.title %></h1> 
+			<div class="pull-right">
+				<%= link_to "Edit", edit_project_path(@project) %> | 
+				<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+			</div>
+		<hr class="soften"/>
+  		<% if @project.due_date %>
+  		<p>
+			<span class="due_date bubble"><%= format_date(@project.due_date)%></span>
+		</p>
+		<% end %>
 		<br/>
-		<div class="tabbable tabs-left" style="margin-left:-107px"> <!-- Only required for left/right tabs -->
+
+		<p><%= @project.desc %></p>
+
+		<br/>
+		<br/>
+
+
+
+		<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
 		  <ul class="nav nav-tabs" style=" min-height:300px">
 		    <li class="active"><a href="#tab1" data-toggle="tab">Dashboard</a></li>
 		    <li><a href="#tab2" data-toggle="tab">Tasks</a></li>
@@ -25,5 +41,5 @@
 		    </div>
 		  </div>
 		</div>
-  </div>
+	</div>
 </div>
