@@ -291,8 +291,13 @@ hr.soften {
     background-image: -moz-linear-gradient(left center , transparent, rgba(0, 0, 0, 0.1), transparent);
     border: 0 none;
     height: 1px;
-    margin: 54px 0;
+    margin-bottom: 45px; 
+    margin-top: 35px; 
 }
+.offset-1 {
+	margin-right:100px;
+}
+
 .container {
 	width:1180px;
 }

@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
   # before_filter :get_all_projects
-  before_filter :get_user_projects
   before_filter :signed_in_user
+  before_filter :get_user_projects
+  # before_filter :setup_user_friends, only: [:show]
+
 
   # GET /projects
   # GET /projects.json
@@ -17,7 +19,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-     @project = find_project(params[:id])
+     @project = Project.find(params[:id])
      
      respond_to do |format|
        format.html # show.html.erb
@@ -56,7 +58,7 @@ class ProjectsController < ApplicationController
   # DELETE /tests/1
   # DELETE /tests/1.json
   def destroy
-    @project = find_project(params[:id])
+    @project = Project.find(params[:id])
     @project.destroy
       
     respond_to do |format|
@@ -67,13 +69,13 @@ class ProjectsController < ApplicationController
  
    # GET /projects/1/edit
   def edit
-    @project = find_project(params[:id])
+    @project = Project.find(params[:id])
   end 
 
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = find_project(params[:id])
+    @project = Project.find(params[:id])
     
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -95,15 +97,11 @@ class ProjectsController < ApplicationController
       end
     end
 
-    def get_all_projects
-      @projects = Project.all
-    end
+    # def get_all_projects
+    #   @projects = Project.all
+    # end
 
     def get_user_projects
       @projects = Project.by_user(current_user) unless current_user.nil?
-    end
-  
-    def find_project(id)
-      Project.find(params[:id])
     end
 end
