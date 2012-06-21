@@ -1,0 +1,12 @@
+<% title "Milestones" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @milestones.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_milestones_path(@milestones) %> |
+  <%= link_to "Destroy", @milestones, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", milestones_path %>
+</p>

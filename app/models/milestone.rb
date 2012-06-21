@@ -2,17 +2,18 @@ class Milestone < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  # attr_accessible :creator_id, :desc, :due_date, :goal, :project_id, :title
   attr_accessible :desc, :due_date, :goal, :title
   
   validates :title, presence: true, length: { minimum: 4 }
   validates :user_id, presence: true
   validates :project_id, presence:true
+
   validate :due_date_not_in_past_but_can_be_empty
   
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
     "#{self.id}-#{normalized_name}"
+
   end
 
   private

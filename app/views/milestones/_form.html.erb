@@ -1,0 +1,18 @@
+<%= form_for @milestones do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.label :title %>
+	<%= f.text_field :title, :autofocus => "autofocus"%>
+
+	<%= f.label :desc %>
+	<%= f.text_area :desc %>
+
+	<%= f.label :due_date %>
+	<%= f.text_field :due_date %>
+
+	<div class = "project_buttons">	
+		<%= link_to "Cancel", projects_path, :class => "btn btn-medium" %>
+		<div class = "pull-right">
+			<%= submit_tag("Create milestone",  :name => 'create', :class => "btn btn-primary" )%>
+		</div>
+	</div>
+<% end %>

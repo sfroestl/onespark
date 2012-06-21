@@ -1,0 +1,17 @@
+<% title "Milestones" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for milestones in @milestones %>
+    <tr>
+      <td><%= milestones.name %></td>
+      <td><%= link_to "Show", milestones %></td>
+      <td><%= link_to "Edit", edit_milestones_path(milestones) %></td>
+      <td><%= link_to "Destroy", milestones, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Milestones", new_milestones_path %></p>
