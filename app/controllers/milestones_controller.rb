@@ -1,41 +1,54 @@
 class MilestonesController < ApplicationController
+
+  before_filter :find_project
+
   def create
-    @milestones = Milestone.new(params[:milestones])
-    if @milestones.save
-      redirect_to @milestones, :notice => "Successfully created milestones."
+
+    @milestone = @project.milestones.build(params[:milestone])
+    @milestone.user = current_user
+    if @milestone.save
+      redirect_to :action => 'index', :flash => { :success => "Milestone created!" }
     else
       render :action => 'new'
     end
   end
 
   def update
-    @milestones = Milestone.find(params[:id])
-    if @milestones.update_attributes(params[:milestones])
-      redirect_to @milestones, :notice  => "Successfully updated milestones."
+    @milestone = Milestone.find(params[:id])
+    if @milestone.update_attributes(params[:milestone])
+      redirect_to project_milestone_path(@project, @milestone), :flash => { :success => "Successfully updated milestone." }
     else
       render :action => 'edit'
     end
   end
 
   def edit
-    @milestones = Milestone.find(params[:id])
+    @milestone = Milestone.find(params[:id])
   end
 
   def index
-    @milestones = Milestone.all
+    @milestones = @project.milestones
   end
 
   def show
-    @milestones = Milestone.find(params[:id])
+    @milestone = Milestone.find(params[:id])
+    @project ||= @milestone.project
   end
 
   def new
-    @milestones = Milestone.new
+    @milestone = Milestone.new
   end
 
   def destroy
-    @milestones = Milestone.find(params[:id])
-    @milestones.destroy
-    redirect_to milestones_url, :notice => "Successfully destroyed milestones."
+    @milestone = Milestone.find(params[:id])
+    @milestone.destroy
+    redirect_to :action => 'index', :flash => { :success => "Successfully deleted milestones." }
+  end
+
+
+  private
+
+  def find_project
+    @project = Project.find(params[:project_id])
   end
 end

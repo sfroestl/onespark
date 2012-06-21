@@ -4,41 +4,42 @@
 	<div class = "span10 offset1">
 		<% if @projects %>
 			<h1><%= @project.title %></h1> 
-				<div class="pull-right">
-					<%= link_to "Edit", edit_project_path(@project) %> | 
-					<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
-				</div>
 
 			<ul class="nav nav-pills">
 				<li class="active"><%= link_to "Dashboard", project_path(@project) %></li>
-				<li><%= link_to "Coworkers", "#{@project.to_param}/coworkers" %></li>
-				<li><%= link_to "Milestones", "milestones" %></li>
-				<li><%= link_to "Files", "files" %></li>
-				<li><%= link_to "Repositories", "repositories" %></li>
-				<li><%= link_to "Dialogs", "dialogs" %></li>
+				<li><%= link_to "Coworkers", project_coworkers_path(@project) %></li>
+				<li><%= link_to "Milestones", project_milestones_path(@project) %></li>
+				<li><%= link_to "Files", "#{@project.to_param}/files" %></li>
+				<li><%= link_to "Repositories", "#{@project.to_param}/repositories" %></li>
+				<li><%= link_to "Dialogs", "#{@project.to_param}/dialogs" %></li>
 			</ul>
 			<hr class="soften"/>
 
 		  	<div class="row-fluid">
+
 	  			<% if @project.due_date %>
 			  		<div class="span4">
-			  			<h3>Due date</h3>
-						<span class="due_date bubble"><%= format_date(@project.due_date)%></span>
+			  			<h2>Due date</h2>
+						<span class="due_date bubble"><%= format_date_long(@project.due_date)%></span>
 					</div>
 				<% end %>
 				<% if @project.desc %>
-					<div class="span8">
-						<h3>Description</h3>
+					<div class="span6">
+						<h2>Description</h2>
 						<p><%= @project.desc %></p>
 					</div>
 				<% end %>
+				<div class="span2">
+			          <%= link_to "Edit", edit_project_path(@project) %> | 
+			          <%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+        		</div>
 			</div>
 
 			<br/>
 			<br/>
 			
 			<div>
-				<h3>Latest activities</h3>
+				<h2>Latest activities</h2>
 				<p><i>coming soon...</i></p>
 			</div>
 		<% end %>

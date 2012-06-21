@@ -1,11 +1,7 @@
 Onespark::Application.routes.draw do
   
-# <<<<<<< HEAD
 
 
-#   resources :project_coworkers
-# =======
-  resources :milestones
 
   # match '/users/:username', :to => 'users#show'
   resources :users
@@ -15,7 +11,7 @@ Onespark::Application.routes.draw do
     resources :coworkers, :controller => 'project_coworkers'
     resources :milestones
   end
-
+  resources :milestones, except: [:index]
   # resources :profiles , only: [:show, :index]
 
   resources :friendships, only: [:create, :destroy, :update]

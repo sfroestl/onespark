@@ -4,8 +4,12 @@ module DateHelper
     date.to_datetime.strftime('%d.%m.%Y - %H:%M:%S')
   end
   
-  def format_date(date)
+  def format_date_long(date)
     date.to_datetime.strftime('%d.%m.%Y - %H:%M:%S')
+  end
+
+  def format_date_short(date)
+    date.to_datetime.strftime('%d.%m.%Y')
   end
   
   def due_date_not_in_past_but_can_be_empty

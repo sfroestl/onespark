@@ -2,6 +2,11 @@ class ProjectsController < ApplicationController
   # before_filter :get_all_projects
   before_filter :signed_in_user
   before_filter :find_user_projects
+  before_filter :all_projects_of_user
+
+  # before_filter :project_admins, only: [:update]
+  # before_filter :project_writers, only: [:update]
+  # before_filter :project_readers, except: [:index]
   # before_filter :setup_user_friends, only: [:show]
 
 
@@ -106,5 +111,32 @@ class ProjectsController < ApplicationController
 
     def find_user_projects
       @projects = Project.by_user(current_user) unless current_user.nil?
+    end
+
+    def all_projects_of_user
+      @all_projects = current_user.project_permissions unless  current_user.nil?
+    end
+
+    def project_admins
+      @project = Project.find(params[:id])
+      @admins = @project.admins
+      ">> User: #{current_user.username} in #{@admins}"
+      render 'public/403' unless @admins.include?(current_user)
+    end
+
+    def project_writers
+      @project = Project.find(params[:id])
+      @writers = @project.writers
+      render 'public/403' unless @writers.include?(current_user)
+    end
+
+    def project_readers
+      @project = Project.find(params[:id])
+      @readers = @project.readers
+      Rails.logger.info ">> User: #{current_user.username} in #{@readers}"
+      render 'public/403' unless @readers.include?(current_user)
+    end
+
+    def project_permissionless
     end
 end

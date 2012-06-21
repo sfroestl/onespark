@@ -1,9 +1,18 @@
-<%= provide(:title, 'All projects') %>
+<%= provide(:title, 'Your projects') %>
 <div class="container">
+	
 	<h1>Your Projects</h1>
+
+	<div class="center">
+		<h3>
+			<i class='icon-plus-sign' style='margin:5px'></i>
+			<%= link_to "Create new project", new_project_path %>
+		</h3>
+	</div>
+
 	<hr class="soften"/>
 
-
+	<h2 class="center">Owned Projects</h2>
 		<% if @projects.empty? %>
 			<p style="text-align:center">"I never see what has been done, I only see what remains to be done." &#8213; <i>Buddha</i>
 			</p>
@@ -29,17 +38,46 @@
 					  <br/>
 				</div>
 
-							<hr class="soften offset-1"/>
+				<hr class="soften offset-1"/>
 				<% end %>
 
 		</div>
 						
 		<% end %>
 
-	<div class="center">
-		<h3>
-			<i class='icon-plus-sign' style='margin:5px'></i>
-			<%= link_to "Create new project", new_project_path %>
-		</h3>
-	</div>
+	<h2 class="center">Collaborated Projects</h2>
+
+		<% if @all_projects.empty? %>
+			<p style="text-align:center">"I never see what has been done, I only see what remains to be done." &#8213; <i>Buddha</i>
+			</p>
+		<% else %> 
+
+			<div class="offset1">
+				<% @all_projects.in_groups_of(3) do |group| %>
+				<div class="row-fluid">
+					<% group.each do |project| %>
+					<div class="span4">
+						<% unless project.nil? %>
+							<h3><%= link_to project.title, project_path(project)%></h3>
+							<% unless project.due_date.nil? %>
+								<p><i class="icon-calendar"></i> 
+									<%= time_ago_in_words(project.due_date) %> 
+									( <%= project.due_date.strftime("%d.%m.%Y") %> )
+								</p>
+							<% end %>
+						<% end %>
+					  </div>
+					<% end %>
+
+					  <br/>
+				</div>
+
+				<hr class="soften offset-1"/>
+				<% end %>
+
+		</div>
+						
+		<% end %>
+
+	
 </div>
