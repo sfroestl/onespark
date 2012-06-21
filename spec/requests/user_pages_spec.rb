@@ -70,13 +70,13 @@ describe "User pages" do
             end
 
         describe "page" do
-          it { should have_selector('h1',    text: "Update your profile") }
-          it { should have_selector('title', text: "Edit user") }
+          it { should have_selector('h1',    text: "Update your account") }
+          it { should have_selector('title', text: "Edit Account") }
           it { should have_link('Delete your account') }
         end
 
         describe "with invalid information" do
-          before { click_button "Save changes" }
+          before { click_button "Update User" }
 
           it { should have_content('error') }
         end
@@ -88,7 +88,7 @@ describe "User pages" do
             fill_in "Email",     with: new_email
             fill_in "Password",  with: user.password
             fill_in "Confirmation", with: user.password
-            click_button "Save changes"
+            click_button "Update User"
           end
 
           it { should have_selector('title', text: new_username) }

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe ProjectPermission do
+describe ProjectCoworker do
 
   let(:writer) { FactoryGirl.create(:user) }
   let(:project) { FactoryGirl.create(:project) }
-  let(:write_permission) { project.project_permissions.build(user_id: writer.id, permission: 2) }
+  let(:write_permission) { project.project_coworkers.build(user_id: writer.id, permission: 2) }
 
   subject { write_permission }
 
@@ -13,7 +13,7 @@ describe ProjectPermission do
   describe "accessible attributes" do
     it "should not allow access to writer via user_id" do
       expect do
-        ProjectPermission.new(project_id: project.id)
+        ProjectCoworker.new(project_id: project.id)
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
   end

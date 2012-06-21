@@ -1,0 +1,7 @@
+<%= form_tag do  %>
+  <div class = "add_coworker">
+    <%= text_field_tag :username, params[:username], placeholder:"Username"%>
+	<%= select :coworker, :permission, @permissions %>
+	<%= submit_tag "Add coworker" %>
+</div>
+<% end %>

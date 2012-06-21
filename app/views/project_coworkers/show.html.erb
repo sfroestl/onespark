@@ -1,0 +1,12 @@
+<% title "Project Coworkers" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project_coworkers.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_project_coworkers_path(@project_coworkers) %> |
+  <%= link_to "Destroy", @project_coworkers, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", project_coworkers_path %>
+</p>

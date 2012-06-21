@@ -1,0 +1,79 @@
+<%= provide(:title, 'Project Coworkers') %>
+
+<div class="container-fluid">
+  <div class = "span10 offset1">
+    <% unless @project.nil? %>
+      <h1><%= @project.title %></h1> 
+        <div class="pull-right">
+          <%= link_to "Edit", edit_project_path(@project) %> | 
+          <%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+        </div>
+            <ul class="nav nav-pills">
+              <li><%= link_to "Dashboard", project_path(@project) %></li>
+              <li class="active"><%= link_to "Coworkers", "coworkers" %></li>
+              <li><%= link_to "Milestones", "milestones" %></li>
+              <li><%= link_to "Files", "files" %></li>
+              <li><%= link_to "Repositories", "repositories" %></li>
+              <li><%= link_to "Dialogs", "dialogs" %></li>
+              </ul>
+            <hr class="soften"/>
+
+            <h3>Owner</h3>
+              <div class = "profiles_list">
+                <%= image_tag "avatars/avatar.png", size: "30x30" %> <%= @project.user.username %>
+              </div>
+            <br/>
+            
+              
+            <h3>Admins</h3>
+            <% unless @project_admins.nil? %>
+              <div class = "profiles_list">
+                <ul>
+                    <% @project_admins.each do |admin| %>
+                      <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
+                        <%= admin.username %> |
+                        <%= link_to "Profile", profile_path(admin) %> |
+                        <%= link_to "Remove", "coworkers/#{admin.username}", :confirm => 'Are you sure?', :method => :delete %>
+                    <% end %>
+                  </ul>                  
+              </div>
+            <% end %>
+            <br/>
+
+            <h3>Coworkers (write permission)</h3>
+              <% if @project_coworkers.nil? %>
+                <p>You're alone. Invite people to join your project!</p>
+              <% else %>
+                <div class="profiles_list">
+                  <ul>
+                    <% @project_coworkers.each do |coworker| %>
+                      <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
+                        <%= coworker.username %> |
+                        <%= link_to "Profile", profile_path(coworker) %> |
+                        <%= link_to "Remove", "coworkers/#{coworker.username}", :confirm => 'Are you sure?', :method => :delete %>
+                    <% end %>
+                  </ul>                  
+                </div>
+              <% end %>
+              <br/>
+              
+              <h3>Coworkers (read permission)</h3>
+              <% unless @project_readers.nil? %>
+                <div class="profiles_list">
+                  <ul>
+                    <% @project_readers.each do |reader| %>
+                      <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
+                        <%= reader.username %> |
+                        <%= link_to "Profile", profile_path(reader) %> |
+                        <%= link_to "Remove", "coworkers/#{reader.username}", :confirm => 'Are you sure?', :method => :delete %>
+                    <% end %>
+                  </ul>                  
+                </div>
+              <% end %>
+        <br/>
+      <p>Add Coworker</p>
+      <%= render 'form' %>
+
+    <% end %>
+  </div>
+</div>

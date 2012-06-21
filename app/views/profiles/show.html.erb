@@ -40,11 +40,11 @@
       
       <br/>
     </div>
-    <div class="span4">
+    <div class="span4 profiles_list">
       <h2>Friends</h2>
       <ul>
         <% for friend in @friends %>
-         <li>
+         <li><%= image_tag "avatars/avatar.png", size: "30x30" %>
             <%= friend.username %> 
             <% if @user == current_user %>
             | <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
@@ -57,7 +57,7 @@
       <h2>Pending friendships </h2>
       <ul>
         <% for friend in @pending_friends %>
-          <li>
+          <li><%= image_tag "avatars/avatar.png", size: "30x30" %>
             <%= friend.username %> |    
             <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
           </li>
@@ -68,7 +68,7 @@
       <h2>Requested friendships </h2>
       <ul>
         <% for friend in @requested_friends %>
-          <li>
+          <li><%= image_tag "avatars/avatar.png", size: "30x30" %>
             <%= friend.username %> | 
             <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
             <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>

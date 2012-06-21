@@ -27,7 +27,7 @@ class Friendship < ActiveRecord::Base
       accepted_at = Time.now
       accept_one_side(user, friend, accepted_at)
       accept_one_side(friend, user, accepted_at)
-	end 
+	 end 
   end
 
 
@@ -36,7 +36,7 @@ class Friendship < ActiveRecord::Base
     transaction do
       destroy(find_by_user_id_and_friend_id(user, friend))
       destroy(find_by_user_id_and_friend_id(friend, user))
-	end 
+	 end 
   end
 
 private

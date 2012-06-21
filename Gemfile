@@ -6,15 +6,18 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'therubyracer'
 gem 'populator'
 gem 'faker'
+gem 'rest-client', '~> 1.6.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'
   gem 'bcrypt-ruby', '3.0.1'
   gem 'annotate', '~> 2.4.1.beta'
-  gem 'rest-client', '~> 1.6.7'
+
   gem 'nifty-generators'
 end
 
@@ -26,8 +29,6 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
-gem 'jquery-rails'
-
 
 group :test do
   gem 'capybara', '1.1.2'
@@ -38,7 +39,8 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+   # gem 'sqlite3', '1.3.5'
+  # gem "pg", "~> 0.13.2"
 end
 
 # To use ActiveModel has_secure_password

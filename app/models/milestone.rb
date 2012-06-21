@@ -10,13 +10,20 @@ class Milestone < ActiveRecord::Base
   validates :project_id, presence:true
   validate :due_date_not_in_past_but_can_be_empty
   
-  def due_date_not_in_past_but_can_be_empty
-    if self.due_date.nil?
-      true
-    elsif  self.due_date < DateTime.current
-      errors.add(:due_date, 'You can\'t complete tasks in the past!')
-    end
+  def to_param
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
+    "#{self.id}-#{normalized_name}"
   end
+
+  private
+
+    def due_date_not_in_past_but_can_be_empty
+      if self.due_date.nil?
+        true
+      elsif  self.due_date < DateTime.current
+        errors.add(:due_date, 'You can\'t complete tasks in the past!')
+      end
+    end
 
 end
 

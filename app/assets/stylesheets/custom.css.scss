@@ -1,5 +1,11 @@
 @import "bootstrap";
 
+html {
+	width:100%;
+	height:100%;
+  	overflow-y: scroll;
+}
+
 /* ================ colors  ================ */
 $grayMediumLight: #eaeaea;
 $onesparkOrange: #ea5b0b;
@@ -24,9 +30,7 @@ $backgroundLightBlue: #e2e6ec;
 }
  /* ================  universal  ================ */
 
-html {
-  overflow-y: scroll;
-}
+
 
 body {
   padding-top: 100px;
@@ -100,7 +104,7 @@ textarea {
 }
 /* ================ content ================ */
 .content_whrapper {
-	min-height:480px;
+	min-height:520px;
 }
 .signup, .signin {
 	margin-top:50px;
@@ -129,8 +133,25 @@ span.bubble {
 	white-space: nowrap;
 	background: none repeat scroll 0 0 $backgroundLightBlue;
 }
+/* ================ profiles ================ */
 
-/* ================ content projects ================ */
+.profiles_list {
+	
+	ul {
+		margin:0;
+	}
+
+	li {
+		list-style: none outside none;
+		margin: 5px 0 10px 0;
+
+	}
+	img {
+		margin-right:5px;
+	}
+}
+
+/* ================ projects ================ */
 .show_project h1{
 	@include link_gray_blue
 }
@@ -153,11 +174,20 @@ span.bubble {
 	.bubble {
 		font-size:1.2em;
 	 	border: 4px solid transparent;
-	}
-	
-	
+	}	
 }
 
+.add_coworker {
+	input {
+		width:175px;
+	}
+	select {
+		width: 100px;
+	}
+	input[type="submit"] {
+		width:100px;
+	}
+}
 .project_buttons {
 	width:470px;
 }
@@ -259,11 +289,14 @@ label {
 /* ================ footer ================ */
 
 footer {
-  margin-top:50px;
-  margin-bottom:50px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+	position:relative;
+	bottom:0;
+	width:100%;
+	height:60px;   /* Height of the footer */
+	margin-top:50px;
+	padding-top: 5px;
+	border-top: 1px solid $grayMediumLight;
+	color: $grayLight;
 	a {
 	    color: $gray;
 	    &:hover { 
@@ -338,7 +371,7 @@ h3 {
 	background-color:$backgroundLightBlue;
 }
 
-input, textarea, select {
+input, textarea {
 	width:460px;
 }
 textarea {

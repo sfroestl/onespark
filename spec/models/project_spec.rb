@@ -11,8 +11,8 @@ describe Project do
   it { should respond_to(:desc) }
   it { should respond_to(:due_date) }
   it { should respond_to(:user_id) }
-  it { should respond_to(:project_permissions) }
-  it { should respond_to(:user_rights) }
+  it { should respond_to(:project_coworkers) }
+  it { should respond_to(:coworkers) }
   it { should respond_to(:admin?) }
   it { should respond_to(:admin!) }
   it { should respond_to(:writer?) }

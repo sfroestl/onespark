@@ -1,10 +1,15 @@
 Onespark::Application.routes.draw do
   
+
+
+  resources :project_coworkers
+
   # match '/users/:username', :to => 'users#show'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :projects do
+      resources :coworkers, :controller => 'project_coworkers'
   end
 
   # resources :profiles , only: [:show, :index]

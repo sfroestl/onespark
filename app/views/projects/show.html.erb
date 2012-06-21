@@ -3,45 +3,44 @@
 <div class="container-fluid">
 	<div class = "span10 offset1">
 		<% if @projects %>
-		<h1><%= @project.title %></h1> 
-			<div class="pull-right">
-				<%= link_to "Edit", edit_project_path(@project) %> | 
-				<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+			<h1><%= @project.title %></h1> 
+				<div class="pull-right">
+					<%= link_to "Edit", edit_project_path(@project) %> | 
+					<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+				</div>
+
+			<ul class="nav nav-pills">
+				<li class="active"><%= link_to "Dashboard", project_path(@project) %></li>
+				<li><%= link_to "Coworkers", "#{@project.to_param}/coworkers" %></li>
+				<li><%= link_to "Milestones", "milestones" %></li>
+				<li><%= link_to "Files", "files" %></li>
+				<li><%= link_to "Repositories", "repositories" %></li>
+				<li><%= link_to "Dialogs", "dialogs" %></li>
+			</ul>
+			<hr class="soften"/>
+
+		  	<div class="row-fluid">
+	  			<% if @project.due_date %>
+			  		<div class="span4">
+			  			<h3>Due date</h3>
+						<span class="due_date bubble"><%= format_date(@project.due_date)%></span>
+					</div>
+				<% end %>
+				<% if @project.desc %>
+					<div class="span8">
+						<h3>Description</h3>
+						<p><%= @project.desc %></p>
+					</div>
+				<% end %>
 			</div>
 
-		<ul class="nav nav-pills">
-		    <li class="active"><a href="#">Dashboard</a></li>
-		    <li><a href="#">Team</a></li>
-		    <li><a href="#">Milestones</a></li>
-		    <li><a href="#">Dialog</a></li>
-		    </ul>
-		<hr class="soften"/>
-
-	  	<div class="row-fluid">
-  			<% if @project.due_date %>
-		  		<div class="span4">
-		  			<h3>Due date</h3>
-					<span class="due_date bubble"><%= format_date(@project.due_date)%></span>
-				</div>
-			<% end %>
-			<% if @project.desc %>
-				<div class="span8">
-					<h3>Description</h3>
-					<p><%= @project.desc %></p>
-				</div>
-				<% end %>
-		</div>
-
-		<br/>
-		<br/>
-		
-		<div>
-			<h3>Latest activities</h3>
-			<p><i>coming soon...</i></p>
-		</div>
-
-
-
-
+			<br/>
+			<br/>
+			
+			<div>
+				<h3>Latest activities</h3>
+				<p><i>coming soon...</i></p>
+			</div>
 		<% end %>
+	</div>
 </div>

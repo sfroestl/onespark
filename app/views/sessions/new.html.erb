@@ -6,11 +6,9 @@
 	<div class="row signin span5 offset5">
 		<%= form_tag (sessions_path) do %>
 		
-		  	<%= label_tag :email_or_username %>
-			<%= text_field_tag :email_or_username, params[:email_or_username] %>
+			<%= text_field_tag :email_or_username, params[:email_or_username], placeholder: "username or email" %>
 			
-			<%= label_tag :password %>
-			<%= password_field_tag :password, params[:password]%>
+			<%= password_field_tag :password, params[:password], placeholder: :password%>
 
 			<%= submit_tag 'Sign in', :class => "btn btn-large btn-primary" %>
 		<% end %>

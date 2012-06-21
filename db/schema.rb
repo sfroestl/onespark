@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618082910) do
+ActiveRecord::Schema.define(:version => 20120620140227) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20120618082910) do
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
-  create_table "project_permissions", :force => true do |t|
+  create_table "project_coworkers", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.integer  "permission", :default => 0
@@ -71,9 +71,9 @@ ActiveRecord::Schema.define(:version => 20120618082910) do
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "project_permissions", ["project_id"], :name => "index_project_permissions_on_project_id"
-  add_index "project_permissions", ["user_id", "project_id"], :name => "index_project_permissions_on_user_id_and_project_id", :unique => true
-  add_index "project_permissions", ["user_id"], :name => "index_project_permissions_on_user_id"
+  add_index "project_coworkers", ["project_id", "user_id"], :name => "index_project_coworkers_on_project_id_and_user_id"
+  add_index "project_coworkers", ["project_id"], :name => "index_project_permissions_on_project_id"
+  add_index "project_coworkers", ["user_id"], :name => "index_project_permissions_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"

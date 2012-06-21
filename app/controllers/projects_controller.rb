@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   # before_filter :get_all_projects
   before_filter :signed_in_user
-  before_filter :get_user_projects
+  before_filter :find_user_projects
   # before_filter :setup_user_friends, only: [:show]
 
 
@@ -43,9 +43,12 @@ class ProjectsController < ApplicationController
   def create
 
     @project = current_user.projects.build(params[:project])
+
     
     respond_to do |format|
+
       if @project.save
+        # @project.project_coworkers.create(user_id: current_user.id, permission: 3) # Save user to admins
         format.html { redirect_to @project, :flash => { :success => "Project created!" } }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -101,7 +104,7 @@ class ProjectsController < ApplicationController
     #   @projects = Project.all
     # end
 
-    def get_user_projects
+    def find_user_projects
       @projects = Project.by_user(current_user) unless current_user.nil?
     end
 end

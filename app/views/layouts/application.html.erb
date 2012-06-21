@@ -24,7 +24,17 @@
 			</div>
 		</div>	
 
-		<%= render 'layouts/footer' %>
+			<%= render 'layouts/footer' %>
+		<div class="container">
+			
 
+			<% if Rails.env.development? %>
+				<%= debug(params) %>
+				<%= debug(current_user) if current_user %>		
+				<pre class = "debug_dump">
+					<%= "Request IP #{request.ip()}" %>
+				</pre>
+			<% end %>
+		</div>
 	</body>
 </html>

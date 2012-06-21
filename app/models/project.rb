@@ -1,10 +1,14 @@
 class Project < ActiveRecord::Base
+  PERMISSIONS = {"write" => 2,"read" => 1,  "admin" => 3}
+
   attr_accessible :desc, :due_date, :title
 
   has_many :milestones, :dependent => :destroy # ensures to destroy all milestones related to project
-  has_many :user_rights, :through => :project_permissions, :source => :user, dependent: :destroy
-  has_many :project_permissions
-
+  has_many :coworkers, :through => :project_coworkers, :source => :user, conditions: "permission <= 2", dependent: :destroy
+  has_many :admins, :through => :project_coworkers, :source => :user, conditions: "permission == 3", dependent: :destroy
+  has_many :writers, :through => :project_coworkers, :source => :user, conditions: "permission == 2", dependent: :destroy
+  has_many :readers, :through => :project_coworkers, :source => :user, conditions: "permission == 1", dependent: :destroy
+  has_many :project_coworkers, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true
@@ -24,30 +28,30 @@ class Project < ActiveRecord::Base
   end
 
   def admin?(user)
-    user_right = project_permissions.find_by_user_id(user.id)
-    user_right.permission == 3
+    admin = project_coworkers.find_by_user_id(user.id)
+    admin.permission == 3
   end
 
   def admin!(user)
-    project_permissions.create!(user_id: user.id, permission: 3 )
+    project_coworkers.create!(user_id: user.id, permission: 3 )
   end
 
   def writer?(user)
-    user_right = project_permissions.find_by_user_id(user.id)
-    user_right.permission == 2
+    writer = project_coworkers.find_by_user_id(user.id)
+    writer.permission == 2
   end
 
   def writer!(user)
-    project_permissions.create!(user_id: user.id, permission: 2 ) 
+    project_coworkers.create!(user_id: user.id, permission: 2 ) 
   end
 
   def reader?(user)
-    user_right = project_permissions.find_by_user_id(user.id)
-    user_right.permission == 1
+    reader = project_coworkers.find_by_user_id(user.id)
+    reader.permission == 1
   end
 
   def reader!(user)
-    project_permissions.create!(user_id: user.id, permission: 1 ) 
+    project_coworkers.create!(user_id: user.id, permission: 1 ) 
   end
 
   def owner?(user)
@@ -58,13 +62,15 @@ class Project < ActiveRecord::Base
     user_id
   end
 
-  def due_date_not_in_past_but_can_be_empty
-    if self.due_date.nil?
-      true
-    elsif  self.due_date < DateTime.current
-      errors.add(:due_date, 'You can\'t complete tasks in the past!')
+  private 
+
+    def due_date_not_in_past_but_can_be_empty
+      if self.due_date.nil?
+        true
+      elsif  self.due_date < DateTime.current
+        errors.add(:due_date, 'You can\'t complete tasks in the past!')
+      end
     end
-  end
   
 end
 
