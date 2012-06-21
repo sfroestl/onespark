@@ -44,14 +44,11 @@
 		</div>
 						
 		<% end %>
+			<hr class="soften"/>
 
 	<h2 class="center">Collaborated Projects</h2>
 
-		<% if @all_projects.empty? %>
-			<p style="text-align:center">"I never see what has been done, I only see what remains to be done." &#8213; <i>Buddha</i>
-			</p>
-		<% else %> 
-
+		<% unless @all_projects.empty? %>
 			<div class="offset1">
 				<% @all_projects.in_groups_of(3) do |group| %>
 				<div class="row-fluid">
@@ -72,7 +69,6 @@
 					  <br/>
 				</div>
 
-				<hr class="soften offset-1"/>
 				<% end %>
 
 		</div>
