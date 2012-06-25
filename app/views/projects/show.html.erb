@@ -10,7 +10,7 @@
 				<li><%= link_to "Coworkers", project_coworkers_path(@project) %></li>
 				<li><%= link_to "Milestones", project_milestones_path(@project) %></li>
 				<li><%= link_to "Files", "#{@project.to_param}/files" %></li>
-				<li><%= link_to "Repositories", "#{@project.to_param}/repositories" %></li>
+				<li><%= link_to "Repositories", "#{@project.to_param}/repositories/github/new" %></li>
 				<li><%= link_to "Dialogs", "#{@project.to_param}/dialogs" %></li>
 			</ul>
 			<hr class="soften"/>

@@ -5,7 +5,7 @@ class ProjectCoworkersController < ApplicationController
 
   def create
     user = User.find_by_username(params[:username])
-    Rails.logger.info ">> Adding user: #{user.username} to project #{@project.title}."
+    Rails.logger.info ">> Adding user: params[:username] to project #{@project.title}."
     if user.nil?         
       flash[:notice] = "No such user found." 
       redirect_to :action => 'index'
@@ -16,7 +16,7 @@ class ProjectCoworkersController < ApplicationController
       return
     end
 
-    Rails.logger.info ">> Adding user: #{user.username} to project #{@project.title}. Permission: #{params[:coworker][:permission]}"
+    
 
     if ProjectCoworker.exists?(@project, user)
       Rails.logger.info "already existing"
@@ -24,6 +24,7 @@ class ProjectCoworkersController < ApplicationController
       redirect_to :action => 'index'
     
     elsif @project_coworker = @project.project_coworkers.create(user_id: user.id, permission: params[:coworker][:permission])
+      Rails.logger.info ">> Adding user: #{user.username} to project #{@project.title}. Permission: #{params[:coworker][:permission]}"
       flash[:success] = "Successfully added project coworker." 
       redirect_to :action => 'index'
     
