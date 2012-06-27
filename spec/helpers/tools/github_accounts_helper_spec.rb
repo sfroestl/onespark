@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the Tools::GithubHelper. For example:
+# the Tools::GithubAccountsHelper. For example:
 #
-# describe Tools::GithubHelper do
+# describe Tools::GithubAccountsHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"
 #     end
 #   end
 # end
-describe Tools::GithubHelper do
+describe Tools::GithubAccountsHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

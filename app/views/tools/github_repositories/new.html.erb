@@ -1,0 +1,8 @@
+<h1>Link new GitHub repository</h1>
+	<% unless @user_repositories.nil? %>
+		<h3>Choose a GitHub repository</h3>
+		<%= render 'form' %>
+
+		<%= link_to 'cancel', project_github_repository_path(@project) %>
+	<% end %>
+

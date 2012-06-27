@@ -1,0 +1,7 @@
+<%= form_tag 'github_repository/create_issue' do  %>
+  <div class = "create_github_issue">
+    <%= text_field_tag :title, params[:title], placeholder:"title"%>
+    <%= text_field_tag :body, params[:body], placeholder:"description"%>
+	<%= submit_tag "Create issue" %>
+</div>
+<% end %>

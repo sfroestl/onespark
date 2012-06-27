@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-
-ActiveRecord::Schema.define(:version => 20120621124501) do
+ActiveRecord::Schema.define(:version => 20120626103923) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -28,16 +26,6 @@ ActiveRecord::Schema.define(:version => 20120621124501) do
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
-
-  create_table "github_accounts", :force => true do |t|
-    t.string   "access_token"
-    t.integer  "app_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "github_accounts", ["user_id"], :name => "index_github_accounts_on_user_id"
 
   create_table "milestones", :force => true do |t|
     t.string   "title"
@@ -87,6 +75,28 @@ ActiveRecord::Schema.define(:version => 20120621124501) do
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
+
+  create_table "tools_github_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "access_token"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "tools_github_accounts", ["user_id"], :name => "index_tools_github_accounts_on_user_id"
+
+  create_table "tools_github_repositories", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "url"
+    t.string   "name"
+    t.string   "owner"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tools_github_repositories", ["project_id"], :name => "index_tools_github_repositories_on_project_id"
+  add_index "tools_github_repositories", ["user_id"], :name => "index_tools_github_repositories_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

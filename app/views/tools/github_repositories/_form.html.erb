@@ -1,0 +1,9 @@
+<%= form_tag controller: 'tools/github_repositories', action: 'create' do  %>
+	<% @user_repositories.each do |repository| %>
+ 		<p><%= radio_button_tag 'repository', repository.name%>
+ 			<%= repository.name + ' - ' + repository.owner['login'] %>
+ 			<%= hidden_field_tag 'owner', repository.owner['login'] %>
+ 		</p>
+	<% end %>
+ 	<%= submit_tag 'Link' %>
+<% end %>

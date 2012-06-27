@@ -1,6 +1,6 @@
 require 'tools/github_api_v3/github_api'
 
-class Tools::GithubController < ApplicationController
+class RepositoriesController < ApplicationController
   def new
     Rails.logger.info ">> Github controller new"
   end

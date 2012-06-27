@@ -65,17 +65,19 @@ describe Project do
     it { should be_admin(other_user) }
     it { should_not be_reader(other_user) }
     it { should_not be_writer(other_user) }
-    its(:user_rights) { should include(other_user) }
+    its(:admins) { should include(other_user) }
+    its(:coworkers) { should include(other_user) }
   end
 
   describe "user is not admin" do
-    let(:other_user) { FactoryGirl.create(:user) }    
+    let(:other_user2) { FactoryGirl.create(:user) }    
     before do
-      project.reader!(other_user)
+      project.reader!(other_user2)
     end
 
-    it { should be_reader(other_user) }
-    its(:user_rights) { should include(other_user) }
+    it { should be_reader(other_user2) }
+    its(:admins) { should_not include(other_user2) }
+    its(:coworkers) { should include(other_user2) }
   end
 
 

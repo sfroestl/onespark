@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @github_account = GithubAccount.find_by_user_id(current_user.id)
+    Rails.logger.info "> USerController: current_user: #{current_user.username} | #{session[:user_id]}"
+    @github_account = Tools::GithubAccount.find_by_user_id(current_user.id)
     @user = User.find_by_username(params[:id])
     respond_to do |format|
       format.html # show.html.erb

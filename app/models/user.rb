@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
     
   has_one :profile, dependent: :destroy
   has_secure_password
-  has_many :projects, :dependent => :destroy  
+  has_many :projects, dependent: :destroy  
 
-  has_one :github_account, :dependent => :destroy
+  has_one :github_account, class_name: "Tools::GithubAccount", dependent: :destroy  
 
   has_many :project_permissions, :through => :project_coworkers, :source => :project, dependent: :destroy 
   has_many :project_coworkers

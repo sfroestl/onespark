@@ -18,7 +18,7 @@ describe "Project Pages" do
     end
     
     describe "visit projects page" do
-      it { should have_selector('title', text: 'All projects') }
+      it { should have_selector('title', text: 'Your projects') }
       it { should have_content('Create new project') }
     end
     

@@ -6,6 +6,7 @@
   <hr class="soften">
   <div class="row-fluid offset3">
     
+<!-- ////// left column ////// -->
     <div class="span4">
     	<h2>Account details</h2>
 			<h5><%= @user.email %></h5> <br/>
@@ -13,16 +14,31 @@
 			<p>Account type: Free user</p>
 			<p><%= link_to "Edit account", edit_user_path(@user.username)%></p>
 		</div>
+
+<!-- ////// Right column ////// -->
 		<div class="span4">
 			<h2>Linked tools</h2>
-				<ul>
+			<ul class="unstyled">
+
+			<!-- ////// Github column ////// -->
+				<li><h3>GitHub</h3>
 					<% if @github_account.nil? %>
-						<li><%= link_to 'Add GitHub account', "/git/oauth2/auth"%> </li>
+						<p><%= link_to 'Add GitHub account', "/git/auth"%></p>
 					<% else %>
-						<li><%= link_to "View your GitHub repositories", user_path + "/git/repos" %> </li>
-						<li><%= link_to 'remove Github account', "/git/oauth2/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%></li>
+						<p><%= link_to "View your GitHub repositories", user_github_repositories_path(@user) %> </p>
+						<p><%= link_to 'Remove GitHub account', "/git/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%>
+						</p>
 					<% end %>
+				</li>
+				<br/>
+					
+
+			<!-- ////// DropBox column ////// -->
+				<li><h3>DropBox</h3>
+
+				</li>
 				</ul>
+
 		</div>
 	</div>
 	

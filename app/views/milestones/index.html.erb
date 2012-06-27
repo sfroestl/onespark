@@ -5,17 +5,18 @@
     <% if @project %>
       <h1><%= @project.title %></h1> 
         
-
+ <!-- ////// navigation ////// -->  
       <ul class="nav nav-pills">
         <li><%= link_to "Dashboard", project_path(@project) %></li>
         <li><%= link_to "Coworkers", "coworkers" %></li>
         <li  class="active"><%= link_to "Milestones", "milestones" %></li>
         <li><%= link_to "Files", "files" %></li>
-        <li><%= link_to "Repositories", "repositories" %></li>
+        <li><%= link_to "GitHub", project_github_repository_path(@project) %></li>
         <li><%= link_to "Dialogs", "dialogs" %></li>
       </ul>
       <hr class="soften"/>
 
+<!-- ////// left column ////// -->  
         <div class="row-fluid">
           <h2>Milestones</h2>
           <ul>

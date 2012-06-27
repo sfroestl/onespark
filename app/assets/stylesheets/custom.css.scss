@@ -371,6 +371,12 @@ h3 {
 	background-color:$backgroundLightBlue;
 }
 
+.create_github_issue{
+	input, textarea {
+		width:auto;
+	}
+}
+
 input, textarea {
 	width:460px;
 }

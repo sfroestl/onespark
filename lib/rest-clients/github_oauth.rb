@@ -91,18 +91,18 @@ class GithubOauth
   end
 
   def basic_url
-    OAUTH2_CONFIG['github_client_basic_url']
+    GITHUB_CONFIG['basic_url']
   end
   
   def client_id
-    OAUTH2_CONFIG['github_client_id']
+    GITHUB_CONFIG['id']
   end
   
   def client_secret
-    OAUTH2_CONFIG['github_client_secret']
+    GITHUB_CONFIG['secret']
   end
   
   def token_url
-    OAUTH2_CONFIG['github_client_token_url']
+    GITHUB_CONFIG['token_url']
   end
 end

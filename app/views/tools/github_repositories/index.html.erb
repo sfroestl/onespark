@@ -1,0 +1,50 @@
+<% provide(:title, "#{@user.username} Github Repositories") %>
+
+<% if @user == current_user %>
+  <h1>Settings of <%= @user.username %></h1>
+<% end %>
+  <hr class="soften">
+  <div class="row-fluid offset3">
+    
+<!-- ////// Left column ////// -->
+    <div class="span4">
+    	<h2>Account details</h2>
+			<h5><%= @user.email %></h5> <br/>
+			Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
+			<p>Account type: Free user</p>
+			<p><%= link_to "Edit account", edit_user_path(@user.username)%></p>
+		</div>
+
+<!-- ////// Rigth column ////// -->
+		<div class="span4">
+			<h2>Linked tools</h2>
+
+			<ul class="unstyled">
+
+			<!-- ////// Github column ////// -->
+				<li><h3>GitHub - Repositories</h3>
+					<p><%= link_to "Back", user_path(@user) %> </p>
+
+			<!-- ////// Create repository ////// -->					
+					<%= render 'form_repo' %>
+				
+					<% if @user_github_repos.nil? %>
+						<%= link_to 'No repositories yet', "/git/auth"%> 
+					
+					<% else %>
+						<% @user_github_repos.each do |repo|%>
+							<h3><%= repo.name %></h3>
+							<p>Owner: <%= repo.owner['login'] %></p>
+							<p>Description: <%= repo.description %></p>
+							<p>Last commit: <%= format_date_short repo["updated_at"] %></p>
+							<p><%= link_to 'View on github.com', repo.html_url, :target => "_blank"%></p>	
+							<hr/>			
+						<% end %>
+
+					<%end%>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	

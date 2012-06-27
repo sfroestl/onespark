@@ -1,47 +1,62 @@
 Onespark::Application.routes.draw do
-  
-
-
 
   # match '/users/:username', :to => 'users#show'
-  resources :users
+  resources :users do 
+    resources :github_repositories, :controller => 'tools/github_repositories', only: [:index] 
+  end
   resources :sessions, only: [:new, :create, :destroy]
+  namespace :tools do 
+    resources :github_accounts 
+    
+  end
   
   resources :projects do
+    resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
     resources :coworkers, :controller => 'project_coworkers'
     resources :milestones
   end
-  resources :milestones, except: [:index]
+  # resources :milestones, except: [:index]
   # resources :profiles , only: [:show, :index]
 
   resources :friendships, only: [:create, :destroy, :update]
 
+  # Friendship
   post 'friendship/accept/:friend_id', :to => 'friendships#accept'
   post 'friendship/remove/:friend_id', :to => 'friendships#remove'
 
+  # Profile
   get '/profiles/:username', :to => 'profiles#show', as: 'profile'
   put '/profiles/:username', :to => 'profiles#update'
   get '/profiles/:username/edit', :to => 'profiles#edit', as: 'edit_profile'
   get '/profiles', :to => 'profiles#index', as: 'profiles'
-
-  # match '/git/oauth2/auth', :controller => 'rest_github', :action => 'link_oauth2'
-  # match '/git/oauth2/return_oauth2', :controller => 'rest_github', :action => 'return_oauth2'
-  # match '/git/oauth2/unlink', :controller => 'rest_github', :action => 'unlink_oauth2'
-  # match '/git/oauth2/return_oauth2/:id' => "rest_github#return_oauth2", as: :github_callback
-  
-  match 'projects/:id/repositories/github/new', :to => 'tools/github#new'
-  match '/git/oauth2/auth', :to => 'tools/github#auth'
-  match '/git/oauth2/callback', :to => 'tools/github#callback'
   
 
-  match '/users/:id/git/repos', :controller => 'rest_github', :action => 'index'
 
-  match '/users/:id/git/repos/new', :controller => 'rest_github', :action => 'new'
-  match '/users/:id/git/repos/create', :controller => 'rest_github', :action => 'create'
-  match '/users/:id/git/repos/:repo_name', :controller => 'rest_github', :action => 'show'
+
+  # Github Oauth procedure
+  match '/git/auth', to: 'tools/github_accounts#auth'
+  match '/git/callback',  to: 'tools/github_accounts#callback'
+  match '/git/unlink', to: 'tools/github_accounts#unlink'
+  match '/git/oauth2/callback/:id' => "tools/github_accounts#callback", as: :github_callback
+
+  # Github repositories
+  # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
+  post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo'
   
+  # Github issues
+  post '/projects/:project_id/github_repository/close_issue/:issue_id', to: 'tools/github_repositories#close_issue'
+  post '/projects/:project_id/github_repository/create_issue', to: 'tools/github_repositories#create_issue'
+
+
+
+  # match '/users/:id/git/repos', :controller => 'rest_github', :action => 'index'
+  # match '/users/:id/git/repos/new', :controller => 'rest_github', :action => 'new'
+  # match '/users/:id/git/repos/create', :controller => 'rest_github', :action => 'create'
+  # match '/users/:id/git/repos/:repo_name', :controller => 'rest_github', :action => 'show'
+
   root to: 'static_pages#home'
   
+  # static pages  
   match '/imprint',    to: 'static_pages#imprint'
   match '/more',    to: 'static_pages#more'
   match '/contact',    to: 'static_pages#contact'
