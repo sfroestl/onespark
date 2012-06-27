@@ -21,3 +21,5 @@ rails generate migration add_password_digest_to_users password_digest:string
 rails generate scaffold NAME ATTRIBUTES
 
 rake db:reset
+
+RAILS_ENV=production rake db:create

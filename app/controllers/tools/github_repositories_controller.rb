@@ -130,8 +130,14 @@ class Tools::GithubRepositoriesController < ApplicationController
     end
 
     def init_github_api_with_project
-      if @project.github_repository.nil?
+      if @project.github_repository.nil? && current_user.github_account.nil?
         redirect_to current_user, :flash => { :notice => 'Please link your account to a GitHub account!' }
+      
+      elsif @project.github_repository.nil?
+        token = current_user.github_account.access_token
+        Rails.logger.info ">> GitthubRepoController: init API with token: #{token}"
+          @github_api = GitHubApi.new
+          @github_api.init_with_token(token)
       
       elsif @project.github_repository.user_id == current_user.id
         token = current_user.github_account.access_token
