@@ -1,15 +1,10 @@
 <% provide(:title, "Edit Profile") %>
-<div class="container-fluid">
-	<h1>Update your profile <%= @profile.user.username %></h1>
-	<hr class="soften"/>
-	
-	<div class = "span10 offset4">
-		<p>
-		  <%= link_to "Back", @profile %> |
-		  <%= link_to "View All", profiles_path %>
-		</p>
-		<%= render 'form' %>
-	</div>
-</div>
+
+<h1>Update your profile <%= @profile.user.username %></h1>	
+
+	<%= link_to "Back", @profile %> |
+	<%= link_to "View All", profiles_path %>
+
+	<%= render 'form' %>
 
 

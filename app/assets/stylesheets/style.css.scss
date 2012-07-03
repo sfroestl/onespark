@@ -4,10 +4,10 @@
  * ------------------------------------------------------------------------------------------
  */
 
-$sidebarDark: #090909;
-$sidebarDarkSeperator: #111;
+$sidebarDark: #151515;
+$sidebarDarkSeperator: #101010;
 $sidebarDarkInput: #efefef;
-$sidebarGrey: #ebebeb;
+$sidebarGrey: #efefef;
 $sidebarGreySeperator : #ddd;
 $onesparkOrange: #ff0000;
 $softWhite: #fcfcfc;
@@ -22,99 +22,115 @@ $officina: ITC Officina Serif, Droid Serif, Georgia, serif;
 $lucida: "Lucida Grande", "Lucida Sans Unicode",Verdana, Tahoma, Trebuchet MS, sans-serif;
 
 * {
-  margin:0;
-  padding:0;
-  font-family: $lucida;
-  &:focus{
-    outline: none;
-  }
+	margin:0;
+	padding:0;
+	font-family: $lucida;
+	&:focus{
+		outline: none;
+	}
 }
 
 h1, h2, h3, h4, h5, h6 { 
-  line-height: 1em;
-  font-family: $officina;
-  font-weight:normal;
+	line-height: 1em;
+	font-family: $officina;
+	font-weight:normal;
 }
 
 // Mixins ///////////////////////////////////////////////////////////////////////////////////////
 
 @mixin rounded ($radius: 5px) {
-  border-radius:      $radius;
-  -moz-border-radius:     $radius;
-  -webkit-border-radius:  $radius;
+  border-radius: 			$radius;
+  -moz-border-radius: 		$radius;
+  -webkit-border-radius:	$radius;
 }
 
 @mixin border {
-  border: 5px solid rgb(0, 0, 0);
-  border: 5px solid rgba(0, 0, 0, 0.1);
+	border: 5px solid rgb(0, 0, 0);
+	border: 5px solid rgba(0, 0, 0, 0.1);
 }
 
 @mixin txtbutton {
-  @include transition(background-color, 0.1s, linear);
-  border:none;
-  font-family: $lucida;
-  padding:  1em;
-  background-color:black;
-  cursor: pointer;
-  color: white;
-  &:hover{
-    background-color:$orange;
-    @include shadow(0px, 0px, 4px, 0px, rgba(255, 102, 0, 1));
-  }
-  &:focus{
-    background-color:$orange;
-  }
+	@include transition(background-color, 0.1s, linear);
+	border:none;
+	font-family: $lucida;
+	padding:  1em;
+	background-color:black;
+	cursor: pointer;
+	color: white;
+	&:hover{
+		background-color:$orange;
+		@include shadow(0px, 0px, 4px, 0px, rgba(255, 102, 0, 1));
+	}
+	&:focus{
+		background-color:$orange;
+	}
 }
 
 @mixin transition($property, $duration: 0.3s, $timing: linear){
-  -moz-transition:  $property $duration $timing;
-  -webkit-transition: $property $duration $timing;
-  -o-transition:    $property $duration $timing;
-  transition:     $property $duration $timing;
+	-moz-transition:	$property $duration $timing;
+ 	-webkit-transition:	$property $duration $timing;
+	-o-transition:		$property $duration $timing;
+	transition: 		$property $duration $timing;
 }
 
-@mixin shadow($x: 0px, $y:2px,  $blur: 4px, $spread:0px, $color: rgba(0,0,0,.2)){
-  -moz-box-shadow:  $x $y $blur $spread $color;
-  -webkit-box-shadow: $x $y $blur $spread $color;
-  -o-box-shadow:    $x $y $blur $spread $color;
-  box-shadow:     $x $y $blur $spread $color;
+@mixin shadow($x: 0px, $y:2px,  $blur: 10px, $spread:0px, $color: rgba(0,0,0,.5)){
+	-moz-box-shadow: 	$x $y $blur $spread $color;
+	-webkit-box-shadow:	$x $y $blur $spread $color;
+	-o-box-shadow: 		$x $y $blur $spread $color;
+	box-shadow: 		$x $y $blur $spread $color;
+}
+
+@mixin gradient( $color1: rgb(255,255,255), $color2:rgb(235,235,235)){
+	background-image: linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -o-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -moz-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -webkit-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -ms-linear-gradient(bottom, $color1 100%, $color2 0%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(1, $color1),
+		color-stop(0, $color2)
+	);
 }
 
 // Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
 
 body {
-  width:100%;
-  overflow:hidden;
-  background:$softWhite;
-  font-size:.8em;
-  border-right: 1em solid $sidebarGreySeperator;
+	width:100%;
+	overflow:hidden;
+	background:$softWhite;
+	font-size:.8em;
+	border-right: 1em solid $sidebarGreySeperator;
 }
 
 .jspDrag {
-  width:100%;
-  background: black;
-  border:none;
+	width:100%;
+	background: black;
+	border:none;
 }
 
 .jspverticalbar{
-  width: 1em;
+	width: 1em;
 }
 
-.jspTrack { 
-  width: 1em;
-  border-left: 1px solid $sidebarGreySeperator;
-  background: $sidebarGreySeperator;
-  position: relative;
+.jspTrack {	
+	width: 1em;
+	border-left: 1px solid $sidebarGreySeperator;
+	background: $sidebarGreySeperator;
+	position: relative;
 }
 
 h3 {
-  color: $onesparkOrange;
+	color: $onesparkOrange;
 }
 
 .tool{
-  line-height: 4em;
-  height: 4em;
-  cursor: pointer;
+	line-height: 4em;
+	height: 4em;
+	cursor: pointer;
 }
 
 .noFocus:focus {
@@ -124,324 +140,353 @@ h3 {
 // Account Features ////////////////////////////////////////////////////////////////////////
 
 #account{
-  position:absolute;
-  top: 0;
-  right: 0;
-  border-left:1px solid $sidebarGreySeperator;
-  z-index:100;
-  input {
-    width:100%;
-    font-size:1em;
-    color: black;
-    padding-left: 4em;
-    margin-right:-4em;
-    height:2.5em;
-    background-color:$sidebarDarkInput;
-    background-image: url(../assets/img/search.gif);
-    background-repeat: no-repeat;
-    background-position: 1em center;
-    border:none;
-    border-top: 1px solid $sidebarGreySeperator;
-  }
-  
-  ul {      
-    li {
-      height: 2.5em;
-      width: 3em;
-      float:left;
-      border-right: 1px solid $sidebarGreySeperator;  
-      list-style-type: none;
-      cursor: pointer;
-      @include transition(background-color, 0.1s, linear);
-      
-      text-align: center; 
+	z-index: 300;
+	position:absolute;
+	top: 0;
+	right: 0;
+	border-left:1px solid $sidebarGreySeperator;
+	input {
+		width:100%;
+		font-size:1em;
+		color: black;
+		padding-left: 4em;
+		margin-right:-4em;
+		height:2.5em;
+		background-color:$sidebarDarkInput;
+		background-image: url(../assets/img/search.gif);
+		background-repeat: no-repeat;
+		background-position: 1em center;
+		border:none;
+		border-top: 1px solid $sidebarGreySeperator;
+	}
+	
+	ul {			
+		li {
+			height: 2.5em;
+			width: 3em;
+			float:left;
+			border-right: 1px solid $sidebarGreySeperator;	
+			list-style-type: none;
+			cursor: pointer;
+			@include transition(background-color, 0.1s, linear);
+			
+			text-align: center;	
 
-      line-height:2.1em;
-      overflow:hidden;
-      img{
-        @include transition(opacity, 0.1s, linear);
-        opacity: 0.5;
-        vertical-align:middle;
-        overflow:hidden;
-      }
+			line-height:2.1em;
+			overflow:hidden;
+			img{
+				@include transition(opacity, 0.1s, linear);
+				opacity: 0.5;
+				vertical-align:middle;
+				overflow:hidden;
+			}
 
-      &:hover{
+			&:hover{
 
-        background-color: $onesparkOrange;
-        overflow:hidden;
-        img {
-          opacity: 1;
-        }
-      }
-    }
+				background-color: $onesparkOrange;
+				overflow:hidden;
+				img {
+					opacity: 1;
+				}
+			}
+		}
 
-    .profile {
-      img {
-        opacity: 1;
-        width:100%;
-        overflow: hidden;
-        &:hover{
-          opacity: 0.5;
-        }
-      }
-    }
-  }
+		.profile {
+			img {
+				opacity: 1;
+				width:100%;
+				overflow: hidden;
+				&:hover{
+					opacity: 0.5;
+				}
+			}
+		}
+	}
 }
 
 // Head ////////////////////////////////////////////////////////////////////////////////////
 
 .head {
-  height:5em;
-  font-size: 1em;
+	height:5em;
+	font-size: 1em;
 
-  h3 {
-    font-size: 1.6em;
-  }
+	h3 {
+		font-size: 1.6em;
+	}
 }
 
 #home {
-  float:left;
-  text-align:center;
-  line-height:4.5em;
-  width: 3em;
-  border-right: 1px solid $sidebarDarkSeperator;
-  @include transition(background-color, 0.05s, linear);
-  img{
-    vertical-align:middle;
-  }
-  &:hover{
-    background: $onesparkOrange;
-    cursor:pointer;
-  }
+	float:left;
+	text-align:center;
+	line-height:4.5em;
+	width: 3em;
+	border-right: 1px solid $sidebarDarkSeperator;
+	background-color:$onesparkOrange;
+	@include transition(background-color, 0.05s, linear);
+	img{
+		vertical-align:middle;
+	}
+	&:hover{
+		background: $onesparkOrange;
+		cursor:pointer;
+	}
 }
 
 #projectHead {
-  margin-left: 3em;
-  position:relative;
-  width: 12.5em;
-  color: $onesparkOrange;
-  h3 {
-    position:absolute;
-    top: 50%;
-    left: 0.2em;
-  }
+	margin-left: 3em;
+	position:relative;
+	width: 13em;
+	background-color:$onesparkOrange;
+	color: white;
+	h3 {
+		color: white;
+		position:absolute;
+		top: 50%;
+		left: 0.2em;
+	}
 }
 
 #toolHead {
-  background-image: url(../assets/img/head-1.png);
-  background-repeat: no-repeat;
-  background-position:0 center;
-  position:relative;
-  h3 {
-    position:absolute;
-    top: 50%;
-    left: 1em;
-  }
+	background-image: url(../assets/img/head-red.png);
+	background-repeat: no-repeat;
+	background-position:0 center;
+	position:relative;
+	h3 {
+		position:absolute;
+		top: 50%;
+		left: 1em;
+	}
 }
 
 #contentHead {
-  position:relative;
-  min-width:16em;
-  background-image: url(../assets/img/head-2.png);
-  background-repeat: no-repeat;
-  background-position:0 center;
-  
-  h3 {
-    display:block;
-    position:absolute;
-    top: 50%;
-    left: 1em;
-    a{
-      color: $onesparkOrange;
-      text-decoration: none;
-      text-shadow: 0px 0px 0px rgba(255, 0, 0 , 0);
-      @include transition(text-shadow, .05s, linear);
-      &:hover{
-        text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
-      }
-    }
-  }
+	position:relative;
+	min-width:16em;
+	//background-image: url(../assets/img/head-2.png);
+	//background-repeat: no-repeat;
+	//background-position:0 center;
+	border-bottom: 1px solid $sidebarGrey;
+	
+	h3 {
+		display:block;
+		position:absolute;
+		top: 50%;
+		left: 1em;
+		a{
+			color: $onesparkOrange;
+			text-decoration: none;
+			text-shadow: 0px 0px 0px rgba(255, 0, 0 , 0);
+			@include transition(text-shadow, .05s, linear);
+			&:hover{
+				text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
+			}
+		}
+	}
 }
 
 // SideBar //////////////////////////////////////////////////////////////////////////
 
 .sidebar {
-  height:100%;
-  float:left;
-  width:16em;
-  .active {
-    background-repeat:no-repeat;
-    color: $onesparkOrange;
-  }
-
-  a {
-    text-decoration: none;
-  }
+	height:100%;
+	float:left;
+	width:16em;
+	.active {
+		background-repeat:no-repeat;
+		color: $onesparkOrange;
+	}
+	a{
+		text-decoration:none;
+    color: white;
+	}
 }
+
 
 // SideBar 1 ////////////////////////////////////////////////////////////////////////
 
 .sidebar1 {
-  background-color: $sidebarDark;
-  color:white;
+	//@include shadow;
+	position:relative;
+	z-index:0;
+	background-color: $sidebarDark;
+	//background-image: url(../assets/img/black_linen_v2.png);
+	color:white;
 
-  .head{
-    border-bottom: 1px solid $sidebarDarkSeperator;
-  }
+	.head{
+		border-bottom: 1px solid $sidebarDarkSeperator;
+	}
 
-  .scroll-pane{
-    overflow:auto;
-    height:auto;
-  }
-  .jspDrag {
-    width:100%;
-    background: $sidebarDark;
-    border:none;
-  }
-  .jspverticalbar{
-    width: 1em;
-  }
-  .jspTrack { 
-    border-left:1px solid $sidebarDarkSeperator;
-    width: 1em;
-    background: #222;
-    position: relative;
-  } 
-  .tool {
-    @include transition(background-color, 0.1s, linear);
-    padding-left:3.5em;
-    background-image: url(../assets/img/sidebar-tools-inactive.png);
-    background-repeat:no-repeat;
+	.scroll-pane{
+		overflow:auto;
+		height:auto;
+	}
+	.jspDrag {
+		width:100%;
+		background: $sidebarDark;
+		border:none;
+	}
+	.jspverticalbar{
+		width: 1em;
+	}
+	.jspTrack	{	
+		border-left:1px solid $sidebarDarkSeperator;
+		width: 1em;
+		background: #222;
+		position: relative;
+	}	
+	.tool {
+		@include transition(background-color, 0.1s, linear);
+		padding-left:3.5em;
+		background-image: url(../assets/img/sidebar-tools-inactive.png);
+		background-repeat:no-repeat;
 
-    &:hover{
-      background-color:$sidebarDarkSeperator;
-    }
+		&:hover{
+			background-color:$sidebarDarkSeperator;
+		}
+		a {
+			color:white;
+		}
+	}
 
-    a {
-      color: white;
-    }
-  }
-
-  .active {
-    background-image: url(../assets/img/sidebar-tools-active.png);
-    a {
-      color: $onesparkOrange;
-    }
-  }
-  .add {
-    border-bottom: 1px solid $sidebarDarkSeperator;
-    background-image:none;
-  }
-  .overview{
-    background-position: 1em 1.3em; 
-  }
-  .coworkers{
-    background-position: 1em -3.8em;
-  }
-  .files{
-    background-position: 1em -8.8em;
-  }
-  .milestones{
-    background-position: 1em -13.6em;
-  }
-  .documents {
-    background-position: 1em -18.7em;
-  }
-  .calendar {
-    background-position: 1em -23.7em;
-  }
-  .dialogs {
-    background-position: 1em -28.5em;
-  }
-  .settings {
-    background-position: .9em -33.5em;
-  }
-  .trash {
-    background-position: 1em -38.3em;
-  }
+	.active {
+		background-image: url(../assets/img/sidebar-tools-active.png);
+		background-color:$sidebarDarkSeperator;
+	}
+	.add {
+		border-bottom: 1px solid $sidebarDarkSeperator;
+		background-image:none;
+	}
+	.overview{
+		background-position: 1em 1.3em;	
+	}
+	.coworkers{
+		background-position: 1em -3.8em;
+	}
+	.files{
+		background-position: 1em -8.8em;
+	}
+	.milestones{
+		background-position: 1em -13.6em;
+	}
+	.documents {
+		background-position: 1em -18.7em;
+	}
+	.calendar {
+		background-position: 1em -23.7em;
+	}
+	.dialogs {
+		background-position: 1em -28.5em;
+	}
+	.settings {
+		background-position: .9em -33.5em;
+	}
+	.trash {
+		background-position: 1em -38.3em;
+	}
 
 }
 
 // SideBar 2 ////////////////////////////////////////////////////////////////////////
 
 .sidebar2 {
-  z-index:0;
-  height:100%;
-  background:$sidebarGrey;
-  .scroll-pane{
-    overflow:auto;
-    height:auto;
-  }
+	//border-left:1px solid $onesparkOrange;
+	@include shadow;
+	position:relative;
+	z-index:100;
+	height:100%;
+	background:$softWhite;
+	.scroll-pane{
+		overflow:auto;
+		height:auto;
+	}
 
-  .jspDrag {
-    width:100%;
-    background: $sidebarGrey;
-    border:none;
-  }
-  .jspverticalbar{
-    width: 1em;
-  }
-  .jspTrack { 
-    border-left:1px solid $sidebarGreySeperator;
-    width: 1em;
-    background: #ddd;
-    position: relative;
-  } 
+	.jspDrag {
+		width:100%;
+		background: $sidebarGrey;
+		border:none;
+	}
+	.jspverticalbar{
+		width: 1em;
+	}
+	.jspTrack	{	
+		border-left:1px solid $sidebarGreySeperator;
+		width: 1em;
+		background: #ddd;
+		position: relative;
+	}	
 
-  .head {
-    border-bottom: 1px solid $sidebarGreySeperator;
-  }
+	.head {
+		border-bottom: 1px solid $sidebarGrey;
+	}
 
-  .tool {
-    padding-left: 1.5em;
-    @include transition(background-color, 0.1s, linear);
-    &:hover{
-      background-color:$sidebarGreySeperator;
-    }
-  }
-  .add {
-    border-bottom: 1px solid $sidebarGreySeperator;
-  }
-   a {
-      color: black;
-    }
+	.tool {
+		padding-left: 1.5em;
+		background-color: $softWhite;
+		@include transition(background-color, 0.1s, linear);
+		border-bottom: 1px solid $sidebarGrey;
+		&:hover{
+			background-color:$sidebarGrey;
+		}
+	}
+	.add {
+		background-image: none;
+		&:hover{
+			background-image:none;
+		}
+	}
+	.active {
+		background-color:$sidebarGrey;
+	}
+	a{
+		color:black;
+	}
 }
 
 // Content //////////////////////////////////////////////////////////////////////////
 
 .content{
-  &:focus{
-    outline:none;
-  }
-  float:left;
-  height:100%;
-  overflow:hidden;
-  width: 50em;
+	//@include shadow;
+	position:relative;
+	z-index:200;
+	border-left:solid 1px $sidebarGrey;
+	&:focus{
+		outline:none;
+	}
+	float:left;
+	height:100%;
+	overflow:hidden;
+	width: 50em;
+	background-color: $softWhite;
+	.head{
+		border-bottom:1px solid $sidebarGrey;
+	}
 
-  .head{
-    border-bottom:1px solid $sidebarGrey;
-  }
+	#add {
+		height:4em;
+		padding-top:0;
+		padding-bottom:0;
+		@include transition(background-color, 0.1s, linear);
+		&:hover{
+			background-color: $sidebarGrey;
+		}
+	}
+	.task{
+		//@include shadow(0px, 1px, 2px, 0px, rgba(0,0,0,.5));
+		border-bottom: 1px solid $sidebarGrey;
+		background: $softWhite;
+		margin-left:0;
+		padding:1.5em;
+		height: 30em;
+		width:auto;
 
-  #add {
-    height:4em;
-    padding-top:0;
-    padding-bottom:0;
-    @include transition(background-color, 0.1s, linear);
-    &:hover{
-      background-color: #f9f9f9;
+		h1 {
+			font-size:3em;
+		}    
+	}
+
+  a {
+    color:black;
+      &:hover{
+        color: $onesparkOrange;
+      }
     }
-  }
-  .task{
-    background: $softWhite;
-    margin-left:0;
-    padding:1.5em;
-    height: 30em;
-    width:auto;
-    border-bottom:1px solid $sidebarGrey;
-
-    h1 {
-      font-size:3em;
-    }
-  }
 }
 

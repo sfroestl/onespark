@@ -1,4 +1,5 @@
 class ProjectCoworkersController < ApplicationController
+  layout 'project'
   before_filter :find_project
   before_filter :project_permisions
   before_filter :get_project_coworkers, only: [:index]

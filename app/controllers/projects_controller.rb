@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  layout 'project'
+  layout 'project', except: [:index]
+  # layout 'all_projects', only: [:index]
   # before_filter :get_all_projects
   before_filter :signed_in_user
   before_filter :find_user_projects
@@ -17,7 +18,7 @@ class ProjectsController < ApplicationController
     # TODO: make project only accesible for admin and invited users
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'all_projects' }
       format.json { render json: @projects }
     end
   end

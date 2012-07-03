@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  layout 'profile'
   before_filter :user_exists?, only: [:show]
   before_filter :find_user_and_profile, except: [:index]
   before_filter :setup_friends, only: [:show]
@@ -26,7 +27,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update_attributes(params[:profile])
-      redirect_to "/profiles/#{@user.username}", :flash => { :success => "Successfully updated your profile." }
+      redirect_to profile_path(@user.username), :flash => { :success => "Successfully updated your profile." }
     else
       render :action => 'edit'
     end

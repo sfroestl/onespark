@@ -1,0 +1,54 @@
+<%= provide(:title, @project.title) %>
+
+<div class="container-fluid">
+	<div class = "span10 offset1">
+		<% if @projects %>
+			<h1><%= @project.title %></h1> 
+ 
+ <!-- ////// navigation ////// -->  
+			<ul class="nav nav-pills">
+				<li class="active"><%= link_to "Dashboard", project_path(@project) %></li>
+				<li><%= link_to "Coworkers", project_coworkers_path(@project) %></li>
+				<li><%= link_to "Milestones", project_milestones_path(@project) %></li>
+				<li><%= link_to "Files", "#{@project.to_param}/files" %></li>
+				<li><%= link_to "GitHub", project_github_repository_path(@project) %></li>
+				<li><%= link_to "Dialogs", "#{@project.to_param}/dialogs" %></li>
+			</ul>
+			<hr class="soften"/>
+
+		  	<div class="row-fluid">
+
+<!-- ////// left column ////// --> 
+	  			<% if @project.due_date %>
+			  		<div class="span4">
+			  			<h2>Due date</h2>
+							<span class="due_date bubble"><%= format_date_long(@project.due_date)%></span>
+						</div>
+					<% end %>
+
+
+<!-- ////// right column 1 ////// --> 
+				<% if @project.desc %>
+					<div class="span6">
+						<h2>Description</h2>
+						<p><%= @project.desc %></p>
+					</div>
+					<% end %>
+
+<!-- ////// right column 2 ////// --> 
+				<div class="span2">
+			    <%= link_to "Edit", edit_project_path(@project) %> | 
+			    <%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all tickets?"  %>
+        	</div>
+			</div>
+
+			<br/>
+			<br/>
+			
+			<div>
+				<h2>Latest activities</h2>
+				<p><i>coming soon...</i></p>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
 	validates :creator_id, presence: true
 	validates :title, presence: true
 
+	default_scope :order => 'due_date ASC'
 
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')

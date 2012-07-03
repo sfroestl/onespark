@@ -26,73 +26,9 @@
 
 	<!-- ///////////////////////////////////ACCOUNT////////////////////////////////////////// -->
 	<%= render 'layouts/account' %>
-	<!-- ///////////////////////////////////SIDEBAR1//////////////////////////////////////////-->
-	<div class="sidebar sidebar1" >
-		
-		<div id="home" class="head">
-			<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
-		</div>
-		
-		<div id="projectHead" class="head">
-			<h3><%= @project.title %></h3>
-		</div>
-		
-
-		<div class="scroll-pane jspScrollable tools">
-			
-			<%= link_to '' do %>
-				<div class="tool add" >Add tool</div>
-			<% end %>
-			
-			<%= link_to project_path(@project) do %>
-				<div class="tool overview" >Overview</div>
-			<% end %>
-			
-			<%= link_to project_coworkers_path(@project) do %>
-				<div class="tool coworkers" >Coworkers</div>
-			<% end %>
-
-			<%= link_to '' do %>
-				<div class="tool files" >Files</div>
-			<% end %>			
-			
-			<%= link_to project_milestones_path(@project) do %>
-				<% if yield(:active) == 'milestones' %>
-					<div class="tool milestones active" >Milestones/ Tasks</div>
-				<% else %>
-					<div class="tool milestones" >Milestones/ Tasks</div>
-				<% end %>
-			<% end %>		
-
-			<%= link_to '' do %>
-				<div class="tool milestones" >GitHub</div>
-			<% end%>
-
-			<%= link_to '' do %>
-				<div class="tool documents" >Documents</div>
-			<% end%>
-			
-			<%= link_to '' do %>
-				<div class="tool calendar" >Appointments</div>
-			<% end%>
-
-			<%= link_to '' do %>
-			<div class="tool dialogs" >Dialogs</div>
-			<% end%>
-
-			<%= link_to '' do %>
-				<div class="tool settings" >Settings</div>
-			<% end%>
-
-			<%= link_to '' do %>
-				<div class="tool trash" >Trash</div>
-			<% end%>
-		</div>
-	</div>
 
 	<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 	<%= yield %>
-
 
 <script type="text/javascript">
 
@@ -100,7 +36,7 @@ var scroll = $('.scroll-pane');
 var content = $('.content');
 
 var headHeight = $('.head').height();
-var sidebarWidth = ($('.sidebar').width())*2 + 1;
+var sidebarWidth = ($('.sidebar').width())*2;
 
 console.log("Breite der Tools/ Folder: " + sidebarWidth);
 // console.log("Größe Header = "+headHeight);

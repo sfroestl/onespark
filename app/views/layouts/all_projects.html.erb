@@ -1,0 +1,48 @@
+<h1>Your Projects</h1>
+
+<%= link_to "Add project", new_project_path %>
+
+<h2>Owned Projects</h2>
+	<% if @projects.empty? %>
+		<p style="text-align:center">"I never see what has been done, I only see what remains to be done." &#8213; <i>Buddha</i></p>
+	
+	<% else %> 
+	
+		<% @projects.in_groups_of(3) do |group| %>
+			<% group.each do |project| %>
+		
+				<% unless project.nil? %>
+					<h3><%= link_to project.title, project_path(project)%></h3>
+		
+					<% unless project.due_date.nil? %>
+						<%= time_ago_in_words(project.due_date) %>				
+						( <%= project.due_date.strftime("%d.%m.%Y") %> )
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+
+
+<h2>Collaborated Projects</h2>
+
+	<% unless @all_projects.empty? %>
+		<% @all_projects.in_groups_of(3) do |group| %>
+			<div class="row-fluid">
+					<% group.each do |project| %>
+					<div class="span4">
+						<% unless project.nil? %>
+							<h3><%= link_to project.title, project_path(project)%></h3>
+							<% unless project.due_date.nil? %>
+								<p><i class="icon-calendar"></i> 
+									<%= time_ago_in_words(project.due_date) %> 
+									( <%= project.due_date.strftime("%d.%m.%Y") %> )
+								</p>
+							<% end %>
+						<% end %>
+					  </div>
+					<% end %>
+				</div>
+				<% end %>
+		</div>						
+	<% end %>
