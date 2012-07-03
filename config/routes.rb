@@ -1,5 +1,7 @@
 Onespark::Application.routes.draw do
 
+  resources :tasks
+
   # match '/users/:username', :to => 'users#show'
   resources :users do 
     resources :github_repositories, :controller => 'tools/github_repositories', only: [:index] 
@@ -13,7 +15,10 @@ Onespark::Application.routes.draw do
   resources :projects do
     resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
     resources :coworkers, :controller => 'project_coworkers'
-    resources :milestones
+    resources :milestones do
+      resources :tasks, except: [:show, :index]
+    end
+    resources :tasks, except: [:show, :index]
   end
   # resources :milestones, except: [:index]
   # resources :profiles , only: [:show, :index]

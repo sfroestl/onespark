@@ -16,6 +16,10 @@ describe Milestone do
 
   describe "Create Milestone" do
 
+    describe "should belong to project" do 
+      its(:project) { should == project }
+    end
+
     describe "with no valid title" do 
       before { milestone.title = nil }
       it { should_not be_valid }
