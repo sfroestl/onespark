@@ -1,4 +1,6 @@
 class Milestone < ActiveRecord::Base
+  has_many :tasks
+
   belongs_to :project
   belongs_to :user
 
@@ -15,7 +17,6 @@ class Milestone < ActiveRecord::Base
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
     "#{self.id}-#{normalized_name}"
-
   end
 
   private
