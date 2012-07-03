@@ -1,16 +1,17 @@
 <%= form_for [@project, @milestone] do |f| %>
+
 	<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :title %>
-	<%= f.text_field :title, :autofocus => "autofocus"%>
-
-	<%= f.label :goal %>
+	<%= f.label :title %><br />
+	<%= f.text_field :title, :autofocus => "autofocus" %>
+	<br />
+	<%= f.label :goal %><br />
 	<%= f.text_field :goal%>
-	
-	<%= f.label :desc %>
+	<br />
+	<%= f.label :desc %><br />
 	<%= f.text_area :desc %>
-
-	<%= f.label :due_date %>
+	<br />	
+	<%= f.label :due_date %><br />
 	<%= f.text_field :due_date %>
 
 	<%= f.submit %>

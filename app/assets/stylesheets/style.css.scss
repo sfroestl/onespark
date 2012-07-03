@@ -25,6 +25,9 @@ $lucida: "Lucida Grande", "Lucida Sans Unicode",Verdana, Tahoma, Trebuchet MS, s
   margin:0;
   padding:0;
   font-family: $lucida;
+  &:focus{
+    outline: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 { 
@@ -33,11 +36,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight:normal;
 }
 
-/*
- * ------------------------------------------------------------------------------------------
- * Mixins
- * ------------------------------------------------------------------------------------------
- */
+// Mixins ///////////////////////////////////////////////////////////////////////////////////////
 
 @mixin rounded ($radius: 5px) {
   border-radius:      $radius;
@@ -81,16 +80,11 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow:     $x $y $blur $spread $color;
 }
 
-/*
- * ------------------------------------------------------------------------------------------
- * Generelle Eigenschaften
- * ------------------------------------------------------------------------------------------
- */
-
-html {  
-}
+// Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
 
 body {
+  width:100%;
+  overflow:hidden;
   background:$softWhite;
   font-size:.8em;
   border-right: 1em solid $sidebarGreySeperator;
@@ -101,9 +95,11 @@ body {
   background: black;
   border:none;
 }
+
 .jspverticalbar{
   width: 1em;
 }
+
 .jspTrack { 
   width: 1em;
   border-left: 1px solid $sidebarGreySeperator;
@@ -115,212 +111,183 @@ h3 {
   color: $onesparkOrange;
 }
 
-/*
- * ------------------------------------------------------------------------------------------
- * Header
- * ------------------------------------------------------------------------------------------
- */
-
-#head {
-  z-index:2;
-  position:fixed;
-  top:0;
-  bottom:0;
-  border-bottom: 1px solid $sidebarGrey;
-  width:100%;
-  height:5em;
-  font-size: 1em;
-
-  h3 {
-    font-size: 1.6em;
-  }
-
-  div {
-    float:left;
-    position:relative;
-  }
-
-  #home {
-    text-align:center;
-    line-height:4.5em;
-    height: 100%;
-    width: 3em;
-    border-right: 1px solid $sidebarDarkSeperator;
-    @include transition(background-color, 0.05s, linear);
-    img{
-      vertical-align:middle;
-    }
-    &:hover{
-      background: $onesparkOrange;
-      cursor:pointer;
-    }
-  }
-
-  #projectHead {
-    height: 100%;
-    position:relative;
-    width: 12.5em;
-    color: $onesparkOrange;
-    h3 {
-      position:absolute;
-      top: 50%;
-      left: 0.2em;
-    }
-  }
-
-  #toolHead {
-    height: 100%;
-    position:relative;
-    h3 {
-      position:absolute;
-      top: 50%;
-      left: 1em;
-    }
-  }
- 
-  #folderHead {
-    //position:relative;
-    height:100%;
-    width:50em;
-    background-image: url(../assets/img/head-2.png);
-    background-repeat: no-repeat;
-    background-position:0 center;
-    h3 {
-      display:block;
-      position:absolute;
-      top: 50%;
-      left: 1em;
-      a{
-        color: $onesparkOrange;
-        text-decoration: none;
-        text-shadow: 0px 0px 0px rgba(255, 0, 0 , 0);
-        @include transition(text-shadow, .05s, linear);
-        &:hover{
-          text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
-        }
-      }
-    }
-  }
-
-  .sidebar1{
-    border-bottom: 1px solid $sidebarDarkSeperator;
-  }
-  .sidebar2{
-    background-image: url(../assets/img/head-1.png);
-    background-repeat: no-repeat;
-    background-position:0 center;
-    border-bottom:1px solid $sidebarGreySeperator;
-  }
-
-
-  // Account Features ////////////////////////////////////////////////////////////////////////
-
-  #account{
-    width: auto;
-    float: right;
-    border-left:1px solid $sidebarGreySeperator;
-
-    input {
-      font-size:1em;
-      color: black;
-      padding-left: 50px;
-      width:100%;
-      height:2.5em;
-      background-color:$sidebarDarkInput;
-      background-image: url(../assets/img/search.gif);
-      background-repeat: no-repeat;
-      background-position: 1em center;
-      border:none;
-      border-top: 1px solid $sidebarGreySeperator;
-      //border-bottom: 1px solid $sidebarGreySeperator;
-    }
-    
-    ul {      
-      li {
-        height: 2.5em;
-        width: 3em;
-        float:left;
-        border-right: 1px solid $sidebarGreySeperator;  
-        list-style-type: none;
-        cursor: pointer;
-        @include transition(background-color, 0.1s, linear);
-        
-        text-align: center; 
-
-        line-height:2.1em;
-        overflow:hidden;
-        img{
-          @include transition(opacity, 0.1s, linear);
-          opacity: 0.5;
-          vertical-align:middle;
-          overflow:hidden;
-        }
-
-        &:hover{
-
-          background-color: $onesparkOrange;
-          overflow:hidden;
-          img {
-            opacity: 1;
-          }
-        }
-      }
-
-      .profile {
-        img {
-          opacity: 1;
-          width:100%;
-          overflow: hidden;
-          &:hover{
-            opacity: 0.5;
-          }
-        }
-      }
-    }
-  }
-}
-
-/*
- * ------------------------------------------------------------------------------------------
- * Content
- * ------------------------------------------------------------------------------------------
- */
-
-#wrapper {
-  position:fixed;
-  top:5em;
-  left:0em;
-}
-
-.sidebar {
-  z-index: 0;
-  float:left;
-  width:16em;
-  .active {
-    background-repeat:no-repeat;
-    color: $onesparkOrange;
-    a {
-      color:$onesparkOrange;
-    }
-  }
-
-  a{
-    text-decoration: none;
-  }
-}
-
 .tool{
   line-height: 4em;
   height: 4em;
   cursor: pointer;
 }
 
+.noFocus:focus {
+    outline: none;
+}
+
+// Account Features ////////////////////////////////////////////////////////////////////////
+
+#account{
+  position:absolute;
+  top: 0;
+  right: 0;
+  border-left:1px solid $sidebarGreySeperator;
+  z-index:100;
+  input {
+    width:100%;
+    font-size:1em;
+    color: black;
+    padding-left: 4em;
+    margin-right:-4em;
+    height:2.5em;
+    background-color:$sidebarDarkInput;
+    background-image: url(../assets/img/search.gif);
+    background-repeat: no-repeat;
+    background-position: 1em center;
+    border:none;
+    border-top: 1px solid $sidebarGreySeperator;
+  }
+  
+  ul {      
+    li {
+      height: 2.5em;
+      width: 3em;
+      float:left;
+      border-right: 1px solid $sidebarGreySeperator;  
+      list-style-type: none;
+      cursor: pointer;
+      @include transition(background-color, 0.1s, linear);
+      
+      text-align: center; 
+
+      line-height:2.1em;
+      overflow:hidden;
+      img{
+        @include transition(opacity, 0.1s, linear);
+        opacity: 0.5;
+        vertical-align:middle;
+        overflow:hidden;
+      }
+
+      &:hover{
+
+        background-color: $onesparkOrange;
+        overflow:hidden;
+        img {
+          opacity: 1;
+        }
+      }
+    }
+
+    .profile {
+      img {
+        opacity: 1;
+        width:100%;
+        overflow: hidden;
+        &:hover{
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+// Head ////////////////////////////////////////////////////////////////////////////////////
+
+.head {
+  height:5em;
+  font-size: 1em;
+
+  h3 {
+    font-size: 1.6em;
+  }
+}
+
+#home {
+  float:left;
+  text-align:center;
+  line-height:4.5em;
+  width: 3em;
+  border-right: 1px solid $sidebarDarkSeperator;
+  @include transition(background-color, 0.05s, linear);
+  img{
+    vertical-align:middle;
+  }
+  &:hover{
+    background: $onesparkOrange;
+    cursor:pointer;
+  }
+}
+
+#projectHead {
+  margin-left: 3em;
+  position:relative;
+  width: 12.5em;
+  color: $onesparkOrange;
+  h3 {
+    position:absolute;
+    top: 50%;
+    left: 0.2em;
+  }
+}
+
+#toolHead {
+  background-image: url(../assets/img/head-1.png);
+  background-repeat: no-repeat;
+  background-position:0 center;
+  position:relative;
+  h3 {
+    position:absolute;
+    top: 50%;
+    left: 1em;
+  }
+}
+
+#contentHead {
+  position:relative;
+  min-width:16em;
+  background-image: url(../assets/img/head-2.png);
+  background-repeat: no-repeat;
+  background-position:0 center;
+  
+  h3 {
+    display:block;
+    position:absolute;
+    top: 50%;
+    left: 1em;
+    a{
+      color: $onesparkOrange;
+      text-decoration: none;
+      text-shadow: 0px 0px 0px rgba(255, 0, 0 , 0);
+      @include transition(text-shadow, .05s, linear);
+      &:hover{
+        text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
+      }
+    }
+  }
+}
+
+// SideBar //////////////////////////////////////////////////////////////////////////
+
+.sidebar {
+  height:100%;
+  float:left;
+  width:16em;
+  .active {
+    background-repeat:no-repeat;
+    color: $onesparkOrange;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
 // SideBar 1 ////////////////////////////////////////////////////////////////////////
 
 .sidebar1 {
-  height: 100%;
   background-color: $sidebarDark;
   color:white;
+
+  .head{
+    border-bottom: 1px solid $sidebarDarkSeperator;
+  }
 
   .scroll-pane{
     overflow:auto;
@@ -350,7 +317,7 @@ h3 {
       background-color:$sidebarDarkSeperator;
     }
 
-    a {      
+    a {
       color: white;
     }
   }
@@ -423,10 +390,8 @@ h3 {
 
   .head {
     border-bottom: 1px solid $sidebarGreySeperator;
-    background-image: url(../assets/img/arrow.png);
-    background-repeat: no-repeat;
-    background-position:0 center;
   }
+
   .tool {
     padding-left: 1.5em;
     @include transition(background-color, 0.1s, linear);
@@ -437,22 +402,25 @@ h3 {
   .add {
     border-bottom: 1px solid $sidebarGreySeperator;
   }
-
-  a {
-    color:black;
-  }
+   a {
+      color: black;
+    }
 }
 
 // Content //////////////////////////////////////////////////////////////////////////
 
-
-#content{
+.content{
   &:focus{
     outline:none;
   }
-  height:100%;
   float:left;
-  overflow:auto;
+  height:100%;
+  overflow:hidden;
+  width: 50em;
+
+  .head{
+    border-bottom:1px solid $sidebarGrey;
+  }
 
   #add {
     height:4em;
@@ -477,6 +445,3 @@ h3 {
   }
 }
 
-.fix {
-  width:100%;
-}

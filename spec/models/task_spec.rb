@@ -19,6 +19,7 @@ describe Task do
   it { should respond_to(:project) }
 
 	describe "should have creator but bo worker" do
+		before { task.save }
 		its(:creator) { should == creator }
 		its(:worker) { should be_nil }
 	end
@@ -31,7 +32,10 @@ describe Task do
   end
 
   describe "should have worker" do
-  	before { task.worker_id = worker.id }
+  	before do 
+  		task.worker = worker
+  		task.save
+  	end
     its(:worker_id) { should == worker.id }
     its(:worker) { should == worker }
   end

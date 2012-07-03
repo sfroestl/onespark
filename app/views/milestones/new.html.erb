@@ -1,39 +1,38 @@
 <%= provide(:title, "Add Milestone") %>
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Milestones</h3>
+  </div>
 
-<div class="sidebar sidebar1">
-      
-      <div class="scroll-pane jspScrollable tools">
-        <div class="tool add" >Add Tool</div>
-        <div class="tool overview" >Overview</div>
-        <div class="tool coworkers" >Coworkers</div>
-        <div class="tool files" >Files</div>
-        <div class="tool milestones active" >Milestones</div>
-        <div class="tool documents" >Documents</div>
-        <div class="tool calendar" >Calendar</div>
-        <div class="tool dialogs" >Dialogs</div>
-        <div class="tool settings" >Settings</div>
-        <div class="tool trash" >Trash</div>
-      </div>
-    </div>
-
-    <div class="sidebar sidebar2">
-      
-      <div class="scroll-pane jspScrollable tools">
-
-        <div class="tool add" ><%= link_to 'Add Milestone', new_project_milestone_path(@project) %></div>
-
-        <div class="tool active" ><%= link_to 'All Milestones',project_milestones_path(@project) %> </div>
-        <% for milestone in @milestones %>
-          <div class="tool" ><%= link_to milestone.title, project_milestone_path(@project, milestone) %> </div>
+  <div class="scroll-pane jspScrollable tools">
+      <%= link_to new_project_milestone_path(@project) do %>
+          <div class="tool add active" >Add Milestone</div>
         <% end %>
-      </div>
+
+      <%= link_to project_milestones_path(@project) do %>
+        <div class="tool ">All Milestones</div>
+      <% end %>
+
+      <% for milestone in @milestones %>
+        <%= link_to project_milestone_path(@project, milestone) do %>
+          <div class="tool"><%= milestone.title %></div> 
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro">Add Milestone</a></h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+    <div class="task">
+      <%= render  'form' %>
     </div>
 
-
-
-    <div id="content" class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
-
-      <div class="task">
-        <%= render  'form' %>
-      </div>
-    </div>
+    
+  </div>
+</div>

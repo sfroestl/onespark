@@ -1,50 +1,75 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="en"> <!--<![endif]-->
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
 	<title><%= full_title(yield(:title)) %></title>
+	
+	<meta name="description" content="">
+
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="style/styleh5bp.css">
+
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
-
-
 </head>
 
 <body>
-	<div id="head">
-		<div class="sidebar sidebar1" >
-			<div id="home">
-				<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
-			</div>
-			
-			<div id="projectHead">
-				<h3><%= @project.title %></h3>
-			</div>
-		</div>
 
-		<div id = "toolHead" class="sidebar sidebar2">
-			<h3>Milestones</h3>
+	<!-- ///////////////////////////////////ACCOUNT////////////////////////////////////////// -->
+	<%= render 'layouts/account' %>
+	<!-- ///////////////////////////////////SIDEBAR1//////////////////////////////////////////-->
+	<div class="sidebar sidebar1" >
+		
+		<div id="home" class="head">
+			<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
 		</div>
-
-		<div id = "folderHead">
-			<h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= yield(:title) %></a></h3>
-			<%= yield(:tool_navi) %>
+		
+		<div id="projectHead" class="head">
+			<h3><%= @project.title %></h3>
 		</div>
+		
 
-		<%= render 'layouts/account' %>
+		<div class="scroll-pane jspScrollable tools">
+			<div class="tool add" >
+					<%= link_to 'Add Tool' %></div>
+				<div class="tool overview" >
+					<%= link_to 'Overview' %></div>
+				<div class="tool coworkers" >
+					<%= link_to 'Coworkers', project_coworkers_path(@project)%></div>
+				<div class="tool files" >
+					<%= link_to 'Files' %></div>
+				<div class="tool milestones active" >
+					<%= link_to 'Milestones', project_milestones_path(@project) %></div>
+				<div class="tool documents" >
+					<%= link_to 'Documents' %></div>
+				<div class="tool calendar" >
+					<%= link_to 'Calendar' %></div>
+				<div class="tool dialogs" >
+					<%= link_to 'Dialogs' %></div>
+				<div class="tool settings" >
+					<%= link_to 'Settings' %></div>
+				<div class="tool trash" >
+					<%= link_to 'Trash' %></div>
+		</div>
 	</div>
 
-	<div id="wrapper">
-
-		<%= yield %>
-	</div>
+	<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+	<%= yield %>
 
 
 <script type="text/javascript">
 
 var scroll = $('.scroll-pane');
-var content = $('#content');
+var content = $('.content');
 
-var headHeight = $('#head').height();
+var headHeight = $('.head').height();
 var sidebarWidth = ($('.sidebar').width())*2;
 
 console.log("Breite der Tools/ Folder: " + sidebarWidth);
@@ -58,7 +83,7 @@ var toolheight = function(){
 };
 var contentWidth = function(){
 	var width = (($(window).width()) - sidebarWidth).toString();
-	console.log("contentWidth: "+width);
+	console.log("contentWidth: "+width + "windowWidth: "+ $(window).width().toString());
 	content.css("width", width + "px");
 	content.css("float", "left");
 };
@@ -75,7 +100,7 @@ var headerSpacing = function(selector){
  	contentWidth(), 
  	headerSpacing('#projectHead h3'), 
  	headerSpacing('#toolHead h3'),
- 	headerSpacing('#folderHead h3')
+ 	headerSpacing('#contentHead h3')
  );
 
 
@@ -133,7 +158,7 @@ $(function()
 	$('.scroll-pane').jScrollPane(
 		{
 			hijackInternalLinks: true,
-			animateScroll: true
+			animateScroll: false
 		}
 	);
 });

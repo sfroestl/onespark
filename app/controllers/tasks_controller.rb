@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
-
+  layout 'project'
   before_filter :find_project
+  before_filter :find_project_milestones
   before_filter :find_milestone
   # GET /tasks
   # GET /tasks.json
@@ -45,12 +46,21 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    if @project && @milestone
-      @task = @project.tasks.build(params[:task], creator: current_user, milestone: @milestone)
-      redirect_path = project_milestone_url[@project, @milestone]
+    
+    if params[:project_id] and params[:milestone_id]
+      Rails.logger.info ">> Task Controller new Task with milestone | #{params[:project_id]} | #{params[:milestone_id]}"
+      @task = @project.tasks.build(params[:task])
+      @task.creator = current_user
+      @task.milestone = @milestone
+      redirect_path = project_milestone_url(@project, @milestone)
+      Rails.logger.info ">> #{redirect_path}"
+    
     else
-      @task = @project.tasks.build(params[:task], creator: current_user)
-      redirect_path = project_milestones_url(@project)
+      Rails.logger.info ">> Task Controller new Task without milestone | #{current_user}"
+      @task = @project.tasks.build(params[:task])
+      @task.creator = current_user
+      redirect_path = project_url(@project)
+      Rails.logger.info ">> #{redirect_path}"
     end
     
 
@@ -108,8 +118,12 @@ class TasksController < ApplicationController
     end
 
     def find_milestone
-      unless (params[:milestone_id])
+      if params[:milestone_id]
         @milestone = Milestone.find(params[:milestone_id])
       end
+    end
+
+    def find_project_milestones      
+      @milestones = @project.milestones           
     end
 end

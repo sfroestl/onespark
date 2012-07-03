@@ -3,11 +3,11 @@ class Task < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :milestone
-  has_one :worker, :class_name => 'User', primary_key: 'worker_id', :foreign_key => 'id'
-	has_one :creator, :class_name => 'User', primary_key: 'creator_id', :foreign_key => 'id'
+  belongs_to :worker, :class_name => 'User', primary_key: 'id', :foreign_key => 'worker_id'
+	belongs_to :creator, :class_name => 'User', primary_key: 'id', :foreign_key => 'creator_id'
 
 	validates :project_id, presence: true
-	validates :creator, presence: true
+	validates :creator_id, presence: true
 	validates :title, presence: true
 
 
