@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+
+ 	layout 'project'
+
   def home
   end
   
@@ -8,4 +11,7 @@ class StaticPagesController < ApplicationController
  def goodbye
   
  end
+
+ def design
+ end	
 end

@@ -1,39 +1,88 @@
 <%= provide(:title, @milestone.title) %>
+<%= provide :tool_navi do %>
 
-<div class="container-fluid">
-  <div class = "span10 offset1">
-    <% if @project %>
-      <h1><%= @project.title %></h1> 
-        
+ 	<h1>huhu</h1><p>würstel</p>
+<% end %>
 
-      <ul class="nav nav-pills">
-        <li><%= link_to "Dashboard", project_path(@project) %></li>
-        <li><%= link_to "Coworkers", project_coworkers_path(@project) %></li>
-        <li  class="active"><%= link_to "Milestones", project_milestones_path(@project) %></li>
-        <li><%= link_to "Files", "project_files_path(@project)" %></li>
-        <li><%= link_to "GitHub", project_github_repository_path(@project) %></li>
-        <li><%= link_to "Dialogs", "project_dialogs_path(@project)" %></li>
-      </ul>
-      <hr class="soften"/>
+<div class="sidebar sidebar1">
+			
+			<div class="scroll-pane jspScrollable tools">
+				<div class="tool add" >
+					<%= link_to 'Add Tool' %></div>
+				<div class="tool overview" >
+					<%= link_to 'Overview' %></div>
+				<div class="tool coworkers" >
+					<%= link_to 'Coworkers', project_coworkers_path(@project)%></div>
+				<div class="tool files" >
+					<%= link_to 'Files' %></div>
+				<div class="tool milestones active" >
+					<%= link_to 'Milestones', project_milestones_path(@project) %></div>
+				<div class="tool documents" >
+					<%= link_to 'Documents' %></div>
+				<div class="tool calendar" >
+					<%= link_to 'Calendar' %></div>
+				<div class="tool dialogs" >
+					<%= link_to 'Dialogs' %></div>
+				<div class="tool settings" >
+					<%= link_to 'Settings' %></div>
+				<div class="tool trash" >
+					<%= link_to 'Trash' %></div>
+			</div>
+		</div>
 
-        <div class="row-fluid">
-          <h2><%= @milestone.title %></h2>
-         <div class="pull-right">
-          	<%= link_to "Edit", edit_project_milestone_path(@project, @milestone) %> |
-  				<%= link_to "Delete", project_milestone_path(@project, @milestone), :confirm => 'Are you sure?', :method => :delete %> |
-  				<%= link_to "View All", project_milestones_path %>
-  			</div>
-  			<h5>Due: <%= format_date_long @milestone.due_date unless @milestone.due_date.nil? %></h5>
-  			<br/>
-  			<h5>Goal</h5>
-  			<p><%= @milestone.goal %> </p>
-  			<br/>	
-  			<h5>Description</h5>
-  			<p><%= @milestone.desc %> </p>
-  			<br/>
-  			<h5>Created by <%= @milestone.user.username %></h5>
-        </div>
-      
-    <% end %>
-  </div>
-</div>
+		<div class="sidebar sidebar2">
+			
+			<div class="scroll-pane jspScrollable tools">
+
+				<div class="tool add" >
+					<%= link_to 'Add Milestone', new_project_milestone_path(@project) %>
+				</div>
+
+				<%= link_to project_milestones_path(@project) do %>
+					<div class="tool">All Milestones</div>
+				<% end %>
+
+				<% for milestone in @milestones %>
+					<%= link_to project_milestone_path(@project, milestone) do %>
+						<div class="tool"><%= milestone.title %></div> 
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+
+
+
+		<div id="content" class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+			<div class="task tool" id="add">
+				<p>Add Task</p>
+			</div>
+			<div class="task">
+				<h1>
+					Task 1 
+				</h1>
+			</div>
+
+			<div class="task">
+				<h1>
+					Task 2 
+				</h1>
+			</div>
+
+			<div class="task" >
+				<h1>
+					Task 3 
+				</h1>
+			</div>
+			
+			<div class="task">
+				<h1>
+					Task 4 
+				</h1>
+			</div>
+
+			<div class="task">
+				<h1>
+					Task 5 
+				</h1>
+			</div>
+		</div>

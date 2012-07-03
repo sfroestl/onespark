@@ -1,6 +1,7 @@
 class MilestonesController < ApplicationController
-
+  layout 'project'
   before_filter :find_project
+  before_filter :find_project_milestones
 
   def create
 
@@ -27,10 +28,10 @@ class MilestonesController < ApplicationController
   end
 
   def index
-    @milestones = @project.milestones
   end
 
   def show
+    
     @milestone = Milestone.find(params[:id])
     @project ||= @milestone.project
   end
@@ -50,5 +51,9 @@ class MilestonesController < ApplicationController
 
   def find_project
     @project = Project.find(params[:project_id])
+  end
+
+  def find_project_milestones
+    @milestones = @project.milestones    
   end
 end

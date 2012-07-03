@@ -1,0 +1,44 @@
+<%= provide(:title, "Milestones") %>
+
+<div class="container-fluid">
+  <div class = "span10 offset1">
+    <% if @project %>
+      <h1><%= @project.title %></h1> 
+        
+ <!-- ////// navigation ////// -->  
+      <ul class="nav nav-pills">
+        <li><%= link_to "Dashboard", project_path(@project) %></li>
+        <li><%= link_to "Coworkers", "coworkers" %></li>
+        <li  class="active"><%= link_to "Milestones", "milestones" %></li>
+        <li><%= link_to "Files", "files" %></li>
+        <li><%= link_to "GitHub", project_github_repository_path(@project) %></li>
+        <li><%= link_to "Dialogs", "dialogs" %></li>
+      </ul>
+      <hr class="soften"/>
+
+<!-- ////// left column ////// -->  
+        <div class="row-fluid">
+          <h2>Milestones</h2>
+          <ul>
+            <% for milestone in @milestones %>
+              <li>
+                <h4>
+                  <%= "#{format_date_short milestone.due_date} - " unless milestone.due_date.nil? %>
+                  <%= milestone.title %> | 
+                  <%= link_to "Show", project_milestone_path(@project, milestone) %>
+                </h4>
+              </li>
+              <br/>
+            <% end %>
+          </ul>
+          <br/>
+          <br/>
+          <p><%= link_to "Add new Milestone", new_project_milestone_path %></p>
+        </div>
+
+      <br/>
+      <br/>
+      
+    <% end %>
+  </div>
+</div>

@@ -64,6 +64,7 @@ Onespark::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/goodbye', to: 'static_pages#goodbye'
+  match '/design',    to: 'static_pages#newdesign'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

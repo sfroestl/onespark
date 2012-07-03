@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  layout 'project'
   # before_filter :get_all_projects
   before_filter :signed_in_user
   before_filter :find_user_projects
