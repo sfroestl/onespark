@@ -4,17 +4,17 @@
 <!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
 <div class="sidebar sidebar2">
 	<div id = "toolHead" class="head">
-		<h3>Milestones</h3>
+		<h3>Tasks</h3>
 	</div>
 
 	<div class="scroll-pane jspScrollable tools">
 		
 				<%= link_to new_project_milestone_path(@project) do %>
-					<div class="tool add" >Add Milestone</div>
+					<div class="tool add" >Add Tasklist</div>
 				<% end %>
 
 			<%= link_to project_milestones_path(@project) do %>
-				<div class="tool">All Milestones</div>
+				<div class="tool">All Tasks</div>
 			<% end %>
 
 			<% for milestone in @milestones %>
