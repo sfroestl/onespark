@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
-  require 'cgi'
-  require 'uri'
+  layout 'project'
 
   def index
-    @commentable = find_commentable(params[:id])
+    @commentable = find_commentable   
+    @project = @commentable.project
     @comments = @commentable.comments
   end
 
@@ -15,17 +15,29 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  def create
-    # Rails.logger.info ">> Commentable: #{find_commentable}"
-    Rails.logger.info ">> Commentable Riderict: #{request.fullpath}"
+  # def create
+  #   # Rails.logger.info ">> Commentable: #{find_commentable}"
+  #   Rails.logger.info ">> Commentable Riderict: #{request.fullpath}"
 
-    @commentable = find_commentable_by_hidden_field
-    @comment = @commentable.comments.build(content: params[:comment][:content])
+  #   @commentable = find_commentable_by_hidden_field
+  #   @comment = @commentable.comments.build(content: params[:comment][:content])
+  #   @comment.user = current_user
+  #   if @comment.save
+  #     redirect_to params[:comment][:redirect_url], :notice => "Successfully created comment."
+  #   else
+  #     redirect_to params[:comment][:redirect_url], :notice => "Add a comment content."
+  #   end
+  # end
+
+  def create
+
+    @commentable = find_commentable
+    @comment = @commentable.comments.build(params[:comment])
     @comment.user = current_user
     if @comment.save
-      redirect_to params[:comment][:redirect_url], :notice => "Successfully created comment."
+      redirect_to @commentable, :notice => "Successfully created comment."
     else
-      redirect_to params[:comment][:redirect_url], :notice => "Add a comment content."
+      redirect_to @commentable, :notice => "Add a comment content."
     end
   end
 

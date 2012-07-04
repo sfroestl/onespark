@@ -10,7 +10,8 @@ class Project < ActiveRecord::Base
   has_many :readers, :through => :project_coworkers, :source => :user, conditions: "permission == 1", dependent: :destroy
   has_many :project_coworkers, dependent: :destroy  
   has_many :tasks, :dependent => :destroy
-
+  has_many :topics, :dependent => :destroy
+  
   belongs_to :user
   has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy 
 

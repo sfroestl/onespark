@@ -1,5 +1,8 @@
 Onespark::Application.routes.draw do
+
+
   resources :comments
+  
   resources :tasks, controller: 'milestones', action: 'show' do
     resources :comments
   end
@@ -13,8 +16,11 @@ Onespark::Application.routes.draw do
     resources :github_accounts 
     
   end
-  
+  resources :topics do
+    resources :comments, :name_prefix => "topic_"
+  end
   resources :projects do
+    resources :topics
     resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
     resources :coworkers, :controller => 'project_coworkers'
     resources :milestones do
@@ -43,21 +49,25 @@ Onespark::Application.routes.draw do
   get '/profiles', :to => 'profiles#index', as: 'profiles'
   
 
-
+  # Dropbox Oauth
+  match '/projects/:project_id/dropbox/auth', to: 'tools/dropbox#authorize', as: :project_dropbox_auth
+  match '/projects/:project_id/dropbox', to: 'tools/dropbox#index', as: :project_dropbox
+  match '/projects/:project_id/dropbox/upload_file', to: 'tools/dropbox#upload', as: :dropbox_upload_file
+  match '/projects/:project_id/dropbox', to: 'tools/dropbox#show'
 
   # Github Oauth procedure
-  match '/git/auth', to: 'tools/github_accounts#auth'
+  match '/git/auth', to: 'tools/github_accounts#auth', as: :github_auth
   match '/git/callback',  to: 'tools/github_accounts#callback'
-  match '/git/unlink', to: 'tools/github_accounts#unlink'
+  match '/git/unlink', to: 'tools/github_accounts#unlink', as: :github_cunlink
   match '/git/oauth2/callback/:id' => "tools/github_accounts#callback", as: :github_callback
 
   # Github repositories
   # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
-  post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo'
+  post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
   
   # Github issues
-  post '/projects/:project_id/github_repository/close_issue/:issue_id', to: 'tools/github_repositories#close_issue'
-  post '/projects/:project_id/github_repository/create_issue', to: 'tools/github_repositories#create_issue'
+  post '/projects/:project_id/github_repository/close_issue/:issue_id', to: 'tools/github_repositories#close_issue', as: :project_github_close_issue
+  post '/projects/:project_id/github_repository/create_issue', to: 'tools/github_repositories#create_issue', as: :project_github_issue
 
 
 
