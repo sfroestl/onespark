@@ -1,6 +1,7 @@
 class Milestone < ActiveRecord::Base
   has_many :tasks
-
+  has_many :comments, :as => :commentable
+  
   belongs_to :project
   belongs_to :user
 

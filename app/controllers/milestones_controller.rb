@@ -29,14 +29,17 @@ class MilestonesController < ApplicationController
   end
 
   def index
+    @comment = Comment.new()
   end
 
   def show    
     @project ||= @milestone.project
+    @comment = Comment.new()
   end
 
   def new
     @milestone = Milestone.new
+
   end
 
   def destroy    

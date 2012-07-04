@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   belongs_to :worker, :class_name => 'User', primary_key: 'id', :foreign_key => 'worker_id'
 	belongs_to :creator, :class_name => 'User', primary_key: 'id', :foreign_key => 'creator_id'
 
+	has_many :comments, :as => :commentable
 	validates :project_id, presence: true
 	validates :creator_id, presence: true
 	validates :title, presence: true

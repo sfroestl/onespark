@@ -1,0 +1,9 @@
+<%= provide(:title, 'Comments') %>
+
+
+<% for comment in @comments %>
+  <p>Commented by <%= comment.user.username %> at <%= format_date_long(comment.created_at) %></p>
+  <p>  <%= comment.content %></p>
+<% end %>
+
+
