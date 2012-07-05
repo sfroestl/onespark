@@ -2,17 +2,18 @@
 
 	<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :title %><br />
+
 	<%= f.text_field :title, :autofocus => "autofocus" %>
-	<br />
-	<%= f.label :goal %><br />
-	<%= f.text_field :goal%>
-	<br />
-	<%= f.label :desc %><br />
-	<%= f.text_area :desc %>
-	<br />	
-	<%= f.label :due_date %><br />
+	<%= f.label :title %>
+
 	<%= f.text_field :due_date %>
+	<%= f.label :due_date %>
+
+	<%= f.text_field :goal%>
+	<%= f.label :goal %>
+	
+	<%= f.text_area :desc %>
+	<%= f.label :desc %>
 
 	<%= f.submit %>
 <% end %>

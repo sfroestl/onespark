@@ -30,12 +30,11 @@
 		<h3><a href="#add" class="tk-ff-meta-serif-web-pro">All Tasks</a></h3>
 	</div>
 
-	<div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
-		<%= link_to new_project_task_path(@project) do %>
+	<div class="scroll-pane jspScrollable">
+			<!-- HIER HABE ICH WAS GEÄNDERT!!! -->
 			<div class="task tool" id="add">
-				<p>Add Task</p>
+				<%= render "tasks/form" %>
 			</div>
-		<% end %>
 
 		<% for task in @tasks do %>
 			<div class="task">
