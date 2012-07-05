@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   def index
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :layout => ! request.xhr? }
       format.json { render json: @topics }
     end
   end

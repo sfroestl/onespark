@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  layout 'project', except: [:index]
+  layout 'project', except: [:index, :new]
   # layout 'all_projects', only: [:index]
   # before_filter :get_all_projects
   before_filter :signed_in_user

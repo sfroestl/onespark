@@ -1,0 +1,12 @@
+console.log("profile");
+
+
+
+$('.user').html('<%= escape_javascript render("form") %>');
+console.log($('.closeButton').html());
+
+$('.closeButton').click(function () {
+      $('.overlay ,.darkener').fadeOut(400, function(){
+      	$(this).remove();
+      });
+});

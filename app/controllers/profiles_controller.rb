@@ -16,6 +16,11 @@ class ProfilesController < ApplicationController
   # end
 
   def show
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @profile }
+    end
   end
 
   def index
@@ -23,13 +28,21 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
-    if @profile.update_attributes(params[:profile])
-      redirect_to profile_path(@user.username), :flash => { :success => "Successfully updated your profile." }
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @profile.update_attributes(params[:profile])
+        format.html { redirect_to profile_path(@user.username), :flash => { :success => "Successfully updated your profile." } }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
     end
   end
 

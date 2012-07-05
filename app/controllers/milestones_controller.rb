@@ -1,10 +1,7 @@
 class MilestonesController < ApplicationController
   layout 'project'
   before_filter :find_project
-  before_filter :find_project_milestones
-  before_filter :find_milestone, except: [:new, :create, :index]
-  before_filter :find_milestone_tasks, except: [:new, :create, :index]
-  before_filter :find_all_tasks, only: [:index]
+  before_filter :find_milestone, only: [:show]
 
   def create
 
@@ -28,14 +25,27 @@ class MilestonesController < ApplicationController
   def edit
   end
 
+
+  def show
+    @project ||= @milestone.project
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @project }
+    end
+  end
+
   def index
-    @comment = Comment.new()
-    @task = Task.new()
+    @projects = current_user.projects
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @projects }
+    end
   end
 
   def show    
-    @project ||= @milestone.project
-    @comment = Comment.new()
+    
   end
 
   def new
@@ -55,23 +65,7 @@ class MilestonesController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def find_project_milestones
-    @milestones = @project.milestones    
-  end
-
-  def find_tasks
-    @tasks = @milestone.tasks
-  end
-
   def find_milestone
     @milestone = Milestone.find(params[:id])
-  end
-
-  def find_milestone_tasks
-    @tasks = @milestone.tasks
-  end
-
-  def find_all_tasks
-    @tasks = @project.tasks
   end
 end

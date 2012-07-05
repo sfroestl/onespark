@@ -148,3 +148,14 @@ $("#add a").click(function (){
 });
 
 });
+
+///////////////////////////////SLIDE DOWN & UP TOOLBAR//////////////////////////////////////////////////
+
+$('.overlay .pofileOverlay .closeButton').click($('.overlay').remove());
+
+
+
+
+
+
+

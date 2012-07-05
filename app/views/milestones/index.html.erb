@@ -16,7 +16,7 @@
 				<div class="tool active">All Tasks</div>
 			<% end %>
 
-			<% for milestone in @milestones %>
+			<% for milestone in @project.milestones %>
 				<%= link_to project_milestone_path(@project, milestone) do %>
 					<div class="tool"><%= milestone.title %></div> 
 				<% end %>
@@ -31,47 +31,13 @@
 	</div>
 
 	<div class="scroll-pane jspScrollable">
-			<!-- HIER HABE ICH WAS GEÄNDERT!!! -->
+
 			<div class="task tool" id="add">
-				<%= render "tasks/form" %>
+				<%= render :partial =>"tasks/form",  :locales => { project: @project } %>
 			</div>
-
-		<% for task in @tasks do %>
-			<div class="task">
-				<h1>
-					<%= task.title %>
-				</h1>
-				<p>desc: <%= task.desc %></p>
-				<p>due: <%= format_date_long task.due_date if task.due_date %></p>
-				<p>assigned to: <%= task.worker ? task.worker.username  : 'none' %></p>
-				<p>created by: <%= task.creator.username %></p>
-				<%= link_to "Edit", edit_project_task_path(@project, task) %>
-  			<%= link_to "Delete", project_task_path(@project, task), :confirm => 'Are you sure?', :method => :delete %> 
-				<%= link_to 'Complete', '#' %>
-
-				<p>
-					<% if task.comments.empty? %>
-					  <p>No comments to display.</p>
-					<% else %>					
-					  <h2><%= link_to pluralize(task.comments.size, 'comment'), project_task_comments_path(@project, task) %></h2>
-					  <% for comment in task.comments %>
-					  <p>Commented by <%= comment.user.username %> at <%= format_date_long(comment.created_at) %></p>
-					  <p>  <%= comment.content %></p>
-					  <% end %>
-					<% end %>
-					</p>
-					<p>
-					Add Comment
-				
-					<%= form_for [@project, task, task.comments.build] do |f| %>
-					  <%= f.text_field :content %>
-					  <%= f.hidden_field :commentable_name, value: 'task' %>
-					  <%= f.hidden_field :redirect_url, value: request.fullpath %>
-					  <%= f.submit %>
-					<% end %>
-				</p>
-			</div>
-		<% end %>
+			
+			<%= render :partial => "shared/task", :collection => @project.tasks %>
+		
 
 		
 	</div>

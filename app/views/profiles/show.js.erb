@@ -1,0 +1,14 @@
+
+
+
+if($('.overlay').length > 0){
+	$('.overlay').replaceWith('<%= escape_javascript render("show_profile") %>');
+}else{
+	$('body').append('<%= escape_javascript render("show_profile") %>');
+}
+
+$('.closeButton').click(function () {
+      $('.overlay ,.darkener').fadeOut(400, function(){
+      	$(this).remove();
+      });
+});

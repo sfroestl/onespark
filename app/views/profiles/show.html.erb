@@ -1,71 +1,72 @@
 <% provide(:title, "#{@user.username}") %>
 
-<%= link_to  'Your projects', projects_path %>
+  <%= link_to  'Your projects', projects_path %>
 
-<% if @user == current_user %>
-  
-  <h1>Welcome <%= @user.username %></h1>    
-        <%= link_to "Edit", edit_profile_path(@user.username)%> 
-
-<% else %>
-  <h1><%= @user.username %></h1>
-<% end %>
-
-
-<%= image_tag "avatars/avatar.png", size: "100x100" %>
-<h2>Details</h2>
-<strong>Forename:</strong>
-<%= @profile.forename %>
-
-<strong>Surname:</strong>
-<%= @profile.surname %>
-
-<strong>City:</strong>
-<%= @profile.city %>
-
-<strong>About:</strong>
-<%= @profile.about %>
-
-<h2>Workmates</h2>
-  <ul>
-    <% for friend in @friends %>
-      <li>
-        <%= image_tag "avatars/avatar.png", size: "30x30" %>
-        <%= friend.username %> 
-
-        <% if @user == current_user %>
-        | <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
-        <% end %>
-      </li>
-    <%end%>
+  <% if @user == current_user %>
     
-  </ul>
-  
+    <h1>Welcome <%= @user.username %></h1>    
+          <%= link_to "Edit", edit_profile_path(@user.username)%> 
 
-<% if @user == current_user %>
-  <h2>Pending</h2>
+  <% else %>
+    <h1><%= @user.username %></h1>
+  <% end %>
+
+
+  <%= image_tag "avatars/avatar.png", size: "100x100" %>
+  <h2>Details</h2>
+  <strong>Forename:</strong>
+  <%= @profile.forename %>
+
+  <strong>Surname:</strong>
+  <%= @profile.surname %>
+
+  <strong>City:</strong>
+  <%= @profile.city %>
+
+  <strong>About:</strong>
+  <%= @profile.about %>
+
+  <h2>Workmates</h2>
     <ul>
-      <% for friend in @pending_friends %>
+      <% for friend in @friends %>
         <li>
           <%= image_tag "avatars/avatar.png", size: "30x30" %>
-          <%= friend.username %> |    
-          <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
+          <%= friend.username %> 
+
+          <% if @user == current_user %>
+          | <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+          <% end %>
+        </li>
+      <%end%>
+      
+    </ul>
+    
+
+  <% if @user == current_user %>
+    <h2>Pending</h2>
+      <ul>
+        <% for friend in @pending_friends %>
+          <li>
+            <%= image_tag "avatars/avatar.png", size: "30x30" %>
+            <%= friend.username %> |    
+            <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
+          </li>
+        <%end%>
+      </ul>
+      
+    <h2>Requested</h2>
+    <ul>
+      <% for friend in @requested_friends %>
+        <li>
+          <%= image_tag "avatars/avatar.png", size: "30x30" %>
+          <%= friend.username %> | 
+          <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
+          <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
         </li>
       <%end%>
     </ul>
-    
-  <h2>Requested</h2>
-  <ul>
-    <% for friend in @requested_friends %>
-      <li>
-        <%= image_tag "avatars/avatar.png", size: "30x30" %>
-        <%= friend.username %> | 
-        <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
-        <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
-      </li>
-    <%end%>
-  </ul>
-<% end %>
+  <% end %>
 
-<%= link_to 'settings', current_user %>
+  <%= link_to 'settings', current_user %>
+
   

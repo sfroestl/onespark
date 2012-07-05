@@ -19,7 +19,11 @@ namespace :db do
     #     milestone.due_date = 1.week.from_now..1.year.from_now
     #   end
     # end
-    
+    User.create!(username: "Jogga",
+                 email: "bob@onespark.de",
+                 password: "jogga0",
+                 password_confirmation: "jogga0")
+    User.find_by_username("bob").create_profile!(forename: "Joachim", surname:"Fröstl", city:"München", desc:"Der ganze Bua a Depp!")
 
     User.create!(username: "bob",
                  email: "bob@onespark.de",
@@ -31,7 +35,7 @@ namespace :db do
                  email: "sebastian@froestl.com",
                  password: "asdasd",
                  password_confirmation: "asdasd")
-    User.find_by_username("sfroestl").create_profile!(forename: "Sebastian", surname:"Froestl", city:"Dresden")
+    User.find_by_username("sfroestl").create_profile!(forename: "Sebastian", surname:"Froestl", city:"Dresden", desc:"Hallo ich bin der Sebi und ich klebi am ruby code – heut nacht wird durchgemacht. Yeah.")
 
     User.create!(username: "jsnow",
                  email: "snow@winterfell.com",
