@@ -3,11 +3,7 @@
 <% if @user == current_user %>
   <h1>Settings of <%= @user.username %></h1>
 <% end %>
-  <hr class="soften">
-  <div class="row-fluid offset3">
-    
-<!-- ////// left column ////// -->
-    <div class="span4">
+
     	<h2>Account details</h2>
 			<h5><%= @user.email %></h5> <br/>
 			Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
@@ -15,13 +11,12 @@
 			<p><%= link_to "Edit account", edit_user_path(@user.username)%></p>
 		</div>
 
-<!-- ////// Right column ////// -->
-		<div class="span4">
 			<h2>Linked tools</h2>
-			<ul class="unstyled">
+			<ul>
 
 			<!-- ////// Github column ////// -->
-				<li><h3>GitHub</h3>
+				<li>
+					<h2>GitHub</h2>
 					<% if @github_account.nil? %>
 						<p><%= link_to 'Add GitHub account', "/git/auth"%></p>
 					<% else %>
@@ -30,12 +25,18 @@
 						</p>
 					<% end %>
 				</li>
-				<br/>
 					
 
 			<!-- ////// DropBox column ////// -->
-				<li><h3>DropBox</h3>
-
+				<li>
+					<h2>DropBox</h2>
+					<% if @dropbox_account.nil? %>
+						<p><%= link_to 'Add DropBox account', user_dropbox_auth_path(@user) %></p>
+					<% else %>
+						<p><%= link_to "View your GitHub repositories", user_github_repositories_path(@user) %> </p>
+						<p><%= link_to 'Remove GitHub account', "/git/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%>
+						</p>
+					<% end %>
 				</li>
 				</ul>
 

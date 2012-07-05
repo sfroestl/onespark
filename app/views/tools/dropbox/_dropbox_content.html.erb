@@ -1,0 +1,22 @@
+  <div id = "contentHead" class="head">
+      <h3><a href="#add" class="tk-ff-meta-serif-web-pro">/</a></h3>
+    </div>
+
+    <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+        <div class="task tool" id="add">
+          <p><%= render 'form_file' %></p>
+        </div>
+
+      <div class="task">
+        <h1>Your account info</h2>
+        <p><%= account_info['display_name'] %> | <%= account_info['email'] %> </p>
+        
+        <p>Space used overall: <%= number_to_human_size account_info['quota_info']['normal'] %> of <%= number_to_human_size @account_info['quota_info']['quota'] %></p>
+        <p>Space used for shared folders: <%= number_to_human_size account_info['quota_info']['shared'] %></p>
+        
+        <h2>Overview</h2>
+        <p>You have <%= pluralize(folders.size, 'folder')%></p>
+        <p>You have <%= pluralize(files.size, 'files')%></p>
+      </div>
+      
+    </div>

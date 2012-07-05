@@ -1,0 +1,38 @@
+
+<% if current_user %>
+  <h1>Your account settings <%= current_user.username %></h1>
+    
+
+    	<h2>Account details</h2>
+			<h5><%= current_user.email %></h5> <br/>
+			Member since: <%= @user.created_at.strftime('%d.%m.%Y') %><br/>
+			<p>Account type: Demo</p>
+			<p><%= link_to "Edit account", edit_user_path(current_user.username)%></p>
+		</div>
+
+
+			<h2>Linked tool accounts</h2>
+			<ul>
+
+			<!-- ////// Github column ////// -->
+				<li><h2>GitHub</h2>
+					<% if @github_account.nil? %>
+						<p><%= link_to 'Add GitHub account', "/git/auth"%></p>
+					<% else %>
+						<p><%= link_to "View your GitHub repositories", user_github_repositories_path(current_user) %> </p>
+						<p><%= link_to 'Remove GitHub account', "/git/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%>
+						</p>
+					<% end %>
+				</li>
+				<br/>
+					
+
+			<!-- ////// DropBox column ////// -->
+				<li><h2>DropBox</h2>
+
+				</li>
+				</ul>
+
+		</div>
+	</div>
+<% end %>	

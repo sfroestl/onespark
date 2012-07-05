@@ -30,9 +30,13 @@ class CommentsController < ApplicationController
   # end
 
   def create
-
+    # if
+    @request_url = request.env['HTTP_REFERER']
+    # else
+    
+    Rails.logger.info "COMMENTS: Requesturl: #{@request_url}"
     @commentable = find_commentable
-    @comment = @commentable.comments.build(params[:comment])
+    @comment = @commentable.comments.build(params[:comment][:content])
     @comment.user = current_user
     if @comment.save
       redirect_to @commentable, :notice => "Successfully created comment."

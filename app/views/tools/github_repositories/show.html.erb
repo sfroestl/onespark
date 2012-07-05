@@ -1,79 +1,54 @@
-<%= provide(:title, "Github Repository") %>
+<%= provide(:title, 'Github') %>
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Github</h3>
+  </div>
 
-<div class="container-fluid">
-  <div class = "span10 offset1">
-    <% if @project %>
-      <h1><%= @project.title %></h1> 
-        
-<!-- ////// navigation ////// -->
-      <ul class="nav nav-pills">
-        <li><%= link_to "Dashboard", project_path(@project) %></li>
-        <li><%= link_to "Coworkers", project_coworkers_path(@project) %></li>
-        <li><%= link_to "Milestones", project_milestones_path(@project) %></li>
-        <li><%= link_to "Files", "project_files_path(@project)" %></li>
-        <li class="active"><%= link_to "GitHub", project_github_repository_path(@project) %></li>
-        <li><%= link_to "Dialogs", "project_dialogs_path(@project)" %></li>
-      </ul>
-      <hr class="soften"/>
-				
+  <div class="scroll-pane jspScrollable tools">
+    
+    <%= link_to project_github_link_repo_path(@project) do %>
+      <div class="tool add" >Add Dropbox Account</div>
+    <% end %>
 
-        <div class="row-fluid">
+    <%= link_to project_dropbox_path(@project) do %>
+      <div class="tool ">...</div>
+    <% end %>
 
-<!-- ////// left column ////// -->
-        	<div class="span5">  
-	        	<h2>Github Repository</h2>
-						
-						<% if @github_repository.nil? %>
-							<p><%= link_to "Link GitHub repository", new_project_github_repository_path %></p>
-						
-						<% else %>
-							<h3><%= @repo_data.name.capitalize %> </h3>
-							<p>Description: <%= @repo_data.description %></p>
+    <!-- Mit Query machen!! -->
+    <%= link_to "#{project_dropbox_path(@project)}/folder?folder_path=#{folder['path']}" do %>
+        <div class="tool active"><%= @folder['path'] %></div> 
+    <% end %>
 
-							<p>Owner: <%= @repo_data.owner['login'] %></p>
-							<p>Created: <%= format_date_long(@repo_data.created_at) %></p>
-							<p>Last pushed: <%= format_date_long(@repo_data.pushed_at) %></p>
-							<p>Html_url: <%= link_to "#{@repo_data.html_url}", @repo_data.html_url, :target => "_blank" %></p>
-							<p>Watchers: <%= @repo_data.watchers %></p>
-							
-							<p><%= link_to 'Unlink repository', project_github_repository_path, :confirm => 'Are you sure?', :method => :delete %></P>
-						<% end %>
-					</div>
+    <% for folder in @folders %>
+      <%= link_to "#{project_dropbox_path(@project)}" do %>
+        <div class="tool"><%= folder['path'] %></div> 
+      <% end %>
+    <% end %>
+      
+  </div>
+</div>
 
-<!-- ////// Right column ////// -->
-					<div class="span7">  
-						<h2>Manage Repository</h2>
 
-<!-- ////// Opend issues ////// -->
-						<h3>Issues</h3>
-							<% unless @repo_issues.nil? %>							
-								<ul>
-									<% @repo_issues.each do |issue| %>
-										<li>
-		<!-- ////// Singel issue ////// -->
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= @folder['path']%></a></h3>
+  </div>
 
-											<strong><%= issue.title %></strong> 
-											<%= link_to 'view', "#{issue.html_url}", :target => "_blank" %><br/> 
-											
-											assigned to: 
-												<% begin issue.assignee %>
-													<%= issue.assignee['login'] %> 
-												<% rescue Exception %>
-												<% end %> <br/> 
-											created: <%= format_date_short issue.created_at %><br/> 
-											comments: <%= issue.comments %> <br/>
-											
-											<%= link_to 'close', "github_repository/close_issue/#{issue.number}", :method => :post, :confirm => "Close issue: \"#{issue.title}\" on GiHub?" %>
-										</li>
-									<% end %>
-								</ul>
-							<% end %>
-<!-- ////// Create issue ////// -->
-							<h5>Create issue</h5>
-							<%= render 'form_issue'%>
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+      <div class="task tool" id="add">
+        <p>
+          <%= form_tag({:action => :upload}, :multipart => true) do %>
+            Add File <%= file_field_tag 'file' %><%= submit_tag 'upload' %>
+          <% end %></p>
+      </div>
 
-					</div>
-				</div>
-			<% end %>
+    <div class="task">           
+      <h2>Overview</h2>
+      <p>You have <%= pluralize(@folders.size, 'folder')%></p>
+      <p>You have <%= pluralize(@files.size, 'files')%></p>
+    </div>
+    
   </div>
 </div>

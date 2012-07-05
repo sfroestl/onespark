@@ -61,9 +61,7 @@
 				<div class="tool coworkers" >Coworkers</div>
 			<% end %>
 
-			<%= link_to project_dropbox_path(@project) do %>
-				<div class="tool files" >DropBox</div>
-			<% end %>			
+			<%= link_to content_tag('div', 'DropBox', class: 'tool files'), project_dropbox_path(@project),  'data-disable-with' => '<div class ="tool active files ">loading...</div>' %>
 			
 			<%= link_to project_milestones_path(@project) do %>
 				<% if yield(:active) == 'milestones' %>
@@ -73,7 +71,7 @@
 				<% end %>
 			<% end %>		
 
-			<%= link_to '' do %>
+			<%= link_to project_github_path(@project) do %>
 				<div class="tool milestones" >GitHub</div>
 			<% end%>
 
@@ -100,11 +98,17 @@
 	</div>
 
 
-
 	<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 
 	<%= yield %>
 
+	<!-- ///////////////////////////////////Debug//////////////////////////////////////////-->
+<div class= "debug">
+	<% if Rails.env.development? %>
+		<%= debug(params) %>
+		<%= debug(current_user) if current_user %>
+	<% end %>
+</div>
 
 <script type="text/javascript">
 

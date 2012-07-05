@@ -12,6 +12,8 @@ gem 'rest-client', '~> 1.6.7'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'thin'
+
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'

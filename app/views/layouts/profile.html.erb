@@ -30,6 +30,14 @@
 	<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 	<%= yield %>
 
+		<!-- ///////////////////////////////////Debug//////////////////////////////////////////-->
+<div class= "debug">
+	<% if Rails.env.development? %>
+		<%= debug(params) %>
+		<%= debug(current_user) if current_user %>
+	<% end %>
+</div>
+
 <script type="text/javascript">
 
 var scroll = $('.scroll-pane');

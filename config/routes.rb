@@ -51,9 +51,13 @@ Onespark::Application.routes.draw do
 
   # Dropbox Oauth
   match '/projects/:project_id/dropbox/auth', to: 'tools/dropbox#authorize', as: :project_dropbox_auth
+  match '/dropbox/auth', to: 'tools/dropbox#authorize', as: :user_dropbox_auth
   match '/projects/:project_id/dropbox', to: 'tools/dropbox#index', as: :project_dropbox
   match '/projects/:project_id/dropbox/upload_file', to: 'tools/dropbox#upload', as: :dropbox_upload_file
-  match '/projects/:project_id/dropbox', to: 'tools/dropbox#show'
+  match '/projects/:project_id/dropbox/folder', to: 'tools/dropbox#show'
+  match '/projects/:project_id/dropbox/download', to: 'tools/dropbox#download', as: :dropbox_download
+  
+
 
   # Github Oauth procedure
   match '/git/auth', to: 'tools/github_accounts#auth', as: :github_auth
@@ -64,7 +68,9 @@ Onespark::Application.routes.draw do
   # Github repositories
   # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
   post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
-  
+  match '/projects/:project_id/github/link_repo', to: 'tools/github_repository#link_repo'
+  match '/projects/:project_id/github/', to: 'tools/github_repository#index', as: :project_github
+
   # Github issues
   post '/projects/:project_id/github_repository/close_issue/:issue_id', to: 'tools/github_repositories#close_issue', as: :project_github_close_issue
   post '/projects/:project_id/github_repository/create_issue', to: 'tools/github_repositories#create_issue', as: :project_github_issue

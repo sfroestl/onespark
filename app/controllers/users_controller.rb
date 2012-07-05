@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'profile'
   before_filter :signed_in_user, only: [:show, :edit, :update, :destroy]
   before_filter :correct_user
  

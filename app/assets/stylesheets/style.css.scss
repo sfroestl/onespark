@@ -344,12 +344,13 @@ h3 {
 		a {
 			color:white;
 		}
-	}
-
-	.active {
+		&.active {
 		background-image: url(../assets/img/sidebar-tools-active.png);
 		background-color:$sidebarDarkSeperator;
+		}
 	}
+
+	
 	.add {
 		border-bottom: 1px solid $sidebarDarkSeperator;
 		background-image:none;

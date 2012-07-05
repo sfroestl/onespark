@@ -3,8 +3,10 @@
 <%= link_to  'Your projects', projects_path %>
 
 <% if @user == current_user %>
+  
   <h1>Welcome <%= @user.username %></h1>    
         <%= link_to "Edit", edit_profile_path(@user.username)%> 
+
 <% else %>
   <h1><%= @user.username %></h1>
 <% end %>
@@ -24,7 +26,7 @@
 <strong>About:</strong>
 <%= @profile.about %>
 
-<h2>Friends</h2>
+<h2>Workmates</h2>
   <ul>
     <% for friend in @friends %>
       <li>
@@ -41,7 +43,7 @@
   
 
 <% if @user == current_user %>
-  <h2>Pending friendships </h2>
+  <h2>Pending</h2>
     <ul>
       <% for friend in @pending_friends %>
         <li>
@@ -52,7 +54,7 @@
       <%end%>
     </ul>
     
-  <h2>Requested friendships </h2>
+  <h2>Requested</h2>
   <ul>
     <% for friend in @requested_friends %>
       <li>
@@ -64,4 +66,6 @@
     <%end%>
   </ul>
 <% end %>
+
+<%= link_to 'settings', current_user %>
   
