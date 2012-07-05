@@ -36,11 +36,11 @@ class MilestonesController < ApplicationController
   end
 
   def index
-    @projects = current_user.projects
-    
+    Rails.logger.info ">> Milestones of Project: #{@project.title}"
+    @task = Task.new
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @projects }
+      format.json { render json: @project.milestones }
     end
   end
 

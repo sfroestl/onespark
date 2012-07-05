@@ -65,11 +65,15 @@
 			
 			<%= link_to project_milestones_path(@project) do %>
 				<% if yield(:active) == 'milestones' %>
-					<div class="tool milestones active" >Tasks</div>
+					<div class="tool milestones active" >Milestones</div>
 				<% else %>
-					<div class="tool milestones" >Tasks</div>
+					<div class="tool milestones" >Milestones</div>
 				<% end %>
 			<% end %>		
+
+			<%= link_to project_tasklists_path(@project) do %>
+				<div class="tool milestones" >Tasks</div>
+			<% end%>
 
 			<%= link_to project_github_path(@project) do %>
 				<div class="tool milestones" >GitHub</div>

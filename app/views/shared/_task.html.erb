@@ -7,9 +7,8 @@
 	<p>assigned to: <%= task.worker ? task.worker.username  : 'none' %></p>
 	<p>created by: <%= task.creator.username unless task.creator.nil? %></p>
 	
-	<%= link_to 'Edit', edit_project_task_path(task.project, task) %>
+	<% if task.comments %>
+		<%= link_to pluralize(task.comments.size, 'comment'), project_task_comments_path(@project, task) %>
 
-	<%= link_to 'Delete', project_task_path(task.project, task), :method => :delete, :confirm => 'Are you sure?'%> 
-	
-	<%= link_to 'Complete', '#' %>
+	<% end %>
 </div>

@@ -1,0 +1,25 @@
+<% @tasklist ||= Tasklist.new %>
+<%= form_for [@project, @tasklist] do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+    <%= f.label :title,  'Tasklist Name' %>
+    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :due_date,  'Due Date' %>
+    <%= f.text_field :due_date, placeholder:"When is it due?"  %>
+  </fieldset>
+  
+  <fieldset>
+    <%= f.label :desc, 'Description' %>
+    <%= f.text_area :desc, placeholder: "Whish to add further details?" %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit %>
+    <fieldset>
+<% end %>

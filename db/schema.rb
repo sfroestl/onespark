@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704093637) do
+ActiveRecord::Schema.define(:version => 20120705232835) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -85,6 +85,19 @@ ActiveRecord::Schema.define(:version => 20120704093637) do
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
+  create_table "tasklists", :force => true do |t|
+    t.text     "title"
+    t.text     "desc"
+    t.date     "due_date"
+    t.integer  "creator_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tasklists", ["creator_id"], :name => "index_tasklists_on_creator_id"
+  add_index "tasklists", ["project_id"], :name => "index_tasklists_on_project_id"
+
   create_table "tasks", :force => true do |t|
     t.integer  "project_id"
     t.integer  "milestone_id"
@@ -95,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20120704093637) do
     t.integer  "worker_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "tasklist_id"
   end
 
   add_index "tasks", ["creator_id"], :name => "index_tasks_on_creator_id"

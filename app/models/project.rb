@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
   attr_accessible :desc, :due_date, :title
 
   has_many :milestones, :dependent => :destroy # ensures to destroy all milestones related to project
+  has_many :tasklists, :dependent => :destroy # ensures to destroy all tasklists related to project
+  
   has_many :coworkers, :through => :project_coworkers, :source => :user, dependent: :destroy
   has_many :admins, :through => :project_coworkers, :source => :user, conditions: "permission == 3", dependent: :destroy
   has_many :writers, :through => :project_coworkers, :source => :user, conditions: "permission == 2", dependent: :destroy

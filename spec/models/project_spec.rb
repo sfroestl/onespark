@@ -11,6 +11,8 @@ describe Project do
   it { should respond_to(:desc) }
   it { should respond_to(:due_date) }
   it { should respond_to(:user_id) }
+  it { should respond_to(:milestones) }
+  it { should respond_to(:tasklists) }
   it { should respond_to(:project_coworkers) }
   it { should respond_to(:coworkers) }
   it { should respond_to(:admin?) }

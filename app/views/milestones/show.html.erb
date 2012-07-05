@@ -52,7 +52,7 @@
 			</div>
 
 		
-		<%= render :partial => "shared/task", :collection => @milestone.tasks %>
+		<%= render :partial => "shared/task", :collection => @milestone.tasks unless @milestone.tasks.nil? %>
 
 		
 	</div>

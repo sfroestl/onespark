@@ -16,6 +16,7 @@ describe Task do
   it { should respond_to(:worker) }
   it { should respond_to(:creator) }
   it { should respond_to(:milestone) }
+  it { should respond_to(:tasklist) }
   it { should respond_to(:project) }
 
 	describe "should have creator but bo worker" do

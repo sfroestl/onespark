@@ -1,30 +1,31 @@
-  <%= form_for [@project, @project.tasks.build] do |f| %>
+<% @task ||= Task.new %>
+<%= form_for [@project, @task] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.hidden_field :milestone_id, value: @milestone.id unless @milestone.nil? %>
-  
+  <%= f.hidden_field :tasklist_id, value: @tasklist.id if @tasklist %>
+
   <fieldset>
-  <%= f.label :title,  'Create a new Task' %>
-  <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
+    <%= f.label :title,  'Create a new Task' %>
+    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
   </fieldset>
   <div  class="details">
-  <fieldset>
-  <%= f.label :due_date,  'Due Date' %>
-  <%= f.text_field :due_date, placeholder:"When is it due?"  %>
-  </fieldset>
-  <fieldset>
-  <%= f.label :worker,  'Coworker' %>
-  <%= f.text_field :worker, placeholder:"Who should work this task?"  %>
-  </fieldset>
-  <fieldset>
-  <%= f.label :desc,  'Description' %>
-  <%= f.text_area :desc, placeholder: "Do you want to add further details?" %>
-  </fieldset>
-  <fieldset>
-  <%= f.label  'Finish' %>
-  <%= f.submit %>
-  <a class="cancelButton">Cancel</a>
-  </fieldset>
+    <fieldset>
+      <%= f.label :due_date,  'Due Date' %>
+      <%= f.text_field :due_date, placeholder:"When is it due?"  %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :worker,  'Coworker' %>
+      <%= f.text_field :worker, placeholder:"Who should work this task?"  %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :desc,  'Description' %>
+      <%= f.text_area :desc, placeholder: "Whish to add further details?" %>
+    </fieldset>
+    <fieldset>
+      <%= f.label  'Finish' %>
+      <%= f.submit %>
+    <a class="cancelButton">Cancel</a>
+    </fieldset>
   </div>
 <% end %>
 

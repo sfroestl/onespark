@@ -36,9 +36,7 @@
 				<%= render :partial =>"tasks/form",  :locales => { project: @project } %>
 			</div>
 			
-			<%= render :partial => "shared/task", :collection => @project.tasks %>
-		
-
+					<%= render :partial => "shared/task", :collection => @project.tasks, :locales => { project: @project }%>
 		
 	</div>
 </div>

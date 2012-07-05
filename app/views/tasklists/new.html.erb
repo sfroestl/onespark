@@ -1,0 +1,28 @@
+<%= provide(:title, 'Add Tasklists') %>
+
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Tasks</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    <%= render 'sidebar' %>
+  </div>
+</div>
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro">Add Tasks</a></h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable">
+
+      <div class="task tool" id="add">
+      	<%= render 'form' %>
+      </div>
+      
+    
+  </div>
+</div>

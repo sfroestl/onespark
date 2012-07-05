@@ -2,18 +2,27 @@
 
 	<%= render 'shared/error_messages', object: f.object %>
 
+	<fieldset>
+    <%= f.label :title,  'Tasklist Name' %>
+    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
+  </fieldset>
 
-	<%= f.text_field :title, :autofocus => "autofocus" %>
-	<%= f.label :title %>
+	<fieldset>
+    <%= f.label :due_date,  'Due Date' %>
+    <%= f.text_field :due_date, placeholder:"When is it due?"  %>
+    </fieldset>
+	<fieldset>
 
-	<%= f.text_field :due_date %>
-	<%= f.label :due_date %>
+		<%= f.label :goal %>
+		<%= f.text_field :goal, placeholder: "Define the goal!"%>
+  </fieldset>	
+	<fieldset>
 
-	<%= f.text_field :goal%>
-	<%= f.label :goal %>
-	
-	<%= f.text_area :desc %>
-	<%= f.label :desc %>
-
-	<%= f.submit %>
+		<%= f.label :desc, 'Description' %>
+		<%= f.text_area :desc, placeholder: "Whish to add further details?" %>
+  </fieldset>
+	<fieldset>
+		<%= f.label  'Finish' %>
+		<%= f.submit %>
+		<fieldset>
 <% end %>
