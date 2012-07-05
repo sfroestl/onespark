@@ -20,7 +20,7 @@ ACCESS_TYPE = :dropbox #The two valid values here are :app_folder and :dropbox
 class Tools::DropboxController < ApplicationController
   layout 'project'
 
-  before_filter :find_project
+  before_filter :find_project, except: [:authorize]
 
     def authorize
         if not params[:oauth_token] then
@@ -35,9 +35,8 @@ class Tools::DropboxController < ApplicationController
             dbsession = DropboxSession.deserialize(session[:dropbox_session])
             dbsession.get_access_token  #we've been authorized, so now request an access_token
             session[:dropbox_session] = dbsession.serialize
-
-            Rails.logger.info ">> DropBox API get_access_token: #{dbsession}"
-            redirect_to :action => 'index', :flash => { :success => 'Successfully linked DropBox account!' }
+            Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
+            redirect_to current_user, :flash => { :success => 'Successfully linked DropBox account!' }
         end
     end
 
@@ -82,8 +81,8 @@ class Tools::DropboxController < ApplicationController
     def index
       # Check if user has no dropbox session...re-direct them to authorize
         return redirect_to(:action => 'authorize') unless session[:dropbox_session]
-
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
+        Rails.logger.info ">> DropBox token: #{dbsession.access_token}"
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
         info = client.account_info # look up account information
         Rails.logger.info ">> DropBox API index: account_info#{info.inspect}"
