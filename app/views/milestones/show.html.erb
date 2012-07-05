@@ -46,11 +46,11 @@
 
 	<div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
 
-		<%= link_to new_project_milestone_task_path(@project, @milestone) do %>
+
 			<div class="task tool" id="add">
-				<p>Add Task</p>
+				<%= render "tasks/form" %>
 			</div>
-		<% end %>
+
 		
 		<% for task in @tasks do %>
 			<div class="task">

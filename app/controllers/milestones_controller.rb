@@ -30,6 +30,7 @@ class MilestonesController < ApplicationController
 
   def index
     @comment = Comment.new()
+    @task = Task.new()
   end
 
   def show    

@@ -8,10 +8,11 @@ $sidebarDark: #151515;
 $sidebarDarkSeperator: #101010;
 $sidebarDarkInput: #efefef;
 $sidebarGrey: #efefef;
-$sidebarGreySeperator : #ddd;
+$sidebarGreySeperator : #ccc;
 $onesparkOrange: #ff0000;
 $softWhite: #fcfcfc;
-
+$activeBlue: rgba(0,130,200, .3);
+$toolbarGrey: #fafafa;
 /*
  * ------------------------------------------------------------------------------------------
  * Fonts
@@ -34,6 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1em;
 	font-family: $officina;
 	font-weight:normal;
+	a{
+		font-family:$officina;
+	}
 }
 
 // Mixins ///////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +84,14 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: 		$x $y $blur $spread $color;
 }
 
-@mixin gradient( $color1: rgb(255,255,255), $color2:rgb(235,235,235)){
+@mixin innerShadow($x: 0px, $y:2px, $blur:5px, /*$spread:0px,*/ $color: rgba(0,0,0,.5)){
+
+	-moz-box-shadow: inset $x $y $blur $color;
+	-webkit-box-shadow: inset $x $y $blur $color;
+	box-shadow: inset $x $y $blur $color;
+}
+
+@mixin gradient( $color1: rgb(245,245,245), $color2:rgb(235,235,235)){
 	background-image: linear-gradient(bottom, $color1 100%, $color2 0%);
 	background-image: -o-linear-gradient(bottom, $color1 100%, $color2 0%);
 	background-image: -moz-linear-gradient(bottom, $color1 100%, $color2 0%);
@@ -94,6 +105,20 @@ h1, h2, h3, h4, h5, h6 {
 		color-stop(1, $color1),
 		color-stop(0, $color2)
 	);
+}
+
+@mixin multipleTransitions($property1, $property2){
+	/* Firefox */
+	-moz-transition: $property1, $property2;
+
+	/* WebKit */
+	-webkit-transition:  $property1, $property2;
+	
+	/* Opera */
+	-o-transition:  $property1, $property2;
+	
+	/* Standard */
+	transition:  $property1, $property2;
 }
 
 // Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
@@ -127,14 +152,57 @@ h3 {
 	color: $onesparkOrange;
 }
 
-.tool{
-	line-height: 4em;
-	height: 4em;
-	cursor: pointer;
-}
-
 .noFocus:focus {
     outline: none;
+}
+
+form {
+	input, textarea, .cancelButton {
+		font-size:1em;
+		margin: 0;
+		padding: 1em 1.2em;	
+	}
+
+	fieldset{
+		border:none;
+	}
+
+	textarea, input {
+		display: block;
+	}
+
+	textarea, input[type="text"] {
+		border: 1px solid $sidebarGreySeperator;
+		background: $softWhite;
+		@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
+		&:focus{
+			background: white;
+			border: 1px solid $activeBlue;
+			@include innerShadow(0, 0, 5px, $activeBlue);
+		}
+	}
+
+	input[type="submit"], .cancelButton {
+		cursor:pointer;
+		border:1px solid $sidebarGreySeperator;
+		background-color:$sidebarGrey;
+		color: $sidebarDark;
+		@include gradient;
+		//@include multipleTransitions(background-image .2s ease-in-out, color .2s ease-in-out);
+		
+		&:hover, &:focus {
+			border:1px solid $sidebarGreySeperator;
+			color:black;
+			@include gradient(rgba(215,215,215,1), rgba(205,205,205,1));
+			//@include shadow(0px, 1px, 2px, 0, rgba(0,0,0, .2));
+		}
+		
+		&:active{
+			color:white;
+			border:1px solid black;
+			background: black;
+		}
+	}
 }
 
 // Account Features ////////////////////////////////////////////////////////////////////////
@@ -151,17 +219,19 @@ h3 {
 		color: black;
 		padding-left: 4em;
 		margin-right:-4em;
-		height:2.5em;
-		background-color:$sidebarDarkInput;
+		height:2.45em;
+		//background-color:$sidebarDarkInput;
 		background-image: url(../assets/img/search.gif);
 		background-repeat: no-repeat;
 		background-position: 1em center;
 		border:none;
+		border-bottom: 1px solid $sidebarGreySeperator;
 		border-top: 1px solid $sidebarGreySeperator;
 	}
 	
 	ul {			
 		li {
+			@include gradient;
 			height: 2.5em;
 			width: 3em;
 			float:left;
@@ -296,6 +366,11 @@ h3 {
 	a{
 		text-decoration:none;
     color: white;
+	}
+	.tool{
+		line-height: 4em;
+		height: 4em;
+		cursor: pointer;
 	}
 }
 
@@ -433,7 +508,7 @@ h3 {
 		}
 	}
 	.active {
-		background-color:$sidebarGrey;
+		//background-color:$sidebarGrey;
 	}
 	a{
 		color:black;
@@ -443,38 +518,110 @@ h3 {
 // Content //////////////////////////////////////////////////////////////////////////
 
 .content{
-	//@include shadow;
+	width:50%;
+	max-width:100%;
 	position:relative;
 	z-index:200;
 	border-left:solid 1px $sidebarGrey;
 	&:focus{
 		outline:none;
 	}
-	float:left;
+	position:absolute;
+	top:0;
+	left:31.9em;
 	height:100%;
 	overflow:hidden;
-	width: 50em;
 	background-color: $softWhite;
 	.head{
 		border-bottom:1px solid $sidebarGrey;
 	}
-
+	/*
 	#add {
+		cursor: auto;
 		height:4em;
 		padding-top:0;
-		padding-bottom:0;
+		padding:0;
 		@include transition(background-color, 0.1s, linear);
+		
+		*{
+			margin-right:.5em;
+		}
+		
 		&:hover{
-			background-color: $sidebarGrey;
+			//background-color: $activeBlue;
+		}
+		form {
+			fieldset {
+				float:left;
+			}
+			label {
+				padding: 0 2.5em 0 1.5em;
+				line-height: 4em;
+				margin-right:2em;
+				cursor:pointer;
+				display:block;
+				float:left;
+				background: $sidebarGrey url(/wp-content/themes/pears/images/tag-bg.png) no-repeat 0 50%;
+				&:hover{
+					background-color: $sidebarGreySeperator;
+				}
+			}
+			input {
+				//position:relative;
+				//z-index:220;
+				margin-top:.375em;
+			}
+		}
+	}*/
+	#add {
+		cursor: auto;
+		min-height:4em;
+		padding-top:0;
+		padding:0;
+		@include transition(background-color, 0.1s, linear);
+
+		form {
+			padding-top: .375em;
+			fieldset {
+				margin-bottom: .375em;
+			}
+			label {
+				width: 10em;
+				margin-top:1em;
+				border:1px solid $toolbarGrey;
+				padding: 1em 1em;
+				margin: 0 .5em;
+				cursor:pointer;
+				display:block;
+				float:left;
+				background: $sidebarGrey url(../assets/img/head-add.png) no-repeat 100% 50%;
+				@include transition(background-color, .2s, ease-in-out);
+				&:hover{
+					background-color: $sidebarGreySeperator;
+				}
+			}
+			input[type="submit"]{
+				float:left;
+			}
+			.details {
+				display:none;
+			}
+			textarea{
+				height:8em;
+			}
+			.cancelButton{	
+				float:left;
+				display:block;
+			}
 		}
 	}
+
 	.task{
-		//@include shadow(0px, 1px, 2px, 0px, rgba(0,0,0,.5));
 		border-bottom: 1px solid $sidebarGrey;
 		background: $softWhite;
 		margin-left:0;
 		padding:1.5em;
-		height: 30em;
+		height: auto;
 		width:auto;
 
 		h1 {
@@ -482,11 +629,11 @@ h3 {
 		}    
 	}
 
-  a {
-    color:black;
-      &:hover{
-        color: $onesparkOrange;
-      }
+ 	a {
+   		color:black;
     }
 }
+
+
+
 
