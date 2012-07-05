@@ -1,0 +1,15 @@
+<div class="task">
+	<h1>
+		<%= task.title %>
+	</h1>
+	<p>desc: <%= task.desc %></p>
+	<p>due: <%= format_date_long task.due_date if task.due_date %></p>
+	<p>assigned to: <%= task.worker ? task.worker.username  : 'none' %></p>
+	<p>created by: <%= task.creator.username unless task.creator.nil? %></p>
+	
+	<%= link_to 'Edit', edit_project_task_path(task.project, task) %>
+
+	<%= link_to 'Delete', project_task_path(task.project, task), :method => :delete, :confirm => 'Are you sure?'%> 
+	
+	<%= link_to 'Complete', '#' %>
+</div>

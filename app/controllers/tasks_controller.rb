@@ -46,31 +46,24 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    
-    if params[:project_id] and params[:milestone_id]
-      Rails.logger.info ">> Task Controller new Task with milestone | #{params[:project_id]} | #{params[:milestone_id]}"
-      @task = @project.tasks.build(params[:task])
-      @task.creator = current_user
-      @task.milestone = @milestone
-      redirect_path = project_milestone_url(@project, @milestone)
-      Rails.logger.info ">> #{redirect_path}"
-    
-    else
-      Rails.logger.info ">> Task Controller new Task without milestone | #{current_user}"
-      @task = @project.tasks.build(params[:task])
-      @task.creator = current_user
-      redirect_path = project_url(@project)
-      Rails.logger.info ">> #{redirect_path}"
-    end
-    
+
+    Rails.logger.info "WORKER #{params[:task][:worker]}"
+    worker = User.find_by_username(params[:task][:worker])
+    params[:task][:worker] = worker
+
+    Rails.logger.info ">> Task Controller new Task milestone "
+    Rails.logger.info "#{current_user.username}"
+    Rails.logger.info "#{params[:task]}"
+    task = @project.tasks.build(params[:task])
+    task.creator = current_user
 
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to redirect_path, :flash => { :success => 'Task was successfully created.' } }
-        format.json { render json: @task, status: :created, location: @task }
+      if task.save
+        format.html { redirect_to :back, :flash => { :success => 'Task was successfully created.' } }
+        format.json { render json: task, status: :created, location: task }
       else
         format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -101,17 +94,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
-
-    if params[:project_id] and params[:milestone_id]
-      redirect_path = project_milestone_url(@project, @milestone)
-    else
-      redirect_path = project_url(@project)
-    end
     
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to redirect_path, :flash => { :success => 'Task was successfully deleted.' } }
+      format.html { redirect_to :back, :flash => { :success => 'Task was successfully deleted.' } }
       format.json { head :no_content }
     end
   end

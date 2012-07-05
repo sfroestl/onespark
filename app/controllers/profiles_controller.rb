@@ -16,6 +16,11 @@ class ProfilesController < ApplicationController
   # end
 
   def show
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @profile }
+    end
   end
 
   def index

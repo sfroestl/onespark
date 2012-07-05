@@ -3,9 +3,9 @@ Onespark::Application.routes.draw do
 
   resources :comments
   
-  resources :tasks, controller: 'milestones', action: 'show' do
-    resources :comments
-  end
+  # resources :tasks, controller: 'milestones', action: 'show' do
+  #   resources :comments
+  # end
   
   # match '/users/:username', :to => 'users#show'
   resources :users do 

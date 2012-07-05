@@ -17,7 +17,7 @@
 				<div class="tool">All Tasks</div>
 			<% end %>
 
-			<% for milestone in @milestones %>
+			<% for milestone in @project.milestones %>
 				<%= link_to project_milestone_path(@project, milestone) do %>
 					<% if milestone == @milestone %>
 						<div class="tool active"><%= milestone.title %></div> 
@@ -52,45 +52,7 @@
 			</div>
 
 		
-		<% for task in @tasks do %>
-			<div class="task">
-				<h1>
-					<%= task.title %>
-				</h1>
-				<ul>
-					<li>desc: <%= task.desc %></li>
-					<li>due: <%= task.due_date %></li>
-					<li>assigned to: <%= task.worker ? task.worker.username  : 'none' %></li>
-					<li>created by: <%= task.creator.username %></li>
-				</ul>
-				<%= link_to "Edit", edit_project_milestone_task_path(@project, @milestone, task) %>
-  				<%= link_to "Delete", project_milestone_task_path(@project, @milestone, task), :confirm => 'Are you sure?', :method => :delete %> 
-				<%= link_to 'Complete', '#' %>
-
-				<p>
-					<% if task.comments.empty? %>
-					  <p>No comments to display.</p>
-					<% else %>					
-					  <h2><%= link_to pluralize(task.comments.size, 'comment'), project_milestone_task_comments_path(@project, @milestone, task) %></h2>
-					  <% for comment in task.comments %>
-					  <p>Commented by <%= comment.user.username %> at <%= format_date_long(comment.created_at) %></p>
-					  <p>  <%= comment.content %></p>
-					  <% end %>
-					<% end %>
-					</p>
-					<p>
-					Add Comment
-				
-					<%= form_for [@project, @milestone, task, task.comments.build] do |f| %>
-					  <%= f.text_field :content %>
-					  <%= f.hidden_field :commentable_name, value: 'task' %>
-					  <%= f.hidden_field :redirect_url, value: request.fullpath %>
-					  <%= f.submit %>
-					<% end %>
-				</p>
-			
-			</div>
-		<% end %>
+		<%= render :partial => "shared/task", :collection => @milestone.tasks %>
 
 		
 	</div>
