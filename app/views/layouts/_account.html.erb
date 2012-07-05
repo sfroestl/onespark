@@ -1,6 +1,8 @@
 <div id="account">
 	<ul>
+
 		<%= link_to profile_path(current_user.username), remote: true do %>
+
 		<li class="profile"><%= image_tag 'img/profil.jpg', alt: "Profilbild JoggaF" %></li>
 		<% end %>
 		<li><%= image_tag 'img/acc-message.png', alt: "Your Messages" %></li>

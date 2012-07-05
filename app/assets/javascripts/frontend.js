@@ -1,60 +1,53 @@
+jQuery(function(){
 
-var scroll = $('.scroll-pane');
-var content = $('.content');
+	var scroll = $('.scroll-pane');
+	var content = $('.content');
 
-var headHeight = $('.head').height();
-var sidebarWidth = ($('.sidebar').width())*2 + 1;
+	var headHeight = $('.head').height();
+	var sidebarWidth = ($('.sidebar').width())*2 + 1;
 
-/*
-function refreshNav() {
-    var pane = content;
-    var api = pane.data('jsp');
-    api.reinitialise();
-}
-*/
+	var toolheight = function(){
+		var height = (($(window).height()) - headHeight).toString();
+		console.log("toolHeight: "+height);
+		scroll.css("height", height + "px");
+	};
 
-var toolheight = function(){
-	var height = (($(window).height()) - headHeight).toString();
-	console.log("toolHeight: "+height);
-	scroll.css("height", height + "px");
-};
+	var contentWidth = function(){
+		var width = (($(window).width()) - sidebarWidth).toString();
+		console.log("contentWidth: "+width + "windowWidth: "+ $(window).width().toString());
+		content.css("width", width + "px");
+		content.css("float", "left");
+	};
 
-var contentWidth = function(){
-	var width = (($(window).width()) - sidebarWidth).toString();
-	console.log("contentWidth: "+width + "windowWidth: "+ $(window).width().toString());
-	content.css("width", width + "px");
-	content.css("float", "left");
-};
-
-var headerSpacing = function(selector){
-	var s1 = $(selector);
-	var s1margin = (0 - s1.height() / 2 + 2).toString();
-	console.log(s1margin);
-	s1.css('margin-top',s1margin+'px');
-}
+	var headerSpacing = function(selector){
+		var s1 = $(selector);
+		var s1margin = (0 - s1.height() / 2 + 2).toString();
+		console.log(s1margin);
+		s1.css('margin-top',s1margin+'px');
+	}
 
 ///////////////////////////////Code Löscht Formulare/////////////////////////////////////////////
 
-function clearForm(form) {
-  // iterate over all of the inputs for the form
-  // element that was passed in
-  $(':input', form).each(function() {
-    var type = this.type;
-    var tag = this.tagName.toLowerCase(); // normalize case
-    // it's ok to reset the value attr of text inputs,
-    // password inputs, and textareas
-    if (type == 'text' || type == 'password' || tag == 'textarea')
-      this.value = "";
-    // checkboxes and radios need to have their checked state cleared
-    // but should *not* have their 'value' changed
-    else if (type == 'checkbox' || type == 'radio')
-      this.checked = false;
-    // select elements need to have their 'selectedIndex' property set to -1
-    // (this works for both single and multiple select elements)
-    else if (tag == 'select')
-      this.selectedIndex = -1;
-  });
-};
+	function clearForm(form) {
+	  // iterate over all of the inputs for the form
+	  // element that was passed in
+	  $(':input', form).each(function() {
+	    var type = this.type;
+	    var tag = this.tagName.toLowerCase(); // normalize case
+	    // it's ok to reset the value attr of text inputs,
+	    // password inputs, and textareas
+	    if (type == 'text' || type == 'password' || tag == 'textarea')
+	      this.value = "";
+	    // checkboxes and radios need to have their checked state cleared
+	    // but should *not* have their 'value' changed
+	    else if (type == 'checkbox' || type == 'radio')
+	      this.checked = false;
+	    // select elements need to have their 'selectedIndex' property set to -1
+	    // (this works for both single and multiple select elements)
+	    else if (tag == 'select')
+	      this.selectedIndex = -1;
+	  });
+	};
 
 ////////////////////////////////FENSTER GELADEN//////////////////////////////////////////////////
 
@@ -153,3 +146,16 @@ $("#add a").click(function (){
 	clearForm($("#add form"));
 	$(".details").slideUp(500);
 });
+
+});
+
+///////////////////////////////SLIDE DOWN & UP TOOLBAR//////////////////////////////////////////////////
+
+$('.overlay .pofileOverlay .closeButton').click($('.overlay').remove());
+
+
+
+
+
+
+

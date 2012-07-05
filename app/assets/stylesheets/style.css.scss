@@ -536,44 +536,7 @@ form {
 	.head{
 		border-bottom:1px solid $sidebarGrey;
 	}
-	/*
-	#add {
-		cursor: auto;
-		height:4em;
-		padding-top:0;
-		padding:0;
-		@include transition(background-color, 0.1s, linear);
-		
-		*{
-			margin-right:.5em;
-		}
-		
-		&:hover{
-			//background-color: $activeBlue;
-		}
-		form {
-			fieldset {
-				float:left;
-			}
-			label {
-				padding: 0 2.5em 0 1.5em;
-				line-height: 4em;
-				margin-right:2em;
-				cursor:pointer;
-				display:block;
-				float:left;
-				background: $sidebarGrey url(/wp-content/themes/pears/images/tag-bg.png) no-repeat 0 50%;
-				&:hover{
-					background-color: $sidebarGreySeperator;
-				}
-			}
-			input {
-				//position:relative;
-				//z-index:220;
-				margin-top:.375em;
-			}
-		}
-	}*/
+
 	#add {
 		cursor: auto;
 		min-height:4em;
@@ -634,6 +597,130 @@ form {
    		color:black;
     }
 }
+
+
+// Overlay //////////////////////////////////////////////////////////////////////////
+.overlay{
+	border:1px solid $sidebarGrey;
+	border-top: 2px solid white;
+	border-bottom:2px solid $sidebarGreySeperator;
+	position: absolute;
+	top:5em;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 3em;
+	z-index:350;
+	width: 60em;
+	@include shadow;
+	background-color: $softWhite;
+	
+	input, textarea {
+		width:16em;
+		margin-bottom:1em;
+	}
+	textarea {
+		height:8em;
+	}
+	h1{
+		color: black;
+		margin-bottom:1em;
+		//border-bottom:1px dotted $onesparkOrange;
+	}
+	img{
+		margin-bottom:1em;
+	}
+	.user{
+		width: 16em;
+		float:left;
+		margin-right:2em;
+	}
+	.friends{
+		margin-left:2em;
+		width:12em;
+		float:left;
+		ul li {
+			margin-top:1em;
+			list-style-type:none;
+			display:block;
+			img{
+				display:block;
+			}
+		}
+		ul {
+			display:block;
+			margin-bottom: 1em;
+		}
+	}
+	dl {
+		clear:left;
+		float:left;
+		dt {
+			color: $sidebarGreySeperator;
+			font-weight: normal;
+			line-height: 1.2;
+		}
+		dd {
+			font-weight: normal;
+			margin: 0 0 10px 0;
+			line-height: 1.4;
+		}
+	}				
+	.buttons{
+		a{	
+			text-decoration:none;
+			color:black;
+			display:block;
+			cursor:pointer;
+			padding:1em 1.5em;
+			line-height:2em;
+			height: 2em;
+			background-color: $softWhite;
+			@include transition(background-color, .1s, linear);
+			float: left;
+			&:hover{
+				background-color: $sidebarGrey;
+			}
+		}
+		position:absolute;
+		top:0;
+		right:0;
+		.closeButton{
+			background: $softWhite url(../assets/img/acc-logout.png) no-repeat 80% 50%;
+			padding:1em 2.5em 1em 1.5em;
+			width:4em;
+		}
+	}
+}
+.darkener {
+	background-color:black;
+	z-index:320;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	opacity:.1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
