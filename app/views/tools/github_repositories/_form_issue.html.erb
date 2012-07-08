@@ -1,7 +1,22 @@
-<%= form_tag 'github_repository/create_issue' do  %>
-  <div class = "create_github_issue">
-    <%= text_field_tag :title, params[:title], placeholder:"title"%>
-    <%= text_field_tag :body, params[:body], placeholder:"description"%>
-	<%= submit_tag "Create issue" %>
-</div>
+<%= form_tag project_github_issue_path(@project) do  %>
+	<fieldset>
+		<%= label_tag :title, 'Add Issue' %>
+    	<%= text_field_tag :title, params[:title], placeholder:"the issue title"%>
+    </fieldset>
+    <div class="details">
+	    <fieldset>
+	    	<%= label_tag :body, 'Description' %>
+	    	<%= text_field_tag :body, params[:body], placeholder: "Wish to add further details?"%>
+	    </fieldset>
+	    <fieldset>
+		<%= label_tag :assignee, 'Assignee' %>
+    	<%= text_field_tag :assignee, params[:assignee], placeholder:"Assign issue to somebody"%>
+    </fieldset>
+		<fieldset>
+			<%= label_tag 'Finish' %>
+			<%= submit_tag "Create issue" %>
+
+    		<a class="cancelButton">Cancel</a>
+		</fieldset>
+	</div>
 <% end %>

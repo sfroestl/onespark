@@ -38,7 +38,8 @@ class GitHubApi
         '/issues'
       end
       Rails.logger.info ">> Gihub Issues API: path: #{path}"
-      @connection.get(path, params).map do |issue_data|        
+      @connection.get(path, params).map do |issue_data|
+        Rails.logger.info "#{issue_data}"   
         GitHubApi::Issue.new(self, issue_data)
       end
     end

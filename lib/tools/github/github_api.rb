@@ -11,6 +11,8 @@ require 'tools/github/resources/orgs_api'
 require 'tools/github/resources/org'
 require 'tools/github/resources/repos_api'
 require 'tools/github/resources/repo'
+require 'tools/github/resources/commits_api'
+require 'tools/github/resources/commit'
 
   # Raised when an API request returns a 404 error  
   NotFound = Class.new(RuntimeError)
@@ -81,6 +83,14 @@ require 'tools/github/resources/repo'
   # associated with this instance
   def issues
     IssuesAPI.new(self)
+  end
+
+  # Entry-point for access to the GitHub Commits API
+  #
+  # Returns an instance of GitHubV3API::CommitsAPI that will use the access_token
+  # associated with this instance
+  def commits
+    CommitsAPI.new(self)
   end
 
   def get(path, params={}) #:nodoc:

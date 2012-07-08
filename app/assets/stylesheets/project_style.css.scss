@@ -1,3 +1,4 @@
+
 // Auf @import Reihenfolge achten!
 @import 'variables';
 @import 'utilities';
@@ -308,7 +309,7 @@
 					background-color: $sidebarGreySeperator;
 				}
 			}
-			input[type="submit"]{
+			input[type="submit"], input[type = "radio"]{
 				float:left;
 			}
 			.details {

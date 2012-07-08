@@ -18,9 +18,9 @@ ACCESS_TYPE = :dropbox #The two valid values here are :app_folder and :dropbox
 #match 'db/upload', :controller => 'db', :action => 'upload'
 
 class Tools::DropboxController < ApplicationController
-  layout 'project'
+  layout 'project', except: [:index]
 
-  before_filter :find_project, except: [:authorize, :unlink]
+  before_filter :find_project, except: [:authorize, :unlink, :index]
 
     def authorize
         if not params[:oauth_token] then

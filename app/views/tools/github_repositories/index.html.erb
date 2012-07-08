@@ -1,24 +1,17 @@
 
-	<!-- ////// Github column ////// -->
-	<h2>GitHub - Repositories</h2>
-	<p><%= link_to "Back", user_path(@user) %> </p>
+<!-- ////// Github column ////// -->
+<h2>GitHub - Repositories</h2>
+<p><%= link_to "Back", user_path(current_user) %> </p>
 
-	<!-- ////// Create repository ////// -->					
-	<%= render 'form_repo' %>
+<!-- ////// Create repository ////// -->					
+<%= render 'form_repo' %>
 
-	<% if @user_github_repos.nil? %>
-		<%= link_to 'No repositories yet', "/git/auth"%> 
-
-	<% else %>
-		<% @user_github_repos.each do |repo|%>
-			<h3><%= repo.name %></h3>
-			<p>Owner: <%= repo.owner['login'] %></p>
-			<p>Description: <%= repo.description %></p>
-			<p>Last commit: <%= format_date_short repo["updated_at"] %></p>
-			<p><%= link_to 'View on github.com', repo.html_url, :target => "_blank"%></p>	
-			<hr/>			
-		<% end %>
-
-	<%end%>
+	<% @user_github_repos.each do |repo|%>
+		<h3><%= repo.name %></h3>
+		<p>Owner: <%= repo.owner['login'] %></p>
+		<p>Description: <%= repo.description %></p>
+		<p>Last commit: <%= format_date_short repo["updated_at"] %></p>
+		<p><%= link_to 'View on github.com', repo.html_url, :target => "_blank"%></p>	
+	<% end %>
 
 	

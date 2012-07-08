@@ -6,15 +6,13 @@ Onespark::Application.routes.draw do
   resources :comments, only: [:edit, :update]
 
   # match '/users/:username', :to => 'users#show'
-  resources :users do 
-    resources :github_repositories, :controller => 'tools/github_repositories', only: [:index] 
-  end
+  resources :users
 
   resources :sessions, only: [:new, :create, :destroy]
   namespace :tools do 
-    resources :github_accounts 
-    
+    resources :github_accounts     
   end
+
   resources :topics do
     resources :comments, :name_prefix => "topic_"
   end
@@ -26,7 +24,6 @@ Onespark::Application.routes.draw do
       end
     end
     resources :topics
-    resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
     resources :coworkers, :controller => 'project_coworkers'
     resources :milestones do
       resources :comments
@@ -58,7 +55,8 @@ Onespark::Application.routes.draw do
   match '/projects/:project_id/dropbox/auth', to: 'tools/dropbox#authorize', as: :project_dropbox_auth
   match '/dropbox/unlink', to: 'tools/dropbox#unlink', as: :user_dropbox_unlink
   match '/dropbox/auth', to: 'tools/dropbox#authorize', as: :user_dropbox_auth
-  match '/projects/:project_id/dropbox', to: 'tools/dropbox#index', as: :project_dropbox
+  match '/users/:username/dropbox', to: 'tools/dropbox#index', as: :user_dropbox_account
+  match '/projects/:project_id/dropbox', to: 'tools/dropbox#show', as: :project_dropbox
   match '/projects/:project_id/dropbox/upload_file', to: 'tools/dropbox#upload', as: :dropbox_upload_file
   match '/projects/:project_id/dropbox/delete_file', to: 'tools/dropbox#delete_file', as: :dropbox_delete_file
   match '/projects/:project_id/dropbox/add_folder', to: 'tools/dropbox#add_folder', as: :dropbox_add_folder
@@ -75,13 +73,16 @@ Onespark::Application.routes.draw do
 
   # Github repositories
   # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
-  post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
-  match '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#link_repo', as: :project_github_link_repo
-  match '/projects/:project_id/github/', to: 'tools/github_repositories#show', as: :project_github
-
+  match '/users/:username/github_repos', to: 'tools/github_repositories#index', as: :user_github_repos
+  post '/users/:username/github/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
+  post '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#create', as: :project_github_link_repo
+  match '/projects/:project_id/github', to: 'tools/github_repositories#show', as: :project_github
+  get '/projects/:project_id/github/new', to: 'tools/github_repositories#new', as: :new_project_github
+  get '/projects/:project_id/github/issues', to: 'tools/github_repositories#issues', as: :project_github_issues
+  get '/projects/:project_id/github/commits', to: 'tools/github_repositories#commits', as: :project_github_commits
   # Github issues
-  post '/projects/:project_id/github_repository/close_issue/:issue_id', to: 'tools/github_repositories#close_issue', as: :project_github_close_issue
-  post '/projects/:project_id/github_repository/create_issue', to: 'tools/github_repositories#create_issue', as: :project_github_issue
+  post '/projects/:project_id/github/close_issue/:issue_id', to: 'tools/github_repositories#close_issue', as: :project_github_close_issue
+  post '/projects/:project_id/github/create_issue', to: 'tools/github_repositories#create_issue', as: :project_github_issue
 
 
 

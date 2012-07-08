@@ -19,7 +19,7 @@
 				<% if @github_account.nil? %>
 					<p><%= link_to 'Add GitHub account', "/git/auth"%></p>
 				<% else %>
-					<p><%= link_to "View your GitHub repositories", user_github_repositories_path(current_user) %> </p>
+					<p><%= link_to "View your GitHub repositories", user_github_repos_path(current_user) %> </p>
 					<p><%= link_to 'Remove GitHub account', "/git/unlink", confirm: "Be careful: Only your OneSpark sided authorisation will be deletet. Be sure to remove OneSpark in \"Authorized applications\" on GitHub.com"%>
 					</p>
 				<% end %>
@@ -31,9 +31,11 @@
 				<p><strong>DropBox</strong></p>
 				<% if @db_client %>
 					<p>Dropbox account is linked!</p>
-					<%= link_to 'Unlink DrobBox account', '/dropbox/unlink' %>
+					<p><%= link_to 'View DrobBox account details', user_dropbox_account_path(current_user) %></p>
+					<p><%= link_to 'Unlink DrobBox account', '/dropbox/unlink' %></p>
+					
 				<% else %>
-					<%= link_to 'Add new DrobBox account', user_dropbox_auth_path %>
+					<p><%= link_to 'Add DrobBox account', user_dropbox_auth_path %></p>
 				<% end %>
 				
 			</li>

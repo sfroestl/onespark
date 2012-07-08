@@ -1,43 +1,7 @@
 <%= provide(:title, 'Dropbox') %>
-<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
-<div class="sidebar sidebar2">
-  <div id = "toolHead" class="head">
+
     <h3>Dropbox</h3>
-  </div>
 
-  <div class="scroll-pane jspScrollable tools">
-    
-    <%= link_to content_tag('div', 'Add Folder', class: "tool add"),
-      dropbox_add_folder_path(@project)
-      #, remote: true
-      %>
-
-    <%= link_to content_tag('div', '/', class: "tool active"),
-      "#{project_dropbox_path(@project)}/folder?folder_path="
-      #, remote: true
-      %>
-    
-    <%= render :partial => 'tools/dropbox/dropbox_sidebar', :collection => @folders, as: :folder %>
-  </div>
-</div>
-
-
-
-<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
-<div id="dropbox_content" class="content">
-  <div id = "contentHead" class="head">
-    <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => '/'} %>
-  </div>
-
-  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
-      <div class="task tool" id="add">
-        <p><%= render 'form_file' %></p>
-      </div>
-
-      <%= render :partial => 'tools/dropbox/dropbox_account', :locals => { :account_info => @account_info, :files => @files, :folders => @folders } %>
-
-      <%= render :partial => 'tools/dropbox/dropbox_content', :locals => { :files => @files, :folders => @folders } %>
-    
-  </div>
-</div>
+<p><%= link_to "Back", user_path(current_user) %> </p>
+<%= render :partial => 'tools/dropbox/dropbox_account', :locals => { :account_info => @account_info, :files => @files, :folders => @folders } %>
 
