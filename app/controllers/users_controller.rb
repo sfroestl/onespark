@@ -22,8 +22,8 @@ class UsersController < ApplicationController
     @github_account = Tools::GithubAccount.find_by_user_id(current_user.id)
     @user = User.find_by_username(params[:id])
 
-    db_client = init_db_client
-    @db_account = db_client.account_info
+    @db_client = init_db_client
+    # @db_account = db_client.account_info
     respond_to do |format|
       format.html # show.html.erb
       format.js {}
@@ -98,10 +98,11 @@ private
   end
 
   def init_db_client
-    # need to store details
-    dbsession = DropboxSession.deserialize(session[:dropbox_session])
-    client = DropboxClient.new(dbsession) #raise an exception if session not authorized
-        
+    # need to store auth info
+    unless session[:dropbox_session]
+      dbsession = DropboxSession.deserialize(session[:dropbox_session])
+      client = DropboxClient.new(dbsession) #raise an exception if session not authorized
+    end  
   end
   
 end

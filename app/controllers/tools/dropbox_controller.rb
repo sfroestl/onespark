@@ -20,7 +20,7 @@ ACCESS_TYPE = :dropbox #The two valid values here are :app_folder and :dropbox
 class Tools::DropboxController < ApplicationController
   layout 'project'
 
-  before_filter :find_project, except: [:authorize]
+  before_filter :find_project, except: [:authorize, :unlink]
 
     def authorize
         if not params[:oauth_token] then
@@ -38,6 +38,15 @@ class Tools::DropboxController < ApplicationController
             Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
             redirect_to current_user, :flash => { :success => 'Successfully linked DropBox account!' }
         end
+    end
+
+    def unlink
+      if session[:dropbox_session]
+        session[:dropbox_session] = nil
+        redirect_to current_user, :flash => { :success => 'Successfully unliked DropBox account!' }
+      else
+        redirect_to current_user, :flash => { :success => 'No linked DropBox account!' }
+      end
     end
 
     def upload

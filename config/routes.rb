@@ -56,6 +56,7 @@ Onespark::Application.routes.draw do
 
   # Dropbox Oauth
   match '/projects/:project_id/dropbox/auth', to: 'tools/dropbox#authorize', as: :project_dropbox_auth
+  match '/dropbox/unlink', to: 'tools/dropbox#unlink', as: :user_dropbox_unlink
   match '/dropbox/auth', to: 'tools/dropbox#authorize', as: :user_dropbox_auth
   match '/projects/:project_id/dropbox', to: 'tools/dropbox#index', as: :project_dropbox
   match '/projects/:project_id/dropbox/upload_file', to: 'tools/dropbox#upload', as: :dropbox_upload_file
@@ -63,7 +64,7 @@ Onespark::Application.routes.draw do
   match '/projects/:project_id/dropbox/add_folder', to: 'tools/dropbox#add_folder', as: :dropbox_add_folder
   match '/projects/:project_id/dropbox/folder', to: 'tools/dropbox#show'
   match '/projects/:project_id/dropbox/download', to: 'tools/dropbox#download', as: :dropbox_download
-  
+  match 'dropbox/unlink'
 
 
   # Github Oauth procedure

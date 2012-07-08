@@ -19,12 +19,12 @@ namespace :db do
     #     milestone.due_date = 1.week.from_now..1.year.from_now
     #   end
     # end
-    User.create!(username: "Jogga",
+    User.create!(username: "jogga",
                  email: "bob@onespark.de",
                  password: "jogga0",
                  password_confirmation: "jogga0")
-    User.find_by_username("Jogga").create_profile!(forename: "Joachim", surname:"Froestl", city:"Muenchen", desc:"Der ganze Bua a Depp!")
-    User.find_by_username("Jogga").projects.create!(title: 'Hurdy Gurdy')
+    User.find_by_username("jogga").create_profile!(forename: "Joachim", surname:"Froestl", city:"Muenchen", about:"Der ganze Bua a Depp!")
+    User.find_by_username("jogga").projects.create!(title: 'Hurdy Gurdy')
 
     User.create!(username: "bob",
                  email: "bob@onespark.de",
@@ -36,7 +36,7 @@ namespace :db do
                  email: "sebastian@froestl.com",
                  password: "asdasd",
                  password_confirmation: "asdasd")
-    User.find_by_username("sfroestl").create_profile!(forename: "Sebastian", surname:"Froestl", city:"Dresden", desc:"Hallo ich bin der Sebi und ich klebi am ruby code. Heut nacht wird durchgemacht. Yeah.")
+    User.find_by_username("sfroestl").create_profile!(forename: "Sebastian", surname:"Froestl", city:"Dresden", about:"Hallo ich bin der Sebi und ich klebi am ruby code. Heut nacht wird durchgemacht. Yeah.")
     User.find_by_username("sfroestl").projects.create!(title: 'One Spark')
 
     User.create!(username: "jsnow",

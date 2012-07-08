@@ -29,10 +29,13 @@
 		<!-- ////// DropBox column ////// -->
 			<li>
 				<p><strong>DropBox</strong></p>
-				<% if @db_account %>
-					<%= @db_account['email'] %>
+				<% if @db_client %>
+					<p>Dropbox account is linked!</p>
+					<%= link_to 'Unlink DrobBox account', '/dropbox/unlink' %>
 				<% else %>
+					<%= link_to 'Add new DrobBox account', user_dropbox_auth_path %>
 				<% end %>
+				
 			</li>
 		</ul>
 
