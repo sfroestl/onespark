@@ -6,24 +6,24 @@
 
   <fieldset>
     <%= f.label :title,  'Create a new Task' %>
-    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
+    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => true, :tabindex => 2 %>
   </fieldset>
   <div  class="details">
     <fieldset>
       <%= f.label :due_date,  'Due Date' %>
-      <%= f.text_field :due_date, placeholder:"When is it due?"  %>
+      <%= f.text_field :due_date, placeholder:"When is it due?", :tabindex => 3 %>
     </fieldset>
     <fieldset>
       <%= f.label :worker,  'Coworker' %>
-      <%= f.text_field :worker, placeholder:"Who should work this task?"  %>
+      <%= f.text_field :worker, placeholder:"Who should work this task?", :tabindex => 4  %>
     </fieldset>
     <fieldset>
       <%= f.label :desc,  'Description' %>
-      <%= f.text_area :desc, placeholder: "Wish to add further details?" %>
+      <%= f.text_area :desc, placeholder: "Wish to add further details?", :tabindex => 5 %>
     </fieldset>
     <fieldset>
       <%= f.label  'Finish' %>
-      <%= f.submit %>
+      <%= f.submit :tabindex => 6%>
     <a class="cancelButton">Cancel</a>
     </fieldset>
   </div>

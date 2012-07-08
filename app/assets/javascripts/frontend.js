@@ -1,87 +1,73 @@
 jQuery(function(){
 
-	var scroll = $('.scroll-pane');
-	var content = $('.content');
+// Oft Gecallte Elemente in variablen speichern, wgn Performance //////////
+var scroll = $('.scroll-pane');
+var content = $('.content');
+var browserWindow = $(window);
 
-	var headHeight = $('.head').height();
-	var sidebarWidth = ($('.sidebar').width())*2 + 1;
 
-	var toolheight = function(){
-		var height = (($(window).height()) - headHeight).toString();
-		console.log("toolHeight: "+height);
-		scroll.css("height", height + "px");
-	};
+var headHeight = $('.head').height();
+var sidebarWidth = ($('.sidebar').width())*2 + 1;
 
-	var contentWidth = function(){
-		var width = (($(window).width()) - sidebarWidth).toString();
-		console.log("contentWidth: "+width + "windowWidth: "+ $(window).width().toString());
-		content.css("width", width + "px");
-		content.css("float", "left");
-	};
+var toolheight = function(){
+	var height = ((browserWindow.height()) - headHeight).toString();
+	scroll.css("height", height + "px");
+};
 
-	var headerSpacing = function(selector){
-		var s1 = $(selector);
-		var s1margin = (0 - s1.height() / 2 + 2).toString();
-		console.log(s1margin);
-		s1.css('margin-top',s1margin+'px');
-	}
+var contentWidth = function(){
+	var width = ((browserWindow.width()) - sidebarWidth).toString();
+	content.css("width", width + "px");
+	//content.css("float", "left");
+};
+
+var headerSpacing = function(selector){
+	var s1 = $(selector);
+	var s1margin = (0 - s1.height() / 2 + 2).toString();
+	s1.css('margin-top',s1margin+'px');
+}
 
 ///////////////////////////////Code Löscht Formulare/////////////////////////////////////////////
 
-	function clearForm(form) {
-	  // iterate over all of the inputs for the form
-	  // element that was passed in
-	  $(':input', form).each(function() {
-	    var type = this.type;
-	    var tag = this.tagName.toLowerCase(); // normalize case
-	    // it's ok to reset the value attr of text inputs,
-	    // password inputs, and textareas
-	    if (type == 'text' || type == 'password' || tag == 'textarea')
-	      this.value = "";
-	    // checkboxes and radios need to have their checked state cleared
-	    // but should *not* have their 'value' changed
-	    else if (type == 'checkbox' || type == 'radio')
-	      this.checked = false;
-	    // select elements need to have their 'selectedIndex' property set to -1
-	    // (this works for both single and multiple select elements)
-	    else if (tag == 'select')
-	      this.selectedIndex = -1;
-	  });
-	};
+function clearForm(form) {
+  // iterate over all of the inputs for the form
+  // element that was passed in
+  $(':input', form).each(function() {
+    var type = this.type;
+    var tag = this.tagName.toLowerCase(); // normalize case
+    // it's ok to reset the value attr of text inputs,
+    // password inputs, and textareas
+    if (type == 'text' || type == 'password' || tag == 'textarea')
+      this.value = "";
+    // checkboxes and radios need to have their checked state cleared
+    // but should *not* have their 'value' changed
+    else if (type == 'checkbox' || type == 'radio')
+      this.checked = false;
+    // select elements need to have their 'selectedIndex' property set to -1
+    // (this works for both single and multiple select elements)
+    else if (tag == 'select')
+      this.selectedIndex = -1;
+  });
+};
 
 ////////////////////////////////FENSTER GELADEN//////////////////////////////////////////////////
 
- $(window).ready(
- 	toolheight(), 
- 	contentWidth(), 
- 	headerSpacing('#projectHead h3'), 
- 	headerSpacing('#toolHead h3'),
- 	headerSpacing('#contentHead h3')
- );
-var api = $('.scroll-pane').jScrollPane().data('jsp');
-
-$(window).resize(function(){
-	$(".jspVerticalBar").css("display", "none").delay(200).fadeIn(200);
-	$(".content").css("width", "50%");
-	contentWidth();
+browserWindow.ready( function(){
 	toolheight();
-	console.log(api);
-	api.reinitialise();
+ 	contentWidth(); 
+ 	headerSpacing('#projectHead h3'); 
+ 	headerSpacing('#toolHead h3');
+ 	headerSpacing('#contentHead h3');
+ 	browserWindow.trigger('resize');
 });
-// $(window).resize(function(){
-// 	contentWidth();
-// });
-
-$("#projectHead").click(function(){
+ 	
+browserWindow.resize(function(){
 	contentWidth();
 	toolheight();
-	console.log(api);
-	api.reinitialise();
 });
 
 ////////////////////////////////SCROLLBAR CODE//////////////////////////////////////////////////
-// Scrollbar-Replacement
 
+// Scrollbar-Replacement
 $(function()
 {
 	$('.scroll-pane').each(
@@ -94,7 +80,7 @@ $(function()
 			);
 			var api = $(this).data('jsp');
 			var throttleTimeout;
-			$(window).bind(
+			browserWindow.bind(
 				'resize',
 				function()
 				{
@@ -119,8 +105,9 @@ $(function()
 			);
 		}
 	)
-
 });
+
+// Scrollbar-Settings
 $(function()
 {
 	$('.scroll-pane').jScrollPane(
@@ -134,33 +121,30 @@ $(function()
 
 
 
-///////////////////////////////SLIDE DOWN & UP TOOLBAR//////////////////////////////////////////////////
+///////////////////////////////FUNKTIONALER CODE//////////////////////////////////////////////////
 
-$("#add").click(function (){
-	if( $(this).find(".details").css("display") == "none"){
-		$(".details").slideDown(350);
+//slideUp, Slide Down Toolbar
+var add = $('#add');
+var details = $('.details');
+
+add.click(function (){
+	if( details.css("display") == "none"){
+		details.slideDown(350);
 	}
-	api.reinitialise();
 });
+
+add.keypress(function(){
+	details.slideDown(350);
+	$(this).focus();
+});
+
 $("#add a").click(function (){
 	clearForm($("#add form"));
-	$(".details").slideUp(350);
+	details.slideUp(350);
 });
 
-
-
-///////////////////////////////SLIDE DOWN & UP TOOLBAR//////////////////////////////////////////////////
-
+//Das Profil-Overlay per Click schließen
 $('.overlay .pofileOverlay .closeButton').click($('.overlay').remove());
-
-
-///////////////////////////////SLIDE DOWN HOME //////////////////////////////////////////////////
-
-// $('#home').click(function (){
-// 	console.log("click");
-// 	$(this).removeClass("head");
-// 	$(this).addClass("open")
-// });
 
 ///////////////////////////////ALL PROJECTS SLIDER //////////////////////////////////////////////////
 
@@ -174,7 +158,7 @@ $('#home').toggle(function() {
 ///////////////////////////////AUTO DISMISS FLASH//////////////////////////////////////////////
 $(function() {
 	if("#flash div") {
-		console.log("Flash da");
+		//console.log("Flash da");
 		$('#flash').delay(5000).slideUp(350);
 	}
       // $("div.first").slideUp(300).delay(800).fadeIn(400);

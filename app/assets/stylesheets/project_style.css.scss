@@ -399,7 +399,6 @@ form {
 // SideBar 1 ////////////////////////////////////////////////////////////////////////
 
 .sidebar1 {
-	@include shadow;
 	position:relative;
 	z-index:0;
 	background-color: $sidebarDark;
@@ -435,7 +434,7 @@ form {
 		background-repeat:no-repeat;
 
 		&:hover{
-			background-color:$sidebarDarkSeperator;
+			background-color: black;
 		}
 		a {
 			color:white;
@@ -485,7 +484,7 @@ form {
 
 .sidebar2 {
 	//border-left:1px solid $onesparkOrange;
-	@include shadow;
+	//@include shadow;
 	position:relative;
 	z-index:100;
 	height:100%;
@@ -557,6 +556,20 @@ form {
 	.head{
 		border-bottom:1px solid $sidebarGrey;
 	}
+
+	.jspDrag {
+		width:100%;
+		background: black;
+		border:none;
+	}
+	.jspverticalbar{
+		width: 1em;
+	}
+	.jspTrack	{	
+		width: 1em;
+		background: $sidebarGrey;
+		position: relative;
+	}	
 
 	#add {
 		cursor: auto;
@@ -726,7 +739,9 @@ form {
 }
 
 
-
+.debug {
+	display:none;
+}
 
 
 

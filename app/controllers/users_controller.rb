@@ -99,7 +99,7 @@ private
 
   def init_db_client
     # need to store auth info
-    unless session[:dropbox_session]
+    if session[:dropbox_session]
       dbsession = DropboxSession.deserialize(session[:dropbox_session])
       client = DropboxClient.new(dbsession) #raise an exception if session not authorized
     end  
