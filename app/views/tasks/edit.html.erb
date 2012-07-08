@@ -8,20 +8,20 @@
 
 	<div class="scroll-pane jspScrollable tools">
 		
-				<%= link_to new_project_milestone_path(@project) do %>
+				<%= link_to new_project_tasklist_path(@project) do %>
 					<div class="tool add" >Add Tasklist</div>
 				<% end %>
 
-			<%= link_to project_milestones_path(@project) do %>
+			<%= link_to project_tasklists_path(@project) do %>
 				<div class="tool">All Tasks</div>
 			<% end %>
 
-			<% for milestone in @milestones %>
-				<%= link_to project_milestone_path(@project, milestone) do %>
-					<% if milestone == @milestone %>
-						<div class="tool active"><%= milestone.title %></div> 
+			<% @project.tasklists.each do |tasklist| %>
+				<%= link_to project_tasklist_path(@project, tasklist) do %>
+					<% if tasklist == @tasklist %>
+						<div class="tool active"><%= tasklist.title %></div> 
 					<% else %>
-						<div class="tool"><%= milestone.title %></div> 
+						<div class="tool"><%= tasklist.title %></div> 
 					<% end %>
 				<% end %>
 			<% end %>
@@ -45,5 +45,3 @@
 		
 	</div>
 </div>
-
-<%= link_to 'Back', tasks_path %>

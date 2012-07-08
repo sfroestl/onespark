@@ -41,9 +41,10 @@ require 'tools/github/resources/repo'
 
   # initializes the api with access token
 	def init_with_token(access_token)
-		Rails.logger.info "> GitHubApi: init"
-    unless access_token.nil?
-      Rails.logger.info "> GitHubApi: init with token! #{access_token}"
+		Rails.logger.info "> GitHubApi: init_with_token"
+
+    if access_token
+      Rails.logger.info "> GitHubApi: token: #{access_token}"
       @access_token = access_token
     end
   end
@@ -118,6 +119,7 @@ require 'tools/github/resources/repo'
     raise Unauthorized, "The access token is invalid according to GitHub"
   end
 
+ 
 
   private 
 

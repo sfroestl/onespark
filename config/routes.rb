@@ -26,7 +26,7 @@ Onespark::Application.routes.draw do
       end
     end
     resources :topics
-    # resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
+    resource :github_repository, :controller => 'tools/github_repositories'#, only: [:new, :create, :destroy, :show, :index]
     resources :coworkers, :controller => 'project_coworkers'
     resources :milestones do
       resources :comments
@@ -70,13 +70,13 @@ Onespark::Application.routes.draw do
   # Github Oauth procedure
   match '/git/auth', to: 'tools/github_accounts#auth', as: :github_auth
   match '/git/callback',  to: 'tools/github_accounts#callback'
-  match '/git/unlink', to: 'tools/github_accounts#unlink', as: :github_cunlink
+  match '/git/unlink', to: 'tools/github_accounts#unlink', as: :github_unlink
   match '/git/oauth2/callback/:id' => "tools/github_accounts#callback", as: :github_callback
 
   # Github repositories
   # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
   post '/users/:username/github_repository/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
-  match '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#link_repo'
+  match '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#link_repo', as: :project_github_link_repo
   match '/projects/:project_id/github/', to: 'tools/github_repositories#show', as: :project_github
 
   # Github issues

@@ -1,9 +1,19 @@
 <%= form_tag controller: 'tools/github_repositories', action: 'create' do  %>
+ 
+ 
 	<% @user_repositories.each do |repository| %>
- 		<p><%= radio_button_tag 'repository', repository.name%>
+	<fieldset>
+ 		<%= label_tag :repository,  'Repository' %>
+ 		<p>
+ 		  <%= radio_button_tag :repository, repository.name%>
  			<%= repository.name + ' - ' + repository.owner['login'] %>
- 			<%= hidden_field_tag 'owner', repository.owner['login'] %>
+ 			<%= hidden_field_tag 'owner', repository.owner['login'] %> 	
  		</p>
+ 			</fieldset>
 	<% end %>
- 	<%= submit_tag 'Link' %>
+	
+ 	  <fieldset>
+    <%= label_tag  'Finish' %>
+    <%= submit_tag %>
+    <fieldset>
 <% end %>
