@@ -1,15 +1,15 @@
-<%= form_tag controller: 'tools/github_repositories', action: 'create' do  %>
+<%= form_tag project_github_link_repo_path(@project) do  %>
  
  
 	<% @user_repositories.each do |repository| %>
 	<fieldset>
- 		<%= label_tag :repository,  'Repository' %>
- 		<p>
- 		  <%= radio_button_tag :repository, repository.name%>
- 			<%= repository.name + ' - ' + repository.owner['login'] %>
- 			<%= hidden_field_tag 'owner', repository.owner['login'] %> 	
- 		</p>
- 			</fieldset>
+ 		<%= label_tag "repository_#{repository.name}".to_sym,  'Repository' %>
+
+ 		<%= radio_button_tag :repository, repository.name%>
+ 		<%= repository.name + ' - ' + repository.owner['login'] %>
+ 		<%= hidden_field_tag 'owner', repository.owner['login'] %> 	
+
+ 	</fieldset>
 	<% end %>
 	
  	  <fieldset>

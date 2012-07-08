@@ -171,7 +171,7 @@ form {
 		display: block;
 	}
 
-	textarea, input[type="text"] {
+	textarea, input[type="text"], input[type= "radio"] {
 		border: 1px solid $sidebarGreySeperator;
 		background: $softWhite;
 		@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
@@ -598,7 +598,7 @@ form {
 					background-color: $sidebarGreySeperator;
 				}
 			}
-			input[type="submit"]{
+			input[type="submit"], input[type = "radio"]{
 				float:left;
 			}
 			.details {

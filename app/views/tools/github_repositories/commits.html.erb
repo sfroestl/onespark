@@ -1,0 +1,38 @@
+<%= provide(:title, "#{@github_repository['name']} - Commits") %>
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Github</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    <%= render "sidebar" %>
+  </div>
+</div>
+
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= @github_repository['name'] %> - Commits</a></h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+    <div class="task tool" id="add">
+      <%= render "form_issue" %>
+    </div>
+
+    <div class="task">
+    <ul>
+      <% @repo_commits.each do |commit| %>
+          <li>
+            <strong><%= format_date_long commit.commit['committer']['date'] %></strong> - <%= commit.commit['message'] %> 
+            <p>by <%=commit.commit['committer']['name'] %></p>
+            <p><%commit.commit %></p>
+            <%= link_to 'view', "#{commit.url}", :target => "_blank" %><br/> 
+           
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

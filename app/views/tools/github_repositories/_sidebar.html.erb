@@ -1,0 +1,12 @@
+    
+
+<%= link_to content_tag('div', 'Change Repository', class: 'tool add'),
+  new_project_github_path(@project) %>
+
+<%= link_to content_tag('div', 'Repository', class: 'tool'), project_github_path(@project) %>
+
+<!-- Mit Query machen!! -->
+<%= link_to content_tag('div', 'Issues', class: 'tool'), project_github_issues_path(@project) %>
+    
+<%= link_to content_tag('div', 'Commits', class: 'tool'), project_github_commits_path(@project) %>
+      

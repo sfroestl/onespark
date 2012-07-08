@@ -1,0 +1,45 @@
+<%= provide(:title, "#{@github_repository['name']} - Issues") %>
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Github</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    <%= render "sidebar" %>
+  </div>
+</div>
+
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= @github_repository['name'] %> - Issues</a></h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+    <div class="task tool" id="add">
+      <%= render "form_issue" %>
+    </div>
+
+    <div class="task">
+    <ul>
+      <% @repo_issues.each do |issue| %>
+          <li>
+            <strong><%= issue.title %></strong> 
+            <%= link_to 'view', "#{issue.html_url}", :target => "_blank" %> 
+            <%= content_tag('p', "\"#{issue.body}\"") unless issue.body.empty? %>
+            
+              <% begin issue.assignee %>
+                <%= content_tag('p', "assigned to: #{issue.assignee['login']}") %> 
+              <% rescue Exception %>
+              <% end %> 
+            <p>created: <%= format_date_short issue.created_at %></p>
+            <p>comments: <%= issue.comments %> </p>
+            
+            <%= link_to 'close', project_github_close_issue_path(@project, issue.number), :method => :post, :confirm => "Close issue: \"#{issue.title}\" on GiHub?" %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
