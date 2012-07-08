@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     # TODO: make project only accesible for admin and invited users
     
     respond_to do |format|
-      format.html { render layout: 'all_projects' }
+      format.html {  }
       format.json { render json: @projects }
     end
   end

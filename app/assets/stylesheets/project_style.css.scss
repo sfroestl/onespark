@@ -1,221 +1,9 @@
-/*
- * ------------------------------------------------------------------------------------------
- * Farben
- * ------------------------------------------------------------------------------------------
- */
-
-$sidebarDark: #151515;
-$sidebarDarkSeperator: #101010;
-$sidebarDarkInput: #efefef;
-$sidebarGrey: #efefef;
-$sidebarGreySeperator : #ccc;
-$onesparkOrange: #ff0000;
-$softWhite: #fcfcfc;
-$activeBlue: rgba(0,130,200, .3);
-$toolbarGrey: #fafafa;
-/*
- * ------------------------------------------------------------------------------------------
- * Fonts
- * ------------------------------------------------------------------------------------------
- */
-
-$officina: ITC Officina Serif, Droid Serif, Georgia, serif;
-$lucida: "Lucida Grande", "Lucida Sans Unicode",Verdana, Tahoma, Trebuchet MS, sans-serif;
-
-* {
-	margin:0;
-	padding:0;
-	font-family: $lucida;
-	&:focus{
-		outline: none;
-	}
-}
-
-h1, h2, h3, h4, h5, h6 { 
-	line-height: 1em;
-	font-family: $officina;
-	font-weight:normal;
-	a{
-		font-family:$officina;
-	}
-}
-
-// Mixins ///////////////////////////////////////////////////////////////////////////////////////
-
-@mixin rounded ($radius: 5px) {
-  border-radius: 			$radius;
-  -moz-border-radius: 		$radius;
-  -webkit-border-radius:	$radius;
-}
-
-@mixin border {
-	border: 5px solid rgb(0, 0, 0);
-	border: 5px solid rgba(0, 0, 0, 0.1);
-}
-
-@mixin txtbutton {
-	@include transition(background-color, 0.1s, linear);
-	border:none;
-	font-family: $lucida;
-	padding:  1em;
-	background-color:black;
-	cursor: pointer;
-	color: white;
-	&:hover{
-		background-color:$orange;
-		@include shadow(0px, 0px, 4px, 0px, rgba(255, 102, 0, 1));
-	}
-	&:focus{
-		background-color:$orange;
-	}
-}
-
-@mixin transition($property, $duration: 0.3s, $timing: linear){
-	-moz-transition:	$property $duration $timing;
- 	-webkit-transition:	$property $duration $timing;
-	-o-transition:		$property $duration $timing;
-	transition: 		$property $duration $timing;
-}
-
-@mixin shadow($x: 0px, $y:2px,  $blur: 10px, $spread:0px, $color: rgba(0,0,0,.5)){
-	-moz-box-shadow: 	$x $y $blur $spread $color;
-	-webkit-box-shadow:	$x $y $blur $spread $color;
-	-o-box-shadow: 		$x $y $blur $spread $color;
-	box-shadow: 		$x $y $blur $spread $color;
-}
-
-@mixin innerShadow($x: 0px, $y:2px, $blur:5px, /*$spread:0px,*/ $color: rgba(0,0,0,.5)){
-
-	-moz-box-shadow: inset $x $y $blur $color;
-	-webkit-box-shadow: inset $x $y $blur $color;
-	box-shadow: inset $x $y $blur $color;
-}
-
-@mixin gradient( $color1: rgb(245,245,245), $color2:rgb(235,235,235)){
-	background-image: linear-gradient(bottom, $color1 100%, $color2 0%);
-	background-image: -o-linear-gradient(bottom, $color1 100%, $color2 0%);
-	background-image: -moz-linear-gradient(bottom, $color1 100%, $color2 0%);
-	background-image: -webkit-linear-gradient(bottom, $color1 100%, $color2 0%);
-	background-image: -ms-linear-gradient(bottom, $color1 100%, $color2 0%);
-
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(1, $color1),
-		color-stop(0, $color2)
-	);
-}
-
-@mixin multipleTransitions($property1, $property2){
-	/* Firefox */
-	-moz-transition: $property1, $property2;
-
-	/* WebKit */
-	-webkit-transition:  $property1, $property2;
-	
-	/* Opera */
-	-o-transition:  $property1, $property2;
-	
-	/* Standard */
-	transition:  $property1, $property2;
-}
-
-// Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
-
-body {
-	width:100%;
-	overflow:hidden;
-	background:$softWhite;
-	font-size:.8em;
-	border-right: 1em solid $sidebarGreySeperator;
-}
-
-.jspDrag {
-	width:100%;
-	background: black;
-	border:none;
-}
-
-.jspverticalbar{
-	width: 1em;
-}
-
-.jspTrack {	
-	width: 1em;
-	border-left: 1px solid $sidebarGreySeperator;
-	background: $sidebarGreySeperator;
-	position: relative;
-}
-
-h3 {
-	color: $onesparkOrange;
-}
-
-.noFocus:focus {
-    outline: none;
-}
-
-form {
-	input, textarea, .cancelButton {
-		font-size:1em;
-		margin: 0;
-		padding: 1em 1.2em;	
-	}
-
-	fieldset{
-		border:none;
-	}
-
-	textarea, input {
-		display: block;
-	}
-
-	textarea, input[type="text"] {
-		border: 1px solid $sidebarGreySeperator;
-		background: $softWhite;
-		@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
-		&:focus{
-			background: white;
-			border: 1px solid $activeBlue;
-			@include innerShadow(0, 0, 5px, $activeBlue);
-		}
-	}
-
-
-	input[type="submit"], .cancelButton {
-		cursor:pointer;
-		border:1px solid $sidebarGreySeperator;
-		background-color:$sidebarGrey;
-		color: $sidebarDark;
-		@include gradient;
-		//@include multipleTransitions(background-image .2s ease-in-out, color .2s ease-in-out);
-		
-		&:hover, &:focus {
-			border:1px solid $sidebarGreySeperator;
-			color:black;
-			@include gradient(rgba(215,215,215,1), rgba(205,205,205,1));
-			//@include shadow(0px, 1px, 2px, 0, rgba(0,0,0, .2));
-		}
-		
-		&:active{
-			color:white;
-			border:1px solid black;
-			background: black;
-		}
-	}
-
-	input[type="file"] {
-		padding: .9em;	
-		margin-left: 166px;
-		border:1px solid $sidebarGreySeperator;
-		position: relative;
-		text-align: right;
-		z-index: 2;
-	}
-}
-
-// Account Features ////////////////////////////////////////////////////////////////////////
+// Auf @import Reihenfolge achten!
+@import 'variables';
+@import 'utilities';
+@import 'global';
+@import 'app_element_account';
+@import 'app_element_overlay';
 
 .close {
 	display: none;
@@ -225,84 +13,16 @@ form {
 	display: all;
 }
 
-#account{
-	z-index: 300;
-	position:absolute;
-	top: 0;
-	right: 0;
-	border-left:1px solid $sidebarGreySeperator;
-	input {
-		width:100%;
-		font-size:1em;
-		color: black;
-		padding-left: 4em;
-		margin-right:-4em;
-		height:2.45em;
-		//background-color:$sidebarDarkInput;
-		background-image: url(../assets/img/search.gif);
-		background-repeat: no-repeat;
-		background-position: 1em center;
-		border:none;
-		border-bottom: 1px solid $sidebarGreySeperator;
-		border-top: 1px solid $sidebarGreySeperator;
-	}
-	
-	ul {			
-		li {
-			@include gradient;
-			height: 2.5em;
-			width: 3em;
-			float:left;
-			border-right: 1px solid $sidebarGreySeperator;	
-			list-style-type: none;
-			cursor: pointer;
-			@include transition(background-color, 0.1s, linear);
-			
-			text-align: center;	
-
-			line-height:2.1em;
-			overflow:hidden;
-			img{
-				@include transition(opacity, 0.1s, linear);
-				opacity: 0.5;
-				vertical-align:middle;
-				overflow:hidden;
-			}
-
-			&:hover{
-
-				background-color: $onesparkOrange;
-				overflow:hidden;
-				img {
-					opacity: 1;
-				}
-			}
-		}
-
-		.profile {
-			img {
-				opacity: 1;
-				width:100%;
-				overflow: hidden;
-				&:hover{
-					opacity: 0.5;
-				}
-			}
-		}
-	}
-}
 
 // Head ////////////////////////////////////////////////////////////////////////////////////
 
 .head {
 	height:5em;
 	font-size: 1em;
-
 	h3 {
 		font-size: 1.6em;
 	}
 }
-
 
 #home {
 	float:left;
@@ -320,8 +40,6 @@ form {
 		cursor:pointer;
 	}
 }
-
-
 
 #projectHead {
 	margin-left: 3em;
@@ -352,11 +70,7 @@ form {
 #contentHead {
 	position:relative;
 	min-width:16em;
-	//background-image: url(../assets/img/head-2.png);
-	//background-repeat: no-repeat;
-	//background-position:0 center;
 	border-bottom: 1px solid $sidebarGrey;
-	
 	h3 {
 		display:block;
 		position:absolute;
@@ -483,8 +197,6 @@ form {
 // SideBar 2 ////////////////////////////////////////////////////////////////////////
 
 .sidebar2 {
-	//border-left:1px solid $onesparkOrange;
-	//@include shadow;
 	position:relative;
 	z-index:100;
 	height:100%;
@@ -539,8 +251,6 @@ form {
 // Content //////////////////////////////////////////////////////////////////////////
 
 .content{
-	width:50%;
-	max-width:100%;
 	position:relative;
 	z-index:200;
 	border-left:solid 1px $sidebarGrey;
@@ -632,116 +342,6 @@ form {
     }
 }
 
-
-// Overlay //////////////////////////////////////////////////////////////////////////
-.overlay{
-	border:1px solid $sidebarGrey;
-	border-top: 2px solid white;
-	border-bottom:2px solid $sidebarGreySeperator;
-	position: absolute;
-	top:5em;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
-	padding: 3em;
-	z-index:350;
-	width: 60em;
-	@include shadow;
-	background-color: $softWhite;
-	
-	input, textarea {
-		width:16em;
-		margin-bottom:1em;
-	}
-	textarea {
-		height:8em;
-	}
-	h1{
-		color: black;
-		margin-bottom:1em;
-		//border-bottom:1px dotted $onesparkOrange;
-	}
-	img{
-		margin-bottom:1em;
-	}
-	.user{
-		width: 16em;
-		float:left;
-		margin-right:2em;
-	}
-	.friends{
-		margin-left:2em;
-		width:12em;
-		float:left;
-		ul li {
-			margin-top:1em;
-			list-style-type:none;
-			display:block;
-			img{
-				display:block;
-			}
-		}
-		ul {
-			display:block;
-			margin-bottom: 1em;
-		}
-	}
-	dl {
-		clear:left;
-		float:left;
-		dt {
-			color: $sidebarGreySeperator;
-			font-weight: normal;
-			line-height: 1.2;
-		}
-		dd {
-			font-weight: normal;
-			margin: 0 0 10px 0;
-			line-height: 1.4;
-		}
-	}				
-	.buttons{
-		a{	
-			text-decoration:none;
-			color:black;
-			display:block;
-			cursor:pointer;
-			padding:1em 1.5em;
-			line-height:2em;
-			height: 2em;
-			background-color: $softWhite;
-			@include transition(background-color, .1s, linear);
-			float: left;
-			&:hover{
-				background-color: $sidebarGrey;
-			}
-		}
-		position:absolute;
-		top:0;
-		right:0;
-		.closeButton{
-			background: $softWhite url(../assets/img/acc-logout.png) no-repeat 80% 50%;
-			padding:1em 2.5em 1em 1.5em;
-			width:4em;
-		}
-	}
-}
-.darkener {
-	background-color:black;
-	z-index:320;
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	opacity:.1;
-}
-
-
-.debug {
-	display:none;
-}
 
 
 

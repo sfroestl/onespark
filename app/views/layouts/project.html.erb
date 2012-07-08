@@ -13,7 +13,7 @@
 	<meta name="description" content="">
 
 	<meta name="viewport" content="width=device-width">
-<!-- 	<link rel="stylesheet" href="style/styleh5bp.css"> -->
+	<!-- 	<link rel="stylesheet" href="style/styleh5bp.css"> -->
 
 
 
@@ -24,6 +24,7 @@
 
 <body>
 	<div id="all_projects", class="close">
+		<%= link_to  'Your projects', projects_path %>
 		<%= render :partial => 'shared/projects', :locals => { :projects => current_user.projects } %>
 	</div>
 
@@ -42,7 +43,7 @@
 	<div class="sidebar sidebar1" >
 		
 		<div id="home" class="head">
-			<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
+			<%= link_to image_tag('img/head-logo.png', alt: "One Spark Logo"), projects_path %>
 		</div>
 		
 		<div id="projectHead" class="head">

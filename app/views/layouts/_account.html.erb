@@ -2,15 +2,15 @@
 	<ul>
 
 		<%= link_to profile_path(current_user.username), remote: true do %>
-			<li class="profile"><%= image_tag 'img/profil.jpg', alt: "Profilbild JoggaF" %></li>
+			<li class="profile button"><%= image_tag 'img/profil.jpg', alt: "Profilbild JoggaF" %></li>
 		<% end %>
 
-		<li><%= image_tag 'img/acc-message.png', alt: "Your Messages" %></li>
-		<li><%= image_tag 'img/acc-contact.png', alt: "Your Contacts" %></li>
-		<li><%= image_tag 'img/acc-event.png', alt: "Your Events" %></li>
+		<li class="button"><%= image_tag 'img/acc-message.png', alt: "Your Messages" %></li>
+		<li class="button"><%= image_tag 'img/acc-contact.png', alt: "Your Contacts" %></li>
+		<li class="button"><%= image_tag 'img/acc-event.png', alt: "Your Events" %></li>
 
 		<%= link_to signout_path, method: :delete do %>
-			<li><%= image_tag 'img/acc-logout.png', alt: "Logout" %></li>
+			<li class="button"><%= image_tag 'img/acc-logout.png', alt: "Logout" %></li>
 		<% end %>
 	</ul>
 	<input type=text placeholder="search" tabindex = 1></input>

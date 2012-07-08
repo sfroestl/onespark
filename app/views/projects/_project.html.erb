@@ -1,0 +1,12 @@
+<div class= "project listedElem">
+<h1>
+	<%= link_to project.title, project_path(project)%>
+</h1>
+
+<% unless project.due_date.nil? %>
+<p>
+<%= time_ago_in_words(project.due_date) %> 
+( <%= project.due_date.strftime("%d.%m.%Y") %> )
+</p>
+<% end %>
+</div>

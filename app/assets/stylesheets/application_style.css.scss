@@ -1,0 +1,73 @@
+@import 'jquery.jscrollpane.css';
+@import 'variables'; 
+@import 'utilities';
+@import 'global'; 
+@import 'app_element_account';
+@import 'app_element_overlay';
+
+
+.head {
+	height:5em;
+	font-size: 1em;
+	h3 {
+		font-size: 1.6em;
+	}
+}
+
+#home {
+	float:left;
+	text-align:center;
+	line-height:4.5em;
+	width: 3em;
+	background-color:$sidebarDarkSeperator;
+	@include transition(background-color, 0.1s, linear);
+	img{
+		vertical-align:middle;
+	}
+	&:hover{
+		background-color:$onesparkOrange;
+		cursor:pointer;
+	}
+}
+
+#projectHead {
+	background-repeat: no-repeat;
+	background-position:0 center;
+	float: left;
+	border:none;
+	position:relative;
+	width: 13em;
+	color:$onesparkOrange;
+	h3 {
+		position:absolute;
+		top: 50%;
+		left: 0.2em;
+	}
+}
+
+#title {
+	float:left;
+}
+
+#head #account {
+	position:relative;
+	float:right;
+	input{
+		border-bottom:none;
+	}
+}
+
+.content {
+	width:100%;
+	overflow:auto;
+	.scroll-pane{
+		overflow:auto;
+	}
+
+	.listedElem {
+		background-color: $softWhite;
+		height: 10em;
+	}
+}
+
+

@@ -67,6 +67,13 @@
     </ul>
   <% end %>
 
+  <div class= "debug">
+  <% if Rails.env.development? %>
+    <%= debug(params) %>
+    <%= debug(current_user) if current_user %>
+  <% end %>
+  </div>
+  
   <%= link_to 'settings', current_user %>
 
   

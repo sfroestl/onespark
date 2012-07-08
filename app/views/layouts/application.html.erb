@@ -13,7 +13,7 @@
 	<meta name="description" content="">
 
 	<meta name="viewport" content="width=device-width">
-<!-- 	<link rel="stylesheet" href="style/styleh5bp.css"> -->
+	<!-- 	<link rel="stylesheet" href="style/styleh5bp.css"> -->
 
 
 
@@ -21,10 +21,33 @@
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
-
 <body>
+	<!-- header -->
+	<div id = "head">
 
+			<div id="home" class="head">
+				<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
+			</div>
+
+			<div id="projectHead" class="head">
+				<h3><%= (yield(:title)) %></h3>
+			</div>
+
+		<%= render 'layouts/account' %> 
+	</div>
+
+
+	<!-- Content will be included here: -->
 	<%= yield %>
+
+
+	<!-- debug container -->
+	<div class= "debug">
+	<% if Rails.env.development? %>
+		<%= debug(params) %>
+		<%= debug(current_user) if current_user %>
+	<% end %>
+	</div>
 
 </body>
 </html>

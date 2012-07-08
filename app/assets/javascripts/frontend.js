@@ -3,20 +3,27 @@ jQuery(function(){
 // Oft Gecallte Elemente in variablen speichern, wgn Performance //////////
 var scroll = $('.scroll-pane');
 var content = $('.content');
+
 var browserWindow = $(window);
+
+console.log(scroll);
 
 
 var headHeight = $('.head').height();
 var sidebarWidth = ($('.sidebar').width())*2 + 1;
+console.log(headHeight);
 
 var toolheight = function(){
 	var height = ((browserWindow.height()) - headHeight).toString();
+	console.log(height);
 	scroll.css("height", height + "px");
 };
 
 var contentWidth = function(){
+	if($('.sidebar').length){
 	var width = ((browserWindow.width()) - sidebarWidth).toString();
 	content.css("width", width + "px");
+	}
 	//content.css("float", "left");
 };
 
@@ -29,21 +36,13 @@ var headerSpacing = function(selector){
 ///////////////////////////////Code Löscht Formulare/////////////////////////////////////////////
 
 function clearForm(form) {
-  // iterate over all of the inputs for the form
-  // element that was passed in
   $(':input', form).each(function() {
     var type = this.type;
-    var tag = this.tagName.toLowerCase(); // normalize case
-    // it's ok to reset the value attr of text inputs,
-    // password inputs, and textareas
+    var tag = this.tagName.toLowerCase(); 
     if (type == 'text' || type == 'password' || tag == 'textarea')
       this.value = "";
-    // checkboxes and radios need to have their checked state cleared
-    // but should *not* have their 'value' changed
     else if (type == 'checkbox' || type == 'radio')
       this.checked = false;
-    // select elements need to have their 'selectedIndex' property set to -1
-    // (this works for both single and multiple select elements)
     else if (tag == 'select')
       this.selectedIndex = -1;
   });
@@ -147,22 +146,19 @@ $("#add a").click(function (){
 $('.overlay .pofileOverlay .closeButton').click($('.overlay').remove());
 
 ///////////////////////////////ALL PROJECTS SLIDER //////////////////////////////////////////////////
-
+/*
 $('#home').toggle(function() {
 	$('#all_projects').slideDown(200);
 }, function() {
     $('#all_projects').slideUp(200);
 });
-
+*/
 
 ///////////////////////////////AUTO DISMISS FLASH//////////////////////////////////////////////
 $(function() {
 	if("#flash div") {
-		//console.log("Flash da");
 		$('#flash').delay(5000).slideUp(350);
 	}
-      // $("div.first").slideUp(300).delay(800).fadeIn(400);
-      // $("div.second").slideUp(300).fadeIn(400);
 });
 
 $(function() {
@@ -171,20 +167,7 @@ $(function() {
 		})
 });
 
-
-// $('#home').live('mouseover mouseout', function(event) {
-//   if (event.type == 'mouseover') {
-//     console.log("hover!");
-//     $(this).addClass("open");
-
-//   } else {
-//     console.log("no hover!");
-//     $(this).removeClass("open");
-//   }
-// });
-
 });
-
 
 
 

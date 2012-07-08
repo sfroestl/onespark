@@ -1,0 +1,118 @@
+* {
+	margin:0;
+	padding:0;
+	font-family: $lucida;
+	&:focus{
+		outline: none;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 { 
+	line-height: 1em;
+	font-family: $officina;
+	font-weight:normal;
+	a{
+		font-family:$officina;
+		text-decoration:none;
+		color:inherit;
+	}
+}
+// Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
+
+body {
+	width:100%;
+	overflow:hidden;
+	background:$softWhite;
+	font-size:.8em;
+}
+
+.jspDrag {
+	width:100%;
+	background: black;
+	border:none;
+}
+
+.jspverticalbar{
+	width: 1em;
+}
+
+.jspTrack {	
+	width: 1em;
+	border-left: 1px solid $sidebarGreySeperator;
+	background: $sidebarGrey;
+	position: relative;
+}
+
+h3 {
+	color: $onesparkOrange;
+}
+
+
+input, textarea, .cancelButton {
+	font-size:1em;
+	margin: 0;
+	padding: 1em 1.2em;	
+}
+
+fieldset{
+	border:none;
+}
+
+textarea, input {
+	display: block;
+}
+
+textarea, input[type="text"] {
+	border: 1px solid $sidebarGreySeperator;
+	background: $softWhite;
+	@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
+	&:focus{
+		background: white;
+		border: 1px solid $activeBlue;
+		@include innerShadow(0, 0, 5px, $activeBlue);
+	}
+}
+
+
+input[type="submit"], .cancelButton, .button {
+	cursor:pointer;
+	border:1px solid $sidebarGreySeperator;
+	background-color:$sidebarGrey;
+	color: $sidebarDark;
+	@include gradient;
+	//@include multipleTransitions(background-image .2s ease-in-out, color .2s ease-in-out);
+	
+	&:hover, &:focus {
+		border:1px solid $sidebarGreySeperator;
+		color:black;
+		@include gradient(rgba(215,215,215,1), rgba(205,205,205,1));
+		//@include shadow(0px, 1px, 2px, 0, rgba(0,0,0, .2));
+	}
+	
+	&:active{
+		color:white;
+		border:1px solid black;
+		background: black;
+	}
+}
+
+input[type="file"] {
+	padding: .9em;	
+	margin-left: 166px;
+	border:1px solid $sidebarGreySeperator;
+	position: relative;
+	text-align: right;
+	z-index: 2;
+}
+
+#head {
+	width:100%;
+	float:left;
+	border-bottom: 1px solid $sidebarGrey;
+}
+
+.debug {
+	//display:none;
+}
+
+

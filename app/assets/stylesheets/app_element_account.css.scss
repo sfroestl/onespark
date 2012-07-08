@@ -1,0 +1,66 @@
+#account{
+	z-index: 300;
+	position:absolute;
+	top: 0;
+	right: 0;
+	background-color:$softWhite;
+	input {
+		width:100%;
+		font-size:1em;
+		color: black;
+		padding:none;
+		padding-left: 4em;
+		margin-right:-4em;
+		height:.6em;
+		background-image: url(../assets/img/search.gif);
+		background-repeat: no-repeat;
+		background-position: 1em center;
+		border:none;
+		border-bottom: 1px solid $sidebarGrey;
+		border-top: 1px solid $sidebarGreySeperator;
+	}
+	
+	ul {
+	background-color: $softWhite;	
+	.button {
+		border:none;
+		//border-right: 1px solid $sidebarGreySeperator;
+	}		
+		li {
+			height: 2.5em;
+			width: 3em;
+			float:left;
+			list-style-type: none;
+			text-align: center;	
+			line-height:2.1em;
+			overflow:hidden;
+
+			img{
+				@include transition(opacity, 0.1s, linear);
+				opacity: 0.5;
+				vertical-align:middle;
+				overflow:hidden;
+			}
+
+			&:hover{
+				overflow:hidden;
+				img {
+					opacity: 1;
+				}
+			}
+		}
+
+		.profile {
+			border-left:1px solid $sidebarGreySeperator;
+			border-right:1px solid $sidebarGreySeperator;
+			img {
+				opacity: 1;
+				width:100%;
+				overflow: hidden;
+				&:hover{
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+}

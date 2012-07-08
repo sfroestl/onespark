@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  layout 'profile'
+
   before_filter :user_exists?, only: [:show]
   before_filter :find_user_and_profile, except: [:index]
   before_filter :setup_friends, only: [:show]
