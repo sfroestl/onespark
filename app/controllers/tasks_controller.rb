@@ -47,11 +47,11 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
 
-    Rails.logger.info "WORKER #{params[:task][:worker]}"
+    Rails.logger.info "Worker #{params[:task][:worker]}"
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
 
-    Rails.logger.info ">> Task Controller new Task milestone "
+    Rails.logger.info ">> Task Controller new Task"
     Rails.logger.info "#{current_user.username}"
     Rails.logger.info "#{params[:task]}"
     task = @project.tasks.build(params[:task])
@@ -72,6 +72,9 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
+
+    worker = User.find_by_username(params[:task][:worker])
+    params[:task][:worker] = worker
     
     if params[:project_id] and params[:milestone_id]
       redirect_path = project_milestone_url(@project, @milestone)
@@ -81,7 +84,7 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to redirect_path, :flash => { :success =>'Task was successfully updated.' } }
+        format.html { redirect_to project_tasklists_path(@project), :flash => { :success =>'Task was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

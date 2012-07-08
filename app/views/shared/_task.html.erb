@@ -6,9 +6,12 @@
 	<p>due: <%= format_date_long task.due_date if task.due_date %></p>
 	<p>assigned to: <%= task.worker ? task.worker.username  : 'none' %></p>
 	<p>created by: <%= task.creator.username unless task.creator.nil? %></p>
-	
+	<%= link_to "Edit", edit_project_task_path(@project, task) %>
+  	<%= link_to "Delete", project_task_path(@project, task), :confirm => 'Are you sure?', :method => :delete %> 
+	<%= link_to 'Complete', '#' %>
+
 	<% if task.comments %>
-		<%= link_to pluralize(task.comments.size, 'comment'), project_task_comments_path(@project, task) %>
+		<%= link_to content_tag('h2', pluralize(task.comments.size, 'comment')), project_task_comments_path(@project, task) %>
 
 	<% end %>
 </div>

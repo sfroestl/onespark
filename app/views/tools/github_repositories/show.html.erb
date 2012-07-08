@@ -7,24 +7,19 @@
 
   <div class="scroll-pane jspScrollable tools">
     
-    <%= link_to project_github_link_repo_path(@project) do %>
-      <div class="tool add" >Add Dropbox Account</div>
-    <% end %>
 
-    <%= link_to project_dropbox_path(@project) do %>
-      <div class="tool ">...</div>
-    <% end %>
+
+    <%= link_to content_tag('div', 'Repository', class: 'tool'), project_github_path(@project) %>
 
     <!-- Mit Query machen!! -->
-    <%= link_to "#{project_dropbox_path(@project)}/folder?folder_path=#{folder['path']}" do %>
-        <div class="tool active"><%= @folder['path'] %></div> 
+    <%= link_to "" do %>
+        <div class="tool">Issues</div> 
     <% end %>
 
-    <% for folder in @folders %>
-      <%= link_to "#{project_dropbox_path(@project)}" do %>
-        <div class="tool"><%= folder['path'] %></div> 
+    
+      <%= link_to "" do %>
+        <div class="tool">Commits</div> 
       <% end %>
-    <% end %>
       
   </div>
 </div>
@@ -33,21 +28,19 @@
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 <div class="content">
   <div id = "contentHead" class="head">
-    <h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= @folder['path']%></a></h3>
+    <h3><a href="#add" class="tk-ff-meta-serif-web-pro"></a></h3>
   </div>
 
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
       <div class="task tool" id="add">
         <p>
-          <%= form_tag({:action => :upload}, :multipart => true) do %>
+          <%= form_tag() do %>
             Add File <%= file_field_tag 'file' %><%= submit_tag 'upload' %>
           <% end %></p>
       </div>
 
     <div class="task">           
       <h2>Overview</h2>
-      <p>You have <%= pluralize(@folders.size, 'folder')%></p>
-      <p>You have <%= pluralize(@files.size, 'files')%></p>
     </div>
     
   </div>

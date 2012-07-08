@@ -28,7 +28,7 @@ class Tools::DropboxController < ApplicationController
 
             session[:dropbox_session] = dbsession.serialize #serialize and save this DropboxSession
 
-            #pass to get_authorize_url a callback url that will return the user here
+            # pass to get_authorize_url a callback url that will return the user here
             redirect_to dbsession.get_authorize_url url_for(:action => 'authorize')
         else
             # the user has returned from Dropbox

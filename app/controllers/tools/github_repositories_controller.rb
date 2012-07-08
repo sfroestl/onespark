@@ -3,19 +3,17 @@ class Tools::GithubRepositoriesController < ApplicationController
   layout 'project'
 
   before_filter :find_project, except: [:index, :create_repo]
-  before_filter :init_github_api, only: [:index, :create_repo]
-  before_filter :init_github_api_with_project, except: [:index, :create_repo]
   
   # GET project/:id/tools/github_repositories
   # GET project/:id/tools/github_repositories.json
   def index
-    @user = User.find_by_username(params[:user_id])
-    github_account = @user.github_account
-    @github_api = GitHubApi.new
-    @github_api.init_with_token(github_account.access_token)
+    Rails.logger.info ">> GithubRepoController: index"
+    github_account = current_user.github_account
+    github_client = GitHubApi.init_with_token(github_account.access_token)
+
     
-    unless github_account.nil?
-      @user_github_repos = @github_api.repos.list
+    if github_client
+      @user_github_repos = github_client.repos.list
       # @repo_data = @github_api.repos.get(@github_repository.owner, @github_repository.name)
       
       respond_to do |format|
@@ -28,26 +26,37 @@ class Tools::GithubRepositoriesController < ApplicationController
   # GET project/:id/tools/github_repositories/1
   # GET project/:id/tools/github_repositories/1.json
   def show
+    Rails.logger.info ">> GithubRepoController: show"
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+
     @github_repository = @project.github_repository
-    
-    unless @github_repository.nil?
-      @repo_data = @github_api.repos.get(@github_repository.owner, @github_repository.name)
-      @repo_issues = @github_api.issues.list(user: @github_repository.owner, repo: @github_repository.name)
-    end
-    
+ 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @github_repository }
+      if @github_repository
+        
+        @repo_data = github_client.repos.get(@github_repository.owner, @github_repository.name)
+        @repo_issues = github_client.issues.list(user: @github_repository.owner, repo: @github_repository.name)
+        
+        format.html # show.html.erb
+      else
+        @user_repositories = github_client.repos.list     
+        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+      end
+        
     end
   end
 
   # GET project/:id/tools/github_repositories/new
   # GET project/:id/tools/github_repositories/new.json
   def new
-    @user_repositories = @github_api.repos.list
+    Rails.logger.info ">> GitthubRepoController: new"
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+    
+    @user_repositories = github_client.repos.list
     Rails.logger.info ">> GitthubRepoController: user repos nil? #{@user_repositories.nil?}"
 
-    # @tools_github_repository = Tools::GithubRepository.new
 
     respond_to do |format|
       format.html # new.html.erb
