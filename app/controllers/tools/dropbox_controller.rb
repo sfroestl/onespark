@@ -46,7 +46,7 @@ class Tools::DropboxController < ApplicationController
 
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        info = client.account_info # look up account information
+        
 
         # if request.method != "POST"
         #     # show a file upload page
@@ -62,18 +62,58 @@ class Tools::DropboxController < ApplicationController
         # end
     end
 
+    def delete_file
+      # Check if user has no dropbox session...re-direct them to authorize
+        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
+
+        dbsession = DropboxSession.deserialize(session[:dropbox_session])
+        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+        
+        path = params[:file_path].gsub("%", " ")
+
+        Rails.logger.info ">> DropBox: delete file: #{path}"
+
+        if resp = client.file_delete(path)
+          redirect_to :back, :flash => { :success => "Successfully deletet file!" } 
+        else
+          redirect_to :back, :flash => { :success => "Error deleting file!" } 
+        end
+    end
+
+    def add_folder
+      # Check if user has no dropbox session...re-direct them to authorize
+        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
+
+        dbsession = DropboxSession.deserialize(session[:dropbox_session])
+        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+        
+        new_folder_path = "#{params[:folder_path]}/#{params[:folder_name]}"
+
+        Rails.logger.info ">> DropBox: add folder: #{new_folder_path} "
+        
+        metadata = client.metadata("#{params[:folder_path]}")
+        @folders = parse_folders(metadata)
+
+        if request.method == "POST"
+         resp = client.file_create_folder(new_folder_path)
+         redirect_to :back, :flash => { :success => "Folder Created!" }        
+       end
+    end
+
     def download      
       # Check if user has no dropbox session...re-direct them to authorize
         return redirect_to(:action => 'authorize') unless session[:dropbox_session]
 
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        info = client.account_info # look up account information
+
         path = params[:file_path].gsub("%", " ")
         Rails.logger.info ">> DropBox: download file: #{path}"
-        resp = client.get_file_and_metadata(path)
-        Rails.logger.info ">> DropBox: download file: #{resp.second}"
-
+        data = client.get_file(path)
+        meta = client.metadata(path)
+        name = meta['path'].split('/').last
+        Rails.logger.info ">> DropBox: download file: #{name}"
+        send_data(data, :filename => "#{name}", :disposition => 'attachment')
         # send_file resp
         # redirect_to :back
     end
@@ -82,15 +122,22 @@ class Tools::DropboxController < ApplicationController
       # Check if user has no dropbox session...re-direct them to authorize
         return redirect_to(:action => 'authorize') unless session[:dropbox_session]
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
+        
         Rails.logger.info ">> DropBox token: #{dbsession.access_token}"
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+        
         info = client.account_info # look up account information
         Rails.logger.info ">> DropBox API index: account_info#{info.inspect}"
 
-        @account_info = client.account_info()
+        @account_info = info
         metadata = client.metadata('/')
         @folders = parse_folders(metadata)
         @files = parse_files(metadata)
+
+        respond_to do |format|
+          format.html { }
+          format.js { }
+        end
     end
 
     def show
@@ -99,7 +146,6 @@ class Tools::DropboxController < ApplicationController
 
         dbsession = DropboxSession.deserialize(session[:dropbox_session])
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        info = client.account_info # look up account information
         Rails.logger.info ">> DropBox API show: Path #{params[:folder_path]}"
 
         metadata = client.metadata("#{params[:folder_path]}")
@@ -107,6 +153,11 @@ class Tools::DropboxController < ApplicationController
         @folder = metadata
         @folders = parse_folders(metadata)
         @files = parse_files(metadata)
+
+        respond_to do |format|
+          format.html { }
+          format.js { }
+        end
     end
 
     private

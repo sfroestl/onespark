@@ -182,6 +182,7 @@ form {
 		}
 	}
 
+
 	input[type="submit"], .cancelButton {
 		cursor:pointer;
 		border:1px solid $sidebarGreySeperator;
@@ -203,9 +204,26 @@ form {
 			background: black;
 		}
 	}
+
+	input[type="file"] {
+		padding: .9em;	
+		margin-left: 166px;
+		border:1px solid $sidebarGreySeperator;
+		position: relative;
+		text-align: right;
+		z-index: 2;
+	}
 }
 
 // Account Features ////////////////////////////////////////////////////////////////////////
+
+.close {
+	display: none;
+}
+
+.open {
+	display: all;
+}
 
 #account{
 	z-index: 300;
@@ -285,6 +303,7 @@ form {
 	}
 }
 
+
 #home {
 	float:left;
 	text-align:center;
@@ -297,10 +316,12 @@ form {
 		vertical-align:middle;
 	}
 	&:hover{
-		background: $onesparkOrange;
+		background-color: $sidebarDark;
 		cursor:pointer;
 	}
 }
+
+
 
 #projectHead {
 	margin-left: 3em;
@@ -378,7 +399,7 @@ form {
 // SideBar 1 ////////////////////////////////////////////////////////////////////////
 
 .sidebar1 {
-	//@include shadow;
+	@include shadow;
 	position:relative;
 	z-index:0;
 	background-color: $sidebarDark;

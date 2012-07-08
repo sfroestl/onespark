@@ -6,25 +6,8 @@
     <h3>Topics</h3>
   </div>
 
-  <div class="scroll-pane jspScrollable tools">
-    
-        <%= link_to new_project_topic_path(@project) do %>
-          <div class="tool add" >Add Topic</div>
-        <% end %>
-
-      <%= link_to project_topics_path(@project) do %>
-        <div class="tool">All Topics</div>
-      <% end %>
-
-      <% for topic in @topics %>
-				<%= link_to project_topic_path(@project, topic) do %>
-					<% if topic == @topic %>
-						<div class="tool active"><%= topic.title %></div> 
-					<% else %>
-						<div class="tool"><%= topic.title %></div> 
-					<% end %>
-				<% end %>
-			<% end %>
+    <div class="scroll-pane jspScrollable tools">    
+       <%= render "sidebar" %>
   </div>
 </div>
 
@@ -38,13 +21,7 @@
 
 		
 			<div class="task tool" id="add">
-				<p>
-					<%= form_for [@topic, @topic.comments.build] do |f| %>
-					Add Comment
-					  <%= f.text_field :content %>
-					  <%= f.submit %>
-					<% end %>
-				</p>
+				<%= render :partial => "shared/comment_form", :locals => { :commentable => @topic } %>
 			</div>	
 		
 			<div class="task">
@@ -61,17 +38,16 @@
 				<%= link_to 'Archive', '#' %>
 
 				<p>
-					<% if @comments.empty? %>
-					  <p>No comments to display.</p>
+					<% unless @topic.comments %>
+					  <p>No comments yet. Write your statement!</p>
 					
 					<% else %>					
-					  <h2><%= link_to pluralize(@comments.size, 'comment'), topic_comments_path(@topic) %></h2>
-					  <% @comments.each do |comment| %>
-						  <p>Commented by <%= comment.user.username %> at <%= format_date_long(comment.created_at) %></p>
-						  <p>  <%= comment.content %></p>
-					  <% end %>
+					  <h2><%= pluralize( @topic.comments.size, 'comment' ) %></h2>
+					  
+					  <%= render :partial => "shared/comment", :collection => @topic.comments %>
+
 					<% end %>
-					</p>
+				</p>
 					
 			
 			</div>

@@ -1,0 +1,40 @@
+<%= provide(:title, 'Dropbox') %>
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>Dropbox</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    
+    <%= link_to content_tag('div', 'Add Folder', class: "tool add active"),
+      dropbox_add_folder_path(@project),
+      remote: true
+      %>
+
+    <%= link_to content_tag('div', '/', class: "tool "),
+      "#{project_dropbox_path(@project)}/folder?folder_path="
+      #, remote: true
+      %>
+    
+    <%= render :partial => 'tools/dropbox/dropbox_sidebar', :collection => @folders, as: :folder %>
+  </div>
+</div>
+
+
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div id="dropbox_content" class="content">
+  <div id = "contentHead" class="head">
+    <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => "Add folder to '#{params[:folder_path]}'"} %>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+      
+    <div class="task tool" id="add">
+      <%= render 'form_folder' %>
+    </div>
+    
+  </div>
+</div>
+

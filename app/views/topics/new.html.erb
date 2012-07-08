@@ -5,23 +5,8 @@
     <h3>Topics</h3>
   </div>
 
-  <div class="scroll-pane jspScrollable tools">
-    
-      <%= link_to new_project_topic_path(@project) do %>
-        <div class="tool add active" >Add Topic</div>
-      <% end %>
-
-      <%= link_to project_topics_path(@project) do %>
-        <div class="tool">All Topics</div>
-      <% end %>
-
-      <% if @topics.empty? %>
-	      <% for topic in @topics %>
-	        <%= link_to project_topic_path(@project, topic) do %>
-	          <div class="tool"><%= topic.title %></div> 
-	        <% end %>
-	      <% end %>
-	    <% end %>
+  <div class="scroll-pane jspScrollable tools">    
+       <%= render "sidebar" %>
   </div>
 </div>
 
@@ -33,6 +18,9 @@
   </div>
 
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
-    <%= render 'form' %>
-</div>
+
+    <div class="task tool" id="add">
+      <%= render 'form' %>
+    </div>
+  </div>
 </div>

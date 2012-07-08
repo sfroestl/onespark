@@ -1,0 +1,7 @@
+<% if tasklist == @tasklist %>
+	<%= link_to content_tag('div',tasklist.title, class: 'tool active'), project_tasklist_path(@project, tasklist) %>
+
+<% else %>
+	<%= link_to content_tag('div',tasklist.title, class: 'tool'), project_tasklist_path(@project, tasklist) %>
+<% end %>
+

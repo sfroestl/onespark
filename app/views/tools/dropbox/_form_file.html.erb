@@ -1,6 +1,18 @@
 <%= form_tag({:action => :upload}, :multipart => true) do %>
-	Add File 
-	<%= file_field_tag 'file' %>
+	<fieldset>
+		<%= label_tag :file, 'Add File ' %>
+		
+		<%= file_field_tag 'file' %>
+	</fieldset>
+
+
 	<%= hidden_field_tag 'folder_path', params[:folder_path] %>
-	<%= submit_tag 'upload' %>
+	<div  class="details">
+
+		<fieldset>
+	      <%= label_tag  'Finish' %>
+	      <%= submit_tag 'upload', :disable_with => 'uploading...' %>	      
+      	  <a class="cancelButton">Cancel</a>
+	  	</fieldset>
+	</div>
 <% end %>

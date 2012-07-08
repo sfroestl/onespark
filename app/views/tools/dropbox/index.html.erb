@@ -7,25 +7,37 @@
 
   <div class="scroll-pane jspScrollable tools">
     
-    <%= link_to project_dropbox_auth_path(@project) do %>
-      <div class="tool add" >Add Dropbox Account</div>
-    <% end %>
+    <%= link_to content_tag('div', 'Add Folder', class: "tool add"),
+      dropbox_add_folder_path(@project)
+      #, remote: true
+      %>
 
-    <%= link_to project_dropbox_path(@project) do %>
-      <div class="tool active">/</div>
-    <% end %>
-
-    <% for folder in @folders %>
-      <%= link_to "#{project_dropbox_path(@project)}/folder?folder_path=#{folder['path']}" do %>
-        <div class="tool"><%= folder['path'] %></div> 
-      <% end %>
-    <% end %>
-      
+    <%= link_to content_tag('div', '/', class: "tool active"),
+      "#{project_dropbox_path(@project)}/folder?folder_path="
+      #, remote: true
+      %>
+    
+    <%= render :partial => 'tools/dropbox/dropbox_sidebar', :collection => @folders, as: :folder %>
   </div>
 </div>
 
 
+
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
-<div class="content" id="dropbox_content">
-  <%= render :partial => 'tools/dropbox/dropbox_content', :locals => { :account_info => @account_info, :files => @files, :folders => @folders } %>
+<div id="dropbox_content" class="content">
+  <div id = "contentHead" class="head">
+    <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => '/'} %>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+      <div class="task tool" id="add">
+        <p><%= render 'form_file' %></p>
+      </div>
+
+      <%= render :partial => 'tools/dropbox/dropbox_account', :locals => { :account_info => @account_info, :files => @files, :folders => @folders } %>
+
+      <%= render :partial => 'tools/dropbox/dropbox_content', :locals => { :files => @files, :folders => @folders } %>
+    
+  </div>
 </div>
+

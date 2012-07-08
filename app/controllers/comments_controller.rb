@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  layout 'project'
+  layout 'project', except: [:edit]
+
 
   def index
     @commentable = find_commentable   
@@ -36,25 +37,41 @@ class CommentsController < ApplicationController
     
     Rails.logger.info "COMMENTS: Requesturl: #{@request_url}"
     @commentable = find_commentable
-    @comment = @commentable.comments.build(params[:comment][:content])
+    @comment = @commentable.comments.build(params[:comment])
     @comment.user = current_user
-    if @comment.save
-      redirect_to @commentable, :notice => "Successfully created comment."
-    else
-      redirect_to @commentable, :notice => "Add a comment content."
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to :back, :flash => { :success => "Successfully created comment." } }
+        format.json { render json: @comment }
+      else
+        format.html { redirect_to :back, :flash => { :error => "Could not create comment." } }
+        format.json { render json: comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit
     @comment = Comment.find(params[:id])
+    @commentable = @comment.commentable
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.js { }
+    end
+    
   end
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      redirect_to @comment, :notice  => "Successfully updated comment."
-    else
-      render :action => 'edit'
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to :back, :flash => { :success => "Successfully updated comment." } }
+      else
+        format.html { render  :action => 'edit' }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end 
     end
   end
 
@@ -69,7 +86,7 @@ class CommentsController < ApplicationController
     def find_commentable
       params.each do |name, value|
         if name =~ /(.+)_id$/
-          Rails.logger.info "STRING #{$1.classify.constantize.find(value)}"
+          Rails.logger.info "Commentable #{$1.classify.constantize.find(value)}"
           return $1.classify.constantize.find(value)
         end
       end

@@ -17,20 +17,23 @@
 
 
 
-	<%= stylesheet_link_tag    "application", media: "all" %>
-	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag "project", media: "all" %>
+	<%= javascript_include_tag "project" %>
 	<%= csrf_meta_tags %>
 </head>
 
 <body>
+	<div id="all_projects", class="close">
+		<%= render :partial => 'shared/projects', :locals => { :projects => current_user.projects } %>
+	</div>
 
 	<!-- ///////////////////////////////////ACCOUNT////////////////////////////////////////// -->
 	<%= render 'layouts/account' %>
 
 	<!-- ///////////////////////////////////FLASH////////////////////////////////////////// -->
-	<div class ="flash">
+	<div id="flash" class ="flash">
 		<% flash.each do |key, value| %>
-			<!--<button class="close" data-dismiss="alert">×</button>	-->
+			<!-- <button class="close_alert" data-dismiss="alert">×</button> -->
 
 			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
 		<% end %>
@@ -49,35 +52,49 @@
 
 		<div class="scroll-pane jspScrollable tools">
 			
-			<%= link_to '' do %>
-				<div class="tool add" >Add tool</div>
-			<% end %>
+			<%= link_to  content_tag('div', 'Settings', class: 'tool settings'), 
+					'project_settings_path(@project)',  
+					'data-disable-with' => '<div class ="tool active settings ">loading...</div>'
+				%>
 			
-			<%= link_to project_path(@project) do %>
-				<div class="tool overview" >Overview</div>
-			<% end %>
+			<%= link_to content_tag('div', 'Overview', class: 'tool overview'), 
+					project_path(@project),  
+					'data-disable-with' => '<div class ="tool active overview ">loading...</div>' 
+				%>
 			
-			<%= link_to project_coworkers_path(@project) do %>
-				<div class="tool coworkers" >Coworkers</div>
-			<% end %>
+			<%= link_to content_tag('div', 'Coworkers', class: 'tool coworkers'), 
+					project_coworkers_path(@project),  
+					'data-disable-with' => '<div class ="tool active coworkers ">loading...</div>' 
+				%>
 
-			<%= link_to content_tag('div', 'DropBox', class: 'tool files'), project_dropbox_path(@project),  'data-disable-with' => '<div class ="tool active files ">loading...</div>' %>
+			<%= link_to content_tag('div', 'Tasks', class: 'tool milestones'), 
+					project_tasklists_path(@project),  
+					'data-disable-with' => '<div class ="tool active milestones ">loading...</div>' 
+					%>
+					
+			<%= link_to  content_tag('div', 'Dialogs', class: 'tool dialogs'), 
+					project_topics_path(@project),  
+					'data-disable-with' => '<div class ="tool active dialogs ">loading...</div>'
+				%>
+
+			<%= link_to content_tag('div', 'DropBox', class: 'tool files'), 
+					project_dropbox_path(@project),  
+					'data-disable-with' => '<div class ="tool files active">loading...</div>'
+				%>
 			
-			<%= link_to project_milestones_path(@project) do %>
-				<% if yield(:active) == 'milestones' %>
-					<div class="tool milestones active" >Milestones</div>
-				<% else %>
-					<div class="tool milestones" >Milestones</div>
-				<% end %>
-			<% end %>		
+			<% link_to content_tag('div', 'Milestones', class: 'tool milestones'), 
+					project_milestones_path(@project),  
+					'data-disable-with' => '<div class ="tool active milestones ">loading...</div>' 
+				%>	
 
-			<%= link_to project_tasklists_path(@project) do %>
-				<div class="tool milestones" >Tasks</div>
-			<% end%>
 
-			<%= link_to project_github_path(@project) do %>
-				<div class="tool milestones" >GitHub</div>
-			<% end%>
+			<%= link_to  content_tag('div', 'GitHub', class: 'tool milestones'), 
+					project_github_path(@project),  
+					'data-disable-with' => '<div class ="tool milestones active ">loading...</div>'
+				%>
+
+
+
 
 			<%= link_to '' do %>
 				<div class="tool documents" >Documents</div>
@@ -87,13 +104,6 @@
 				<div class="tool calendar" >Appointments</div>
 			<% end%>
 
-			<%= link_to project_topics_path(@project) do %>
-			<div class="tool dialogs" >Topics</div>
-			<% end%>
-
-			<%= link_to '' do %>
-				<div class="tool settings" >Settings</div>
-			<% end%>
 
 			<%= link_to '' do %>
 				<div class="tool trash" >Trash</div>

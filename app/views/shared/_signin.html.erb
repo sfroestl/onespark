@@ -1,0 +1,8 @@
+<%= form_tag (sessions_path), id: 'signin' do %>
+
+  <%= text_field_tag :email_or_username, params[:email_or_username], placeholder: "username or email" %>
+  
+  <%= password_field_tag :password, params[:password], placeholder: :password%>
+
+  <%= submit_tag 'Sign in' %>
+<% end %>

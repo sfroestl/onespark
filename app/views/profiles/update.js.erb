@@ -1,9 +1,0 @@
-
-$('body').html('<%= escape_javascript render("show_profile"), :locals => { :profile => @profile } %>');
-console.log($('.closeButton').html());
-
-$('.closeButton').click(function () {
-      $('.overlay ,.darkener').fadeOut(400, function(){
-      	$(this).remove();
-      });
-});

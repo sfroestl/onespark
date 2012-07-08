@@ -1,0 +1,18 @@
+<% @comment ||= Comment.new %>
+<% @commentable ||= commentable %>
+
+<%= form_for [commentable, @comment] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <fieldset>
+  <%= f.label :content,  'Create Comment' %>
+  <%= f.text_field :content %>
+  </fieldset>
+  <div  class="details">
+    <fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit %>
+    
+    <a class="cancelButton">Cancel</a>
+    </fieldset>
+  </div>
+<% end %>

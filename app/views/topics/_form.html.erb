@@ -1,15 +1,21 @@
+<% @topic ||= Topic.new %>
+
 <%= form_for [@project, @topic] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :desc %><br />
-    <%= f.text_area :desc %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+    <%= f.label :title,  'Create a new Topic' %>
+    <%= f.text_field :title, placeholder:"What needs discussion?", :autofocus => "autofocus" %>
+  </fieldset>
+  
+  <fieldset>
+    <%= f.label :desc,  'Description' %>
+    <%= f.text_area :desc, placeholder: "Wish to add further details?" %>
+  </fieldset>
+  
+
+  <fieldset>
+      <%= f.label  'Finish' %>
+      <%= f.submit %>
+  </fieldset>
 <% end %>

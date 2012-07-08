@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, remote: true do |f| %>
  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :username %>
@@ -17,8 +17,8 @@
 		<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
 
 	<% elsif params[:action].eql? "edit" or params[:action].eql? "update"%>
-	<br/>
 		<%= f.submit %>
+		<%= link_to 'cancel', current_user, remote: true, class: "cancel_button" %>
 	<% else %>
 		<div class="two_edit_buttons">
 			<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>

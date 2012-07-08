@@ -1,0 +1,12 @@
+
+if($('.overlay').length > 0){
+	$('#overlay_content').replaceWith('<%= escape_javascript render("settings") %>');
+}else{
+	$('body').append('<%= escape_javascript render("settings") %>');
+}
+
+$('.closeButton').click(function () {
+      $('.overlay ,.darkener').fadeOut(400, function(){
+      	$(this).remove();
+      });
+});

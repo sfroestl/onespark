@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     
-    @task = @project.tasks.build
+    @task = Task.new
 
     respond_to do |format|
       format.html # new.html.erb

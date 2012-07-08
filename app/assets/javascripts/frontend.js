@@ -138,23 +138,68 @@ $(function()
 
 $("#add").click(function (){
 	if( $(this).find(".details").css("display") == "none"){
-		$(".details").slideDown(500);
+		$(".details").slideDown(350);
 	}
 	api.reinitialise();
 });
 $("#add a").click(function (){
 	clearForm($("#add form"));
-	$(".details").slideUp(500);
+	$(".details").slideUp(350);
 });
 
-});
+
 
 ///////////////////////////////SLIDE DOWN & UP TOOLBAR//////////////////////////////////////////////////
 
 $('.overlay .pofileOverlay .closeButton').click($('.overlay').remove());
 
 
+///////////////////////////////SLIDE DOWN HOME //////////////////////////////////////////////////
 
+// $('#home').click(function (){
+// 	console.log("click");
+// 	$(this).removeClass("head");
+// 	$(this).addClass("open")
+// });
+
+///////////////////////////////ALL PROJECTS SLIDER //////////////////////////////////////////////////
+
+$('#home').toggle(function() {
+	$('#all_projects').slideDown(200);
+}, function() {
+    $('#all_projects').slideUp(200);
+});
+
+
+///////////////////////////////AUTO DISMISS FLASH//////////////////////////////////////////////
+$(function() {
+	if("#flash div") {
+		console.log("Flash da");
+		$('#flash').delay(5000).slideUp(350);
+	}
+      // $("div.first").slideUp(300).delay(800).fadeIn(400);
+      // $("div.second").slideUp(300).fadeIn(400);
+});
+
+$(function() {
+	$('a').click(function (){
+		$(this).addClass("active");
+		})
+});
+
+
+// $('#home').live('mouseover mouseout', function(event) {
+//   if (event.type == 'mouseover') {
+//     console.log("hover!");
+//     $(this).addClass("open");
+
+//   } else {
+//     console.log("no hover!");
+//     $(this).removeClass("open");
+//   }
+// });
+
+});
 
 
 

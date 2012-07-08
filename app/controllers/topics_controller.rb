@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    @topic = @project.topics.build()
+    @topic = Topic.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
     @topic.creator = current_user
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to project_topic_path(@project, @topic), notice: 'Topic was successfully created.' }
+        format.html { redirect_to project_topic_path(@project, @topic), :flash => { :success =>  'Topic was successfully created.' } }
         format.json { render json: @topic, status: :created, location: @topic }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
+        format.html { redirect_to @topic, :flash => { :success => 'Topic was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

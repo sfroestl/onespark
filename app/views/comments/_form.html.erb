@@ -1,7 +1,34 @@
-<% form_for [@commentable, @comment] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<% if params[:action].eql? 'edit' %>
 
-  <%= f.text_area :content %>
+	<% @comment ||= Comment.new %>
+	<%= form_for(@comment) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.submit %>
+		<fieldset>
+		  <%= f.label :content,  'Content' %>
+		  <%= f.text_area :content %>
+		</fieldset>
+	  	<fieldset>
+	      <%= f.submit %>
+	   	</fieldset>
+	<% end %>
+
+<% else %>
+	<% @comment ||= Comment.new %>
+	<% @commentable ||= commentable %>
+
+	<%= form_for [commentable, @comment] do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+
+		<fieldset>
+		  <%= f.label :content,  'Create a Comment' %>
+		  <%= f.text_field :content %>
+		</fieldset>
+
+  	<fieldset>
+      <%= f.submit %>
+   	</fieldset>
+	
+	<% end %>
+
 <% end %>

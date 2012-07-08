@@ -1,0 +1,35 @@
+<% @user ||= User.new %>
+<%= form_for(@user) do |f| %>
+ <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+	  <%= f.label :username, 'Create an account' %>
+	  <%= f.text_field :username, placeholder: 'Choose your username' %>
+	</fieldset>
+
+  <div  class="details">
+	  <fieldset>
+	  	<%= f.label :email, 'Email' %>
+	  	<%= f.text_field :email, placeholder: 'Your email address' %>
+		</fieldset>
+
+	  <fieldset>  
+	  	<%= f.label :password, 'Password' %>
+	  	<%= f.password_field :password, placeholder: 'Your password'%>
+		</fieldset>
+	  
+	  <fieldset>
+	  	<%= f.label :password_confirmation, 'Confirmation' %>
+	  	<%= f.password_field :password_confirmation, placeholder: 'And password confirmation'%>		
+		</fieldset>
+
+	  <fieldset>
+	  	<%= f.label  'Finish' %>
+			<%= f.submit 'Sign Up' %>	
+			
+    <a class="cancelButton">Cancel</a>
+	  </fieldset>
+	</div>
+
+    
+<% end %>

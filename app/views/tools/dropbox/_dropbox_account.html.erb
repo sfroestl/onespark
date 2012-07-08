@@ -1,0 +1,7 @@
+<div class="task">
+  <h1>Your account info</h2>
+  <p><%= account_info['display_name'] %> | <%= account_info['email'] %> </p>
+  
+  <p>Space used overall: <%= number_to_human_size account_info['quota_info']['normal'] %> of <%= number_to_human_size @account_info['quota_info']['quota'] %></p>
+  <p>Space used for shared folders: <%= number_to_human_size account_info['quota_info']['shared'] %></p>
+</div>

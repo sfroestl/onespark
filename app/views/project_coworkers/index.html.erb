@@ -7,17 +7,10 @@
 		<h3>Coworkers</h3>
 	</div>
 
-	<div class="scroll-pane jspScrollable tools">
-		
-				<%= link_to  do %>
-					<div class="tool add" >Add Team</div>
-				<% end %>
+	<div class="scroll-pane jspScrollable tools">		
+				<%= link_to (content_tag( :div, 'Add Team', class: 'tool add' )) %>
 
-			<%= link_to project_coworkers_path(@project) do %>
-				<div class="tool">All Coworkers</div>
-			<% end %>
-
-			
+			<%= link_to (content_tag( :div, 'All Coworkers', class: 'tool add' )), project_coworkers_path(@project) %>
 	</div>
 </div>
 
@@ -37,55 +30,31 @@
 <div class="task">
 	<h1>Owner</h1>
 	<div class = "profiles_list">
-	  <%= image_tag "avatars/avatar.png", size: "30x30" %> <%= @project.user.username %>
+	  <%= render :partial => 'show_coworker', :locals => { :coworker => @project.user } %>
 	</div>
 </div>
 
 <div class="task">
 	<h1>Admins</h1>
-	<% unless @project_admins.nil? %>
-	  <div class = "profiles_list">
-	    <ul>
-	        <% @project_admins.each do |admin| %>
-	          <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
-	            <%= admin.username %> |
-	            <%= link_to "Profile", profile_path(admin) %> |
-	            <%= link_to "Remove", "coworkers/#{admin.username}", :confirm => 'Are you sure?', :method => :delete %>
-	        <% end %>
-	      </ul>                  
+	  <div class="profiles_list">
+	      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>	                 
 	  </div>
-	<% end %>
 </div>
 
 <div class="task">
-	<h1>Coworkers (write permission)</h1>
-	<% if @project_coworkers.nil? %>
-	  <p>You're alone. Invite people to join your project!</p>
-	<% else %>
+	<h1>Coworkers with write permission</h1>
+
 	  <div class="profiles_list">
-	    <ul>
-	      <% @project_coworkers.each do |coworker| %>
-	        <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
-	          <%= coworker.username %> |
-	          <%= link_to "Profile", profile_path(coworker) %> |
-	          <%= link_to "Remove", "coworkers/#{coworker.username}", :confirm => 'Are you sure?', :method => :delete %>
-	      <% end %>
-	    </ul>                  
+	      <%= render :partial => 'show_coworker', :collection => @project.writers, :as => :coworker %>	                 
 	  </div>
-	<% end %>
 </div>
+
 <div class="task">
-	<h1>Coworkers (read permission)</h1>
-	<% unless @project_readers.nil? %>
+	<h1>Coworkers with read permission</h1>
+
 	  <div class="profiles_list">
-	    <ul>
-	      <% @project_readers.each do |reader| %>
-	        <li> <%= image_tag "avatars/avatar.png", size: "30x30" %>
-	          <%= reader.username %> |
-	          <%= link_to "Profile", profile_path(reader) %> |
-	          <%= link_to "Remove", "coworkers/#{reader.username}", :confirm => 'Are you sure?', :method => :delete %>
-	      <% end %>
-	    </ul>                  
+	      <%= render :partial => 'show_coworker', :collection => @project.readers, :as => :coworker %>	                 
 	  </div>
-	<% end %>
+</div>
+
 </div>

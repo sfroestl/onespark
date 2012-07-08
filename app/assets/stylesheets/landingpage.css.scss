@@ -1,0 +1,465 @@
+/* style.scss */
+
+
+/* Farbvariablen */
+$sidebarDark: #151515;
+$sidebarDarkSeperator: #101010;
+$sidebarDarkInput: #efefef;
+$sidebarGrey: #efefef;
+$sidebarGreySeperator : #ccc;
+$onesparkOrange: #ff0000;
+
+$toolbarGrey: #fafafa;
+$softwhite:		#fcfcfc;
+$lightgrey:		#efefef;
+$middlegrey:	#151515;
+$orange:		#ff0000;
+$activeBlue: rgba(0,130,200, .3);
+
+/* Fontstacks */
+$officina: ITC Officina Serif, Droid Serif, Georgia, serif;
+$lucida: "Lucida Grande", "Lucida Sans Unicode",Verdana, Tahoma, Trebuchet MS, sans-serif;
+
+/* Mixins */
+
+@mixin rounded ($radius: 5px) {
+  border-radius: 			$radius;
+  -moz-border-radius: 		$radius;
+  -webkit-border-radius:	$radius;
+}
+
+@mixin border {
+	border: 5px solid rgb(0, 0, 0);
+	border: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+@mixin txtbutton {
+	@include transition(background-color, 0.1s, linear);
+	border:none;
+	font-family: $lucida;
+	padding:  1em;
+	background-color:$orange;
+	cursor: pointer;
+	color: white;
+	&:hover{
+		background-color:$orange;
+		@include shadow(0px, 0px, 4px, 0px, rgba(255, 0, 0, 1));
+	}
+	&:focus{
+		background-color:$orange;
+	}
+}
+
+@mixin transition($property, $duration: 0.3s, $timing: linear){
+	-moz-transition:	$property $duration $timing;
+ 	-webkit-transition:	$property $duration $timing;
+	-o-transition:		$property $duration $timing;
+	transition: 		$property $duration $timing;
+}
+
+@mixin shadow($x: 0px, $y:2px,  $blur: 4px, $spread:0px, $color: rgba(0,0,0,0.5)){
+	-moz-box-shadow: 	$x $y $blur $spread $color;
+	-webkit-box-shadow:	$x $y $blur $spread $color;
+	-o-box-shadow: 		$x $y $blur $spread $color;
+	box-shadow: 		$x $y $blur $spread $color;
+}
+
+@mixin innerShadow($x: 0px, $y:2px, $blur:5px, /*$spread:0px,*/ $color: rgba(0,0,0,.5)){
+
+	-moz-box-shadow: inset $x $y $blur $color;
+	-webkit-box-shadow: inset $x $y $blur $color;
+	box-shadow: inset $x $y $blur $color;
+}
+
+@mixin gradient( $color1: rgb(245,245,245), $color2:rgb(235,235,235)){
+	background-image: linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -o-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -moz-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -webkit-linear-gradient(bottom, $color1 100%, $color2 0%);
+	background-image: -ms-linear-gradient(bottom, $color1 100%, $color2 0%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(1, $color1),
+		color-stop(0, $color2)
+	);
+}
+/*
+ * ---------------------------------------
+ * Generelle Einstellungen
+ * ---------------------------------------
+ */
+
+* { margin: 0;}
+
+input {
+	border: none;
+	padding: 1em 1em;
+}
+input:focus{ 
+	outline: 0;
+	@include shadow(0px, 0px, 4px, 0px, rgba(255, 0, 0, 1));
+}
+
+textarea:focus { 
+	outline: 0;
+	@include shadow(0px, 0px, 10px, 0px, $activeBlue);
+}
+
+body {
+	min-width: 980px;
+	min-height:500px;
+	position: relative;
+	background-color: $softwhite;
+	font-family: $lucida;
+	font-size: 62.5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $officina;
+	//font-weight:normal;
+}
+
+a, label {
+	text-decoration: none;
+	color: black;
+	&:hover{
+	}
+	&:visited{
+		color:black;
+	}
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+form {
+	input[type="text"],input[type="password"]	 {
+		border: 1px solid $sidebarGreySeperator;
+		@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
+	}
+}
+
+
+#signup {	
+	margin:auto;
+	width:480px;
+	font-size:1.4em;
+
+	form {
+		input, textarea, .cancelButton {
+			font-size:1.05em;
+			margin: 0;
+			padding: 1em 1.2em;	
+		}
+		textarea, input {
+		display: block;
+		}
+
+		fieldset{
+			border:none;			
+			margin-bottom: .375em;
+		}
+		
+		
+		label {
+			width: 10em;
+			margin-top:1em;
+			border:1px solid $toolbarGrey;
+			padding: 1em 1em;
+			margin: 0 .5em;
+			cursor:pointer;
+			display:block;
+			float:left;
+			background: $sidebarGrey url(../assets/img/head-add.png) no-repeat 100% 50%;
+			@include transition(background-color, .2s, ease-in-out);
+			&:hover{
+				background-color: $sidebarGreySeperator;
+			}
+		}
+		input[type="submit"]{
+			float:left;
+		}
+		.details {
+			display:none;
+		}
+		textarea{
+			height:8em;
+		}
+		.cancelButton{	
+			float:left;
+			display:block;
+		}
+	}
+}
+input[type="submit"], .cancelButton  {
+		cursor:pointer;
+		border:1px solid $sidebarGreySeperator;
+		background-color:$sidebarGrey;
+		color: $sidebarDark;
+		@include gradient;
+		//@include multipleTransitions(background-image .2s ease-in-out, color .2s ease-in-out);
+		
+		&:hover, &:focus {
+			border:1px solid $sidebarGreySeperator;
+			color:black;
+			@include gradient(rgba(215,215,215,1), rgba(205,205,205,1));
+			//@include shadow(0px, 1px, 2px, 0, rgba(0,0,0, .2));
+		}
+		
+		&:active{
+			color:white;
+			border:1px solid black;
+			background: black;
+		}
+	}
+.button{
+	@include txtbutton;
+}
+
+/*
+ * ---------------------------------------
+ * HEADER
+ * ---------------------------------------
+ */
+
+header {
+	height: 50em;
+	// background-image: url(../img/feuer2.png);
+	background-repeat: no-repeat;
+	background-color: $lightgrey;
+	background-position: 20% 100%;
+}
+
+#brand {
+	clear: both;
+	text-align: center;
+	font-weight: normal;
+	font-style: italic;
+	h1 {
+		font-size:3em;
+		margin:1em;
+		text-transform: lowercase;
+		// padding-bottom: 2em;
+	}
+}
+
+nav {
+	position:fixed;
+	top: 0;
+	left : 2em;
+	
+	li a {	
+		opacity: .7;
+		font-size: 1em;
+		line-height: 2em;
+		text-decoration:none;
+		color: black;
+		&:hover{
+			opacity: 1;
+			text-decoration:underline;
+			color:black;
+		}
+	}
+
+	ul {
+		font-size: 1.2em;
+	}
+
+	#badge {
+		opacity:1;
+		display:block;
+		text-align:center;
+		margin-left: 0em;
+		height: 8.4em;
+		width: 6em;
+		background-color:$orange;
+		@include shadow(0px, 0px, 5px, 0px, rgba(0, 0, 0, .3));
+	&:hover{
+		@include shadow(0px, 0px, 5px, 0px, rgba(255, 0, 0, 1));
+		}
+		margin-bottom: 1em;
+		img{
+			margin-top:.5em;
+		}
+	}
+}
+
+#signin{
+	margin-left:8em;
+	font-size:1.2em;
+	margin-top: 1.5em;
+	margin-right: .5em;
+	float: right;
+	padding:1px;
+
+	*{	
+		margin-right:1px;
+		// padding:0;
+	}
+	div {
+		width: 35em;
+	}
+	#mail, #pw, #remember, #forgot {
+		width: 12em;
+		float: left;
+		display: block;
+		border: none;
+		padding: 1em 1em;
+	}
+	
+}
+#flash {
+	position:absolute;
+	color:$orange;
+	right:0em;
+	top:0.5em;
+	padding: 1.1em;
+	width: 34em;
+	}	
+
+
+/*
+ * ---------------------------------------
+ * DER MAIN CONTENT BEREICH
+ * ---------------------------------------
+ */
+
+
+#main {
+	font-size: 1.4em;
+	width: 60em;
+	clear: right;
+	margin:auto;
+
+	article{
+		clear: both;
+		padding-top: 3em;
+	}
+	h1 {
+		font-size: 2em;
+		margin-top: 1em;
+		margin-bottom: .5em;
+	}
+
+// Intro // 
+
+	#intro {
+		font-size:1.8em;
+		line-height:1.6em;
+		font-family: $officina;
+		h1 {
+			font-size:1em;
+		}
+	}
+
+// Features //
+
+	.feature {
+		margin-top:2em;
+		width: 19em;
+		float: left;
+		margin-right:1em;
+	}
+
+	#vier {
+		clear: both;
+	}
+	#sieben {
+		clear:both;
+	}
+
+// Neuigkeiten //
+
+	#email, #twitter{
+		
+		img {
+			padding-top:2.5em;
+			display:block;
+			margin: auto;
+		}
+		a, form {
+			text-align: center;
+			padding: .9em;
+			display:block;
+			width: 28em;
+			height: 10em;
+			background-color: $lightgrey;
+		}
+		a {
+			&:hover {
+				color: black;
+			}
+		}
+	}
+	#email {
+		float: left ;
+		input{
+			margin-top: 3em;
+		}
+	}
+	#twitter {
+		float: right;
+	}
+
+}
+@media screen and (max-width: 1100px){
+	#main, #foot div { 
+		margin-right: 1em;
+		margin-left:auto;
+	}
+}
+
+
+/*
+ * ---------------------------------------
+ * DIE IMPRINT NAVIGATIONSLEISTE
+ * ---------------------------------------
+ */
+
+footer {
+	padding:2em 0em;
+	clear:both;
+	background-color: #111;
+	color: $softwhite;
+	 
+	div {
+ 		width: 60em;
+ 		margin:auto;
+ 	}
+ 	
+ 	p {
+ 		font-size:0.8em;
+ 	}
+ 	*{
+ 		margin:0;
+ 		padding:0;
+ 	}
+
+ 	font-size:1.4em;
+ 	margin:auto;
+ 	border-top: 1px solid $lightgrey;
+
+ 	a {
+ 		text-decoration:none;
+ 		color: $softwhite;
+ 		&:visited {
+ 			color:$softwhite;
+ 		}
+
+ 		&:hover {
+ 			text-decoration:underline;
+ 		}
+ 	}
+
+ 	ul li {
+ 		display:inline;
+ 	}
+
+ }
+
+

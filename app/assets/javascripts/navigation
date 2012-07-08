@@ -1,8 +1,0 @@
- jQuery ->
- 	$('a div.tool').click ->
- 		@current_link = $(this)
-		@current_link.addClass 'active'
-		
- 		#$('#dropbox_content').update('<%= escape_javascript render :partial => "tools/dropbox/dropbox_content", :locals => {:account_info => @account_info, :files => @files, :folders => @folders } %>')
-		console.log @current_link
- 		#false

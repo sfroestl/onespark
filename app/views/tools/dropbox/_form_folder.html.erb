@@ -1,0 +1,14 @@
+<%= form_tag({:action => :add_folder}) do %>
+	<fieldset>
+		<%= label_tag :folder_name, 'Add Folder ' %>
+		
+		<%= text_field_tag :folder_name, nil, :placeholder => 'Enter folder name' %>
+	</fieldset>
+	<%= hidden_field_tag 'folder_path', params[:folder_path] %>
+	<fieldset>
+      <%= label_tag  'Finish' %>
+      <%= submit_tag 'upload' %>	      
+  	  <a class="cancelButton">Cancel</a>
+  	</fieldset>
+
+<% end %>

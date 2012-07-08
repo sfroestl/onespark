@@ -1,5 +1,6 @@
 class Tools::GithubRepositoriesController < ApplicationController
   require 'tools/github/github_api'
+  layout 'project'
 
   before_filter :find_project, except: [:index, :create_repo]
   before_filter :init_github_api, only: [:index, :create_repo]

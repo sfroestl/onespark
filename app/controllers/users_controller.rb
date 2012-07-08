@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  layout 'profile'
+  # layout 'profile', except: [:new ]
+  require 'tools/dropbox/dropbox_sdk'
+
   before_filter :signed_in_user, only: [:show, :edit, :update, :destroy]
   before_filter :correct_user
  
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render 'static_pages/home'}
       format.json { render json: @user }
     end
   end
@@ -16,11 +18,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    Rails.logger.info "> USerController: current_user: #{current_user.username} | #{session[:user_id]}"
+    Rails.logger.info "> UserController: current_user: #{current_user.username} | #{session[:user_id]}"
     @github_account = Tools::GithubAccount.find_by_user_id(current_user.id)
     @user = User.find_by_username(params[:id])
+
+    db_client = init_db_client
+    @db_account = db_client.account_info
     respond_to do |format|
       format.html # show.html.erb
+      format.js {}
       format.json { render json: @user }
     end
   end
@@ -31,12 +37,13 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
       respond_to do |format|
         if @user.save
+          Rails.logger.info " WRONG USER"
           @user.create_profile
           sign_in @user
           format.html { redirect_to "/profiles/#{@user.username}", :flash => { :success => 'Welcome to the One Spark!' }}
           format.json { render json: @user, status: :created, location: @user }
         else
-          format.html { render action: "new" }
+          format.html { render 'static_pages/home', layout: 'static_pages' }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
@@ -88,6 +95,13 @@ private
   def correct_user
     @user = User.find_by_username(params[:id])
     render 'public/404' unless current_user?(@user)
+  end
+
+  def init_db_client
+    # need to store details
+    dbsession = DropboxSession.deserialize(session[:dropbox_session])
+    client = DropboxClient.new(dbsession) #raise an exception if session not authorized
+        
   end
   
 end

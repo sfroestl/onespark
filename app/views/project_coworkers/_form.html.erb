@@ -1,7 +1,22 @@
 <%= form_tag do  %>
-	Add Coworker 	
-    <%= text_field_tag :username, params[:username], placeholder:"Username"%>
-	<%= select :coworker, :permission, @permissions %>
-	<%= submit_tag "Add coworker" %>
+	<fieldset>	
+		
+		<%= label_tag :username,  'Add a Coworker' %>
+    <%= text_field_tag :username, params[:username], placeholder:"What's the name?"%>
+	</fieldset>	
 
+	<div class = "details">
+		<fieldset>
+			<%= label_tag :username,  'Permission' %>
+			<%= select :coworker, :permission, @permissions %>
+		</fieldset>	
+
+		<fieldset>
+		  <%= label_tag  'Finish' %>
+		  <%= submit_tag %>		  
+    	<a class="cancelButton">Cancel</a>
+		</fieldset>
+	</div>
 <% end %>
+
+

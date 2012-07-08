@@ -1,0 +1,8 @@
+   <!-- #link_to "#{project_dropbox_path(@project)}/folder?folder_path=/#{@folder['path'].split("/").at(-2)}" do %> -->
+
+
+  <%= link_to content_tag('div', folder['path'].split("/").last, class: 'tool'),
+      "#{project_dropbox_path(@project)}/folder?folder_path=#{folder['path']}",
+      'data-disable-with' => "<div class ='tool active'>#{folder['path'].split("/").last} <small><i>requesting...</i></small></div>" 
+      #, remote: true
+       %>

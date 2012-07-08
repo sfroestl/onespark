@@ -1,0 +1,15 @@
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div id="dropbox_content" class="content">
+  <div id = "contentHead" class="head">
+    <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => @folder['path']} %>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+      <div class="task tool" id="add">
+        <p><%= render 'form_file' %></p>
+      </div>
+
+      <%= render :partial => 'tools/dropbox/dropbox_content', :locals => { :files => @files, :folders => @folders } %>
+    
+  </div>
+</div>

@@ -1,19 +1,7 @@
-<%= link_to new_project_tasklist_path(@project) do %>
-	<div class="tool add" >Add Tasklist</div>
-<% end %>
+<%= link_to content_tag('div', 'Add Tasklist', class: 'tool add'),
+	new_project_tasklist_path(@project) %>
 
-<%= link_to project_tasklists_path(@project) do %>
-	<div class="tool">All Tasks</div>
-<% end %>
+<%= link_to content_tag('div', 'All Tasks', class: 'tool'),
+	project_tasklists_path(@project) %>
 
-<% if @project.tasklists %>
-	<% @project.tasklists.each do |tasklist| %>
-	<%= link_to project_tasklist_path(@project, tasklist) do %>
-		<% if tasklist == @tasklist %>
-			<div class="tool active"><%= tasklist.title %></div> 
-		<% else %>
-			<div class="tool"><%= tasklist.title %></div> 
-		<% end %>
-		<% end %>
-	<% end %>	
-<% end %>
+<%= render :partial => 'tasklists/sidebar_tasklist', :collection => @project.tasklists, as: :tasklist %>

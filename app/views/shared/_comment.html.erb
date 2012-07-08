@@ -1,0 +1,3 @@
+<p><%= comment.content %></p>
+<p><i><%= comment.user.username %></i> at <i><%= format_date_long comment.created_at %></i></p>
+<%= link_to 'edit', edit_comment_path(comment) if current_user.id == comment.user_id %>
