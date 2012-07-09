@@ -5,6 +5,15 @@
 	</div>
 	<div class="login">
 		<h1>Sign in</h1>
+
+		<% unless flash.empty? %>
+			<% flash.each do |key, value| %>
+			<!-- <button class="close_alert" data-dismiss="alert">×</button> -->
+
+			<%= content_tag(:div, value, id: 'error_explanation') %>
+			<% end %>
+		<% end %>
+
 		<%= form_tag (sessions_path) do %>
 
 			<%= text_field_tag :email_or_username, params[:email_or_username], placeholder: "username or email", :class => "login_text" %>
