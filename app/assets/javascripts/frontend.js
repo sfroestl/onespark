@@ -10,7 +10,7 @@ console.log(scroll);
 
 
 var headHeight = $('.head').height();
-var sidebarWidth = ($('.sidebar1').width()) + ($('.sidebar2').width()) + 1;
+var sidebarWidth = ($('.sidebar1').width()) + ($('.sidebar2').width());
 console.log(headHeight);
 
 var toolheight = function(){
@@ -173,9 +173,13 @@ $(function(){
 	if ($('.sidebar2').length) {
 		console.log("sidebar2");
 		console.log(sidebarWidth);
+
 	} else {
 		console.log("no sidebar2");
 		console.log(sidebarWidth);
+		content.css("left", sidebarWidth);
+		content.css("border", "none");
+		$('#contentHead').addClass('tool_head_active');
 	}
 });
 

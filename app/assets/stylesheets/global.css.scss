@@ -252,6 +252,16 @@ input[type="file"] {
 #end{
 	clear:left;
 }
+.tool_head_active{
+	background-image: url(../assets/img/head-red.png);
+	background-repeat: no-repeat;
+	background-position:0 center;
+	h3 {
+		position:absolute;
+		top: 50%;
+		left: 1em;
+	}
+}
 
 .debug {
 	position: absolute;
