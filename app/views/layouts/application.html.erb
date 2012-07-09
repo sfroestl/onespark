@@ -25,9 +25,7 @@
 	<!-- header -->
 	<div id = "head">
 
-			<div id="home" class="head">
-				<%= image_tag 'img/head-logo.png', alt: "One Spark Logo" %>
-			</div>
+			<%= link_to content_tag('div', image_tag('img/head-logo.png', alt: "One Spark Logo"), class: "head", id: "home"), projects_path %>
 
 			<div id="projectHead" class="head">
 				<h3><%= (yield(:title)) %></h3>

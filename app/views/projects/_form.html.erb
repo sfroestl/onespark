@@ -1,18 +1,25 @@
-<%= form_for(@project) do |f| %>
- <%= render 'shared/error_messages', object: f.object %>
+<%= form_for(Project.new) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+<div class="listed_elem">
+  <fieldset>
+    <%= f.label :title,  'Create a new Project' %>
+    <%= f.text_field :title, placeholder:"What's your idea's title?", :autofocus => true, :tabindex => 2 %>
+  </fieldset>
+  <div  class="details">
+    <fieldset>
+      <%= f.label :due_date,  'Due Date' %>
+      <%= f.text_field :due_date, placeholder:"When is it due?", :tabindex => 3 %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :desc,  'Description' %>
+      <%= f.text_area :desc, placeholder: "Wish to add further details?", :tabindex => 5 %>
+    </fieldset>
 
-  <%= f.label :title %>
-  <%= f.text_field :title, :autofocus => "autofocus"%>
-
-  <%= f.label :desc %>
-  <%= f.text_area :desc %>
-
-  <%= f.label :due_date %>
-  <%= f.text_field :due_date %>
-		<div class = "project_buttons">	
-			<%= link_to "Cancel", projects_path, :class => "btn btn-medium" %>
-			<div class = "pull-right">
-			<%= submit_tag("Create project",  :name => 'create', :class => "btn btn-primary" )%>
-			</div>
-		</div>
-<% end %>
+    <fieldset>
+      <%= f.label  'Finish' %>
+      <%= f.submit :tabindex => 6%>
+    <a class="cancelButton">Cancel</a>
+    </fieldset>
+  </div>
+</div>
+  <% end %>
