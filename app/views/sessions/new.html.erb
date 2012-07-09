@@ -1,20 +1,23 @@
 <%= provide(:title, 'Sign in') %>
-
-
-  <h1>Sign in</h1>
-
-
+<div>
+	<div class="brand">
+		<img src="assets/landingpage/logo-sw.png" alt="one spark">
+	</div>
+	<div class="login">
+		<h1>Sign in</h1>
 		<%= form_tag (sessions_path) do %>
-		
-			<%= text_field_tag :email_or_username, params[:email_or_username], placeholder: "username or email" %>
-			
-			<%= password_field_tag :password, params[:password], placeholder: :password%>
 
-			<%= submit_tag 'Sign in', :class => "btn btn-large btn-primary" %>
+			<%= text_field_tag :email_or_username, params[:email_or_username], placeholder: "username or email", :class => "login_text" %>
+		
+			<%= password_field_tag :password, params[:password], placeholder: :password, :class => "login_text" %>
+
+			<%= submit_tag 'Sign in', :class => "login_button" %>
+			
 		<% end %>
 		
-		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
-
-
-
+		<p class="login_helper">
+			New user? <%= link_to "Sign up now!", signup_path %>
+		</p>
+	</div>
+</div>
 	

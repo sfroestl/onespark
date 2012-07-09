@@ -1,9 +1,31 @@
-<% provide(:title, 'make your idea happen') %>
+ 
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
+  <title><%= full_title('make your idea happen') %></title>
+  
+  <meta name="description" content="">
 
-<!-- |||||||||||||||||DER HEADER||||||||||||||||| -->
+  <meta name="viewport" content="width=device-width">
+<!--  <link rel="stylesheet" href="style/styleh5bp.css"> -->
 
-<header>
+
+
+  <%= stylesheet_link_tag "landingpage", media: "all" %>
+  <%= javascript_include_tag "home" %>
+  <%= csrf_meta_tags %>
+</head>
+
+
+<body id="top">
+  <header>
 
   <!-- DIE NAVIGATION -->
   <nav>
@@ -176,3 +198,21 @@
     </div>
   </footer>
  
+
+ <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+
+
+    function goToByScroll(id){
+          $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
+    }
+  </script>
+</body>
+</html>
+<!-- |||||||||||||||||DER HEADER||||||||||||||||| -->
+

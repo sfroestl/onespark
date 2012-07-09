@@ -42,9 +42,8 @@
 	<!-- ///////////////////////////////////SIDEBAR1//////////////////////////////////////////-->
 	<div class="sidebar sidebar1" >
 		
-		<div id="home" class="head">
-			<%= link_to image_tag('img/head-logo.png', alt: "One Spark Logo"), projects_path %>
-		</div>
+			<%= link_to content_tag('div', image_tag('img/head-logo.png', alt: "One Spark Logo"), class: "head", id: "home"), projects_path %>
+
 		
 		<div id="projectHead" class="head">
 			<h3><%= @project.title %></h3>

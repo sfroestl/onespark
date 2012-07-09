@@ -62,7 +62,7 @@ textarea, input {
 	display: block;
 }
 
-textarea, input[type="text"] {
+textarea, input[type="text"], input[type="password"] {
 	border: 1px solid $sidebarGreySeperator;
 	background: $softWhite;
 	@include innerShadow(0, 1px, 3px, rgba(0,0,0,.1));
@@ -115,4 +115,17 @@ input[type="file"] {
 	//display:none;
 }
 
+
+.field_with_errors input {
+	border: 1px solid rgba(255,0,0, .5);
+	@include innerShadow(0, 0, 5px, rgba(255,0,0, .2));
+}
+#error_explanation {
+	font-weight:bold;
+	color: red;
+	ul{
+		font-weight:normal;
+		list-style-type:none;
+	}
+}
 

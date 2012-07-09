@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+layout 'static_pages', only: [:new]
   def create
     user = User.find_by_email(params[:email_or_username])
     user ||= User.find_by_username(params[:email_or_username])
