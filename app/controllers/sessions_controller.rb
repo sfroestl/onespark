@@ -7,7 +7,7 @@ layout 'static_pages', only: [:new]
     respond_to do |format|
       if user && user.authenticate(params[:password])
         sign_in user
-        format.html { redirect_back_or profile_path(user) }
+        format.html { redirect_back_or projects_path }
       else
         format.html { redirect_to :back, :flash => { :error => 'Invalid email, username / password combination' } }
       end

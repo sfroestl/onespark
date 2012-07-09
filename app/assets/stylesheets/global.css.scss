@@ -111,11 +111,6 @@ input[type="file"] {
 	border-bottom: 1px solid $sidebarGrey;
 }
 
-.debug {
-	//display:none;
-}
-
-
 .field_with_errors input {
 	border: 1px solid rgba(255,0,0, .5);
 	@include innerShadow(0, 0, 5px, rgba(255,0,0, .2));
@@ -130,3 +125,7 @@ input[type="file"] {
 	margin-bottom:1em;
 }
 
+
+.debug {
+	// display:none;
+}

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
           Rails.logger.info " WRONG USER"
           @user.create_profile
           sign_in @user
-          format.html { redirect_to "/profiles/#{@user.username}", :flash => { :success => 'Welcome to the One Spark!' }}
+          format.html { redirect_to projects_path, :flash => { :success => 'Welcome to the One Spark!' }}
           format.json { render json: @user, status: :created, location: @user }
         else
           format.html { render 'new', layout: 'static_pages' }
@@ -65,6 +65,7 @@ class UsersController < ApplicationController
           format.html { redirect_to @user, :flash => { :success => 'Profile updated' }}
           format.json { head :no_content }
         else
+          format.js { render 'shared/_replace_form.js' }
           format.html { render action: "edit" }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end

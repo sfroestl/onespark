@@ -4,8 +4,11 @@
 
 
 body {
+	// because jscrollpane needs the body's overflow hidden
+	// – jscrollpane isn't needed in our static pages
 	overflow:auto;
 }
+
 .brand {
 	margin-top: 2em;
 	clear: both;

@@ -15,3 +15,4 @@
 //= require jquery.mousewheel
 //= require jquery.jscrollpane
 //= require frontend
+//= require form_helper

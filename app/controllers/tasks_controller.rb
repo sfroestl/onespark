@@ -62,6 +62,7 @@ class TasksController < ApplicationController
         format.html { redirect_to :back, :flash => { :success => 'Task was successfully created.' } }
         format.json { render json: task, status: :created, location: task }
       else
+        format.js {  }
         format.html { render action: "new" }
         format.json { render json: task.errors, status: :unprocessable_entity }
       end

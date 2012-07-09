@@ -2,7 +2,9 @@
 
 
 if($('.overlay').length > 0){
+	$('.darkener').remove();
 	$('.overlay').replaceWith('<%= escape_javascript render("show_profile") %>');
+	console.log($('.overlay, .darkener'));
 }else{
 	$('body').append('<%= escape_javascript render("show_profile") %>');
 }

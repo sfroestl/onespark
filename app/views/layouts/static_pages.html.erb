@@ -30,6 +30,12 @@
 
 	<%= yield %>
 
+	<div class= "debug">
+	<% if Rails.env.development? %>
+		<%= debug(params) %>
+		<%= debug(current_user) if current_user %>
+	<% end %>
+	</div>
 
  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
