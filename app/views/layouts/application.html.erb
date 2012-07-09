@@ -33,7 +33,7 @@
 				<h3><%= (yield(:title)) %></h3>
 			</div>
 
-		<%= render 'layouts/account' %> 
+		<%= render 'layouts/account' if current_user %> 
 	</div>
 
 

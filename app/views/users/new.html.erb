@@ -1,11 +1,16 @@
 <%= provide(:title, 'Sign up') %>
-
-<div class="center hero-unit">
-  <h1>Sign up to One Spark</h1>
-  <p>To create your One Spark account, just type in your information and you'll be set up in less then a minute!</p>
+<div class="brand">
+	<img src="assets/landingpage/logo-sw.png" alt="one spark">
+</div>
+<div class="login">
+  <h1>Create Account</h1>
+  <p class="login_info">To create your One Spark account, just type in your information and you'll be set up in less then a minute!</p>
  	<div class="row signup ">
  		<div class="span4 offset5">
 	    <%= render'form'%>
 	   </div>
 	</div>
+	<p class="login_helper">
+		Already got an account? <%= link_to "Sign in!", signin_path %>
+	</p>
 </div>

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     respond_to do |format|
-      format.html { render 'static_pages/home'}
+      format.html { render 'new', layout: 'static_pages'}
       format.json { render json: @user }
     end
   end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
           format.html { redirect_to "/profiles/#{@user.username}", :flash => { :success => 'Welcome to the One Spark!' }}
           format.json { render json: @user, status: :created, location: @user }
         else
-          format.html { render 'static_pages/home', layout: 'static_pages' }
+          format.html { render 'new', layout: 'static_pages' }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
