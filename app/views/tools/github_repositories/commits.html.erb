@@ -26,7 +26,7 @@
     <ul>
       <% @repo_commits.each do |commit| %>
           <li>
-            <strong><%= format_date_long commit.commit['committer']['date'] %></strong> - <%= commit.commit['message'] %> 
+            <strong><%= format_date_long commit.commit['committer']['date'].to_datetime + 9.hours %></strong> - <%= commit.commit['message'] %> 
             <p>by <%=commit.commit['committer']['name'] %></p>
             <p><%commit.commit %></p>
             <%= link_to 'view', "#{commit.url}", :target => "_blank" %><br/> 

@@ -13,6 +13,8 @@ require 'tools/github/resources/repos_api'
 require 'tools/github/resources/repo'
 require 'tools/github/resources/commits_api'
 require 'tools/github/resources/commit'
+require 'tools/github/resources/events_api'
+require 'tools/github/resources/event'
 
   # Raised when an API request returns a 404 error  
   NotFound = Class.new(RuntimeError)
@@ -91,6 +93,14 @@ require 'tools/github/resources/commit'
   # associated with this instance
   def commits
     CommitsAPI.new(self)
+  end
+
+  # Entry-point for access to the GitHub Events API
+  #
+  # Returns an instance of GitHubV3API::EventsAPI that will use the access_token
+  # associated with this instance
+  def events
+    EventsAPI.new(self)
   end
 
   def get(path, params={}) #:nodoc:

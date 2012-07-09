@@ -24,12 +24,34 @@
       <h1>Repository overview</h1>
       <p>Desc: <%= @repo_data.description %></p>
       <p>Owner: <%= @repo_data.owner['login'] %></p>
-      <p>Last push at: <%= format_date_long @repo_data.pushed_at %></p>
+      <p>Last push at: <%= format_date_long(@repo_data.pushed_at.to_datetime + 2.hours) %></p>
 
       <p>Created at: <%= format_date_short @repo_data.created_at %></p>
       <p><% number_to_human_size @repo_data.size %></p>
       <p><%= pluralize(@repo_data.watchers, 'Watcher') %></p>
     </div>
-    
+    <div class="task">           
+      <h1>Recent events</h1>
+      <% if @repo_events %>
+      <ul>
+        <% @repo_events.each do |event| %>
+        <li>
+          <h2><%= event['type'] %> - <%= format_date_long(event['created_at'].to_datetime + 2.hours) %></h2>
+          <p><%= event['actor']['login'] %> 
+            <% if event['type'].eql? 'IssuesEvent' %> 
+              <%= event['payload']['action'] %> issue "<%= event['payload']['issue']['title'] %>"
+            <% elsif event['type'].eql? 'PushEvent' %>
+              pushed commits:
+              <ul>
+                <% event['payload']['commits'].each do |commit| %>
+                  <li><%= commit['message'] %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </p>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
   </div>
 </div>

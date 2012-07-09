@@ -36,7 +36,7 @@ class Tools::GithubRepositoriesController < ApplicationController
       if @github_repository
         
         @repo_data = github_client.repos.get(@github_repository.owner, @github_repository.name)
-        @repo_issues = github_client.issues.list(user: @github_repository.owner, repo: @github_repository.name)
+        @repo_events = github_client.events.list(user: @github_repository.owner, repo: @github_repository.name  )
         format.html # show.html.erb
       else
         @user_repositories = github_client.repos.list     

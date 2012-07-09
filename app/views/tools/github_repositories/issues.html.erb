@@ -34,7 +34,7 @@
                 <%= content_tag('p', "assigned to: #{issue.assignee['login']}") %> 
               <% rescue Exception %>
               <% end %> 
-            <p>created: <%= format_date_short issue.created_at %></p>
+            <p>created: <%= format_date_short(issue.created_at.to_datetime ) %></p>
             <p>comments: <%= issue.comments %> </p>
             
             <%= link_to 'close', project_github_close_issue_path(@project, issue.number), :method => :post, :confirm => "Close issue: \"#{issue.title}\" on GiHub?" %>
