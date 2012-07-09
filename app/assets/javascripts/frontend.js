@@ -10,7 +10,7 @@ console.log(scroll);
 
 
 var headHeight = $('.head').height();
-var sidebarWidth = ($('.sidebar').width())*2 + 1;
+var sidebarWidth = ($('.sidebar1').width()) + ($('.sidebar2').width()) + 1;
 console.log(headHeight);
 
 var toolheight = function(){
@@ -167,7 +167,18 @@ $(function() {
 		})
 });
 
+
+// Check if there is a second sidebar, change Layout accordingly
+$(function(){
+	if ($('.sidebar2').length) {
+		console.log("sidebar2");
+		console.log(sidebarWidth);
+	} else {
+		console.log("no sidebar2");
+		console.log(sidebarWidth);
+	}
 });
 
+});
 
 

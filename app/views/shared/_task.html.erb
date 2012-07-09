@@ -5,18 +5,20 @@
 	</h1>
 
 	<div  class="element_description">	
-		<h2>Infos</h2>
 	<dl>
 		<dt>Created by</dt>
-		<dd><%= task.creator.username unless task.creator.nil? %></dd>
+		<dd>
+			<%= task.creator.username unless task.creator.nil? %>
+		</dd>
+		<% if task.due_date %>
     	<dt>Due Date</dt>
-    	<dd><%= format_date_long task.due_date if task.due_date %></dd>
+    	<dd><%= format_date_long task.due_date %></dd>
+    	<% end %>
 	   	<dt>Assigned To</dt>
-    	<dd><%= task.worker ? task.worker.username  : 'none' %></dd>
-      <dt>Description</dt>
-      <dd><%= task.desc %></dd>
-      <dt>links</dt>
-      <dd></dd>
+    	<dd><%= task.worker ? task.worker.username  : 'none' %>
+    	</dd>
+      	<dt>Description</dt>
+      	<dd><%= task.desc %></dd>
     </dl>
     </div>
 

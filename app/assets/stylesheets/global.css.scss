@@ -225,8 +225,6 @@ input[type="file"] {
 }
 
 .element_description {
-	width: 50%;
-	float:left;
 	dl {
 		min-height: 3em;
 
@@ -250,13 +248,15 @@ input[type="file"] {
 	width: 33%;
 }
 .element_comments {
-	width: 50%;
-	float:left;
 }
 #end{
 	clear:left;
 }
 
 .debug {
-	display:none;
+	position: absolute;
+	bottom:0;
+	right:0;
+	z-index: 500;
+	//display:none;
 }
