@@ -295,7 +295,7 @@
 				margin-bottom: .375em;
 			}
 			label {
-				width: 10em;
+				width: 20%;
 				margin-top:1em;
 				border:1px solid $toolbarGrey;
 				padding: 1em 1em;
@@ -327,14 +327,13 @@
 
 	.task{
 		border-bottom: 1px solid $sidebarGrey;
-		background: $softWhite;
+		background-color: $softWhite;
 		margin-left:0;
-		padding:1.5em;
 		height: auto;
 		width:auto;
 
 		h1 {
-			font-size:3em;
+			font-size:2em;
 		}    
 	}
 

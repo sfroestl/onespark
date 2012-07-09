@@ -7,15 +7,19 @@
 		</div>
 		
 			<% if @projects.empty? %>
-				<p style="text-align:center">
-					"I never see what has been done, I only see what remains to be done." &#8213; <i>Buddha</i>
-				</p>
+				<div class ="welcome">
+					<h1>
+						Hi there, do you want to create a new project?
+					</h1>
+				</div>
 
 			<% else %> 
 				<%= render :partial => 'projects/project', :collection => @projects %>						
 			<% end %>
 
+		<% unless @collab_projects.empty? %>
 		<h2 class="seperator">Collaborated Projects</h2>
-		<%= render :partial => 'projects/project', :collection => @all_projects %>
+		<%= render :partial => 'projects/project', :collection => @collab_projects %>
+		<%end %>
 	</div>
 </div>

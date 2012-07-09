@@ -157,7 +157,7 @@ $('#home').toggle(function() {
 ///////////////////////////////AUTO DISMISS FLASH//////////////////////////////////////////////
 $(function() {
 	if("#flash div") {
-		$('#flash').delay(5000).slideUp(350);
+		$('#flash').delay(2500).fadeOut(1000);
 	}
 });
 

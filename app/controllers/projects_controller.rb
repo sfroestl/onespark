@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  layout 'project', except: [:index, :new]
+  layout 'project', except: [:index, :new, :create]
   # layout 'all_projects', only: [:index]
   # before_filter :get_all_projects
   before_filter :signed_in_user
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     # TODO: make project only accesible for admin and invited users
-    
+    @project = Project.new
     respond_to do |format|
       format.html {  }
       format.json { render json: @projects }
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, :flash => { :success => "Project created!" } }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new", :flash => { :error => "Project not created!" }  }
+        format.html { render 'index', :flash => { :notice => "Project not created!" }  }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -116,7 +116,7 @@ class ProjectsController < ApplicationController
     end
 
     def all_projects_of_user
-      @all_projects = current_user.project_permissions unless  current_user.nil?
+      @collab_projects = current_user.project_permissions unless  current_user.nil?
     end
 
     def project_admins

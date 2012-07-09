@@ -125,7 +125,138 @@ input[type="file"] {
 	margin-bottom:1em;
 }
 
+.alert {
+  padding: 8px 35px 9px 35px;
+  color: #c09853; 
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: #fcf8e3 url(../assets/img/head-add.png) no-repeat 100% 50%;
+  border: none;
+}
+
+.alert-heading {
+  color: inherit;
+}
+
+.alert .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  line-height: 18px;
+}
+
+.alert-success {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-danger,
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.alert-info {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-block {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.alert-block > p,
+.alert-block > ul {
+  margin-bottom: 0;
+}
+
+.alert-block p + p {
+  margin-top: 5px;
+}
+
+
+.flash {
+  border:none;
+  position:absolute;
+  z-index:299;
+  right: 195px;
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+  width:auto;
+  button {
+    border:none;
+  }
+}
+.element {
+	padding:1.5em;
+	position: relative;
+	//background: $softWhite url(../assets/img/elem-task.png) no-repeat 0% 50%;
+
+}
+
+.content .element_settings {
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	a,p {
+		color: $sidebarGreySeperator;
+		float: left;
+		padding: 1em 1.5em;
+		text-transform:lowercase;
+		text-decoration:none;
+		display: block;
+	}
+	a {	
+		&:hover{
+			background-color: $sidebarGrey;
+			color: black;
+			opacity: 1;
+		}
+	}
+}
+
+.element_heading {
+	height:100%;
+	margin-bottom: 1em;
+}
+
+.element_description {
+	width: 50%;
+	float:left;
+	dl {
+		min-height: 3em;
+
+		dt {
+			padding-right:2em;
+			color: $sidebarGreySeperator;
+			font-weight: normal;
+			line-height: 1.2;
+		}
+		dd {
+			font-weight: normal;
+			padding-right:2em;
+			margin: 0 0 10px 0;
+			line-height: 1.4;
+		}	
+	}
+}
+.element_links {
+	float:left;
+	height: 10em;
+	width: 33%;
+}
+.element_comments {
+	width: 50%;
+	float:left;
+}
+#end{
+	clear:left;
+}
 
 .debug {
-	//display:none;
+	display:none;
 }

@@ -19,7 +19,7 @@
 	text-align:center;
 	line-height:4.5em;
 	width: 3em;
-	background-color:$sidebarDarkSeperator;
+	background-color:$onesparkOrange;
 	@include transition(background-color, 0.1s, linear);
 	img{
 		vertical-align:middle;
@@ -58,6 +58,9 @@
 }
 
 .content {
+	h1 {
+		font-size:3em;
+	} 
 	width:100%;
 	overflow:auto;
 	.scroll-pane{
@@ -68,8 +71,8 @@
 
 		background-color: $softWhite;
 		border-bottom: 1px solid $sidebarGrey;
-		// padding: 1em;
-		// padding-left: 3.5em;
+		padding: 1em;
+		padding-left: 3.5em;
 	}
 	.project {
 		min-height:10em;
@@ -77,7 +80,7 @@
 }
 
 #add {
-	border-bottom: 1px solid $sidebarGrey;
+
 }
 form {
 	padding-top: .375em;
@@ -121,4 +124,15 @@ form {
 	padding-top:1em;
 	border-bottom:1px solid $sidebarGrey;
 }
-
+.welcome {
+	background: url(../assets/img/create-arrow.png) no-repeat 15% 15%;
+	text-align:center;
+	color: $sidebarGreySeperator;
+	padding-top: 6em;
+	width:100%;
+	h1 {
+		margin-left:auto;
+		margin-right:auto;
+		width: 10em;
+	}
+}

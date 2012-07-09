@@ -1,16 +1,30 @@
-<%= provide(:title, 'New project') %>
-<div class="container-fluid">
+<%= provide(:title, 'Your projects') %>
+<div class ="content">
+	<div class ="scroll-pane jspScrollable">
 
-		<h1>Create a new project</h1>
-		<hr class="soften"/>
-	<div class = "span10 offset4">
-			<div class="row">
-	  		<div class="span4"  style="width:360px">
-						<%= render  'form' %>
-				</div>
+		<div id="add">
+			<% unless flash.empty? %>
+			<% flash.each do |key, value| %>
+			<%= content_tag(:div, value, id: 'error_explanation') %>
+			<% end %>
+		<% end %>
+			<%= render 'form' %>
 		</div>
+		
+			<% if @projects.empty? %>
+				<div class ="welcome">
+					<h1>
+						Hi there, do you want to create a new project?
+					</h1>
+				</div>
+
+			<% else %> 
+				<%= render :partial => 'projects/project', :collection => @projects %>						
+			<% end %>
+
+		<% unless @collab_projects.empty? %>
+		<h2 class="seperator">Collaborated Projects</h2>
+		<%= render :partial => 'projects/project', :collection => @collab_projects %>
+		<%end %>
 	</div>
 </div>
-
-
-

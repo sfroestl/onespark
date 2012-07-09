@@ -28,17 +28,10 @@
 		<%= render :partial => 'shared/projects', :locals => { :projects => current_user.projects } %>
 	</div>
 
-	<!-- ///////////////////////////////////ACCOUNT////////////////////////////////////////// -->
+	<!-- /////////////////////ACCOUNT////////////////////////////////////////// -->
 	<%= render 'layouts/account' %>
 
-	<!-- ///////////////////////////////////FLASH////////////////////////////////////////// -->
-	<div id="flash" class ="flash">
-		<% flash.each do |key, value| %>
-			<!-- <button class="close_alert" data-dismiss="alert">×</button> -->
-
-			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-		<% end %>
-	</div>
+	<%= render :partial =>'layouts/flash', locals: { flash: flash } %>
 	<!-- ///////////////////////////////////SIDEBAR1//////////////////////////////////////////-->
 	<div class="sidebar sidebar1" >
 		

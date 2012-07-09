@@ -31,7 +31,10 @@
 				<h3><%= (yield(:title)) %></h3>
 			</div>
 
-		<%= render 'layouts/account' if current_user %> 
+		<%= render 'layouts/account' if current_user %>
+		<%= render :partial =>'layouts/flash', locals: { flash: flash } %>
+
+
 	</div>
 
 

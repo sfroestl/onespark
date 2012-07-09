@@ -11,7 +11,7 @@
  *= require_self
  *= require project_style
  *= require jquery.jscrollpane
- *= require bootstrap
+ *
 
 */
 /*@import "bootstrap";*/

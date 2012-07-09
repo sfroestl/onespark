@@ -1,0 +1,8 @@
+<!-- //////////////////////////FLASH////////////////////////////////// -->
+<div id="flash" class ="flash">
+	<% flash.each do |key, value| %>
+		<!-- <button class="close_alert" data-dismiss="alert">×</button> -->
+
+		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	<% end %>
+</div>
