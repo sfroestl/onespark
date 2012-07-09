@@ -11,6 +11,10 @@ module DateHelper
   def format_date_short(date)
     date.to_datetime.strftime('%d.%m.%Y')
   end
+
+  def format_date_time(date)
+    date.to_datetime.strftime('%H:%M:%S')
+  end
   
   def due_date_not_in_past_but_can_be_empty
     if self.due_date.nil?

@@ -11,6 +11,8 @@ class Tasklist < ActiveRecord::Base
   validates :title, presence: true
   validates :project_id, presence:true
 
+  default_scope :order => 'due_date ASC'
+
   validate :due_date_not_in_past_but_can_be_empty
 
   def to_param

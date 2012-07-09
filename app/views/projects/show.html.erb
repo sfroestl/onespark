@@ -2,17 +2,46 @@
 
 <div class="content">
 	<div id = "contentHead" class="head">
-		<h1><%= @project.title %></h1> 
+		<h3><a href="" class="tk-ff-meta-serif-web-pro"><%= @project.title %></a></h3>
 	</div>
-	<% if @project.due_date %>
-		<h2>Due date: <%= format_date_long(@project.due_date)%></h2>
-	<% end %>
 
-	<% if @project.desc %>
-		<h2>Description:</h2>
-		<p><%= @project.desc %></p>
-	<% end %>
 
-	<%= link_to "Edit", edit_project_path(@project) %> | 
-	<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>
+	<div class="scroll-pane jspScrollable">
+
+      <div class="element task">
+	
+      	<h1>Owerview</h1>
+      				
+				<h2>Description</h2>
+				<p><%= @project.desc %></p>
+				
+
+      	<% if @project.due_date %>
+					<h2>Due <%= format_date_long(@project.due_date)%></h2>
+				<% end %>
+				
+				<%= link_to "Edit", edit_project_path(@project) %> | 
+				<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>					
+			</div>
+
+			<%= render :partial => 'owerview_part_coworkers', :locals => { headline: (link_to pluralize(@project.coworkers.count + 1, 'Coworker'), project_coworkers_path(@project)) } %>
+
+
+			<%= render :partial => 'owerview_part_tasks', :locals => { headline: (link_to pluralize(@project.tasks.count, 'Tasks'), project_tasklists_path(@project)) } %>
+
+
+			<%= render :partial => 'owerview_part_tasklists', :locals => { headline: (link_to pluralize(@project.tasklists.count, 'Tasklist'), project_tasklists_path(@project)) } %>
+
+
+			<%= render :partial => 'owerview_part_topics', :locals => { headline: (link_to pluralize(@project.topics.count, 'Topic'), project_topics_path(@project)) } %>
+			
+
+			<%= content_tag('div', 
+			content_tag('h1', 
+			link_to("A Dropbox account is linked", project_dropbox_path(@project), disable_with: 'loading data...')), class: "element") if session[:dropbox_session] %>
+
+			<%= content_tag('div', 
+			content_tag('h1', 
+			link_to("A GitHub account is linked", project_github_path(@project), disable_with: 'loading data...')), class: "element") if @project.github_repository %>
+
 </div>

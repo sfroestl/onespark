@@ -29,12 +29,11 @@ class Tools::GithubAccountsController < ApplicationController
 
         	# store account & token
         	@current_user.create_github_account(access_token: token)
-          
-        	 format.html { redirect_to @current_user, :flash => { :success => 'Successfully linked GitHub account!' } }
-           format.js { }
+          flash.now[:success] = 'Successfully linked GitHub account!'
+          Rails.logger.info "REDIRECT: #{session[:return_to]}"
+        	format.html { redirect_to projects_path }
         else
         	format.html
-          format.js { }
         end
       end
   	end
@@ -47,6 +46,7 @@ class Tools::GithubAccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to current_user, :flash => { :success => 'Successfully unlinked GitHub account!' } }
       format.js { }
+    end
   end
 
   private

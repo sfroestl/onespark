@@ -36,6 +36,7 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
+
   private
 
     def user_from_remember_token

@@ -1,5 +1,4 @@
 <div id="overlay_content">
-
   <h1>Your settings</h1>
     
   	<div id ="account_details" %>
@@ -17,10 +16,10 @@
 			<li>
 				<p><strong>GitHub</strong></p>
 				<% if @github_account.nil? %>
-					<p><%= link_to 'Add GitHub account', "/git/auth"%></p>
+					<p><%= link_to 'Add GitHub account', "/git/auth", :disable_with => 'connecting ...'%></p>
 				<% else %>
 					<p><%= link_to "View your GitHub repositories", user_github_repos_path(current_user), remote: true, :disable_with => 'loading ...' %> </p>
-					<p><%= link_to 'Remove GitHub account', "/git/unlink", confirm: "BE CAREFUL: This unlinkes your GitHub account"%>
+					<p><%= link_to 'Unlink GitHub account', "/git/unlink", confirm: "BE CAREFUL: This unlinkes your GitHub account", remote: true%>
 					</p>
 				<% end %>
 			</li>
@@ -29,13 +28,12 @@
 		<!-- ////// DropBox column ////// -->
 			<li>
 				<p><strong>DropBox</strong></p>
-				<% if @db_client %>
-					<p>Dropbox account is linked!</p>
+				<% if @db_client or session[:dropbox_session] %>
 					<p><%= link_to 'View DrobBox account details', user_dropbox_account_path(current_user), remote: true, :disable_with => 'loading ...' %></p>
 					<p><%= link_to 'Unlink DrobBox account', '/dropbox/unlink', remote: true, confirm: "BE CAREFUL: This unlinkes your DropBox account" %></p>
 					
 				<% else %>
-					<p><%= link_to 'Add DrobBox account', user_dropbox_auth_path %></p>
+					<p><%= link_to 'Add DrobBox account', user_dropbox_auth_path, :disable_with => 'connecting ...' %></p>
 				<% end %>
 				
 			</li>

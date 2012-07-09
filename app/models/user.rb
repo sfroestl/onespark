@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_reader :creation_date
   attr_accessible :username, :email, :login_name, :password, :password_confirmation
     
   has_one :profile, dependent: :destroy

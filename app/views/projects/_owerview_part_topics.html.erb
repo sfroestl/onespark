@@ -1,0 +1,22 @@
+<!-- Topics -->
+<div class="element">
+	<h1 class="element_heading"><%= headline %></h1>
+	<div class="element_description">
+		<dl>
+			<dt>Last activities</dt>
+				<% date = 1.day.from_now(@project.topics.first.created_at) rescue nil # increment the day
+				    @project.topics.each do |topic| 
+				      if date > topic.created_at.to_date
+				      date = topic.created_at.to_date
+							 %>
+				        <div style="background: #eeeeef;margin-top: 10px; margin-bottom: 5px;"><b><span style="padding: 10px"><h2><%= format_date_short date %></h2></span></b></div>
+				    	<% end %>
+				      <p>
+				        <%= format_date_long topic.created_at %> created topic by <%= topic.creator.username %> </span></a>
+				    </p>
+
+				<%  end %>
+			</dt>
+		</dl>
+	</div>
+</div>

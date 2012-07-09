@@ -1,0 +1,22 @@
+<!-- Tasks -->
+<div class="element">
+	<h1 class="element_heading"><%= headline %></h1>
+	<div class="element_description">
+		<dl>
+			<dt>Last activities</dt>
+				<% date = 1.day.ago(@project.tasks.first.created_at) rescue nil # increment the day
+				    @project.tasks.last(10).each do |task| 
+				      if date < task.created_at.to_date
+				      date = task.created_at.to_date
+					%>
+				        <div style="background: #eeeeef;margin-top: 10px; margin-bottom: 5px;"><b><span style="padding: 10px"><h2><%= format_date_short date %></h2></span></b></div>
+				    	<% end %>
+				      <p>
+				        <%= format_date_long task.created_at %> created task <%= task.creator.username %> </span></a>
+				    </p>
+
+				<%  end %>
+			</dt>
+		</dl>
+	</div>
+</div>

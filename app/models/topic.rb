@@ -9,6 +9,8 @@ class Topic < ActiveRecord::Base
   validates :project_id, presence:true
   validates :creator_id, presence:true
 
+  default_scope :order => 'created_at DESC'
+
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
     "#{self.id}-#{normalized_name}"

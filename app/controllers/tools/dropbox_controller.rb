@@ -38,8 +38,7 @@ class Tools::DropboxController < ApplicationController
             Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
 
             respond_to do |format|
-              format.html { redirect_to current_user, :flash => { :success => 'Successfully linked DropBox account!' } }
-              format.js {}
+              format.html { redirect_to projects_path, :flash => { :success => 'Successfully linked DropBox account!' } }
             end
         end
     end

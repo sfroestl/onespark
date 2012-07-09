@@ -57,7 +57,6 @@ class Tools::GithubRepositoriesController < ApplicationController
     @user_repositories = github_client.repos.list
     Rails.logger.info ">> GitthubRepoController: user repos nil? #{@user_repositories.nil?}"
 
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @tools_github_repository }

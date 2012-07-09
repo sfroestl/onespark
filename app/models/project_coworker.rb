@@ -7,7 +7,9 @@ class ProjectCoworker < ActiveRecord::Base
   validates :user_id, presence: true
   validates :permission, presence: true, :inclusion => { :in => [0, 1, 2, 3] }
 
-	def self.exists?(project, user)
+  default_scope :order => 'created_at DESC'
+	
+  def self.exists?(project, user)
     not find_by_project_id_and_user_id(project.id, user.id).nil?
   end
 
