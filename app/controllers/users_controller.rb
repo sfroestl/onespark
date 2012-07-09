@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    Rails.logger.info "> UserController: current_user: #{current_user.username} | #{session[:user_id]}"
+    Rails.logger.info "> UserController: current_user: #{current_user.username} | #{session[:user_id]} | DBox session #{session[:dropbox_session]}"
     @github_account = Tools::GithubAccount.find_by_user_id(current_user.id)
     @user = User.find_by_username(params[:id])
 
@@ -101,6 +101,7 @@ private
   def init_db_client
     # need to store auth info
     if session[:dropbox_session]
+      return redirect_to(:action => 'authorize') unless session[:dropbox_session]
       dbsession = DropboxSession.deserialize(session[:dropbox_session])
       client = DropboxClient.new(dbsession) #raise an exception if session not authorized
     end  

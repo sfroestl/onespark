@@ -17,6 +17,7 @@ class Tools::GithubRepositoriesController < ApplicationController
       # @repo_data = @github_api.repos.get(@github_repository.owner, @github_repository.name)
       
       respond_to do |format|
+        format.js
         format.html 
         format.json { render json: @user_github_repos }
       end
@@ -132,12 +133,13 @@ class Tools::GithubRepositoriesController < ApplicationController
   end
 
   def create_repo
-    @user = User.find_by_username( params[:username] )
-    @github_account = @user.github_account
-    
+    Rails.logger.info ">> GithubRepoController: create repo"
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+    @github_account = current_user.github_account
     unless @github_account.nil?
-      @github_api.repos.create( { name: params[:name], description: params[:description] } )
-      redirect_to user_github_repositories_url(@user) , flash: { success: 'Github repository was successfully created.' }
+      github_client.repos.create( { name: params[:name], description: params[:description] } )
+      redirect_to user_github_repos_path(current_user) , flash: { success: 'Github repository was successfully created.' }
     end
   end
 

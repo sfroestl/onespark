@@ -23,15 +23,19 @@ class Tools::GithubAccountsController < ApplicationController
       @github_api = GitHubApi.new
       token = GitHubApi.get_token(params[:code])
 
-      unless token.nil?
-      	Rails.logger.info ">> GithubTool: token: #{token}, current_user: #{@current_user.username}"
+      respond_to do |format|
+        unless token.nil?
+        	Rails.logger.info ">> GithubTool: token: #{token}, current_user: #{@current_user.username}"
 
-      	# store account & token
-      	@current_user.create_github_account(access_token: token)
-
-      	redirect_to @current_user, :flash => { :success => 'Successfully linked GitHub account!' }
-      else
-      	# raise error
+        	# store account & token
+        	@current_user.create_github_account(access_token: token)
+          
+        	 format.html { redirect_to @current_user, :flash => { :success => 'Successfully linked GitHub account!' } }
+           format.js { }
+        else
+        	format.html
+          format.js { }
+        end
       end
   	end
   end
@@ -39,8 +43,10 @@ class Tools::GithubAccountsController < ApplicationController
   # Deletes the github account for the current user
   def unlink
     Rails.logger.info ">> GithubTool: Unlink GitHub account"
-    current_user.github_account.destroy      
-    redirect_to current_user, :flash => { :success => 'Successfully unlinked GitHub account!' }
+    current_user.github_account.destroy 
+    respond_to do |format|
+      format.html { redirect_to current_user, :flash => { :success => 'Successfully unlinked GitHub account!' } }
+      format.js { }
   end
 
   private

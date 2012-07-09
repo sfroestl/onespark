@@ -1,5 +1,5 @@
 <div class = "create_github_repo">
-	<%= form_tag 'github_repository/create_repo' do  %>
+	<%= form_tag 'github/create_repo' do  %>
 			<p><strong>Create a new repository on GitHub </strong></p>
     	<%= text_field_tag :name, params[:name], placeholder:"name"%>
     	<%= text_field_tag :description, params[:description], placeholder:"description (optional)"%>

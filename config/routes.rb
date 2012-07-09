@@ -73,7 +73,7 @@ Onespark::Application.routes.draw do
 
   # Github repositories
   # match '/projects/:id/repositories/github/new', :to => 'tools/github#new'
-  match '/users/:username/github_repos', to: 'tools/github_repositories#index', as: :user_github_repos
+  match '/users/:username/github', to: 'tools/github_repositories#index', as: :user_github_repos
   post '/users/:username/github/create_repo', to: 'tools/github_repositories#create_repo', as: :project_github_repo
   post '/projects/:project_id/github/link_repo', to: 'tools/github_repositories#create', as: :project_github_link_repo
   match '/projects/:project_id/github', to: 'tools/github_repositories#show', as: :project_github

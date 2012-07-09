@@ -50,6 +50,7 @@ class GitHubApi
     # 
     # +data+:: the hash DATA with attributes for the issue, e.g. {:name => "reponame"}
     def create(data={})
+      Rails.logger.info ">> Github API Create Repo #{data[:name]}"
       raise MissingRequiredData, "Name is required to create a new repository" unless data[:name]
       repo_data = @connection.post("/user/repos", data)
       GitHubApi::Repo.new_with_all_data(self, repo_data)

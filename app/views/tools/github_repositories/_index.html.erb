@@ -1,13 +1,13 @@
 
 <!-- ////// Github column ////// -->
 <h2>GitHub - Repositories</h2>
-<p><%= link_to "Back", user_path(current_user) %> </p>
+<p><%= link_to "Back", user_path(current_user), remote: true %> </p>
 
 <!-- ////// Create repository ////// -->					
 <%= render 'form_repo' %>
 
 	<% @user_github_repos.each do |repo|%>
-		<h3><%= repo.name %></h3>
+		<strong><%= repo.name %></strong>
 		<p>Owner: <%= repo.owner['login'] %></p>
 		<p>Description: <%= repo.description %></p>
 		<p>Last commit: <%= format_date_short repo["updated_at"] %></p>

@@ -1,0 +1,1 @@
+$('#linked_tools ul').html('<%= escape_javascript render("show") %>');

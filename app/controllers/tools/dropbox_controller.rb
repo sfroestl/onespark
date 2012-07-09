@@ -36,16 +36,25 @@ class Tools::DropboxController < ApplicationController
             dbsession.get_access_token  #we've been authorized, so now request an access_token
             session[:dropbox_session] = dbsession.serialize
             Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
-            redirect_to current_user, :flash => { :success => 'Successfully linked DropBox account!' }
+
+            respond_to do |format|
+              format.html { redirect_to current_user, :flash => { :success => 'Successfully linked DropBox account!' } }
+              format.js {}
+            end
         end
     end
 
     def unlink
-      if session[:dropbox_session]
-        session[:dropbox_session] = nil
-        redirect_to current_user, :flash => { :success => 'Successfully unliked DropBox account!' }
-      else
-        redirect_to current_user, :flash => { :success => 'No linked DropBox account!' }
+      respond_to do |format|
+        if session[:dropbox_session]
+          session[:dropbox_session] = nil
+          format.html { redirect_to current_user, :flash => { :success => 'Successfully unliked DropBox account!' } }
+          format.js { }
+        else
+          session[:dropbox_session] = nil
+          format.html { redirect_to current_user, :flash => { :success => 'No linked DropBox account!' } }
+          format.js { }
+        end
       end
     end
 
@@ -128,6 +137,7 @@ class Tools::DropboxController < ApplicationController
     end
 
     def index
+      Rails.logger.info ">> DropBox index: #{session[:dropbox_session]}"
       # Check if user has no dropbox session...re-direct them to authorize
         return redirect_to(:action => 'authorize') unless session[:dropbox_session]
         dbsession = DropboxSession.deserialize(session[:dropbox_session])

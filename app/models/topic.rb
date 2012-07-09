@@ -8,4 +8,9 @@ class Topic < ActiveRecord::Base
   validates :title, presence:true, length: { minimum: 4 }
   validates :project_id, presence:true
   validates :creator_id, presence:true
+
+  def to_param
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
+    "#{self.id}-#{normalized_name}"
+  end
 end

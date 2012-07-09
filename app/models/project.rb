@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
   end
 
   def to_param
-    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
     "#{self.id}-#{normalized_name}"
   end
 

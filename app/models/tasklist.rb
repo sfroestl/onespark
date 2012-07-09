@@ -14,7 +14,7 @@ class Tasklist < ActiveRecord::Base
   validate :due_date_not_in_past_but_can_be_empty
 
   def to_param
-    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
     "#{self.id}-#{normalized_name}"
   end
 

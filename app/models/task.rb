@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
 	default_scope :order => 'due_date ASC'
 
   def to_param
-    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-\.]/, '')
+    normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
     "#{self.id}-#{normalized_name}"
   end
 end
