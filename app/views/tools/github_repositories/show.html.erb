@@ -34,23 +34,7 @@
       <h1>Recent events</h1>
       <% if @repo_events %>
       <ul>
-        <% @repo_events.each do |event| %>
-        <li>
-          <h2><%= event['type'] %> - <%= format_date_long(event['created_at'].to_datetime + 2.hours) %></h2>
-          <p><%= event['actor']['login'] %> 
-            <% if event['type'].eql? 'IssuesEvent' %> 
-              <%= event['payload']['action'] %> issue "<%= event['payload']['issue']['title'] %>"
-            <% elsif event['type'].eql? 'PushEvent' %>
-              pushed commits:
-              <ul>
-                <% event['payload']['commits'].each do |commit| %>
-                  <li><%= commit['message'] %></li>
-                <% end %>
-              </ul>
-            <% end %>
-          </p>
-        </li>
-        <% end %>
+            <%= render :partial => 'tools/github_repositories/event', :collection => @repo_events %>  
       </ul>
       <% end %>
   </div>

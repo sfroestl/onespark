@@ -1,0 +1,48 @@
+<li>
+  <% if event['type'].eql? 'IssuesEvent' %> 
+    <h2>
+      <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
+      <%= event['actor']['login'] %> <%= event['payload']['action'] %> 
+      issue 
+      "<%= event.payload['issue']['title'] %>"
+    </h2>
+      
+  <% elsif event['type'].eql? 'IssueCommentEvent' %> 
+    <h2>
+      <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
+      <%= event['actor']['login'] %> <%= event['payload']['action'] %> 
+      comment for issue "<%= event.payload['issue']['title'] %>" message:
+    </h2>
+    <p>"<%= event.payload['comment']['body'] %>"</p>
+    
+
+  <% elsif event['type'].eql? 'CommitCommentEvent' %>
+    <h2>
+      <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
+      <%= event['actor']['login'] %> 
+      commented a commit: <% event.payload['comment']['commit_id'] %>
+      <p>"<%= event.payload['comment']['body'] %>"
+      <% link_to 'show', event.payload['comment']['html_url'], target: '_blank' %></p>
+    </h2>
+
+
+  <% elsif event['type'].eql? 'PushEvent' %>
+    <h2>
+      <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
+      <%= event['actor']['login'] %> <%= event['payload']['action'] %>
+      pushed commits:                
+    </h2>
+    <ul>
+      <% event.payload['commits'].each do |commit| %>
+        <li><%= commit['message'] %></li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <h2>
+    <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
+    <%= event['actor']['login'] %> <%= event['type']%> 
+    </h2>
+
+  <% end %>
+</li>
