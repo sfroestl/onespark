@@ -183,6 +183,44 @@ $(function(){
 	}
 });
 
+
+// Switch the Tools
+//var s = "foo";
+//alert(s.indexOf("oo") != -1);
+
+// Check whick tool is active, then apply the active class
+$(document).ready(function() {
+    var pathname = window.location.pathname;
+    console.log(pathname);
+
+    if(pathname.indexOf("settings") != -1 ){
+    	$('.settings').addClass("active");
+
+    } else if(pathname.indexOf("coworkers") != -1 ){
+    	$('.coworkers').addClass("active");
+
+    } else if(pathname.indexOf("tasklists") != -1 ){
+    	$('.milestones').addClass("active");
+
+    } else if(pathname.indexOf("topics") != -1 ){
+    	$('.dialogs').addClass("active");
+
+    } else if(pathname.indexOf("dropbox") != -1 ){
+    	$('.files').addClass("active");
+    
+    } else if(pathname.indexOf("github") != -1 ){
+    	$('.documents').addClass("active");
+    
+    } else {
+    	$('.overview').addClass("active");
+    }
+
+});
+
+
+
+
+
 });
 
 

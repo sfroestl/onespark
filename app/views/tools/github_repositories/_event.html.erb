@@ -1,4 +1,4 @@
-<li>
+<div class="element">
   <% if event['type'].eql? 'IssuesEvent' %> 
     <h2>
       <%= format_date_long(event['created_at'].to_datetime + 2.hours) %> - 
@@ -45,4 +45,4 @@
     </h2>
 
   <% end %>
-</li>
+</div>

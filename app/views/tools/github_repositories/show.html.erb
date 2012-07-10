@@ -20,7 +20,7 @@
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
 
 
-    <div class="task">           
+    <div class="element">           
       <h1>Repository overview</h1>
       <p>Desc: <%= @repo_data.description %></p>
       <p>Owner: <%= @repo_data.owner['login'] %></p>
@@ -30,12 +30,10 @@
       <p><% number_to_human_size @repo_data.size %></p>
       <p><%= pluralize(@repo_data.watchers, 'Watcher') %></p>
     </div>
-    <div class="task">           
+    <div class="element">           
       <h1>Recent events</h1>
+    </div>
       <% if @repo_events %>
-      <ul>
-            <%= render :partial => 'tools/github_repositories/event', :collection => @repo_events %>  
-      </ul>
+      <%= render :partial => 'tools/github_repositories/event', :collection => @repo_events %>  
       <% end %>
-  </div>
 </div>

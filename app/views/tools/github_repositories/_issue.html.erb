@@ -1,0 +1,31 @@
+<div class="element">
+
+      <h1 class="element_heading"><%= repo_issue.title %></h1> 
+
+
+      <div class="element_description">
+        <dl>
+          <% if repo_issue.body %>
+          <%= repo_issue.body %>
+            <dt>Message</dt>
+          <%= content_tag('dd', "#{repo_issue.body}") %>
+          <% end %>
+          <dt>Assigned To:</dt>
+          <% begin repo_issue.assignee %>
+          <%= content_tag('dd', "#{repo_issue.assignee['login']}") %>
+          <% rescue Exception %>
+          <%end %> 
+          <dt>created</dt>
+          <dd><%= format_date_short(repo_issue.created_at.to_datetime ) %></dd> 
+        </dl>
+      </div>
+      <div class="element_settings">
+        <%= link_to 'view on Github', "#{repo_issue.html_url}", :target => "_blank" %> 
+        <%= link_to 'close', project_github_close_issue_path(@project, repo_issue.number), :method => :post, :confirm => "Close issue: \"#{repo_issue.title}\" on GiHub?" %>
+      </div>
+      <div class="element_comments">
+      <% if repo_issue.comments %>
+        <%= link_to content_tag('h2', pluralize(repo_issue.comments, 'comment')), "",remote: true %>
+      <% end %>
+      </div>
+</div>

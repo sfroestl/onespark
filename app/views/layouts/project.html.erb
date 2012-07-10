@@ -81,17 +81,11 @@
 				%>	
 
 
-			<%= link_to  content_tag('div', 'GitHub', class: 'tool milestones'), 
+			<%= link_to  content_tag('div', 'GitHub', class: 'tool documents'), 
 					project_github_path(@project),  
-					'data-disable-with' => '<div class ="tool milestones active ">loading...</div>'
+					'data-disable-with' => '<div class ="tool documents active ">loading...</div>'
 				%>
 
-
-
-
-			<%= link_to '' do %>
-				<div class="tool documents" >Documents</div>
-			<% end%>
 			
 			<%= link_to '' do %>
 				<div class="tool calendar" >Appointments</div>

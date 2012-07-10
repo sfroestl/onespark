@@ -226,6 +226,9 @@ input[type="file"] {
 	h1 {
 		font-size:2em;
 	} 
+	ul {
+		list-style-type: none;
+	}
 	//background: $softWhite url(../assets/img/elem-task.png) no-repeat 0% 50%;
 
 }
@@ -295,9 +298,10 @@ input[type="file"] {
 }
 
 .debug {
+	background-image: url(../assets/img/sidebar-tools-active.png);
 	position: absolute;
 	bottom:0;
 	right:0;
 	z-index: 500;
-	//display:none;
+	display:none;
 }
