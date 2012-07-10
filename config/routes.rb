@@ -30,6 +30,7 @@ Onespark::Application.routes.draw do
         resources :comments
       end
     end
+    resources :tasks
     resources :topics
     resources :coworkers, :controller => 'project_coworkers'
     resources :tasks, only: [:show, :index], to: 'tasklists#index'

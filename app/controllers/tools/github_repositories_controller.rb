@@ -7,6 +7,11 @@ class Tools::GithubRepositoriesController < ApplicationController
   # GET project/:id/tools/github_repositories
   # GET project/:id/tools/github_repositories.json
   def index
+
+    unless current_user.github_account
+      flash[:notice] = "Link your GitHub account first"
+      return redirect_to @project 
+    end
     Rails.logger.info ">> GithubRepoController: index"
     github_client = GitHubApi.new
     github_client.init_with_token(current_user.github_account.access_token)
@@ -28,18 +33,23 @@ class Tools::GithubRepositoriesController < ApplicationController
   # GET project/:id/tools/github_repositories/1.json
   def show
     Rails.logger.info ">> GithubRepoController: show"
-    github_client = GitHubApi.new
-    github_client.init_with_token(current_user.github_account.access_token)
-
+    
+    unless current_user.github_account
+      flash[:notice] = "Link your GitHub account first"
+      return redirect_to @project 
+    end
     @github_repository = @project.github_repository
  
     respond_to do |format|
       if @github_repository
-        
+        github_client = GitHubApi.new
+        github_client.init_with_token(current_user.github_account.access_token)
         @repo_data = github_client.repos.get(@github_repository.owner, @github_repository.name)
         @repo_events = github_client.events.list(user: @github_repository.owner, repo: @github_repository.name  )
         format.html # show.html.erb
       else
+        github_client = GitHubApi.new
+        github_client.init_with_token(current_user.github_account.access_token)
         @user_repositories = github_client.repos.list     
         format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
       end
