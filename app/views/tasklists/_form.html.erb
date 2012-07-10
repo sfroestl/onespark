@@ -24,7 +24,7 @@
     <% if params[:action].eql? 'edit' or params[:action].eql? 'update' %>
         <%= link_to 'Cancel', project_tasklist_path(@project, @tasklist), class: "cancelButton" %>
       <% else %>
-        <a class="cancelButton">Cancel</a>
+        <%= link_to 'Cancel', project_tasklists_path(@project), class: "cancelButton" %>
       <% end %>
   <fieldset>
 <% end %>

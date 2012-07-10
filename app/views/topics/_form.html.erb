@@ -19,7 +19,7 @@
     <% if params[:action].eql? 'edit' or params[:action].eql? 'update' %>
         <%= link_to 'Cancel', project_topic_path(@project, @topic), class: "cancelButton" %>
       <% else %>
-        <a class="cancelButton">Cancel</a>
+        <%= link_to 'Cancel', project_topics_path(@project), class: "cancelButton" %>
       <% end %>
   <fieldset>
 <% end %>
