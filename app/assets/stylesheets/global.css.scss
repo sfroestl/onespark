@@ -233,7 +233,7 @@ input[type="file"] {
 
 }
 
-.content .element_settings {
+.content .element_settings, .element_settings {
 
 	position: absolute;
 	top: 0;
@@ -286,6 +286,10 @@ input[type="file"] {
 .element_comments {
 }
 
+.profile_index {
+	padding-left: 3.5em;
+}
+
 .tool_head_active {
 	background-image: url(../assets/img/head-red.png);
 	background-repeat: no-repeat;
@@ -295,6 +299,11 @@ input[type="file"] {
 		top: 50%;
 		left: 1em;
 	}
+}
+
+.content {
+	overflow:auto;
+	clear:left;
 }
 
 .inactive {

@@ -1,33 +1,6 @@
 <% provide(:title, "Profiles") %>
-<div class="container-fluid">
-  <h1> All profiles (<%= @profiles.count unless @profiles.nil? %>) </h1>
-  <hr class="soften"/>
-    <div class="span10 offset2">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Username</th>
-            <th>Forename</th>
-            <th>Surname</th>
-            <th>City</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for profile in @profiles %>
-            <tr>
-              <td><%= @profiles.rindex(profile)+1 %>
-              <td><%= profile.user.username.downcase %></td>
-              <td><%= profile.forename %></td>
-              <td><%= profile.surname %></td>
-              <td><%= profile.city %></td>
-              <td width="100px">
-                <%= link_to "Request as workmate", friendships_path(:friend_id => profile.user_id), :method => :post %><br/>
-                <%= link_to "Show profile", profile %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-  </div>
+
+<div class="content scroll-pane jspScrollable">
+ 
+    <%= render :partial => 'profiles/index_profile', :collection => @profiles, as: :profile %>
 </div>

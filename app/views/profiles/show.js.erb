@@ -14,6 +14,8 @@ $('.closeButton').click(function () {
 
 '<% unless flash.empty? %>'
 	'<% flash.each do |key, value| %>'	
-		$('.overlay').append('<p>' + '<%= value %>' + '</p>');
+		$('.overlay .buttons').prepend('<div class="overlay_flash alert alert-success">' + '<%= value %>' + '</div>');
+		$('.overlay_flash').css('display', 'block').delay(2000).fadeOut(500);
 	'<% end %>'
 '<% end %>'
+

@@ -1,0 +1,34 @@
+<div class="element profile_index">
+  <h1 class="element_heading">
+    <%= profile.user.username.downcase %>
+  </h1>
+
+  <div class="element_description"></div>
+  <dl>
+    <dt>
+      Forename
+    </dt>
+    <dl>
+      <%= profile.forename %>
+    </dl>
+    <dt>
+      Surname
+    </dt>
+    <dd>
+      <%= profile.surname %>
+    </dd>
+    <dt>
+      city
+    </dt>
+    <dd>
+      <%= profile.city %>
+    </dd>
+    </td>
+    <td width="100px">
+  </dl>
+    <div class="element_settings">
+      <%= link_to "Request as workmate", friendships_path(:friend_id => profile.user_id), :method => :post %>
+      <%= link_to "Show profile", profile, remote: true %>
+    </div>
+
+  </div>

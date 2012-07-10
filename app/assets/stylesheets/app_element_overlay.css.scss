@@ -91,7 +91,11 @@
 		}
 	}
 }
-
+.overlay_flash {
+	line-height:2em;
+	padding:1em 1.5em;
+	float:left;
+}
 .darkener {
 	background-color:black;
 	z-index:320;
