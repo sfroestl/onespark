@@ -151,6 +151,10 @@ form {
 	font-size:1.4em;
 
 	form {
+		input, textarea {
+			width: 14em;
+		}
+
 		input, textarea, .cancelButton {
 			font-size:1.05em;
 			margin: 0;
@@ -182,6 +186,7 @@ form {
 			}
 		}
 		input[type="submit"]{
+			width: 6em;
 			float:left;
 		}
 		.details {
