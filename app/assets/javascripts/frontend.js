@@ -218,6 +218,29 @@ $(document).ready(function() {
 });
 
 
+// If the unimplemented Account tools are Clicked Flash: Not ready jet
+
+$(function(){
+	var flash = $('#flash');
+	var disabled_account_tool = $('#account .disabled');
+	
+	console.log(flash);
+	console.log(disabled_account_tool);
+
+	disabled_account_tool.click( function(){
+		console.log('click');
+		flash.css('display', 'block').html('<div class="alert alert-notice">sorry, this tool isn\'t ready</div>').delay(2000).fadeOut(500);
+	});
+		
+
+	// $('#account li').click(){
+	// 	flash.append('This Tool is not ready jet.');
+	// 	flash.fadeIn(500);
+
+	// }
+
+});
+
 
 
 

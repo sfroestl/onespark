@@ -5,9 +5,9 @@
 			<li class="profile button"><%= image_tag 'img/profil.jpg', alt: "Profilbild JoggaF" %></li>
 		<% end %>
 
-		<li class="button"><%= image_tag 'img/acc-message.png', alt: "Your Messages" %></li>
-		<li class="button"><%= image_tag 'img/acc-contact.png', alt: "Your Contacts" %></li>
-		<li class="button"><%= image_tag 'img/acc-event.png', alt: "Your Events" %></li>
+		<li class="button disabled"><%= image_tag 'img/acc-message.png', alt: "Your Messages" %></li>
+		<li class="button disabled"><%= image_tag 'img/acc-contact.png', alt: "Your Contacts" %></li>
+		<li class="button disabled"><%= image_tag 'img/acc-event.png', alt: "Your Events" %></li>
 
 		<%= link_to signout_path, method: :delete do %>
 			<li class="button"><%= image_tag 'img/acc-logout.png', alt: "Logout" %></li>
