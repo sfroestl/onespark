@@ -87,6 +87,7 @@
 
 
   <div class="buttons">
+    <%= link_to 'all profiles', profiles_path if @user == current_user %>
     <%= link_to 'your profile', profile_path(current_user), remote: true unless @user == current_user %>
     <%= link_to 'profile', profile_path(@user.username), remote:true  if @user == current_user%> 
     <%= link_to 'settings', current_user, remote:true if @user == current_user %>     
