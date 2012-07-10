@@ -7,24 +7,7 @@
 	</div>
 
 	<div class="scroll-pane jspScrollable tools">
-		
-				<%= link_to new_project_tasklist_path(@project) do %>
-					<div class="tool add" >Add Tasklist</div>
-				<% end %>
-
-			<%= link_to project_tasklists_path(@project) do %>
-				<div class="tool">All Tasks</div>
-			<% end %>
-
-			<% @project.tasklists.each do |tasklist| %>
-				<%= link_to project_tasklist_path(@project, tasklist) do %>
-					<% if tasklist == @tasklist %>
-						<div class="tool active"><%= tasklist.title %></div> 
-					<% else %>
-						<div class="tool"><%= tasklist.title %></div> 
-					<% end %>
-				<% end %>
-			<% end %>
+		<%= render partial: 'tasklists/sidebar' %>
 	</div>
 </div>
 

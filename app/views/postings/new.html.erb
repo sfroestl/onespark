@@ -1,4 +1,4 @@
-<%= provide(:title, 'Edit Topic') %>
+<%= provide(:title, 'New Posting') %>
 
 <!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
 <div class="sidebar sidebar2">
@@ -8,14 +8,14 @@
 
 	<div class="scroll-pane jspScrollable tools">
 		
-			<%= render 'sidebar' %>
+			<%= render partial: 'topics/sidebar' %>
 	</div>
 </div>
 
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 <div class="content">
 	<div id = "contentHead" class="head">
-		<h3><a href="#add" class="tk-ff-meta-serif-web-pro">Edit Topic: '<%= @topic.title %>'</a></h3>
+		<h3><a href="#add" class="tk-ff-meta-serif-web-pro">New Posting</a></h3>
 	</div>
 
 	<div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->

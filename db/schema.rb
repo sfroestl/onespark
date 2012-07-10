@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705232835) do
+ActiveRecord::Schema.define(:version => 20120710011533) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(:version => 20120705232835) do
   end
 
   add_index "milestones", ["user_id"], :name => "index_milestones_on_user_id"
+
+  create_table "postings", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "creator_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "project_id"
+  end
+
+  add_index "postings", ["creator_id"], :name => "index_postings_on_creator_id"
+  add_index "postings", ["project_id"], :name => "index_postings_on_project_id"
+  add_index "postings", ["topic_id"], :name => "index_postings_on_topic_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"

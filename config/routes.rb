@@ -1,5 +1,7 @@
 Onespark::Application.routes.draw do
 
+
+
   # resources :tasks, controller: 'milestones', action: 'show' do
   #   resources :comments
   # end
@@ -18,6 +20,8 @@ Onespark::Application.routes.draw do
   end
 
   resources :projects do
+    resources :postings, except: [:show, :index]
+    resources :postings, only: [:show, :index], to: 'topics#index'
     resources :tasklists do
       resources :tasks, except: [:show, :index] do
         resources :comments
@@ -31,6 +35,7 @@ Onespark::Application.routes.draw do
         resources :comments
       end
     end
+    resources :tasks, only: [:show, :index], to: 'tasklists#index'
     resources :tasks, except: [:show, :index] do
       resources :comments
     end

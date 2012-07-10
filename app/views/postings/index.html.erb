@@ -1,0 +1,21 @@
+<h1>Listing postings</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @postings.each do |posting| %>
+  <tr>
+    <td><%= link_to 'Show', posting %></td>
+    <td><%= link_to 'Edit', edit_posting_path(posting) %></td>
+    <td><%= link_to 'Destroy', posting, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Posting', new_posting_path %>

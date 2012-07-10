@@ -1,8 +1,6 @@
 class TasksController < ApplicationController
   layout 'project'
   before_filter :find_project
-  before_filter :find_project_milestones
-  before_filter :find_milestone
   # GET /tasks
   # GET /tasks.json
   
@@ -54,17 +52,17 @@ class TasksController < ApplicationController
     Rails.logger.info ">> Task Controller new Task"
     Rails.logger.info "#{current_user.username}"
     Rails.logger.info "#{params[:task]}"
-    task = @project.tasks.build(params[:task])
-    task.creator = current_user
+    @task = @project.tasks.build(params[:task])
+    @task.creator = current_user
 
     respond_to do |format|
-      if task.save
+      if @task.save
         format.html { redirect_to :back, :flash => { :success => 'Task was successfully created.' } }
-        format.json { render json: task, status: :created, location: task }
+        format.json { render json: @task, status: :created, location: @task }
       else
         format.js {  }
         format.html { render action: "new" }
-        format.json { render json: task.errors, status: :unprocessable_entity }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,13 +74,7 @@ class TasksController < ApplicationController
 
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
-    
-    if params[:project_id] and params[:milestone_id]
-      redirect_path = project_milestone_url(@project, @milestone)
-    else
-      redirect_path = project_url(@project)
-    end
-    
+
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to project_tasklists_path(@project), :flash => { :success =>'Task was successfully updated.' } }

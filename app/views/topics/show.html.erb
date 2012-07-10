@@ -21,36 +21,15 @@
 
 		
 			<div class="task tool element" id="add">
-				<%= render :partial => "shared/comment_form", :locals => { :commentable => @topic } %>
+				<%= render :partial => "postings/form", :locals => { :topic => @topic } %>
 			</div>	
 		
-			<div class="element">
-				<h1>
-					<%= @topic.title %>
-				</h1>
-				<ul>
-					<li>desc: <%= @topic.desc %></li>
-					<li>created by: <%= @topic.creator.username %></li>					
-					<li>at: <%= format_date_long @topic.created_at %></li>
-				</ul>
-				<%= link_to "Edit", edit_project_topic_path(@project, @topic) %>
-  				<%= link_to "Delete", project_topic_path(@project, @topic), :confirm => 'Are you sure?', :method => :delete %> 
-				<%= link_to 'Archive', '#' %>
 
-				<p>
-					<% unless @topic.comments %>
-					  <p>No comments yet. Write your statement!</p>
-					
-					<% else %>					
-					  <h2><%= pluralize( @topic.comments.size, 'comment' ) %></h2>
-					  
-					  <%= render :partial => "shared/comment", :collection => @topic.comments %>
 
-					<% end %>
-				</p>
+			<% if @topic.postings %>
+				<%= render :partial => "shared/posting", :collection => @topic.postings %>
+			<% end %>
 					
-			
-			</div>
 
 		
 	</div>
