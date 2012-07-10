@@ -297,6 +297,11 @@ input[type="file"] {
 	}
 }
 
+.inactive {
+	cursor: wait;
+	opacity: .5;
+}
+
 .debug {
 	background-image: url(../assets/img/sidebar-tools-active.png);
 	position: absolute;
