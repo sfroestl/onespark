@@ -18,7 +18,11 @@
       <fieldset>
         <%= f.label  'Finish' %>
         <%= f.submit :tabindex => 6%>
-      <a class="cancelButton">Cancel</a>
+      <% if params[:action].eql? 'edit' or params[:action].eql? 'update' %>
+        <%= link_to 'Cancel', @project, class: "cancelButton" %>
+      <% else %>
+        <a class="cancelButton">Cancel</a>
+      <% end %>
       </fieldset>
     </div>
   </div>
