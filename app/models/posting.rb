@@ -1,6 +1,7 @@
 class Posting < ActiveRecord::Base
   attr_accessible :title, :content, :creator_id, :topic_id
 
+  belongs_to :project
   belongs_to :topic
   belongs_to :creator, class_name: 'User', primary_key: 'id', foreign_key: 'creator_id'
  
@@ -8,6 +9,7 @@ class Posting < ActiveRecord::Base
   
   validates :title, presence:true, length: { minimum: 4 }
   validates :creator_id, presence:true
+  validates :project_id, presence:true
 
 	default_scope :order => 'created_at DESC'
 

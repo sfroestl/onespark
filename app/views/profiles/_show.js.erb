@@ -11,9 +11,3 @@ $('.closeButton').click(function () {
       	$(this).remove();
       });
 });
-
-'<% unless flash.empty? %>'
-	'<% flash.each do |key, value| %>'	
-		$('.overlay').append('<p>' + '<%= value %>' + '</p>');
-	'<% end %>'
-'<% end %>'

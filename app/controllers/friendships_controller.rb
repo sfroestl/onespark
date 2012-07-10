@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+
   def create
     friend = User.find(params[:friend_id])
 
@@ -17,41 +18,43 @@ class FriendshipsController < ApplicationController
   def accept
     friend = User.find(params[:friend_id])
 
-    if Friendship.exists?(current_user, friend)
-      Friendship.accept(current_user, friend)
-      flash[:success] = "Successfully accepted friendship."
-      redirect_to profile_path(current_user)
-    else
-      flash[:error] = "Unable to accept friendship."
-      redirect_to profile_path(current_user)
+    respond_to do |format|
+      if Friendship.exists?(current_user, friend)
+        Friendship.accept(current_user, friend)
+        format.html { redirect_to profile_path(current_user), :flash => { :success => "Successfully accepted friendship." }}
+
+      else
+        format.html { redirect_to profile_path(current_user), :flash => { :error => "Unable to accepted friendship." }}
+
+      end
     end
   end
 
   def remove
     friend = User.find(params[:friend_id])
 
-    if Friendship.exists?(current_user, friend)
-      Friendship.breakup(current_user, friend)
-      flash[:success] = "Successfully removed friendship."
-      redirect_to profile_path(current_user)
-    else
-      flash[:error] = "Unable to remove friendship."
-      redirect_to profile_path(current_user)
+    respond_to do |format|
+      if Friendship.exists?(current_user, friend)
+        Friendship.breakup(current_user, friend)
+        format.html { redirect_to profile_path(current_user), :flash => { :success => "Successfully removed friendship." }}
+
+      else
+        format.html { redirect_to profile_path(current_user), :flash => { :error => "Unable to remove friendship." }}
+
+      end
     end
   end
 
   def destroy
-    friend = User.find(params[:friend_id])
+    respond_to do |format|
+      if Friendship.exists?(current_user, friend)
+        Friendship.breakup(current_user, friend)
+        format.html { redirect_to profile_path(current_user), :flash => { :success => "Successfully removed friendship." }}
 
-    if Friendship.exists?(current_user, friend)
-      Friendship.breakup(user, friend)
-      flash[:success] = "Successfully removed friendship."
-      redirect_to profile_path(current_user)
-    else
-      flash[:error] = "Unable to remove friendship."
-      render profile_path(current_user)
+      else
+        format.html { redirect_to profile_path(current_user), :flash => { :error => "Unable to remove friendship." }}
+
+      end
     end
   end
-
-
 end

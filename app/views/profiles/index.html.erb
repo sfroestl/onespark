@@ -22,7 +22,7 @@
               <td><%= profile.surname %></td>
               <td><%= profile.city %></td>
               <td width="100px">
-                <%= link_to "Add friend", friendships_path(:friend_id => profile.user_id), :method => :post %><br/>
+                <%= link_to "Request as workmate", friendships_path(:friend_id => profile.user_id), :method => :post %><br/>
                 <%= link_to "Show profile", profile %>
               </td>
             </tr>

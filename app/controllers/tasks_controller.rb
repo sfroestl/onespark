@@ -54,9 +54,10 @@ class TasksController < ApplicationController
     Rails.logger.info "#{params[:task]}"
     @task = @project.tasks.build(params[:task])
     @task.creator = current_user
-
+    
     respond_to do |format|
       if @task.save
+        format.js {  }
         format.html { redirect_to :back, :flash => { :success => 'Task was successfully created.' } }
         format.json { render json: @task, status: :created, location: @task }
       else

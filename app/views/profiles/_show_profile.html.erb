@@ -8,6 +8,7 @@
 
     <% else %>
       <h1><%= @user.username %></h1>
+      <%= link_to "Request as workmate", friendships_path(:friend_id => @user.id), :method => :post, disable_with: "Okay!", remote: true unless Friendship.exists?(current_user, @user) %><br/>
     <% end %>
 
 
@@ -30,16 +31,16 @@
   </div>
 
   <div class="friends">
-  <h2>Friends</h2>
+  <h2>Workmates</h2>
     <ul>
       <% for friend in @friends %>
         <li>
           <div class ="friendElem">
           <%= image_tag "avatars/avatar.png", size: "30x30" %>
           <%= friend.username %> 
-
+          <p> <%= link_to "Show profile", profile_path(friend.profile), remote: true %>
           <% if @user == current_user %>
-          | <%=link_to "Remove friendship", "/friendship/remove/#{friend.id}", method: "post"%> 
+          | <%=link_to "Remove", "/friendship/remove/#{friend.id}", method: "post", remote:true%> </p>
           <% end %>
           </div>
         </li>
@@ -56,8 +57,10 @@
               <li>
                 <div class="friendElem">
                 <%= image_tag "avatars/avatar.png", size: "30x30" %>
-                <%= friend.username %> |    
-                <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post"%>
+
+                <%= friend.username %> 
+                <p><%= link_to "Show profile", profile_path(friend.profile), remote: true %>|    
+                <%=link_to "Cancel", "/friendship/remove/#{friend.id}", method: "post", remote: true %></p>
                 </div>
               </li>
             <%end%>
@@ -71,8 +74,8 @@
               <div class="friendElem">
               <%= image_tag "avatars/avatar.png", size: "30x30" %>
               <%= friend.username %> | 
-              <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post"%> |
-              <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post"%>
+              <%=link_to "Accept", "/friendship/accept/#{friend.id}", method: "post", remote:true %> |
+              <%=link_to "Deny", "/friendship/remove/#{friend.id}", method: "post", remote: true %>
               </div>
             </li>
           <%end%>
@@ -84,7 +87,8 @@
 
 
   <div class="buttons">
-    <%= link_to 'profile', profile_path(@user.username), remote:true %> 
+    <%= link_to 'your profile', profile_path(current_user), remote: true unless @user == current_user %>
+    <%= link_to 'profile', profile_path(@user.username), remote:true  if @user == current_user%> 
     <%= link_to 'settings', current_user, remote:true if @user == current_user %>     
     <a class="closeButton">close</a>
   </div>

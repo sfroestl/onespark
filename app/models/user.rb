@@ -40,6 +40,13 @@ class User < ActiveRecord::Base
     username
   end
 
+  def has_friendship_with?(user)
+    friendships.each do |friendship|
+      if friendship.exists?(self, friendship)
+       return true 
+     end
+    end
+  end
 
   private
 

@@ -1,0 +1,11 @@
+<%= provide(:title, 'Comments') %>
+
+<%= link_to 'Back', :back %>
+<%= render :partial => 'form', :locals => { :commentable => @commentable } %>
+
+<% for comment in @comments %>
+  <p>Commented by <%= comment.user.username %> at <%= format_date_long(comment.created_at) %></p>
+  <p>  <%= comment.content %></p>
+<% end %>
+
+

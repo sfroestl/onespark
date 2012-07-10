@@ -1,0 +1,12 @@
+//$(this).find('#show_comments').html('<%= escape_javascript render("index") %>');
+
+var element_title = '<%= @commentable.title %>';
+// var element = $('.element_heading').toString();
+
+console.log(element_title);
+
+console.log($('.element:contains('+ element_title +')'));
+console.log($('.element:contains('+ element_title +')').find('#show_comments'));
+
+
+$('.element:contains('+ element_title +')').find('#show_comments').html('<%= escape_javascript render("index") %>');

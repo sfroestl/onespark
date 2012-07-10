@@ -26,10 +26,11 @@
 	</div>
 
 	<div class="element_comments">
-	<% if posting.comments %>
-		<%= link_to content_tag('h2', pluralize(posting.comments.size, 'comment')) %>
-
-	<% end %>
+		<div id="show_comments">
+			<% if posting.comments %>
+				<%= link_to content_tag('h2', pluralize(posting.comments.size, 'comment')), posting_comments_path(posting), remote: true %>
+			<% end %>
+		</div>
 	</div>
 	<div id="end"></div>
 </div>

@@ -42,9 +42,11 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        format.js { }
         format.html { redirect_to :back, :flash => { :success => "Successfully created comment." } }
         format.json { render json: @comment }
       else
+        format.js { }
         format.html { redirect_to :back, :flash => { :error => "Could not create comment." } }
         format.json { render json: comment.errors, status: :unprocessable_entity }
       end
@@ -79,7 +81,9 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to comments_url, :notice => "Successfully destroyed comment."
+    respond_to do |format|
+      foramat.html { redirect_to :back, :notice => "Successfully destroyed comment." }
+    end
   end
 
 

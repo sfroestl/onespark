@@ -75,11 +75,6 @@
 					project_dropbox_path(@project),  
 					'data-disable-with' => '<div class ="tool files active">loading...</div>'
 				%>
-			
-			<% link_to content_tag('div', 'Milestones', class: 'tool milestones'), 
-					project_milestones_path(@project),  
-					'data-disable-with' => '<div class ="tool active milestones ">loading...</div>' 
-				%>	
 
 
 			<%= link_to  content_tag('div', 'GitHub', class: 'tool documents'), 

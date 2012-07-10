@@ -15,8 +15,11 @@ Onespark::Application.routes.draw do
     resources :github_accounts     
   end
 
-  resources :topics do
-    resources :comments, :name_prefix => "topic_"
+  resources :tasks do
+    resources :comments
+  end
+  resources :posting do
+    resources :comments
   end
 
   resources :projects do
@@ -29,16 +32,7 @@ Onespark::Application.routes.draw do
     end
     resources :topics
     resources :coworkers, :controller => 'project_coworkers'
-    resources :milestones do
-      resources :comments
-      resources :tasks, except: [:show, :index] do
-        resources :comments
-      end
-    end
     resources :tasks, only: [:show, :index], to: 'tasklists#index'
-    resources :tasks, except: [:show, :index] do
-      resources :comments
-    end
   end
   # resources :milestones, except: [:index]
   # resources :profiles , only: [:show, :index]
