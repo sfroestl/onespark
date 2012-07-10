@@ -13,9 +13,13 @@
     <%= f.text_area :desc, placeholder: "Wish to add further details?" %>
   </fieldset>
   
-
   <fieldset>
-      <%= f.label  'Finish' %>
-      <%= f.submit %>
-  </fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit :tabindex => 6%>
+    <% if params[:action].eql? 'edit' or params[:action].eql? 'update' %>
+        <%= link_to 'Cancel', project_topic_path(@project, @topic), class: "cancelButton" %>
+      <% else %>
+        <a class="cancelButton">Cancel</a>
+      <% end %>
+  <fieldset>
 <% end %>

@@ -71,6 +71,7 @@ class CommentsController < ApplicationController
       else
         format.html { render  :action => 'edit' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { }
       end 
     end
   end
