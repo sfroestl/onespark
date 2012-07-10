@@ -15,8 +15,22 @@ h1, h2, h3, h4, h5, h6 {
 		font-family:$officina;
 		text-decoration:none;
 		color:inherit;
+		&:hover {
+			text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
+		}
 	}
 }
+
+a {
+	&:hover {
+		@if color == $onesparkOrange {
+			text-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3);
+		}
+		
+
+	}
+}
+
 // Generelle Einstellungen ////////////////////////////////////////////////////////////////////////
 
 body {
@@ -191,10 +205,17 @@ input[type="file"] {
   }
 }
 .element {
+	margin-left:0;
+	height: auto;
+	width:auto;
 	border-bottom: 1px solid $sidebarGrey;
 	background-color: $softWhite;
 	padding:1.5em;
 	position: relative;
+
+	h1 {
+		font-size:2em;
+	} 
 	//background: $softWhite url(../assets/img/elem-task.png) no-repeat 0% 50%;
 
 }

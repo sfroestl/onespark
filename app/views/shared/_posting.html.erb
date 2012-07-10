@@ -1,0 +1,31 @@
+<div class="element posting">
+
+	<h1 class="element_heading">
+		<%= posting.title %>
+	</h1>
+
+	<div  class="element_description">	
+	<dl>
+		<dt>Created by</dt>
+		<dd>
+			<%= posting.creator.username unless posting.creator.nil? %>
+		</dd>
+      	<dt>Message</dt>
+      	<dd><%= posting.message %></dd>
+    </dl>
+    </div>
+
+
+	<div class="element_settings">
+	<%= link_to "Edit", edit_project_posting_path(@project, posting) %>
+	<%= link_to "Delete", project_posting_path(@project, posting), :confirm => 'Are you sure?', class: 'close_button', :method => :delete %> 
+	</div>
+
+	<div class="element_comments">
+	<% if posting.comments %>
+		<%= link_to content_tag('h2', pluralize(posting.comments.size, 'comment')), project_posting_comments_path(@project, posting) %>
+
+	<% end %>
+	</div>
+	<div id="end"></div>
+</div>

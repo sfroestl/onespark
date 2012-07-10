@@ -19,11 +19,11 @@
 
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
       
-      <div class="task tool" id="add">
+      <div class="task tool element" id="add">
       </div>
       <% if @topics %>
         <% @topics.each do |topic| %>
-          <div class="task">
+          <div class="element">
             <h1>
               <%= topic.title %>
             </h1>
