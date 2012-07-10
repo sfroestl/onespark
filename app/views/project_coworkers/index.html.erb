@@ -23,25 +23,25 @@
 
 	<div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
 
-		<div class="task tool" id="add">
+		<div class="task tool element" id="add">
 				<%= render 'form' %>
 			</div>
 
-<div class="task">
+<div class="element">
 	<h1>Owner</h1>
 	<div class = "profiles_list">
 	  <%= render :partial => 'show_coworker', :locals => { :coworker => @project.user } %>
 	</div>
 </div>
 
-<div class="task">
+<div class="element">
 	<h1>Admins</h1>
 	  <div class="profiles_list">
 	      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>	                 
 	  </div>
 </div>
 
-<div class="task">
+<div class="element">
 	<h1>Coworkers with write permission</h1>
 
 	  <div class="profiles_list">
@@ -49,7 +49,7 @@
 	  </div>
 </div>
 
-<div class="task">
+<div class="element">
 	<h1>Coworkers with read permission</h1>
 
 	  <div class="profiles_list">
