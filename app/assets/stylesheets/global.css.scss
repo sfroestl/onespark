@@ -191,6 +191,8 @@ input[type="file"] {
   }
 }
 .element {
+	border-bottom: 1px solid $sidebarGrey;
+	background-color: $softWhite;
 	padding:1.5em;
 	position: relative;
 	//background: $softWhite url(../assets/img/elem-task.png) no-repeat 0% 50%;
@@ -249,10 +251,8 @@ input[type="file"] {
 }
 .element_comments {
 }
-#end{
-	clear:left;
-}
-.tool_head_active{
+
+.tool_head_active {
 	background-image: url(../assets/img/head-red.png);
 	background-repeat: no-repeat;
 	background-position:0 center;
