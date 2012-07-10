@@ -47,6 +47,16 @@ h3 {
 	color: $onesparkOrange;
 }
 
+.cancelButton {
+	display:block;
+	width: auto;
+	float: left;	
+	text-decoration: none;
+	
+}
+input[type="submit"] {	
+	float: left;
+}
 
 input, textarea, .cancelButton {
 	font-size:1em;

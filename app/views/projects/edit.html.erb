@@ -1,15 +1,14 @@
-<%= provide(:title, 'Edit project') %>
+<%= provide(:title, "Edit project " + @project.title) %>
 
-<div class="container-fluid">
-	<div class = "span10 offset1">
-		<h1>Edit: "<%= @project.title %>"</h1>
-		<hr class="soften"/>
-	  	<div class="offset2"  style="width:360px">
-			<%= render  'form' %>
-		</div>
-	</div>
+<div class="content">
+<div id = "contentHead" class="head">
+	<h3><a href="" class="tk-ff-meta-serif-web-pro">Edit: '<%= @project.title %>'</a></h3>
 </div>
 
-<p>
-  <%= link_to "View All", projects_path %>
-</p>
+
+<div class="scroll-pane jspScrollable">
+
+  <div class="element">
+  	<%= render  'form' %>
+  	
+</div>
