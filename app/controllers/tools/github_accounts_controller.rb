@@ -29,7 +29,7 @@ class Tools::GithubAccountsController < ApplicationController
 
         	# store account & token
         	@current_user.create_github_account(access_token: token)
-          flash.now[:success] = 'Successfully linked GitHub account!'
+          flash[:success] = 'Successfully linked GitHub account!'
           Rails.logger.info "REDIRECT: #{session[:return_to]}"
         	format.html { redirect_to projects_path }
         else
