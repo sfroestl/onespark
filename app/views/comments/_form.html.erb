@@ -16,18 +16,13 @@
 <% else %>
 	<% @comment ||= Comment.new %>
 	<% @commentable ||= commentable %>
-
 	<%= form_for [commentable, @comment] do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
 
-		<fieldset>
-		  <%= f.label :content,  'Create a Comment' %>
-		  <%= f.text_field :content %>
-		</fieldset>
-
-  	<fieldset>
-      <%= f.submit %>
-   	</fieldset>
+	<fieldset>
+	<%= f.text_field :content, placeholder:"add a comment" %>
+    <%= f.submit %>
+    </fieldset>
 	
 	<% end %>
 
