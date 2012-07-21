@@ -291,10 +291,15 @@ input[type="file"] {
 }
 
 .task_completed {
+	font-size: 1em;
 	h1, h2, h3, h4, h5, h6, dd {
-
 		opacity: .5;
-
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-size: 1.4em;
+	}
+	dd, dt {
+		font-size: .8em;
 	}
 }
 
@@ -335,9 +340,9 @@ input[type="file"] {
 
 .seperator {	
 	text-align:center;
-	line-height: 4em;
-	height: 4em;
-	background-color: $sidebarGrey;
+	line-height: 2em;
+	height: 2em;
+	background-color: $softWhite;
 	color: $sidebarGreySeperator;
 	border-bottom:1px solid $sidebarGrey;
 }
