@@ -290,6 +290,14 @@ input[type="file"] {
 .element_comments {
 }
 
+.task_completed {
+	h1, h2, h3, h4, h5, h6, dd {
+
+		opacity: .5;
+
+	}
+}
+
 .profile_index {
 	padding-left: 3.5em;
 }
