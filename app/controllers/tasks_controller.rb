@@ -49,6 +49,8 @@ class TasksController < ApplicationController
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
 
+    params[:task][:completed] = false
+
     Rails.logger.info ">> Task Controller new Task"
     Rails.logger.info "#{current_user.username}"
     Rails.logger.info "#{params[:task]}"
@@ -73,8 +75,17 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
-    worker = User.find_by_username(params[:task][:worker])
-    params[:task][:worker] = worker
+    Rails.logger.info">> Tasks update: #{params}"
+
+    if params[:task][:completed].eql? "true"
+      Rails.logger.info">> Task completed!"
+      params[:task][:completed_at] = Time.now
+      params[:task][:completed_by] = current_user.id
+    elsif params[:task][:completed].eql? "false"
+      Rails.logger.info">> Task reopend!"
+      params[:task][:completed_at] = nil
+      params[:task][:completed_by] = nil
+    end
 
     respond_to do |format|
       if @task.update_attributes(params[:task])

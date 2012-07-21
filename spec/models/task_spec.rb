@@ -7,7 +7,7 @@ describe Task do
   let!(:milestone) { FactoryGirl.create(:milestone, project: project, user: creator) }
 
   let(:task) { project.tasks.create(title: "new task", creator: creator)}
-  
+
   subject { task }
 
   it { should respond_to(:title) }
@@ -18,6 +18,9 @@ describe Task do
   it { should respond_to(:milestone) }
   it { should respond_to(:tasklist) }
   it { should respond_to(:project) }
+  it { should respond_to(:completed) }
+  it { should respond_to(:completed_at) }
+  it { should respond_to(:completed_by) }
 
 	describe "should have creator but bo worker" do
 		before { task.save }
