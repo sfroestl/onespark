@@ -19,16 +19,22 @@
 
   <div class="scroll-pane jspScrollable">
 
-      <div class="task tool element" id="add">
+    <div class="task tool element" id="add">
 
-        <%= render "tasks/form" %>
-      </div>
+      <%= render "tasks/form" %>
+    </div>
       
-    <% if @project.tasks.uncompleted %>
+    <% unless @project.tasks.uncompleted.empty? %>
+      <div class="seperator">
+        <%= pluralize(@project.tasks.uncompleted.size, 'open task')%>
+      </div>
       <%= render :partial => "shared/task", :collection => @project.tasks.uncompleted %>
     <% end %>
 
-    <% if @project.tasks.completed %>
+    <% unless @project.tasks.completed.empty? %>
+      <div class="seperator">
+        <%= pluralize(@project.tasks.completed.size, 'closed task')%>
+      </div>
       <%= render :partial => "shared/task_completed", :collection => @project.tasks.completed, as: :task %>
     <% end %>
   </div>
