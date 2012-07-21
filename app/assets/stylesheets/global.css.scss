@@ -342,7 +342,7 @@ input[type="file"] {
 	text-align:center;
 	line-height: 2em;
 	height: 2em;
-	background-color: $softWhite;
+	background-color: $sidebarGrey;
 	color: $sidebarGreySeperator;
 	border-bottom:1px solid $sidebarGrey;
 }
@@ -355,5 +355,5 @@ input[type="file"] {
 	bottom:0;
 	right:0;
 	z-index: 500;
-	//display:none;
+	display:none;
 }

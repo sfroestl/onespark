@@ -14,8 +14,17 @@
     </fieldset>
     <fieldset>
       <%= f.label :worker,  'Coworker' %>
-      <%= f.text_field :worker, placeholder:"Who should work this task?", :tabindex => 4  %>
+      <% coworkers = Array.new(@project.coworkers) << @project.user %>
+      <% selected = @task.worker.username if @task.worker %>
+      <%= f.select :worker, options_from_collection_for_select(coworkers, 'username', 'username', selected: selected), { :include_blank => "- none -" }, :tabindex => 4  %>
+    </fieldset> 
+
+    <fieldset>
+      <%= f.label :tasklist_id,  'Tasklist' %>
+      <% selected = @task.tasklist.id if @task.tasklist %>
+      <%= f.select :tasklist_id, options_from_collection_for_select(@project.tasklists, 'id', 'title', selected: selected), { :include_blank => "- none -" } %>
     </fieldset>
+
     <fieldset>
       <%= f.label :desc,  'Description' %>
       <%= f.text_area :desc, placeholder: "Wish to add further details?", :tabindex => 5 %>

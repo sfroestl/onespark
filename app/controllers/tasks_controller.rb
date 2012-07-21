@@ -48,20 +48,25 @@ class TasksController < ApplicationController
     Rails.logger.info "Worker #{params[:task][:worker]}"
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
-
+    
     params[:task][:completed] = false
 
     Rails.logger.info ">> Task Controller new Task"
     Rails.logger.info "#{current_user.username}"
     Rails.logger.info "#{params[:task]}"
+
     @task = @project.tasks.build(params[:task])
     @task.creator = current_user
     
     respond_to do |format|
       if @task.save
-        format.js {  }
-        format.html { redirect_to :back, :flash => { :success => 'Task was successfully created.' } }
-        format.json { render json: @task, status: :created, location: @task }
+        if @task.tasklist
+          format.html { redirect_to project_tasklist_path(@project, @task.tasklist), :flash => { :success =>'Task was successfully updated.' } }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to project_tasklists_path(@project), :flash => { :success =>'Task was successfully updated.' } }
+          format.json { head :no_content }
+        end
       else
         format.js {  }
         format.html { render action: "new" }
@@ -74,6 +79,10 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
+
+    Rails.logger.info "Worker #{params[:task][:worker]}"
+    worker = User.find_by_username(params[:task][:worker])
+    params[:task][:worker] = worker
 
     Rails.logger.info">> Tasks update: #{params}"
 

@@ -50,7 +50,6 @@ class ProjectsController < ApplicationController
   def create
 
     @project = current_user.projects.build(params[:project])
-
     
     respond_to do |format|
 

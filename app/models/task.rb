@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :desc, :due_date, :tasklist_id, :milestone_id, :project_id, 
+  attr_accessible :desc, :due_date, :tasklist_id, :tasklist, :milestone_id, :project_id, 
                   :title, :creator, :worker, :completed, :completed_at, :completed_by
 
   belongs_to :project
