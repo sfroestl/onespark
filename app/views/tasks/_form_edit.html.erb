@@ -1,0 +1,33 @@
+<% @task ||= Task.new %>
+<%= form_for [@project, @task] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :tasklist_id, value: @tasklist.id if @tasklist %>
+
+  <fieldset>
+    <%= f.label :title,  'Title' %>
+    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => true, :tabindex => 2 %>
+  </fieldset>
+    <fieldset>
+      <%= f.label :due_date,  'Due Date' %>
+      <%= f.text_field :due_date, placeholder:"When is it due?", :tabindex => 3 %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :worker,  'Coworker' %>
+      <%= f.text_field :worker, placeholder:"Who should work this task?", :tabindex => 4  %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :desc,  'Description' %>
+      <%= f.text_area :desc, placeholder: "Wish to add further details?", :tabindex => 5 %>
+    </fieldset>
+    <fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit :tabindex => 6%>
+    <% if params[:action].eql? 'edit' or params[:action].eql? 'update' or params[:action].eql? 'create' %>
+        <%= link_to 'Cancel', project_tasklists_path(@project), class: "cancelButton" %>
+      <% else %>
+        <a class="cancelButton">Cancel</a>
+      <% end %>
+  <fieldset>
+
+<% end %>
