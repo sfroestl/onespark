@@ -50,9 +50,20 @@
       <%= render "tasks/form" %>
     </div>
 
-		<% if @tasklist.tasks %>
-			<%= render :partial => "shared/task", :collection => @tasklist.tasks %>
+		<% unless @tasklist.tasks.uncompleted.empty? %>
+
+			<div class="seperator">
+				<%= pluralize(@tasklist.tasks.uncompleted.size, 'open task')%>
+			</div>
+			<%= render :partial => "shared/task", :collection => @tasklist.tasks.uncompleted %>
 		<% end %>
+
+		<% unless @tasklist.tasks.completed.empty? %>
+			<div class="seperator">
+				<%= pluralize(@tasklist.tasks.completed.size, 'closed task')%>
+			</div>
+      		<%= render :partial => "shared/task_completed", :collection => @tasklist.tasks.completed, as: :task %>
+      	<% end %>
 		
 	</div>
 </div>

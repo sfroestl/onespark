@@ -333,6 +333,15 @@ input[type="file"] {
 	opacity: .5;
 }
 
+.seperator {	
+	text-align:center;
+	line-height: 4em;
+	height: 4em;
+	background-color: $sidebarGrey;
+	color: $sidebarGreySeperator;
+	border-bottom:1px solid $sidebarGrey;
+}
+
 .debug {
 	background-image: url(../assets/img/sidebar-tools-active.png);
 	background-repeat:no-repeat;

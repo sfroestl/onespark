@@ -89,8 +89,13 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to project_tasklists_path(@project), :flash => { :success =>'Task was successfully updated.' } }
-        format.json { head :no_content }
+        if @task.tasklist
+          format.html { redirect_to project_tasklist_path(@project, @task.tasklist), :flash => { :success =>'Task was successfully updated.' } }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to project_tasklists_path(@project), :flash => { :success =>'Task was successfully updated.' } }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
