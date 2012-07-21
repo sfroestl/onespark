@@ -1,0 +1,26 @@
+<div class="element task">
+
+	<h1 class="element_heading">
+		<%= task.title %> 
+	</h1>
+	<div  class="element_description">	
+		<dl>
+			<dt>Completed by</dt>
+			<dd><%= User.find(task.completed_by).username %></dd>
+
+	   		<dt>Completed at</dt>
+	   		<dd><%= format_date_long task.completed_at %></dd>
+	   	</dl>
+    </div>
+
+	<div class="element_settings">
+		<%= form_tag project_task_path(@project, task), :method => :put do %>
+			<%= hidden_field_tag "task[completed]", false %>
+			<%= submit_tag "Reopen" %>
+		<% end %>
+
+		<%= link_to "Delete", project_task_path(@project, task), :confirm => 'Are you sure?', class: 'close_button', :method => :delete %> 
+	</div>
+
+	<div id="end"></div>
+</div>

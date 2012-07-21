@@ -7,25 +7,32 @@
 	<div  class="element_description">	
 	<dl>
 		<dt>Created by</dt>
-		<dd>
-			<%= task.creator.username unless task.creator.nil? %>
-		</dd>
+		<dd><%= task.creator.username unless task.creator.nil? %></dd>
+		
 		<% if task.due_date %>
-    	<dt>Due Date</dt>
-    	<dd><%= format_date_long task.due_date %></dd>
+    		<dt>Due Date</dt>
+    		<dd><%= format_date_long task.due_date %></dd>
     	<% end %>
+	   	
 	   	<dt>Assigned To</dt>
-    	<dd><%= task.worker ? task.worker.username  : 'none' %>
-    	</dd>
-      	<dt>Description</dt>
-      	<dd><%= task.desc %></dd>
+    	<dd><%= task.worker ? task.worker.username  : 'none' %></dd>
+      	
+      	<% unless task.desc.eql? "" %>
+      		<dt>Description</dt>
+      		<dd><%= task.desc %></dd>
+      	<% end %>
     </dl>
     </div>
 
 
 	<div class="element_settings">
-	<%= link_to "Edit", edit_project_task_path(@project, task) %>
-	<%= link_to "Delete", project_task_path(@project, task), :confirm => 'Are you sure?', class: 'close_button', :method => :delete %> 
+		<%= form_tag project_task_path(@project, task), :method => :put do %>
+			<%= hidden_field_tag "task[completed]", true %>
+			<%= submit_tag "Close" %>
+		<% end %>
+
+		<%= link_to "Edit", edit_project_task_path(@project, task) %>
+		<%= link_to "Delete", project_task_path(@project, task), :confirm => 'Are you sure?', class: 'close_button', :method => :delete %> 
 	</div>
 
 	<div class="element_comments">

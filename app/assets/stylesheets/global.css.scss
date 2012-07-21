@@ -234,11 +234,15 @@ input[type="file"] {
 }
 
 .content .element_settings, .element_settings {
-
 	position: absolute;
 	top: 0;
 	right: 0;
-	a,p {
+	form {
+		float: left;
+	}
+	a, p, input[type="submit"] {
+		border:none;
+		background:none;
 		color: $sidebarGreySeperator;
 		float: left;
 		padding: 1em 1.5em;
@@ -246,7 +250,7 @@ input[type="file"] {
 		text-decoration:none;
 		display: block;
 	}
-	a {	
+	a, input[type="submit"] {	
 		&:hover{
 			background-color: $sidebarGrey;
 			color: black;

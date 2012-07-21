@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
-  attr_accessible :desc, :due_date, :tasklist_id, :milestone_id, :project_id, :title, :creator, :worker
+  attr_accessible :desc, :due_date, :tasklist_id, :milestone_id, :project_id, 
+                  :title, :creator, :worker, :completed, :completed_at, :completed_by
 
   belongs_to :project
   belongs_to :milestone
@@ -13,6 +14,9 @@ class Task < ActiveRecord::Base
 	validates :title, presence: true
 
 	default_scope :order => 'due_date DESC'
+
+  scope :uncompleted, where(:completed => false)
+  scope :completed, where(:completed => true)
 
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')

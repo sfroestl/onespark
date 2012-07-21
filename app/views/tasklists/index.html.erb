@@ -24,8 +24,12 @@
         <%= render "tasks/form" %>
       </div>
       
-    <% if @project.tasks %>
-      <%= render :partial => "shared/task", :collection => @project.tasks %>
+    <% if @project.tasks.uncompleted %>
+      <%= render :partial => "shared/task", :collection => @project.tasks.uncompleted %>
+    <% end %>
+
+    <% if @project.tasks.completed %>
+      <%= render :partial => "shared/task_completed", :collection => @project.tasks.completed, as: :task %>
     <% end %>
   </div>
 </div>
