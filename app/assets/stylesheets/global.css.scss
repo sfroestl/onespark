@@ -301,6 +301,16 @@ input[type="file"] {
 	}
 }
 
+.folder-info {
+	color: $sidebarGreySeperator;
+	margin-left: 1.5em;
+	margin-top:3.5em;
+	float: left;
+	a{
+		color: $sidebarGreySeperator;
+	}
+}
+
 .content {
 	overflow:auto;
 	clear:left;
@@ -313,9 +323,11 @@ input[type="file"] {
 
 .debug {
 	background-image: url(../assets/img/sidebar-tools-active.png);
+	background-repeat:no-repeat;
+	background-position: 100%;
 	position: absolute;
 	bottom:0;
 	right:0;
 	z-index: 500;
-	display:none;
+	//display:none;
 }
