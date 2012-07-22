@@ -90,12 +90,30 @@
 			width:4em;
 		}
 	}
+	a {
+		color:black;
+		&:hover {
+			color:$onesparkOrange;
+		}
+	}
+
+	#linked_tools {
+		padding-top: 2em;
+		ul {
+			list-style-type:none;
+		}
+		li{
+			padding-top: 0.75em;
+		}
+	}
 }
+
 .overlay_flash {
 	line-height:2em;
 	padding:1em 1.5em;
 	float:left;
 }
+
 .darkener {
 	background-color:black;
 	z-index:320;
@@ -106,4 +124,5 @@
 	height:100%;
 	opacity:.1;
 }
+
 

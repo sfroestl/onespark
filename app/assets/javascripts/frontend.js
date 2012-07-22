@@ -161,11 +161,11 @@ $(function() {
 	}
 });
 
-$(function() {
-	$('a').click(function (){
-		$(this).addClass("active");
-		})
-});
+// $(function() {
+// 	$('a').click(function (){
+// 		$(this).addClass("active");
+// 		})
+// });
 
 
 // Check if there is a second sidebar, change Layout accordingly

@@ -41,41 +41,36 @@
 		
 
 		<div class="scroll-pane jspScrollable tools">
-			
+			<% disabler_db = "<div class ='tool active files'>requesting...</div>" %>
+			<% disabler_gh = "<div class ='tool active documents'>requesting...</div>" %>
+
 			<% link_to  content_tag('div', 'Settings', class: 'tool settings'), 
-					'project_settings_path(@project)',  
-					'data-disable-with' => '<div class ="tool active settings ">loading...</div>'
+					'project_settings_path(@project)'
 				%>
 			
 			<%= link_to content_tag('div', 'Overview', class: 'tool overview'), 
-					project_path(@project),  
-					'data-disable-with' => '<div class ="tool active overview ">loading...</div>' 
+					project_path(@project)
 				%>
 			
 			<%= link_to content_tag('div', 'Coworkers', class: 'tool coworkers'), 
-					project_coworkers_path(@project),  
-					'data-disable-with' => '<div class ="tool active coworkers ">loading...</div>' 
+					project_coworkers_path(@project)
 				%>
 
 			<%= link_to content_tag('div', 'Tasks', class: 'tool milestones'), 
-					project_tasklists_path(@project),  
-					'data-disable-with' => '<div class ="tool active milestones ">loading...</div>' 
+					project_tasklists_path(@project)
 					%>
 					
 			<%= link_to  content_tag('div', 'Postings', class: 'tool dialogs'), 
-					project_topics_path(@project),  
-					'data-disable-with' => '<div class ="tool active dialogs ">loading...</div>'
+					project_topics_path(@project)
 				%>
 
 			<%= link_to content_tag('div', 'DropBox', class: 'tool files'), 
-					project_dropbox_path(@project),  
-					'data-disable-with' => '<div class ="tool files active">loading...</div>'
+					project_dropbox_path(@project), disable_with: disabler_db
 				%>
 
 
 			<%= link_to  content_tag('div', 'GitHub', class: 'tool documents'), 
-					project_github_path(@project),  
-					'data-disable-with' => '<div class ="tool documents active ">loading...</div>'
+					project_github_path(@project), disable_with: disabler_gh
 				%>
 
 		</div>

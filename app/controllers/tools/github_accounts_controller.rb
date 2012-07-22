@@ -34,7 +34,11 @@ class Tools::GithubAccountsController < ApplicationController
         	# store account & token
         	@current_user.create_github_account(access_token: token)
           flash[:success] = 'Successfully linked GitHub account!'
-        	format.html { redirect_to new_project_github_path(cookies[:oauth_project_id]) }
+          unless cookies[:oauth_project_id].eql? ""
+        	 format.html { redirect_to new_project_github_path(cookies[:oauth_project_id]) }
+          else
+            format.html { redirect_to projects_path }
+          end
         else
         	format.html
         end

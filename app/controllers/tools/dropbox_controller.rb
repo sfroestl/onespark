@@ -46,7 +46,7 @@ class Tools::DropboxController < ApplicationController
           Rails.logger.info ">> DropBox return path #{cookies[:oauth_project_id]}"
           
           # choose redirect url
-          if cookies[:oauth_project_id]
+          unless cookies[:oauth_project_id].eql? ""
             respond_to do |format|
               format.html { redirect_to project_dropbox_path(cookies[:oauth_project_id]), :flash => { :success => 'Successfully linked DropBox account!' } }
             end
