@@ -9,7 +9,7 @@
 				      if date > topic.created_at.to_date
 				      date = topic.created_at.to_date
 							 %>
-				        <div style="background: #eeeeef;margin-top: 10px; margin-bottom: 5px;"><b><span style="padding: 10px"><h2><%= format_date_short date %></h2></span></b></div>
+				        <h2><%= format_date_short date %></h2>
 				    	<% end %>
 				      <p>
 				        <%= format_date_long topic.created_at %> created topic by <%= topic.creator.username %> </span></a>

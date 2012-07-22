@@ -118,11 +118,6 @@ class Tools::DropboxController < ApplicationController
     end
 
     def download      
-      # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
-
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
 
         path = params[:file_path].gsub("%", " ")
         Rails.logger.info ">> DropBox: download file: #{path}"
@@ -136,49 +131,67 @@ class Tools::DropboxController < ApplicationController
     end
 
     def index
-      Rails.logger.info ">> DropBox index: #{session[:dropbox_session]}"
-      # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        
-        Rails.logger.info ">> DropBox token: #{dbsession.access_token}"
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        
-        info = client.account_info # look up account information
-        Rails.logger.info ">> DropBox API index: account_info#{info.inspect}"
+      Rails.logger.info ">> DropBox Controller index"
 
-        @account_info = info
-        metadata = client.metadata('/')
-        @folders = parse_folders(metadata)
-        @files = parse_files(metadata)
+      client = init_client
+      unless client
+        flash[:error] = "No DropBox account linked!"
+        return redirect_to action: "new"  
+      end
 
-        respond_to do |format|
-          format.html { }
-          format.js { }
-        end
+      info = client.account_info # look up account information
+      Rails.logger.info ">> DropBox API index: account_info#{info.inspect}"
+
+      @account_info = info
+      metadata = client.metadata('/')
+      @folders = parse_folders(metadata)
+      @files = parse_files(metadata)
+
+      respond_to do |format|
+        format.html { }
+        format.js { }
+      end
     end
 
     def show
-      # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
+      Rails.logger.info ">> DropBox Controller show"
 
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        Rails.logger.info ">> DropBox API show: Path #{params[:folder_path]}"
+      client = init_client
+      unless client
+        flash[:error] = "DropBox returned unauthorized!"
+        return redirect_to action: "new"    
+      end
 
-        metadata = client.metadata("#{params[:folder_path]}")
-        Rails.logger.info ">> DropBox API show: DATA #{metadata}"
-        @folder = metadata
-        @folders = parse_folders(metadata)
-        @files = parse_files(metadata)
+      Rails.logger.info ">> DropBox API show: Path #{params[:folder_path]}"
 
-        respond_to do |format|
-          format.html { }
-          format.js { }
-        end
+      metadata = client.metadata("#{params[:folder_path]}")
+      Rails.logger.info ">> DropBox API show: DATA #{metadata}"
+      @folder = metadata
+      @folders = parse_folders(metadata)
+      @files = parse_files(metadata)
+
+      respond_to do |format|
+        format.html { }
+        format.js { }
+      end
+    end
+
+    def new
     end
 
     private
+
+    def init_client
+      begin
+        dbsession = DropboxSession.deserialize(session[:dropbox_session])        
+        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+      rescue Exception => e
+        Rails.logger.error ">> DropBox Controller init_client: " + e.message
+        session[:dropbox_session] = nil
+        return
+      end
+      return client
+    end
 
     def find_project
       @project = Project.find(params[:project_id])

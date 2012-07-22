@@ -57,6 +57,7 @@ Onespark::Application.routes.draw do
   match '/dropbox/auth', to: 'tools/dropbox#authorize', as: :user_dropbox_auth
   match '/users/:username/dropbox', to: 'tools/dropbox#index', as: :user_dropbox_account
   match '/projects/:project_id/dropbox', to: 'tools/dropbox#show', as: :project_dropbox
+  match '/projects/:project_id/dropbox/new', to: 'tools/dropbox#new', as: :new_project_dropbox
   match '/projects/:project_id/dropbox/upload_file', to: 'tools/dropbox#upload', as: :dropbox_upload_file
   match '/projects/:project_id/dropbox/delete_file', to: 'tools/dropbox#delete_file', as: :dropbox_delete_file
   match '/projects/:project_id/dropbox/add_folder', to: 'tools/dropbox#add_folder', as: :dropbox_add_folder

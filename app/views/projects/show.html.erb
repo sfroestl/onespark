@@ -2,32 +2,36 @@
 
 <div class="content">
 	<div id = "contentHead" class="head">
-		<h3><a href="" class="tk-ff-meta-serif-web-pro">Owerview</a></h3>
+		<h3><a href="" class="tk-ff-meta-serif-web-pro">Overview</a></h3>
 	</div>
 
 
 	<div class="scroll-pane jspScrollable">
 
       <div class="element task">
-      	<div class="element_description">			
-      <% if @project.desc %>
-				<dl>
-					<dt>Description</dt>
-					<dd><%= @project.desc %></dd>
-				</dl>
-			<% end %>
+      	<div class="element_description">
+    			<dl>
+						<dt>Title</dt>
+						<dd><%= @project.title %></dd>
+					</dl>			
+		      <% unless @project.desc.eql? "" %>
+						<dl>
+							<dt>Description</dt>
+							<dd><%= @project.desc %></dd>
+						</dl>
+					<% end %>
 
-			<% if @project.due_date %>
-				<dl>
-					<dt>Due</dt> 
-					<dd><%= format_date_long(@project.due_date)%></dd>
-				</dl>
-			<% end %>
-      	
-				<div class="element_settings">
-				<%= link_to "Edit", edit_project_path(@project) %>
-				<%= link_to "Delete", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>	
-				</div>	
+					<% if @project.due_date %>
+						<dl>
+							<dt>Due</dt> 
+							<dd><%= format_date_long(@project.due_date)%></dd>
+						</dl>
+					<% end %>
+	      	
+					<div class="element_settings">
+					<%= link_to "Edit project", edit_project_path(@project) %>
+					<%= link_to "Delete project", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>	
+					</div>	
 				</div>				
 			</div>
 

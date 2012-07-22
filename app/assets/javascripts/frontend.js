@@ -157,7 +157,7 @@ $('#home').toggle(function() {
 ///////////////////////////////AUTO DISMISS FLASH//////////////////////////////////////////////
 $(function() {
 	if("#flash div") {
-		$('#flash').delay(2500).fadeOut(1000);
+		$('#flash').delay(8000).fadeOut(1000);
 	}
 });
 
@@ -229,7 +229,7 @@ $(function(){
 
 	disabled_account_tool.click( function(){
 		console.log('click');
-		flash.css('display', 'block').html('<div class="alert alert-notice">sorry, this tool isn\'t ready</div>').delay(2000).fadeOut(500);
+		flash.css('display', 'block').html('<div class="alert alert-notice">Coming soon!</div>').delay(2000).fadeOut(500);
 	});
 		
 
