@@ -6,14 +6,13 @@
 	</div>
 
 
-	<div class="scroll-pane jspScrollable">
+	<div class="scroll-pane jspScrollable ">
 
-      <div class="element task">
-      	<div class="element_description">
+      	<div class="element_description element_infos single_content">
     			<dl>
-						<dt>Title</dt>
-						<dd><%= @project.title %></dd>
-					</dl>			
+					<dt>Title</dt>
+					<dd><%= @project.title %></dd>
+				</dl>			
 		      <% unless @project.desc.eql? "" %>
 						<dl>
 							<dt>Description</dt>
@@ -32,9 +31,8 @@
 					<%= link_to "Edit project", edit_project_path(@project) %>
 					<%= link_to "Delete project", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>	
 					</div>	
-				</div>				
-			</div>
-
+				</div>	
+			<div class="seperator">Information</div>
 			<%= render :partial => 'owerview_part_coworkers', :locals => { headline: (link_to pluralize(@project.coworkers.count + 1, 'Coworker'), project_coworkers_path(@project)) } %>
 
 
@@ -49,10 +47,10 @@
 
 			<%= content_tag('div', 
 			content_tag('h1', 
-			link_to("A Dropbox account is linked", project_dropbox_path(@project), disable_with: 'loading data...')), class: "element") if session[:dropbox_session] %>
+			link_to("A Dropbox account is linked", project_dropbox_path(@project), disable_with: 'loading data...')), class: "element single_content") if session[:dropbox_session] %>
 
 			<%= content_tag('div', 
 			content_tag('h1', 
-			link_to("A GitHub account is linked", project_github_path(@project), disable_with: 'loading data...')), class: "element") if @project.github_repository %>
+			link_to("A GitHub account is linked", project_github_path(@project), disable_with: 'loading data...')), class: "element single_content") if @project.github_repository %>
 
 </div>

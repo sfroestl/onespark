@@ -1,21 +1,22 @@
-<div class="element">           
-  <h2>Overview</h2>
-  <p><%= pluralize(folders.size, 'folder')%></p>
-  <p><%= pluralize(files.size, 'file')%></p>
+
+<div class="seperator">Overview</div>
+<div class="element_description element_infos">           
+
+  <dl>
+    <dt>Contains</dt>
+      <dd><%= pluralize(folders.size, 'folder')%> and <%= pluralize(files.size, 'file')%></dd>
+  </dl>
 </div>
 
 
 <% unless files.empty? %>
-  <div class="element">   
-    <h2>Files</h2>
-    <ul class = "dbfiles">
-  	    <% files.each do |file| %>
-  	      <li>
+  <div class="seperator">Files</div>
+    <% files.each do |file| %>
+  	 <div class="element">  
             <%= file['path'].split("/").last %> | 
-            <%= link_to 'download', dropbox_download_path(@project)+"?file_path=#{file['path']}", :action => :download %>
-            <%= link_to 'delete', dropbox_delete_file_path(@project)+"?file_path=#{file['path']}", :action => :delete_file %>
-          </li>
-  	    <% end %>      
-    </ul>
+            <%= link_to 'download', dropbox_download_path(@project)+"?file_path=#{file['path']}", :action => :download, class: 'small_link' %>
+            <%= link_to 'delete', dropbox_delete_file_path(@project)+"?file_path=#{file['path']}", :action => :delete_file, class: 'small_link'%>
+      </div>
+  	<% end %>      
   </div>
 <% end %>

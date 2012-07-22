@@ -7,7 +7,7 @@
   </div>
 
     <div class="scroll-pane jspScrollable tools">    
-       <%= render "sidebar" %>
+       <%= render partial: "sidebar", locals: { active: 'show'} %>
   </div>
 </div>
 
@@ -20,13 +20,44 @@
 	<div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
 
 		
-			<div class="task tool element" id="add">
+			<div class="task tool element " id="add">
 				<%= render :partial => "postings/form", :locals => { :topic => @topic } %>
 			</div>	
 		
 
+    	<div class="seperator">Topic overview</div>
+
+    	         
+	      <div class="element_description element_infos">    
+	      	<dl>
+			      <dt>Title</dt>
+			      <dd><%= @topic.title %></dd>
+			    </dl>
+		      <dl>
+			      <dt>Created by</dt>
+			      <dd><%= @topic.creator.username %></dd>
+			    </dl>
+			    <dl>
+			      <dt>Created at</dt>
+			      <dd><%= format_date_long @topic.created_at %></dd>
+			    </dl>
+
+	      	<% unless @topic.desc.eql? "" %>  
+		        <dl>
+		          <dt>Description</dt>
+		          <dd><%= @topic.desc %></dd>
+		        </dl>
+		      <% end %>
+
+		      <div class="element_settings">
+    				<%= link_to "Edit topic", edit_project_topic_path(@project, @topic ) %>
+						<%= link_to "Delete topic", project_topic_path(@project, @topic ), :confirm => 'Are you sure?', class: 'close_button', :method => :delete %> 
+					</div>   
+		     </div>
+
 
 			<% if @topic.postings %>
+    		<div class="seperator">Postings</div>
 				<%= render :partial => "shared/posting", :collection => @topic.postings %>
 			<% end %>
 					

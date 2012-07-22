@@ -6,7 +6,7 @@
   </div>
 
   <div class="scroll-pane jspScrollable tools">
-    <%= render "sidebar" %>
+    <%= render partial: "sidebar", locals: { active: 'repository'} %>
   </div>
 </div>
 
@@ -19,21 +19,40 @@
 
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
 
+    <div class="seperator">Repository overview</div>
+    <div class="element">            
+      <div class="element_description">          
+        <dl>
+          <dt>Description</dt>
+          <dd><%= @repo_data.description %></dd>
+        </dl>
+        <dl>
+          <dt>Owner</dt>
+          <dd><%= @repo_data.owner['login'] %></dd>
+        </dl>
+        <dl>
+          <dt>Last push at</dt>
+          <dd><%= format_date_long(@repo_data.pushed_at.to_datetime + 2.hours) %></dd>
+        </dl>
 
-    <div class="element">           
-      <h1>Repository overview</h1>
-      <p>Desc: <%= @repo_data.description %></p>
-      <p>Owner: <%= @repo_data.owner['login'] %></p>
-      <p>Last push at: <%= format_date_long(@repo_data.pushed_at.to_datetime + 2.hours) %></p>
+        <dl>
+          <dt>Created at</dt>
+          <dd><%= format_date_short @repo_data.created_at %></dd>
+        </dl>
+        <dl>
+          <dt>Size</dt>
+          <dd><%= number_to_human_size @repo_data.size %></dd>
+        </dl>
+        <dl>
+          <dt>Watcher</dt>
+          <dd><%= pluralize(@repo_data.watchers, 'Watcher') %></dd>
+        </dl>
+      </div>
+    </div>
 
-      <p>Created at: <%= format_date_short @repo_data.created_at %></p>
-      <p><% number_to_human_size @repo_data.size %></p>
-      <p><%= pluralize(@repo_data.watchers, 'Watcher') %></p>
-    </div>
-    <div class="element">           
-      <h1>Recent events</h1>
-    </div>
-      <% if @repo_events %>
-      <%= render :partial => 'tools/github_repositories/event', :collection => @repo_events %>  
+
+      <% unless @repo_events.empty? %>
+        <div class="seperator">Recent events</div>
+        <%= render :partial => 'tools/github_repositories/event', :collection => @repo_events %>  
       <% end %>
 </div>

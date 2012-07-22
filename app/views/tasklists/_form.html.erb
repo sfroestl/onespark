@@ -4,12 +4,12 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <fieldset>
-    <%= f.label :title,  'Tasklist Name' %>
+    <%= f.label :title,  'Title' %>
     <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => "autofocus" %>
   </fieldset>
 
   <fieldset>
-    <%= f.label :due_date,  'Due Date' %>
+    <%= f.label :due_date,  'Due date' %>
     <%= f.text_field :due_date, placeholder:"When is it due?"  %>
   </fieldset>
   

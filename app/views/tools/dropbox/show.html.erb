@@ -9,15 +9,22 @@
 
   <div class="scroll-pane jspScrollable tools">
     
-    <%= link_to content_tag('div', 'Add Folder', class: "tool add"),
+    <%= link_to content_tag('div', '+ Add Folder', class: "tool add"),
       dropbox_add_folder_path(@project) + "?folder_path=#{@folder['path']}"
       #, remote: true
       %>
 
-    <%= link_to content_tag('div', '/', class: "tool"),
-      project_dropbox_path(@project),
-      'data-disable-with' => "<div class ='tool active'>/ <small><i>requesting...</i></small></div>" 
-      %>
+    <% if @folder['path'].eql? "/" %>
+      <%= link_to content_tag('div', '/', class: "tool active"),
+        project_dropbox_path(@project),
+        'data-disable-with' => "<div class ='tool active'>/ <small><i>requesting...</i></small></div>" 
+        %>
+    <% else %>
+      <%= link_to content_tag('div', '/', class: "tool"),
+        project_dropbox_path(@project),
+        'data-disable-with' => "<div class ='tool active'>/ <small><i>requesting...</i></small></div>" 
+        %>
+      <% end %>
     
     <%= render :partial => 'tools/dropbox/dropbox_sidebar', :collection => @folders, as: :folder %>
   </div>

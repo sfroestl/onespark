@@ -6,7 +6,7 @@
   </div>
 
   <div class="scroll-pane jspScrollable tools">
-    <%= render "sidebar" %>
+    <%= render partial: "sidebar", locals: { active: 'commits'} %>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
   </div>
 
   <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
-
+      <div class="seperator">Repository commits</div>
 
     <div class="task">
     <%= render :partial => 'tools/github_repositories/commit', :collection => @repo_commits %>  

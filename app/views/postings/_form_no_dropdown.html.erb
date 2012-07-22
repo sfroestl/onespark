@@ -1,0 +1,23 @@
+<% @posting ||= Posting.new %>
+<%= form_for [@project, @posting] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :topic_id, value: @topic.id if @topic %>
+  
+  <fieldset>
+    <%= f.label :title,  'Title' %>
+    <%= f.text_field :title, placeholder:"What's the posting about?", :autofocus => true, :tabindex => 2 %>
+  </fieldset>
+    <fieldset>
+      <%= f.label :content,  'content' %>
+      <%= f.text_area :content, placeholder:"Wish to add further details?", :tabindex => 3 %>
+    </fieldset>
+    <fieldset>
+    <%= f.label  'Finish' %>
+    <%= f.submit :tabindex => 6%>
+    <% if params[:action].eql? 'edit' or params[:action].eql? 'update' or params[:action].eql? 'create' %>
+        <%= link_to 'Cancel', project_postings_path(@project), class: "cancelButton" %>
+      <% else %>
+        <a class="cancelButton">Cancel</a>
+      <% end %>
+  <fieldset>
+<% end %>

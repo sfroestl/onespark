@@ -64,7 +64,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to @topic, :flash => { :success => 'Topic was successfully updated.' }}
+        format.html { redirect_to project_topic_path(@project, @topic), :flash => { :success => 'Topic was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +80,7 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to topics_url }
+      format.html { redirect_to project_topics_path(@project) }
       format.json { head :no_content }
     end
   end
