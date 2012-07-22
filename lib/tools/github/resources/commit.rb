@@ -2,6 +2,6 @@
 class GitHubApi
   # Represents a single GitHub Issue and provides access to its data attributes.
   class Commit < Entity
-    attr_reader :url, :sha, :commit, :author, :message, :author, :parents
+    attr_reader :url, :sha, :commit, :author, :message, :parents
   end  
 end

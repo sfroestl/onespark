@@ -9,7 +9,7 @@ class Tools::GithubRepositoriesController < ApplicationController
   def index
 
     unless current_user.github_account
-      flash[:notice] = "Link your GitHub account first"
+      flash[:error] = "No GitHub account linked!"
       return redirect_to @project 
     end
     Rails.logger.info ">> GithubRepoController: index"
@@ -35,8 +35,8 @@ class Tools::GithubRepositoriesController < ApplicationController
     Rails.logger.info ">> GithubRepoController: show"
     
     unless current_user.github_account
-      flash[:notice] = "Link your GitHub account first"
-      return redirect_to @project 
+      flash[:error] = "No GitHub account linked!"
+      return redirect_to new_github_account_path(@project)
     end
     @github_repository = @project.github_repository
  
@@ -51,10 +51,13 @@ class Tools::GithubRepositoriesController < ApplicationController
         github_client = GitHubApi.new
         github_client.init_with_token(current_user.github_account.access_token)
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No linked GitHub account!'} }
       end
         
     end
+  end
+
+  def link_account
   end
 
   # GET project/:id/tools/github_repositories/new
@@ -118,7 +121,7 @@ class Tools::GithubRepositoriesController < ApplicationController
         format.html # issues.html.erb
       else
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
       end
     end
   end
@@ -136,7 +139,7 @@ class Tools::GithubRepositoriesController < ApplicationController
         format.html # commits.html.erb
       else
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
       end
     end
   end

@@ -1,0 +1,11 @@
+<div class="element">
+	<h2>
+	      <%= format_date_long(commit.commit['author']['date'].to_datetime + 9.hours) %> -
+	      <%= commit.author['login'] %>
+	      pushed commits:                
+	</h2>
+
+	<ul>
+	    <li><%= commit.commit['message'] %></li>
+	</ul>
+</div>

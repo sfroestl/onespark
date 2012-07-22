@@ -123,6 +123,7 @@ class DropboxSession
         response = do_get_with_token("https://#{Dropbox::API_SERVER}:443/#{Dropbox::API_VERSION}/oauth#{url_end}", input_token)
         if not response.kind_of?(Net::HTTPSuccess) # it must be a 200
             raise DropboxAuthError.new("#{error_message_prefix}  Server returned #{response.code}: #{response.message}.", response)
+            
         end
         parts = CGI.parse(response.body)
 

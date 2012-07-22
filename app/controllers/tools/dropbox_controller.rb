@@ -23,23 +23,39 @@ class Tools::DropboxController < ApplicationController
   before_filter :find_project, except: [:authorize, :unlink, :index]
 
     def authorize
+      Rails.logger.info">> Dropbox authorize"
+      
         if not params[:oauth_token] then
-            dbsession = DropboxSession.new(APP_KEY, APP_SECRET)
+          # store project id if request from project
+          cookies[:oauth_project_id] = params[:project_id]
+          Rails.logger.info">> Dropbox AUTH: request: #{request.fullpath} cookie #{cookies[:oauth_project_id]} proj.id #{params[:project_id]}"
 
-            session[:dropbox_session] = dbsession.serialize #serialize and save this DropboxSession
+          dbsession = DropboxSession.new(APP_KEY, APP_SECRET)
 
-            # pass to get_authorize_url a callback url that will return the user here
-            redirect_to dbsession.get_authorize_url url_for(:action => 'authorize')
+          session[:dropbox_session] = dbsession.serialize #serialize and save this DropboxSession
+
+          # pass to get_authorize_url a callback url that will return the user here
+          redirect_to dbsession.get_authorize_url url_for(:action => 'authorize')
         else
-            # the user has returned from Dropbox
-            dbsession = DropboxSession.deserialize(session[:dropbox_session])
-            dbsession.get_access_token  #we've been authorized, so now request an access_token
-            session[:dropbox_session] = dbsession.serialize
-            Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
-
+          # the user has returned from Dropbox
+          dbsession = DropboxSession.deserialize(session[:dropbox_session])
+          dbsession.get_access_token  #we've been authorized, so now request an access_token
+          session[:dropbox_session] = dbsession.serialize
+          
+          Rails.logger.info ">> DropBox API get_access_token: #{dbsession.access_token}"
+          Rails.logger.info ">> DropBox return path #{cookies[:oauth_project_id]}"
+          
+          # choose redirect url
+          if cookies[:oauth_project_id]
+            respond_to do |format|
+              format.html { redirect_to project_dropbox_path(cookies[:oauth_project_id]), :flash => { :success => 'Successfully linked DropBox account!' } }
+            end
+          else
             respond_to do |format|
               format.html { redirect_to projects_path, :flash => { :success => 'Successfully linked DropBox account!' } }
+              format.js {  }
             end
+          end
         end
     end
 
@@ -158,7 +174,7 @@ class Tools::DropboxController < ApplicationController
 
       client = init_client
       unless client
-        flash[:error] = "DropBox returned unauthorized!"
+        flash[:error] = "No DropBox account linked!"
         return redirect_to action: "new"    
       end
 
@@ -187,7 +203,8 @@ class Tools::DropboxController < ApplicationController
         client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
       rescue Exception => e
         Rails.logger.error ">> DropBox Controller init_client: " + e.message
-        session[:dropbox_session] = nil
+        session[:dropbox_session] = nil        
+        Rails.logger.error ">> DropBox Controller reset_session!"
         return
       end
       return client
