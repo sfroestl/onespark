@@ -74,13 +74,12 @@ class Tools::DropboxController < ApplicationController
     end
 
     def upload
-        # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
-
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        
-
+      # Check if user has no dropbox session...re-direct them to authorize
+      client = init_client
+      unless client
+        flash[:error] = "No DropBox account linked!"
+        return redirect_to action: "new"  
+      end
         # if request.method != "POST"
         #     # show a file upload page
         #     render :inline =>
@@ -88,66 +87,78 @@ class Tools::DropboxController < ApplicationController
         #     return
         # else
             # upload the posted file to dropbox keeping the same name
-
-            resp = client.put_file("#{params['folder_path']}/#{params[:file].original_filename}", params[:file].read)
-            Rails.logger.info ">> DropBox: upload file: #{params[:file].original_filename} to folder #{params['folder_path']}"
-            redirect_to :back, :flash => { :success => "Upload successful! File now at #{resp['path']}" }
+        begin
+          resp = client.put_file("#{params['folder_path']}/#{params[:file].original_filename}", params[:file].read)
+        rescue Exception => e
+          flash['error'] = "DropBox Error: " + e.message
+          return redirect_to :back 
+        end
+        Rails.logger.info ">> DropBox: upload file: #{params[:file].original_filename} to folder #{params['folder_path']}"
+        redirect_to :back, :flash => { :success => "Upload successful! File now at #{resp['path']}" }
         # end
     end
 
     def delete_file
-      # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
+      
+      client = init_client
+      unless client
+        flash[:error] = "No DropBox account linked!"
+        return redirect_to action: "new"  
+      end
+      
+      path = params[:file_path].gsub("%", " ")
 
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        
-        path = params[:file_path].gsub("%", " ")
+      Rails.logger.info ">> DropBox: delete file: #{path}"
 
-        Rails.logger.info ">> DropBox: delete file: #{path}"
-
-        if resp = client.file_delete(path)
-          redirect_to :back, :flash => { :success => "Successfully deletet file!" } 
-        else
-          redirect_to :back, :flash => { :success => "Error deleting file!" } 
-        end
+      if resp = client.file_delete(path)
+        redirect_to :back, :flash => { :success => "Successfully deletet file!" } 
+      else
+        redirect_to :back, :flash => { :success => "Error deleting file!" } 
+      end
     end
 
     def add_folder
-      # Check if user has no dropbox session...re-direct them to authorize
-        return redirect_to(:action => 'authorize') unless session[:dropbox_session]
+      
+      client = init_client
+      unless client
+        flash[:error] = "No DropBox account linked!"
+        return redirect_to action: "new"  
+      end
 
-        dbsession = DropboxSession.deserialize(session[:dropbox_session])
-        client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
-        
-        new_folder_path = "#{params[:folder_path]}/#{params[:folder_name]}"
+      new_folder_path = "#{params[:folder_path]}/#{params[:folder_name]}"
 
-        Rails.logger.info ">> DropBox: add folder: #{new_folder_path} "
-        
-        metadata = client.metadata("#{params[:folder_path]}")
-        @folders = parse_folders(metadata)
+      Rails.logger.info ">> DropBox: add folder: #{new_folder_path} "
+      
+      metadata = client.metadata("#{params[:folder_path]}")
+      @folders = parse_folders(metadata)
 
-        if request.method == "POST"
-          begin
-            resp = client.file_create_folder(new_folder_path)
-          rescue Exception => e
-            return flash['error'] = "DropBox Error: " + e.message
-          end
-         redirect_to :back, :flash => { :success => "Folder Created!" }        
-       end
+      if request.method == "POST"
+        begin
+          resp = client.file_create_folder(new_folder_path)
+        rescue Exception => e
+          return flash['error'] = "DropBox Error: " + e.message
+        end
+       redirect_to :back, :flash => { :success => "Folder Created!" }        
+     end
     end
 
-    def download      
+    def download  
 
-        path = params[:file_path].gsub("%", " ")
-        Rails.logger.info ">> DropBox: download file: #{path}"
-        data = client.get_file(path)
-        meta = client.metadata(path)
-        name = meta['path'].split('/').last
-        Rails.logger.info ">> DropBox: download file: #{name}"
-        send_data(data, :filename => "#{name}", :disposition => 'attachment')
-        # send_file resp
-        # redirect_to :back
+      client = init_client
+      unless client
+        flash[:error] = "No DropBox account linked!"
+        return redirect_to action: "new"  
+      end
+
+      path = params[:file_path].gsub("%", " ")
+      Rails.logger.info ">> DropBox: download file: #{path}"
+      data = client.get_file(path)
+      meta = client.metadata(path)
+      name = meta['path'].split('/').last
+      Rails.logger.info ">> DropBox: download file: #{name}"
+      send_data(data, :filename => "#{name}", :disposition => 'attachment')
+      # send_file resp
+      # redirect_to :back
     end
 
     def index

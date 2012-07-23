@@ -144,6 +144,49 @@ class Tools::GithubRepositoriesController < ApplicationController
     end
   end
 
+  def create_issue_comment 
+    Rails.logger.info ">> GithubRepoController: Create issue comment"
+    Rails.logger.info ">> GithubRepoController: issue ID: #{params[:id]}"
+    Rails.logger.info ">> GithubRepoController: BODY: #{params[:body]}"
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+
+    @project.github_repository
+
+    begin      
+      github_client.issues.create_issue_comment(@project.github_repository.owner, @project.github_repository.name, params[:id], { body: params[:body] } )
+    rescue Exception => e
+      return flash['error'] = "GitHub Error: " + e.message
+    end
+    redirect_to :back , flash: { success: 'Github comment was successfully created.' }
+  end
+
+  def issue_comments
+    Rails.logger.info ">> GithubRepoController: issue comments"
+    Rails.logger.info ">> GithubRepoController: issue ID: #{params[:id]}"
+    
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+
+    @github_repository = @project.github_repository
+    Rails.logger.info ">> GithubRepoController: Repository: #{@project.github_repository.name}"
+
+    respond_to do |format|
+      if @github_repository
+        # get issue
+        @issue = github_client.issues.get( @project.github_repository.owner, @project.github_repository.name, params[:id] )
+        # get comments
+        @issue_comments = github_client.issues.get_issue_comments( @project.github_repository.owner, @project.github_repository.name, params[:id] )
+        
+        format.html # commits.html.erb
+        format.js { }
+      else
+        @user_repositories = github_client.repos.list     
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
+      end
+    end
+  end
+
   def create_repo
     Rails.logger.info ">> GithubRepoController: create repo"
     github_client = GitHubApi.new

@@ -1,0 +1,18 @@
+<div id = "issue_comments">
+	<p><%= link_to 'Close Comments', :back %></p>
+    
+    <%= form_tag( project_github_issue_create_comment_path(@project, @issue.number), :method => :post ) do %>
+		<fieldset>
+			<%= text_field_tag :body, nil, placeholder:"add a comment" %>
+			<%= submit_tag 'Create' %>
+		</fieldset>
+    <% end %>
+    <% unless @issue_comments.empty? %>
+    	<% @issue_comments.each do |comment| %>
+    		<p class="comment_info">Commented by <%= comment.user['login'] %> at <%= format_date_long(comment.created_at.to_datetime + 2.hours) %></p>
+    		<p class="comment_content"><%= comment.body %> </p>
+    	<% end %>
+    <% else %>
+    	<p class="comment_info">No comments</p>
+    <% end %>
+</div>
