@@ -6,7 +6,6 @@
 
 <%= form_for @user, :remote => bool do |f| %>
 
-<%= bool  %>
  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.text_field :username, :autofocus => "autofocus", :placeholder => 'Pick an username', :class => "login_text"  %>

@@ -50,6 +50,7 @@ function clearForm(form) {
   });
 };
 
+
 ////////////////////////////////FENSTER GELADEN//////////////////////////////////////////////////
 
 browserWindow.ready( function(){
@@ -164,11 +165,11 @@ $(function() {
 	}
 });
 
-$(function() {
-	$('a').click(function (){
-		$(this).addClass("active");
-		})
-});
+// $(function() {
+// 	$('a').click(function (){
+// 		$(this).addClass("active");
+// 		})
+// });
 
 
 // Check if there is a second sidebar, change Layout accordingly
@@ -244,6 +245,12 @@ $(function(){
 
 });
 
+// Api Object Not null
+$(function validateApiForm(){
+	// var name=document.forms['#db_folder_form']["folder_name"].value;
+
+	console.log("VALIDATION!");
+});
 
 
 

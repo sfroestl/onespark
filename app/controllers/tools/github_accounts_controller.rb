@@ -8,6 +8,10 @@ class Tools::GithubAccountsController < ApplicationController
 
   # Starts the OAuth2 authorisation process by transmitting the client_id via redirect to the auth-url
   def auth
+    # store project
+    cookies[:oauth_project_id] = params[:project_id]
+    Rails.logger.info">> GitHub AUTH: request: #{request.fullpath} cookie #{cookies[:oauth_project_id]} proj.id #{params[:project_id]}"
+
     Rails.logger.info ">> GithubTool: authorize App | #{current_user.username} | #{session[:user_id]}"
     @current_user ||= User.find(session[:user_id])
     redirect_to "#{GITHUB_CONFIG['auth_url']}?client_id=#{GITHUB_CONFIG['id']}&scope=user,repo"
@@ -30,8 +34,11 @@ class Tools::GithubAccountsController < ApplicationController
         	# store account & token
         	@current_user.create_github_account(access_token: token)
           flash[:success] = 'Successfully linked GitHub account!'
-          Rails.logger.info "REDIRECT: #{session[:return_to]}"
-        	format.html { redirect_to projects_path }
+          unless cookies[:oauth_project_id].eql? ""
+        	 format.html { redirect_to new_project_github_path(cookies[:oauth_project_id]) }
+          else
+            format.html { redirect_to projects_path }
+          end
         else
         	format.html
         end

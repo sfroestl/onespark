@@ -1,8 +1,8 @@
 <% if params[:action].eql? 'new' or params[:action].eql? 'create'  %>
-<%= link_to content_tag('div', 'Add Tasklist', class: 'tool add active'),
+<%= link_to content_tag('div', '+ Add Tasklist', class: 'tool add active'),
 	new_project_tasklist_path(@project) %>
 <% else %>
-<%= link_to content_tag('div', 'Add Tasklist', class: 'tool add'),
+<%= link_to content_tag('div', '+ Add Tasklist', class: 'tool add'),
 	new_project_tasklist_path(@project) %>
 <% end %>
 <% if params[:action].eql? 'index' %>

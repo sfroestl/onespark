@@ -9,7 +9,7 @@ class Tools::GithubRepositoriesController < ApplicationController
   def index
 
     unless current_user.github_account
-      flash[:notice] = "Link your GitHub account first"
+      flash[:error] = "No GitHub account linked!"
       return redirect_to @project 
     end
     Rails.logger.info ">> GithubRepoController: index"
@@ -35,8 +35,8 @@ class Tools::GithubRepositoriesController < ApplicationController
     Rails.logger.info ">> GithubRepoController: show"
     
     unless current_user.github_account
-      flash[:notice] = "Link your GitHub account first"
-      return redirect_to @project 
+      flash[:error] = "No GitHub account linked!"
+      return redirect_to new_github_account_path(@project)
     end
     @github_repository = @project.github_repository
  
@@ -51,10 +51,13 @@ class Tools::GithubRepositoriesController < ApplicationController
         github_client = GitHubApi.new
         github_client.init_with_token(current_user.github_account.access_token)
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No linked GitHub account!'} }
       end
         
     end
+  end
+
+  def link_account
   end
 
   # GET project/:id/tools/github_repositories/new
@@ -118,7 +121,7 @@ class Tools::GithubRepositoriesController < ApplicationController
         format.html # issues.html.erb
       else
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
       end
     end
   end
@@ -136,7 +139,50 @@ class Tools::GithubRepositoriesController < ApplicationController
         format.html # commits.html.erb
       else
         @user_repositories = github_client.repos.list     
-        format.html { render 'new', :flash => { :success => 'Please link a GitHub repository '} }
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
+      end
+    end
+  end
+
+  def create_issue_comment 
+    Rails.logger.info ">> GithubRepoController: Create issue comment"
+    Rails.logger.info ">> GithubRepoController: issue ID: #{params[:id]}"
+    Rails.logger.info ">> GithubRepoController: BODY: #{params[:body]}"
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+
+    @project.github_repository
+
+    begin      
+      github_client.issues.create_issue_comment(@project.github_repository.owner, @project.github_repository.name, params[:id], { body: params[:body] } )
+    rescue Exception => e
+      return flash['error'] = "GitHub Error: " + e.message
+    end
+    redirect_to :back , flash: { success: 'Github comment was successfully created.' }
+  end
+
+  def issue_comments
+    Rails.logger.info ">> GithubRepoController: issue comments"
+    Rails.logger.info ">> GithubRepoController: issue ID: #{params[:id]}"
+    
+    github_client = GitHubApi.new
+    github_client.init_with_token(current_user.github_account.access_token)
+
+    @github_repository = @project.github_repository
+    Rails.logger.info ">> GithubRepoController: Repository: #{@project.github_repository.name}"
+
+    respond_to do |format|
+      if @github_repository
+        # get issue
+        @issue = github_client.issues.get( @project.github_repository.owner, @project.github_repository.name, params[:id] )
+        # get comments
+        @issue_comments = github_client.issues.get_issue_comments( @project.github_repository.owner, @project.github_repository.name, params[:id] )
+        
+        format.html # commits.html.erb
+        format.js { }
+      else
+        @user_repositories = github_client.repos.list     
+        format.html { render 'new', :flash => { :error => 'No GitHub repository linked.'} }
       end
     end
   end
@@ -147,7 +193,11 @@ class Tools::GithubRepositoriesController < ApplicationController
     github_client.init_with_token(current_user.github_account.access_token)
     @github_account = current_user.github_account
     unless @github_account.nil?
-      github_client.repos.create( { name: params[:name], description: params[:description] } )
+      begin      
+        github_client.repos.create( { name: params[:name], description: params[:description] } )
+      rescue Exception => e
+        return flash['error'] = "GitHub Error: " + e.message
+      end
       redirect_to user_github_repos_path(current_user) , flash: { success: 'Github repository was successfully created.' }
     end
   end
@@ -164,7 +214,12 @@ class Tools::GithubRepositoriesController < ApplicationController
       input = { title: params[:title], body: params[:body] }
     end
     unless @github_repository.nil?
-      github_client.issues.create(@github_repository.owner, @github_repository.name, input )
+      begin
+        github_client.issues.create(@github_repository.owner, @github_repository.name, input )
+      rescue Exception => e
+        flash['error'] = "GitHub Error: " + e.message
+        return redirect_to :back
+      end
       redirect_to :back , flash: { success: 'Github issue was successfully created.' }
     end
   end

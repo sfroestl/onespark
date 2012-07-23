@@ -66,8 +66,8 @@ h3 {
 	width: auto;
 	float: left;	
 	text-decoration: none;
-	
 }
+
 input[type="submit"] {	
 	float: left;
 }
@@ -272,10 +272,9 @@ fieldset select {
 	margin-bottom: 1em;
 }
 
-.element_description {
+.element_description {	
 	dl {
 		min-height: 3em;
-
 		dt {
 			padding-right:2em;
 			color: $sidebarGreySeperator;
@@ -288,6 +287,15 @@ fieldset select {
 			margin: 0 0 10px 0;
 			line-height: 1.4;
 		}	
+	}
+	
+}
+.element_infos {
+	position: relative;
+	padding: 1.5em;	
+	margin-bottom: 3em;	
+
+	dl { float:left;	
 	}
 }
 .element_links {
@@ -357,12 +365,18 @@ fieldset select {
 	clear:left;
 }
 
+
+.single_content {
+	padding-left:2.3em;
+}
+
 .inactive {
 	cursor: wait;
 	opacity: .5;
 }
 
-.seperator {	
+.seperator {
+	clear: both;	
 	text-align:center;
 	line-height: 2em;
 	height: 2em;

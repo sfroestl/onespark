@@ -284,7 +284,6 @@
 	#add {
 		cursor: auto;
 		min-height:4em;
-		padding-top:0;
 		padding:0;
 
 		form {
@@ -321,6 +320,17 @@
 				display:block;
 			}
 		}
+		
+	}
+
+	#authorize {
+		cursor: auto;
+		min-height:4em;		
+		padding:0;
+		div{	
+			padding-top: .375em;
+			margin-left: 0.5em;
+		}
 	}
 
  	a {
@@ -330,14 +340,9 @@
    		}
     }
 
-    ul.dbfiles {
-    	li {
-    		padding-bottom: 6px;
-    		a {
-    			font-size:0.85em;
-    		}
-    	}
-    }
+    .small_link {
+    font-size:0.85em;
+    }    
 }
 
 

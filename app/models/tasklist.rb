@@ -8,7 +8,7 @@ class Tasklist < ActiveRecord::Base
   belongs_to :creator, class_name: 'User', primary_key:'id', foreign_key: 'creator_id'
 
   validates :creator_id, presence: true
-  validates :title, presence: true
+  validates :title, presence:true, length: { minimum: 3, maximum: 28 }
   validates :project_id, presence:true
 
   default_scope :order => 'due_date ASC'

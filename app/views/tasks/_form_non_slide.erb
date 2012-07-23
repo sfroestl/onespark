@@ -6,17 +6,17 @@
 
   <fieldset>
     <%= f.label :title,  'Title' %>
-    <%= f.text_field :title, placeholder:"What needs to be done?", :autofocus => true, :tabindex => 2 %>
+    <%= f.text_field :title, placeholder:"What needs to be done?" %>
   </fieldset>
     <fieldset>
       <%= f.label :due_date,  'Due Date' %>
-      <%= f.text_field :due_date, placeholder:"When is it due?", :tabindex => 3 %>
+      <%= f.text_field :due_date, placeholder:"When is it due?"%>
     </fieldset>
     <fieldset>
       <%= f.label :worker,  'Coworker' %>
       <% coworkers = Array.new(@project.coworkers) << @project.user %>
       <% selected = @task.worker.username if @task.worker %>
-      <%= f.select :worker, options_from_collection_for_select(coworkers, 'username', 'username', selected: selected), { :include_blank => "- none -" }, :tabindex => 4  %>
+      <%= f.select :worker, options_from_collection_for_select(coworkers, 'username', 'username', selected: selected), { :include_blank => "- none -" } %>
     </fieldset> 
 
     <fieldset>
@@ -27,11 +27,11 @@
 
     <fieldset>
       <%= f.label :desc,  'Description' %>
-      <%= f.text_area :desc, placeholder: "Wish to add further details?", :tabindex => 5 %>
+      <%= f.text_area :desc, placeholder: "Wish to add further details?" %>
     </fieldset>
     <fieldset>
     <%= f.label  'Finish' %>
-    <%= f.submit :tabindex => 6%>
+    <%= f.submit %>
     <% if params[:action].eql? 'edit' or params[:action].eql? 'update' or params[:action].eql? 'create' %>
         <%= link_to 'Cancel', project_tasklists_path(@project), class: "cancelButton" %>
       <% else %>

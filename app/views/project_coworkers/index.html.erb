@@ -2,17 +2,16 @@
 
 <!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
 
-<div class="sidebar sidebar2">
+<!--<div class="sidebar sidebar2">
 	<div id = "toolHead" class="head">
 		<h3>Coworkers</h3>
 	</div>
 
 	<div class="scroll-pane jspScrollable tools">		
-				<%= link_to (content_tag( :div, 'Add Team', class: 'tool add' )) %>
-
-			<%= link_to (content_tag( :div, 'All Coworkers', class: 'tool add' )), project_coworkers_path(@project) %>
+		<% render partial: "sidebar", locals: { active: 'index'} %>
 	</div>
 </div>
+-->
 
 
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
@@ -23,38 +22,41 @@
 
 	<div class="sidebar3_content">  <!-- scroll-pane jspScrollable -->
 
-		<div class="task tool element" id="add">
-				<%= render 'form' %>
+		<div class="tool single_content element " id="add">
+			<%= render 'form' %>
+		</div>
+
+		<div class="seperator">Owner</div>
+		<div class="element single_content">
+			<div class = "profiles_list">
+			  <%= render :partial => 'show_coworker', :locals => { :coworker => @project.user } %>
 			</div>
+		</div>
 
-<div class="element">
-	<h1>Owner</h1>
-	<div class = "profiles_list">
-	  <%= render :partial => 'show_coworker', :locals => { :coworker => @project.user } %>
-	</div>
-</div>
+		<% unless @project.admins.empty? %>
+			<div class="seperator">Admins</div>
+			<div class="element single_content">
+			  <div class="profiles_list">
+		      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>	                 
+			  </div>
+			</div>
+		<% end %>
 
-<div class="element">
-	<h1>Admins</h1>
-	  <div class="profiles_list">
-	      <%= render :partial => 'show_coworker', :collection => @project.admins, :as => :coworker %>	                 
-	  </div>
-</div>
+		<% unless @project.writers.empty? %>
+			<div class="seperator">Coworkers with write permission</div>
+			<div class="element single_content">
+			  <div class="profiles_list">
+			    <%= render :partial => 'show_coworker', :collection => @project.writers, :as => :coworker %>	                 
+			  </div>
+		</div>
+		<% end %>
 
-<div class="element">
-	<h1>Coworkers with write permission</h1>
-
-	  <div class="profiles_list">
-	      <%= render :partial => 'show_coworker', :collection => @project.writers, :as => :coworker %>	                 
-	  </div>
-</div>
-
-<div class="element">
-	<h1>Coworkers with read permission</h1>
-
-	  <div class="profiles_list">
-	      <%= render :partial => 'show_coworker', :collection => @project.readers, :as => :coworker %>	                 
-	  </div>
-</div>
-
+		<% unless @project.readers.empty? %>
+			<div class="seperator">Coworkers with read permission</div>
+			<div class="element single_content">
+				<div class="profiles_list">
+				  <%= render :partial => 'show_coworker', :collection => @project.readers, :as => :coworker %>	                 
+				  </div>
+			</div>
+		<% end %>
 </div>

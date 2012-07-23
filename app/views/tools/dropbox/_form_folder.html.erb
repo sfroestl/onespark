@@ -1,4 +1,4 @@
-<%= form_tag({:action => :add_folder}) do %>
+<%= form_tag({:action => :add_folder}, id: 'db_folder_form' , :onsubmit => "return validateApiForm();") do %>
 	<fieldset>
 		<%= label_tag :folder_name, 'Add Folder ' %>
 		

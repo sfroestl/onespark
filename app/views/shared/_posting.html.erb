@@ -14,8 +14,10 @@
 		<dd>
 			<%= format_date_long posting.created_at  %>
 		</dd>
-      	<dt>Message</dt>
-      	<dd><%= posting.content %></dd>
+		<% unless posting.content.eql? "" %>
+      		<dt>Message</dt>
+      		<dd><%= posting.content %></dd>
+      	<% end %>
     </dl>
     </div>
 

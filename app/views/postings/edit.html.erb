@@ -8,7 +8,7 @@
 
 	<div class="scroll-pane jspScrollable tools">
 		
-			<%= render partial: 'topics/sidebar' %>
+			<%= render partial: 'topics/sidebar', locals: { active: 'new' } %>
 	</div>
 </div>
 
@@ -22,8 +22,8 @@
 
 		
 		
-		<div class="element">
-			<%= render 'form' %>
+		<div class="tool element" id="add">  
+			<%= render 'form_no_dropdown' %>
 		</div>
 
 		

@@ -1,6 +1,6 @@
+<% if active.eql? 'new' %>    
 
-
-  <%= link_to (content_tag( :div, 'Add Topics', class: 'tool add' )), new_project_topic_path(@project) %>
+  <%= link_to (content_tag( :div, '+ Add Topics', class: 'tool add active' )), new_project_topic_path(@project) %>
 
   <%= link_to (content_tag( :div, 'All Postings', class: 'tool' )), project_topics_path(@project) %>
 
@@ -10,4 +10,32 @@
     <% end %>
   <% end %>
 
+<% elsif active.eql? 'all' %> 
 
+  <%= link_to (content_tag( :div, '+ Add Topics', class: 'tool add' )), new_project_topic_path(@project) %>
+
+  <%= link_to (content_tag( :div, 'All Postings', class: 'tool active' )), project_topics_path(@project) %>
+
+  <% if @project.topics %>
+    <% @project.topics.each do |topic| %>
+      <%= link_to (content_tag( :div, topic.title, class: 'tool' )), project_topic_path(@project, topic) %>
+    <% end %>
+  <% end %>
+
+<% elsif active.eql? 'show' %> 
+
+	<%= link_to (content_tag( :div, '+ Add Topics', class: 'tool add' )), new_project_topic_path(@project) %>
+
+  <%= link_to (content_tag( :div, 'All Postings', class: 'tool' )), project_topics_path(@project) %>
+
+  <% if @project.topics %>
+    <% @project.topics.each do |topic| %>
+      <% if topic == @topic %>
+        <%= link_to (content_tag( :div, topic.title, class: 'tool active' )), project_topic_path(@project, topic) %>
+      <% else %>
+        <%= link_to (content_tag( :div, topic.title, class: 'tool' )), project_topic_path(@project, topic) %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
  
   has_many :comments, as: :commentable
   has_many :postings
-  validates :title, presence:true, length: { minimum: 4 }
+  validates :title, presence:true, length: { minimum: 3, maximum: 28 }
   validates :project_id, presence:true
   validates :creator_id, presence:true
 

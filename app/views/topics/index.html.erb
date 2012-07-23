@@ -7,7 +7,7 @@
   </div>
 
   <div class="scroll-pane jspScrollable tools">
-    <%= render 'sidebar' %>
+    <%= render partial: "sidebar", locals: { active: 'all'} %>
   </div>
 </div>
 
@@ -17,12 +17,14 @@
     <h3><a href="" class="tk-ff-meta-serif-web-pro">All Postings</a></h3>
   </div>
 
+
   <div class="sidebar3_content">
 
       <div class="task tool element" id="add">
         <%= render :partial => "postings/form", :locals => { :topic => nil } %>
       </div>
       
+    <div class="seperator">All postings</div>
       <%= render :partial => "shared/posting", :collection => @project.postings %>
 
   </div>

@@ -1,12 +1,34 @@
-    
+<% disabler = "<div class ='tool active'><i>requesting...</i></div>" %>
 
-<%= link_to content_tag('div', 'Change Repository', class: 'tool add'),
-  new_project_github_path(@project) %>
+<% if active.eql? 'issues' %>    
 
-<%= link_to content_tag('div', 'Repository', class: 'tool'), project_github_path(@project) %>
+	<%= link_to content_tag('div', '+ Change Repository', class: 'tool add'),
+	  new_project_github_path(@project) %>
 
-<!-- Mit Query machen!! -->
-<%= link_to content_tag('div', 'Issues', class: 'tool'), project_github_issues_path(@project) %>
-    
-<%= link_to content_tag('div', 'Commits', class: 'tool'), project_github_commits_path(@project) %>
-      
+	<%= link_to content_tag('div', 'Repository', class: 'tool'), project_github_path(@project), disable_with: disabler %>
+
+	<%= link_to content_tag('div', 'Issues', class: 'tool active'), project_github_issues_path(@project), disable_with: disabler %>
+	    
+	<%= link_to content_tag('div', 'Commits', class: 'tool'), project_github_commits_path(@project), disable_with: disabler %>
+
+<% elsif active.eql? 'commits' %> 
+
+	<%= link_to content_tag('div', '+ Change Repository', class: 'tool add'),
+	  new_project_github_path(@project) %>
+
+	<%= link_to content_tag('div', 'Repository', class: 'tool'), project_github_path(@project), disable_with: disabler %>
+
+	<%= link_to content_tag('div', 'Issues', class: 'tool'), project_github_issues_path(@project), disable_with: disabler %>
+	    
+	<%= link_to content_tag('div', 'Commits', class: 'tool active'), project_github_commits_path(@project), disable_with: disabler %>
+
+<% else %>
+	<%= link_to content_tag('div', '+ Change Repository', class: 'tool add'),
+	  new_project_github_path(@project) %>
+
+	<%= link_to content_tag('div', 'Repository', class: 'tool active'), project_github_path(@project), disable_with: disabler %>
+
+	<%= link_to content_tag('div', 'Issues', class: 'tool'), project_github_issues_path(@project), disable_with: disabler %>
+	    
+	<%= link_to content_tag('div', 'Commits', class: 'tool'), project_github_commits_path(@project), disable_with: disabler %>
+<% end %>

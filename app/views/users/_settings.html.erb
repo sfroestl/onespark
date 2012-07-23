@@ -2,21 +2,34 @@
   <h1>Your settings</h1>
     
   	<div id ="account_details" %>
-		<p><%= current_user.email %></P>
-		<p>Member since: <%= current_user.created_at.strftime('%d.%m.%Y') %></p>
-		<p>Account type: Demo</p>
+  		<dl>
+  			<dt>username</dt>
+  			<dd><%= current_user.username %></dd>
+  		</dl>
+  		<dl>
+  			<dt>email</dt>
+  			<dd><%= current_user.email %></dd>
+  		</dl>
+  		<dl>
+  			<dt>Member since</dt>
+  			<dd><%= format_date_short current_user.created_at %></dd>
+  		</dl>
+  		<dl>
+  			<dt>Account type</dt>
+  			<dd>Demo</dd>
+  		</dl>
 		<p><%= link_to "Edit account", edit_user_path(current_user.username), remote: true%></p>
 	</div>
 
 	<div id="linked_tools">
 		
 		<ul>
-		<h2>Linked tool accounts</h2>
+		<h2>Authorized tools</h2>
 		<!-- ////// Github column ////// -->
 			<li>
 				<p><strong>GitHub</strong></p>
 				<% if @github_account.nil? %>
-					<p><%= link_to 'Add GitHub account', "/git/auth", :disable_with => 'connecting ...'%></p>
+					<p><%= link_to 'Add GitHub account', github_auth_path, :disable_with => 'connecting ...'%></p>
 				<% else %>
 					<p><%= link_to "View your GitHub repositories", user_github_repos_path(current_user), remote: true, :disable_with => 'loading ...' %> </p>
 					<p><%= link_to 'Unlink GitHub account', "/git/unlink", confirm: "BE CAREFUL: This unlinkes your GitHub account", remote: true%>

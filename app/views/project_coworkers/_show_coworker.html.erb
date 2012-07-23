@@ -1,4 +1,4 @@
 <%= image_tag "avatars/avatar.png", size: "30x30" %>
 <%= coworker.username %> |
-<%= link_to "Profile", profile_path(coworker), remote: true %> |
-<%= link_to "Remove", "coworkers/#{coworker.username}", :confirm => 'Are you sure?', :method => :delete unless coworker == @project.user %>
+<%= link_to "Profile", profile_path(coworker), remote: true, class: 'small_link' %> |
+<%= link_to "Remove", "coworkers/#{coworker.username}", class: 'small_link', :confirm => 'Are you sure?', :method => :delete unless coworker == @project.user %>

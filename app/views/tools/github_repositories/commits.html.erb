@@ -6,7 +6,7 @@
   </div>
 
   <div class="scroll-pane jspScrollable tools">
-    <%= render "sidebar" %>
+    <%= render partial: "sidebar", locals: { active: 'commits'} %>
   </div>
 </div>
 
@@ -17,22 +17,11 @@
     <h3><a href="#add" class="tk-ff-meta-serif-web-pro"><%= @github_repository['name'] %> - Commits</a></h3>
   </div>
 
+
   <div class="sidebar3_content">  <!-- scroll-pane jspScrollable -->
-    <div class="task tool" id="add">
-      <%= render "form_issue" %>
-    </div>
+      <div class="seperator">Repository commits</div>
 
     <div class="task">
-    <ul>
-      <% @repo_commits.each do |commit| %>
-          <li>
-            <strong><%= format_date_long commit.commit['committer']['date'].to_datetime + 9.hours %></strong> - <%= commit.commit['message'] %> 
-            <p>by <%=commit.commit['committer']['name'] %></p>
-            <p><%commit.commit %></p>
-            <%= link_to 'view', "#{commit.url}", :target => "_blank" %><br/> 
-           
-          </li>
-      <% end %>
-    </ul>
+    <%= render :partial => 'tools/github_repositories/commit', :collection => @repo_commits %>  
   </div>
 </div>

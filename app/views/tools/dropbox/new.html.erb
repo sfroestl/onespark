@@ -24,9 +24,13 @@
     <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => 'Link a Dropbox Folder'} %>
   </div>
 
+
   <div class="sidebar3_content">  <!-- scroll-pane jspScrollable -->
-      <div class="tool element" id="add">
-          <%= link_to 'Request DropBox authorisation', user_dropbox_auth_path %>
+      <div class="tool element" id="authorize">
+        <div>
+          <%= link_to 'Request DropBox authorisation', user_dropbox_auth_path + "?project_id=#{@project.id}", class: "cancelButton", disable_with: "Loading DropBox authorisation..." %>
+        </div>
+
       </div>
     
   </div>

@@ -1,0 +1,32 @@
+<%= provide(:title, 'GitHub') %>
+
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>GitHub</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    
+    <%= link_to content_tag('div', 'Change Repository', class: "tool add inactive"), "" %>
+
+  </div>
+</div>
+
+
+<!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
+<div class="content">
+  <div id = "contentHead" class="head">
+    <%= render :partial => 'tools/dropbox/dropbox_head', :locals => { :path => 'Link a GitHub Repository'} %>
+  </div>
+
+  <div class="scroll-pane jspScrollable">  <!-- scroll-pane jspScrollable -->
+      <div class="tool element " id="authorize">
+        <div>
+          <%= link_to 'Request GitHub authorisation', github_auth_path + "?project_id=#{@project.id}", class: "cancelButton" %>
+        </div>
+      </div>
+    
+  </div>
+</div>

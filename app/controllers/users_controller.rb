@@ -99,12 +99,16 @@ private
   end
 
   def init_db_client
-    # need to store auth info
-    if session[:dropbox_session]
-      return redirect_to(:action => 'authorize') unless session[:dropbox_session]
-      dbsession = DropboxSession.deserialize(session[:dropbox_session])
-      client = DropboxClient.new(dbsession) #raise an exception if session not authorized
-    end  
+    begin
+      dbsession = DropboxSession.deserialize(session[:dropbox_session])        
+      client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+    rescue Exception => e
+      Rails.logger.error ">> DropBox Controller init_client: " + e.message
+      session[:dropbox_session] = nil
+      Rails.logger.error ">> DropBox Controller reset_session!"
+      return
+    end
+    return client
   end
   
 end

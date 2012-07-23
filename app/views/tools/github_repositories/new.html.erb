@@ -1,15 +1,32 @@
+<%= provide(:title, 'GitHub') %>
+
+<!-- ///////////////////////////////////SIDEBAR2//////////////////////////////////////////-->
+
+<div class="sidebar sidebar2">
+  <div id = "toolHead" class="head">
+    <h3>GitHub</h3>
+  </div>
+
+  <div class="scroll-pane jspScrollable tools">
+    
+    <%= link_to content_tag('div', '+ Change Repository', class: "tool add inactive"), "" %>
+
+  </div>
+</div>
+
+
 <!-- ///////////////////////////////////CONTENT//////////////////////////////////////////-->
 <div class="content">
   <div id = "contentHead" class="head">
-    <h3><a href="#add" class="tk-ff-meta-serif-web-pro">Link new GitHub Repository</a></h3>
+    <h3><a href="" class="tk-ff-meta-serif-web-pro">Choose a GitHub Repository</a></h3>
   </div>
 
-  <div class="sidebar3_content">
-
-	<% unless @user_github_repos %>
+  <div class="sidebar3_content">  <!-- scroll-pane jspScrollable -->
+      <% unless @user_github_repos %>
 		<div class="task tool" id="add">
 			<%= render 'form' %>
 		</div>
 	<% end %>
+    
+  </div>
 </div>
-
