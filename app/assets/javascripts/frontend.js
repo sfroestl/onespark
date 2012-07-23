@@ -2,6 +2,7 @@ jQuery(function(){
 
 // Oft Gecallte Elemente in variablen speichern, wgn Performance //////////
 var scroll = $('.scroll-pane');
+var sidebar3_content = $('.sidebar3_content');
 var content = $('.content');
 
 var browserWindow = $(window);
@@ -17,6 +18,7 @@ var toolheight = function(){
 	var height = ((browserWindow.height()) - headHeight).toString();
 	console.log(height);
 	scroll.css("height", height + "px");
+	sidebar3_content.css("height", height +"px");
 };
 
 var contentWidth = function(){
@@ -114,6 +116,7 @@ $(function()
 			hijackInternalLinks: true,
 			animateScroll: false,
 			autoReinitialise: true
+
 		}
 	);
 });

@@ -17,13 +17,12 @@
     <h3><a href="" class="tk-ff-meta-serif-web-pro">All Tasks</a></h3>
   </div>
 
-  <div class="scroll-pane jspScrollable">
+  <div class="sidebar3_content">
 
     <div class="task tool element" id="add">
 
       <%= render "tasks/form" %>
     </div>
-      
     <% unless @project.tasks.uncompleted.empty? %>
       <div class="seperator">
         <%= pluralize(@project.tasks.uncompleted.size, 'open task')%>
@@ -37,5 +36,5 @@
       </div>
       <%= render :partial => "shared/task_completed", :collection => @project.tasks.completed, as: :task %>
     <% end %>
-  </div>
+    </div>
 </div>

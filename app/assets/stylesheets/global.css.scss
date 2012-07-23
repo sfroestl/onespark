@@ -202,6 +202,14 @@ input[type="file"] {
   margin-top: 5px;
 }
 
+fieldset {
+	display: block;
+}
+fieldset select {
+	overflow:hidden;
+	display:block;
+	min-width: 15em;
+}
 
 .flash {
   border:none;
@@ -372,4 +380,12 @@ input[type="file"] {
 	right:0;
 	z-index: 500;
 	display:none;
+}
+
+.jspPane {
+}
+
+.sidebar3_content {
+	overflow:auto;
+	height: 80%;
 }
