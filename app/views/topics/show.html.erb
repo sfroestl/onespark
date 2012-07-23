@@ -55,9 +55,9 @@
 					</div>   
 		     </div>
 
-
-			<% if @topic.postings %>
-    		<div class="seperator">Postings</div>
+     	 	
+			<% unless @topic.postings.empty? %>
+    			<div class="seperator">Postings</div>
 				<%= render :partial => "shared/posting", :collection => @topic.postings %>
 			<% end %>
 					

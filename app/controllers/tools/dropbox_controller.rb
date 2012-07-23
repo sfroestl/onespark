@@ -128,7 +128,11 @@ class Tools::DropboxController < ApplicationController
         @folders = parse_folders(metadata)
 
         if request.method == "POST"
-         resp = client.file_create_folder(new_folder_path)
+          begin
+            resp = client.file_create_folder(new_folder_path)
+          rescue Exception => e
+            return flash['error'] = "DropBox Error: " + e.message
+          end
          redirect_to :back, :flash => { :success => "Folder Created!" }        
        end
     end

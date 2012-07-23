@@ -1,7 +1,8 @@
+<% unless commit.commit.empty? %>
 <div class="element">
 	<h2>
 	      <%= format_date_long(commit.commit['author']['date'].to_datetime + 9.hours) %> -
-	      <%= commit.author['login'] %>
+	      <%= commit.commit['author']['name'] %>
 	      pushed commits:                
 	</h2>
 
@@ -9,3 +10,4 @@
 	    <li><%= commit.commit['message'] %></li>
 	</ul>
 </div>
+<% end %>

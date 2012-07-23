@@ -150,7 +150,11 @@ class Tools::GithubRepositoriesController < ApplicationController
     github_client.init_with_token(current_user.github_account.access_token)
     @github_account = current_user.github_account
     unless @github_account.nil?
-      github_client.repos.create( { name: params[:name], description: params[:description] } )
+      begin      
+        github_client.repos.create( { name: params[:name], description: params[:description] } )
+      rescue Exception => e
+        return flash['error'] = "GitHub Error: " + e.message
+      end
       redirect_to user_github_repos_path(current_user) , flash: { success: 'Github repository was successfully created.' }
     end
   end
@@ -167,7 +171,12 @@ class Tools::GithubRepositoriesController < ApplicationController
       input = { title: params[:title], body: params[:body] }
     end
     unless @github_repository.nil?
-      github_client.issues.create(@github_repository.owner, @github_repository.name, input )
+      begin
+        github_client.issues.create(@github_repository.owner, @github_repository.name, input )
+      rescue Exception => e
+        flash['error'] = "GitHub Error: " + e.message
+        return redirect_to :back
+      end
       redirect_to :back , flash: { success: 'Github issue was successfully created.' }
     end
   end
