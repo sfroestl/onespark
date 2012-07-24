@@ -381,7 +381,13 @@ nav {
 // Neuigkeiten //
 
 	#email, #twitter{
-		
+		div {
+			background-color: $lightgrey;
+			// margin-top:1.75em;
+			padding: .9em;
+			width: 28em;
+			height: 10em;
+		}
 		img {
 			padding-top:2.5em;
 			display:block;
