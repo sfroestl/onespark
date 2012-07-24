@@ -90,10 +90,20 @@
 			width:4em;
 		}
 	}
-	a {
-		color:black;
-		&:hover {
-			color:$onesparkOrange;
+	#overlay_content{
+
+	 	a {
+			color:black;
+			font-size:0.8em;
+			&:hover {
+				color:$onesparkOrange;
+			}
+		}
+		.cancelButton {
+			font-size:1em;
+			&:hover {
+				color:black;
+			}
 		}
 	}
 
@@ -104,6 +114,12 @@
 		}
 		li{
 			padding-top: 0.75em;
+		}
+	}
+
+	#account_details {
+		form {
+			margin-bottom:4em;
 		}
 	}
 }

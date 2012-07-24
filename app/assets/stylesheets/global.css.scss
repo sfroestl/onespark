@@ -238,6 +238,11 @@ fieldset select {
 		list-style-type: none;
 	}
 	//background: $softWhite url(../assets/img/elem-task.png) no-repeat 0% 50%;
+	.cancelButton {
+		&:hover {
+				color:black;
+		}
+	}
 
 }
 

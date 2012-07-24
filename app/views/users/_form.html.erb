@@ -21,7 +21,7 @@
 
 	<% elsif params[:action].eql? "edit" or params[:action].eql? "update" %>
 		<%= f.submit %>
-		<%= link_to 'cancel', current_user, remote: true, class: "cancel_button" %>
+		<%= link_to 'cancel', current_user, remote: true, class: "cancelButton" %>
 	<% else %>
 		<div class="two_edit_buttons">
 			<%= submit_tag("Cancel", { :name => 'reset', :id => 'reset_button', :type => "reset", :class => "btn btn-large" })%>

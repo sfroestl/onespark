@@ -8,31 +8,32 @@
 
 	<div class="sidebar3_content">
 
-      	<div class="element_description element_infos single_content">
-    			<dl>
-					<dt>Title</dt>
-					<dd><%= @project.title %></dd>
-				</dl>			
-		      <% unless @project.desc.eql? "" %>
-						<dl>
-							<dt>Description</dt>
-							<dd><%= @project.desc %></dd>
-						</dl>
-					<% end %>
+		<div class="seperator">Information</div>
+  		<div class="element_description element_infos single_content">
+			<dl>
+				<dt>Title</dt>
+				<dd><%= @project.title %></dd>
+			</dl>			
+      		<% unless @project.desc.eql? "" %>
+				<dl>
+					<dt>Description</dt>
+					<dd><%= @project.desc %></dd>
+				</dl>
+			<% end %>
 
-					<% if @project.due_date %>
-						<dl>
-							<dt>Due</dt> 
-							<dd><%= format_date_long(@project.due_date)%></dd>
-						</dl>
-					<% end %>
-	      	
-					<div class="element_settings">
+			<% if @project.due_date %>
+				<dl>
+					<dt>Due</dt> 
+					<dd><%= format_date_long(@project.due_date)%></dd>
+				</dl>
+			<% end %>
+      	
+				<div class="element_settings">
 					<%= link_to "Edit project", edit_project_path(@project) %>
 					<%= link_to "Delete project", @project, method: :delete, confirm: "Delete project: " + @project.title + " with all information?"  %>	
-					</div>	
 				</div>	
-			<div class="seperator">Information</div>
+		</div>	
+				<div class="seperator">Recent activities</div>
 			<%= render :partial => 'owerview_part_coworkers', :locals => { headline: (link_to pluralize(@project.coworkers.count + 1, 'Coworker'), project_coworkers_path(@project)) } %>
 
 
