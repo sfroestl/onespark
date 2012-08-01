@@ -36,14 +36,9 @@
 				<div class="seperator">Recent activities</div>
 			<%= render :partial => 'owerview_part_coworkers', :locals => { headline: (link_to pluralize(@project.coworkers.count + 1, 'Coworker'), project_coworkers_path(@project)) } %>
 
-
 			<%= render :partial => 'owerview_part_tasks', :locals => { headline: (link_to pluralize(@project.tasks.count, 'Tasks'), project_tasklists_path(@project)) } %>
 
-
-			<%= render :partial => 'owerview_part_tasklists', :locals => { headline: (link_to pluralize(@project.tasklists.count, 'Tasklist'), project_tasklists_path(@project)) } %>
-
-
-			<%= render :partial => 'owerview_part_topics', :locals => { headline: (link_to pluralize(@project.topics.count, 'Topic'), project_topics_path(@project)) } %>
+			<%= render :partial => 'owerview_part_postings', :locals => { headline: (link_to pluralize(@project.postings.count, 'Posting'), project_topics_path(@project)) } %>
 
 
 			<%= content_tag('div', 

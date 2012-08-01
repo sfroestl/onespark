@@ -9,10 +9,10 @@
 				      if date > coworker.created_at.to_date
 				      date = coworker.created_at.to_date
 							 %>
-				        <h2><%= format_date_short date %></h2>
+				        <h2 style="margin-top:0.3em"><%= format_date_short date %></h2>
 				    	<% end %>
 				      <p>
-				        <%= format_date_long coworker.created_at %> added coworker <%= coworker.user.username %> </span></a>
+				        <%= format_date_long coworker.created_at %> | added coworker <%= coworker.user.username %> </span></a>
 				    </p>
 				<%  end %>
 			</dt>

@@ -6,7 +6,6 @@ class Project < ActiveRecord::Base
   has_many :milestones, :dependent => :destroy # ensures to destroy all milestones related to project
   has_many :tasklists, :dependent => :destroy # ensures to destroy all tasklists related to project
   
-  has_many :postings, :dependent => :destroy
   has_many :coworkers, :through => :project_coworkers, :source => :user, dependent: :destroy
   has_many :admins, :through => :project_coworkers, :source => :user, conditions: "permission == 3", dependent: :destroy
   has_many :writers, :through => :project_coworkers, :source => :user, conditions: "permission == 2", dependent: :destroy
@@ -14,6 +13,7 @@ class Project < ActiveRecord::Base
   has_many :project_coworkers, dependent: :destroy  
   has_many :tasks, :dependent => :destroy
   has_many :topics, :dependent => :destroy
+  has_many :postings, :dependent => :destroy
   
   belongs_to :user
   has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy 
