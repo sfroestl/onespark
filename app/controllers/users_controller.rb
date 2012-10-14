@@ -1,10 +1,18 @@
+##
+# The UsersController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class UsersController < ApplicationController
-  # layout 'profile', except: [:new ]
+  # include DropBox Client
   require 'tools/dropbox/dropbox_sdk'
 
   before_filter :signed_in_user, only: [:show, :edit, :update, :destroy]
+
+  # helper method for edit user
   before_filter :correct_user
- 
+
   # GET /users/new
   # GET /users/new.json
   def new
@@ -14,7 +22,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -30,7 +38,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
- 
+
   # POST /users
   # POST /users.json
   def create
@@ -48,17 +56,17 @@ class UsersController < ApplicationController
         end
       end
   end
-    
+
   # GET /users/1/edit
   def edit
       @user = User.find_by_username(params[:id])
   end
-  
+
   # PUT /users/1
   # PUT /users/1.json
   def update
       @user = User.find_by_username(params[:id])
-      
+
       respond_to do |format|
         if @user.update_attributes(params[:user])
           sign_in @user #TODO Bug, why do i have to sign in again?
@@ -71,7 +79,7 @@ class UsersController < ApplicationController
         end
     end
   end
-    
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -85,22 +93,24 @@ class UsersController < ApplicationController
 
 
 private
-
+  # is the user signed in?
   def signed_in_user
     unless signed_in?
       store_location
       redirect_to signin_path, notice: "Please sign in."
     end
   end
-  
+
+  # checks whether the actual user is the displayed user or not
   def correct_user
     @user = User.find_by_username(params[:id])
     render 'public/404' unless current_user?(@user)
   end
 
+  # this method initializes the +dropbox client+
   def init_db_client
     begin
-      dbsession = DropboxSession.deserialize(session[:dropbox_session])        
+      dbsession = DropboxSession.deserialize(session[:dropbox_session])
       client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
     rescue Exception => e
       Rails.logger.error ">> DropBox Controller init_client: " + e.message
@@ -110,5 +120,5 @@ private
     end
     return client
   end
-  
+
 end

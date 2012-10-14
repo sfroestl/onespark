@@ -1,6 +1,14 @@
+##
+# The TopicsController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class TopicsController < ApplicationController
   layout 'project'
+  # get the current project
   before_filter :find_project
+  # get the current projects topics for navigation
   before_filter :find_topics
 
   # GET /topics
@@ -18,7 +26,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @comments = find_topic_comments
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @topic }
@@ -88,19 +96,13 @@ class TopicsController < ApplicationController
 
   private
 
-  def find_project
-    if (params[:project_id])
-      @project = Project.find(params[:project_id])
-    else
-      @project = Topic.find(params[:id]).project
+    # gets all topics of a project
+    def find_topics
+      @topics = @project.topics
     end
-  end
 
-  def find_topics
-    @topics = @project.topics
-  end
-
-  def find_topic_comments
-    @topic.comments.all
-  end
+    # gets all comments of a topic
+    def find_topic_comments
+      @topic.comments.all
+    end
 end

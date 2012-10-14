@@ -1,5 +1,15 @@
+##
+# The FriendshipsController class
+#
+# this class handels the user - friendship - user association
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class FriendshipsController < ApplicationController
 
+  # request a friendship
   def create
     friend = User.find(params[:friend_id])
 
@@ -15,6 +25,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  # accept a friendship
   def accept
     friend = User.find(params[:friend_id])
 
@@ -30,22 +41,10 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  # remove a friendship
   def remove
     friend = User.find(params[:friend_id])
 
-    respond_to do |format|
-      if Friendship.exists?(current_user, friend)
-        Friendship.breakup(current_user, friend)
-        format.html { redirect_to profile_path(current_user), :flash => { :success => "Successfully removed friendship." }}
-
-      else
-        format.html { redirect_to profile_path(current_user), :flash => { :error => "Unable to remove friendship." }}
-
-      end
-    end
-  end
-
-  def destroy
     respond_to do |format|
       if Friendship.exists?(current_user, friend)
         Friendship.breakup(current_user, friend)

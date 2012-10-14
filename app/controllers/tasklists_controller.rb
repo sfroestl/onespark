@@ -1,5 +1,13 @@
+##
+# The TasklistsController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class TasklistsController < ApplicationController
   layout 'project'
+
+  # get the current project
   before_filter :find_project
 
   # GET /tasklists
@@ -83,12 +91,5 @@ class TasklistsController < ApplicationController
       format.html { redirect_to project_tasklists_url, :flash => { :success => 'Tasklist was successfully deleted.' } }
       format.json { head :no_content }
     end
-  end
-
-
-  private
-
-  def find_project
-    @project = Project.find(params[:project_id])
   end
 end

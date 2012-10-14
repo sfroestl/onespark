@@ -5,11 +5,11 @@
 		<dl>
 			<dt>Last activities</dt>
 				<% date = 1.day.ago(@project.tasklists.first.created_at) rescue nil # increment the day
-				    @project.tasklists.each do |tasklist| 
+				    @project.tasklists.each do |tasklist|
 				      if date < tasklist.created_at.to_date
 				      date = tasklist.created_at.to_date
 							 %>
-				        <h2 style="margin-top:0.5em"><%= format_date_short date %></h2>
+				        <h2 style="margin-top:0.3em"><%= format_date_short date %></h2>
 				    	<% end %>
 				      <p>
 				        <%= format_date_long tasklist.created_at %> | created tasklist "<%= tasklist.title%>" by <%= tasklist.creator.username %> </span></a>

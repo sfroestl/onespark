@@ -1,7 +1,16 @@
+##
+# The Tools::GithubAccountsController class
+#
+# this class manages the association user - githaub account
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class Tools::GithubAccountsController < ApplicationController
 	include SessionsHelper
 
-  require 'tools/github//github_api'
+  require 'tools/github/github_api'
 
   def index
   end
@@ -49,7 +58,7 @@ class Tools::GithubAccountsController < ApplicationController
   # Deletes the github account for the current user
   def unlink
     Rails.logger.info ">> GithubTool: Unlink GitHub account"
-    current_user.github_account.destroy 
+    current_user.github_account.destroy
     respond_to do |format|
       format.html { redirect_to current_user, :flash => { :success => 'Successfully unlinked GitHub account!' } }
       format.js { }
@@ -58,6 +67,7 @@ class Tools::GithubAccountsController < ApplicationController
 
   private
 
+  # gets the access token
   def fetch_token
   	@github_api.get_token(params[:code])
   end

@@ -4,7 +4,7 @@ describe Task do
   let!(:creator) { FactoryGirl.create(:user) }
   let!(:worker) { FactoryGirl.create(:user) }
   let!(:project) { FactoryGirl.create(:project, user: creator) }
-  let!(:milestone) { FactoryGirl.create(:milestone, project: project, user: creator) }
+  #let!(:milestone) { FactoryGirl.create(:milestone, project: project, user: creator) }
 
   let(:task) { project.tasks.create(title: "new task", creator: creator)}
 
@@ -22,7 +22,7 @@ describe Task do
   it { should respond_to(:completed_at) }
   it { should respond_to(:completed_by) }
 
-	describe "should have creator but bo worker" do
+	describe "should have creator but no worker" do
 		before { task.save }
 		its(:creator) { should == creator }
 		its(:worker) { should be_nil }
@@ -36,7 +36,7 @@ describe Task do
   end
 
   describe "should have worker" do
-  	before do 
+  	before do
   		task.worker = worker
   		task.save
   	end
@@ -49,10 +49,10 @@ describe Task do
     its(:project_id) { should == project.id }
   end
 
-  describe "belongs to milestone" do
-  	before { task.milestone = milestone }
-    its(:milestone) { should == milestone }
-    its(:milestone_id) { should == milestone.id }
+  describe "belongs to tasklist" do
+  	# before { task.milestone = milestone }
+   #  its(:milestone) { should == milestone }
+   #  its(:milestone_id) { should == milestone.id }
   end
-  
+
 end

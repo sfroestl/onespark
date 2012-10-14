@@ -1,3 +1,11 @@
+##
+# The basic Entity Model class
+#
+# this sub class represents the basic GitHubApi Entity resource
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # This is the base class used for value objects returned by the API. See
   # descendent classes for more details.

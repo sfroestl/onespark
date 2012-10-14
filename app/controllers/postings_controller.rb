@@ -1,7 +1,16 @@
+##
+# The PostingsController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class PostingsController < ApplicationController
   layout 'project'
-  
+
   before_filter :find_project
+
+
   # GET /postings
   # GET /postings.json
   def index
@@ -46,7 +55,7 @@ class PostingsController < ApplicationController
 
     Rails.logger.info ">> Posting Controller create Positng"
     Rails.logger.info "Topic #{params[:posting][:topic]}"
-   
+
     Rails.logger.info "#{params[:posting]}"
     @posting = @project.postings.build(params[:posting])
     @posting.creator = current_user
@@ -68,7 +77,7 @@ class PostingsController < ApplicationController
   def update
     @posting = Posting.find(params[:id])
 
-    
+
     respond_to do |format|
       if @posting.update_attributes(params[:posting])
         format.html { redirect_to project_topics_path(@project), :flash => { :success =>'Posting was successfully updated.' } }
@@ -84,7 +93,7 @@ class PostingsController < ApplicationController
   # DELETE /postings/1.json
   def destroy
     @posting = Posting.find(params[:id])
-    
+
     @posting.destroy
 
     respond_to do |format|
@@ -93,8 +102,4 @@ class PostingsController < ApplicationController
     end
   end
 
-  private
-    def find_project
-      @project = Project.find(params[:project_id])
-    end
 end

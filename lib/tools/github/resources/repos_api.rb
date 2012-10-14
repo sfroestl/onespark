@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The ReposAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Provides access to the GitHub Repos API (http://developer.github.com/v3/repos/)
   #
@@ -47,7 +54,7 @@ class GitHubApi
 
     # Returns a GitHubApi::Repository instance representing the Repository
     # that it creates
-    # 
+    #
     # +data+:: the hash DATA with attributes for the issue, e.g. {:name => "reponame"}
     def create(data={})
       Rails.logger.info ">> Github API Create Repo #{data[:name]}"

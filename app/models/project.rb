@@ -1,26 +1,32 @@
+##
+# The Project Model class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class Project < ActiveRecord::Base
   PERMISSIONS = {"write" => 2,"read" => 1,  "admin" => 3}
 
   attr_accessible :desc, :due_date, :title
 
-  has_many :milestones, :dependent => :destroy # ensures to destroy all milestones related to project
   has_many :tasklists, :dependent => :destroy # ensures to destroy all tasklists related to project
-  
+
   has_many :coworkers, :through => :project_coworkers, :source => :user, dependent: :destroy
   has_many :admins, :through => :project_coworkers, :source => :user, conditions: "permission == 3", dependent: :destroy
   has_many :writers, :through => :project_coworkers, :source => :user, conditions: "permission == 2", dependent: :destroy
   has_many :readers, :through => :project_coworkers, :source => :user, conditions: "permission == 1", dependent: :destroy
-  has_many :project_coworkers, dependent: :destroy  
+  has_many :project_coworkers, dependent: :destroy
   has_many :tasks, :dependent => :destroy
   has_many :topics, :dependent => :destroy
   has_many :postings, :dependent => :destroy
-  
+
   belongs_to :user
-  has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy 
+  has_one :github_repository, class_name: "Tools::GithubRepository", dependent: :destroy
 
   validates :title, presence: true
   validates :user_id, presence: true
-  
+
   validate :due_date_not_in_past_but_can_be_empty
 
   default_scope :order => 'due_date ASC'
@@ -49,7 +55,7 @@ class Project < ActiveRecord::Base
   end
 
   def writer!(user)
-    project_coworkers.create!(user_id: user.id, permission: 2 ) 
+    project_coworkers.create!(user_id: user.id, permission: 2 )
   end
 
   def reader?(user)
@@ -58,7 +64,7 @@ class Project < ActiveRecord::Base
   end
 
   def reader!(user)
-    project_coworkers.create!(user_id: user.id, permission: 1 ) 
+    project_coworkers.create!(user_id: user.id, permission: 1 )
   end
 
   def owner?(user)
@@ -69,7 +75,7 @@ class Project < ActiveRecord::Base
     user_id
   end
 
-  private 
+  private
 
     def due_date_not_in_past_but_can_be_empty
       if self.due_date.nil?
@@ -78,6 +84,6 @@ class Project < ActiveRecord::Base
         errors.add(:due_date, 'You can\'t complete tasks in the past!')
       end
     end
-  
+
 end
 

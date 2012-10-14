@@ -1,9 +1,15 @@
+##
+# The CommentsController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class CommentsController < ApplicationController
+
   layout 'project', except: [:edit]
 
-
   def index
-    @commentable = find_commentable   
+    @commentable = find_commentable
     @project = @commentable.project
     @comments = @commentable.comments
   end
@@ -16,25 +22,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  # def create
-  #   # Rails.logger.info ">> Commentable: #{find_commentable}"
-  #   Rails.logger.info ">> Commentable Riderict: #{request.fullpath}"
-
-  #   @commentable = find_commentable_by_hidden_field
-  #   @comment = @commentable.comments.build(content: params[:comment][:content])
-  #   @comment.user = current_user
-  #   if @comment.save
-  #     redirect_to params[:comment][:redirect_url], :notice => "Successfully created comment."
-  #   else
-  #     redirect_to params[:comment][:redirect_url], :notice => "Add a comment content."
-  #   end
-  # end
-
   def create
-    # if
     @request_url = request.env['HTTP_REFERER']
-    # else
-    
+
     Rails.logger.info "COMMENTS: Requesturl: #{@request_url}"
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
@@ -56,12 +46,12 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @commentable = @comment.commentable
-    
+
     respond_to do |format|
       format.html # edit.html.erb
       format.js { }
     end
-    
+
   end
 
   def update
@@ -74,7 +64,7 @@ class CommentsController < ApplicationController
         format.html { render  :action => 'edit' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
         format.js { }
-      end 
+      end
     end
   end
 
@@ -88,6 +78,7 @@ class CommentsController < ApplicationController
 
 
   private
+  # finds the commentable resource
     def find_commentable
       params.each do |name, value|
         if name =~ /(.+)_id$/
@@ -96,16 +87,6 @@ class CommentsController < ApplicationController
         end
       end
       nil
-    end
-
-    def find_commentable_by_hidden_field
-      Rails.logger.info ">> Commentable: #{params[:comment][:commentable_name]}"
-      name = params[:comment][:commentable_name]
-      pname = name + '_id'
-      id = params[pname.to_sym].to_i
-      Rails.logger.info ">> symbol #{pname.to_sym}"
-      Rails.logger.info ">> Value #{id}"
-      return name.classify.constantize.find(id)
     end
 
 end

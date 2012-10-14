@@ -10,7 +10,7 @@ describe "Authentication" do
     it { should have_selector('h1',    text: 'Sign in') }
     it { should have_selector('title', text: 'Sign in') }
   end
-  
+
   describe "signin" do
       before { visit signin_path }
 
@@ -18,15 +18,15 @@ describe "Authentication" do
         before { click_button "Sign in" }
 
         it { should have_selector('title', text: 'Sign in') }
-        it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+        it { should have_selector('div.alert.alert-error', text: 'nvalid email, username / password combination') }
         describe "after visiting another page" do
-        
-        before { click_link "One Spark" }
+
+          before { click_link "One Spark" }
           it { should_not have_selector('div.alert.alert-error') }
         end
       end
     end
-    
+
     describe "with valid information" do
           let(:user) { FactoryGirl.create(:user) }
           before { sign_in user }
@@ -37,7 +37,7 @@ describe "Authentication" do
           it { should have_link('Sign out', href: signout_path) }
           it { should_not have_link('Sign in', href: signin_path) }
     end
-    
+
     describe "authorization" do
 
        describe "for non-signed-in users" do
@@ -56,15 +56,15 @@ describe "Authentication" do
           end
         end
       end
-      
+
       describe "as wrong user" do
           let(:user) { FactoryGirl.create(:user) }
           let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
 
           describe "visiting Users#edit page" do
-            before do 
+            before do
               sign_in user
-              visit edit_user_path(wrong_user) 
+              visit edit_user_path(wrong_user)
             end
             it { should have_content('The page you were looking for doesn\'t exist.')}
             it { should_not have_selector('title', text: full_title('Update Account')) }
@@ -72,7 +72,7 @@ describe "Authentication" do
           end
 
           describe "submitting a PUT request to the Users#update action" do
-            before do 
+            before do
               sign_in user
               put user_path(wrong_user)
             end
@@ -82,7 +82,7 @@ describe "Authentication" do
           end
         end
     end
-    
+
     describe "for non-signed-in users" do
         let(:user) { FactoryGirl.create(:user) }
 

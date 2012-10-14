@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The Repo Model class
+#
+# this sub class represents a GitHubApi Repo resource
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Represents a single GitHub Repo and provides access to its data attributes.
   class Repo < Entity

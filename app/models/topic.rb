@@ -1,9 +1,15 @@
+##
+# The Topic Model class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class Topic < ActiveRecord::Base
   attr_accessible :creator_id, :desc, :title
 
   belongs_to :project
   belongs_to :creator, class_name: 'User', primary_key: 'id', foreign_key: 'creator_id'
- 
+
   has_many :comments, as: :commentable
   has_many :postings
   validates :title, presence:true, length: { minimum: 3, maximum: 28 }
@@ -12,6 +18,7 @@ class Topic < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
 
+  # overwrite method to_params
   def to_param
     normalized_name = title.gsub(' ', '-').gsub(/[^a-zA-Z0-9\_\-]/, '')
     "#{self.id}-#{normalized_name}"

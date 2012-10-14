@@ -1,4 +1,12 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The UsersAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class GitHubApi
   # Provides access to the GitHub Users API (http://developer.github.com/v3/users/)
   #
@@ -27,7 +35,7 @@ class GitHubApi
       user_data = @connection.get("/user")
       GitHubApi::User.new(self, user_data)
     end
-    
+
     # Returns a GitHubApi::User instance for the specified +username+.
     #
     # +username+:: the string login of the user, e.g. "octocat"
@@ -35,6 +43,6 @@ class GitHubApi
       user_data = @connection.get("/users/#{username}")
       GitHubApi::User.new_with_all_data(self, user_data)
     end
-    
+
   end
 end

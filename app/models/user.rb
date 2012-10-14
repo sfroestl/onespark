@@ -1,17 +1,23 @@
+##
+# The User Model class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class User < ActiveRecord::Base
 
-  attr_accessible :username, :email, :login_name, :password, :password_confirmation
-    
+  attr_accessible :username, :email, :password, :password_confirmation
+
   has_one :profile, dependent: :destroy
   has_secure_password
-  has_many :projects, dependent: :destroy  
-  
+  has_many :projects, dependent: :destroy
+
   has_many :created_tasks, class_name:"Task", dependent: :destroy
-  has_many :working_tasks, class_name:"Task"  
+  has_many :working_tasks, class_name:"Task"
 
-  has_one :github_account, class_name: "Tools::GithubAccount", dependent: :destroy  
+  has_one :github_account, class_name: "Tools::GithubAccount", dependent: :destroy
 
-  has_many :project_permissions, :through => :project_coworkers, :source => :project, dependent: :destroy 
+  has_many :project_permissions, :through => :project_coworkers, :source => :project, dependent: :destroy
   has_many :project_coworkers
 
   has_many :friendships, dependent: :destroy
@@ -20,11 +26,11 @@ class User < ActiveRecord::Base
   has_many :pending_friends, through: :friendships, source: :friend, conditions: "status = 'pending'"
 
   accepts_nested_attributes_for :profile
-  
+
   before_save { |user| user.email = email.downcase }
   before_save { |user| user.username = username.downcase }
   before_save :create_remember_token
-    
+
   validates :username, presence: true, length: { minimum: 3, maximum: 50 },
                        uniqueness: { case_sensitive: false }
 
@@ -35,15 +41,16 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-    
-  def to_param 
+
+  # overwrite method to_params
+  def to_param
     username
   end
 
   def has_friendship_with?(user)
     friendships.each do |friendship|
       if friendship.exists?(self, friendship)
-       return true 
+       return true
      end
     end
   end

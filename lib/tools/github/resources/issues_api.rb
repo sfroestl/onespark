@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The IssuesAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Provides access to the GitHub Issues API (http://developer.github.com/v3/issues/)
   #
@@ -22,7 +29,6 @@ class GitHubApi
   #
   class IssuesAPI
     # Typically not used directly. Use GitHubApi#issues instead.
-    #
     # +connection+:: an instance of GitHubApi
     def initialize(connection)
       @connection = connection
@@ -30,13 +36,19 @@ class GitHubApi
 
     # Returns an array of GitHubApi::Issue instances representing a
     # user's issues or issues for a repo
+    # +options+:: username and repository
     def list(options=nil, params={})
-      Rails.logger.info ">> Gihub Issues API: #{options[:user]} #{options[:repo]}"
-      path = if options && options[:user] && options[:repo]
-        "/repos/#{options[:user]}/#{options[:repo]}/issues"
-      else
-        '/issues'
-      end
+      Rails.logger.info ">> Gihub Issues API"
+
+      path =
+        if options && options[:user] && options[:repo]
+          Rails.logger.info ">> list Issues: #{options[:user]} #{options[:repo]}"
+          "/repos/#{options[:user]}/#{options[:repo]}/issues"
+        else
+          Rails.logger.info ">> user Issues"
+          '/issues'
+        end
+
       Rails.logger.info ">> Gihub Issues API: path: #{path}"
       @connection.get(path, params).map do |issue_data|
         GitHubApi::Issue.new(self, issue_data)
@@ -65,7 +77,7 @@ class GitHubApi
     def get_issue_comments(user, repo_name, id, params={})
       @connection.get("/repos/#{user}/#{repo_name}/issues/#{id.to_s}/comments", params).map do |comment_data|
         GitHubApi::IssueComment.new(self, comment_data)
-      end          
+      end
       rescue RestClient::ResourceNotFound
         raise NotFound, "The issue #{user}/#{repo_name}/issues/#{id} does not exist or is not visible to the user."
     end
@@ -73,7 +85,7 @@ class GitHubApi
 
     def create_issue_comment(user, repo_name, id, data={})
       raise MissingRequiredData, "Message is required to create a new comment" unless data[:body]
-      
+
       issue_data = @connection.post("/repos/#{user}/#{repo_name}/issues/#{id}/comments", data)
       GitHubApi::Issue.new_with_all_data(self, issue_data)
     end

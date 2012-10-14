@@ -1,9 +1,18 @@
+##
+# The TasksController class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class TasksController < ApplicationController
   layout 'project'
+
+  # get the current project
   before_filter :find_project
+
+  # lists all tasks
   # GET /tasks
   # GET /tasks.json
-  
   def index
     @tasks = Task.all
 
@@ -13,6 +22,7 @@ class TasksController < ApplicationController
     end
   end
 
+  # shows single task
   # GET /tasks/1
   # GET /tasks/1.json
   def show
@@ -24,10 +34,10 @@ class TasksController < ApplicationController
     end
   end
 
+  # new task formular
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    
     @task = Task.new
 
     respond_to do |format|
@@ -36,19 +46,22 @@ class TasksController < ApplicationController
     end
   end
 
+  # edit task formular
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
   end
 
+  # creates a task
   # POST /tasks
   # POST /tasks.json
   def create
-
+    # check for worker
     Rails.logger.info "Worker #{params[:task][:worker]}"
     worker = User.find_by_username(params[:task][:worker])
     params[:task][:worker] = worker
-    
+
+    # set incompleted
     params[:task][:completed] = false
 
     Rails.logger.info ">> Task Controller new Task"
@@ -57,7 +70,7 @@ class TasksController < ApplicationController
 
     @task = @project.tasks.build(params[:task])
     @task.creator = current_user
-    
+
     respond_to do |format|
       if @task.save
         if @task.tasklist
@@ -68,13 +81,14 @@ class TasksController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.js {  }
+        format.js { }
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  # updates a single task
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
@@ -86,6 +100,7 @@ class TasksController < ApplicationController
 
     Rails.logger.info">> Tasks update: #{params}"
 
+    # if completed, set date and user
     if params[:task][:completed].eql? "true"
       Rails.logger.info">> Task completed!"
       params[:task][:completed_at] = Time.now
@@ -112,11 +127,12 @@ class TasksController < ApplicationController
     end
   end
 
+  # destroys a single task
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
-    
+
     @task.destroy
 
     respond_to do |format|
@@ -125,21 +141,4 @@ class TasksController < ApplicationController
     end
   end
 
-
-
-  private
-
-    def find_project
-      @project = Project.find(params[:project_id])
-    end
-
-    def find_milestone
-      if params[:milestone_id]
-        @milestone = Milestone.find(params[:milestone_id])
-      end
-    end
-
-    def find_project_milestones      
-      @milestones = @project.milestones           
-    end
 end

@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The CommitsAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Provides access to the GitHub Issues API (http://developer.github.com/v3/commits/)
   #
@@ -18,7 +25,7 @@ class GitHubApi
       path = "/repos/#{options[:user]}/#{options[:repo]}/commits"
 
       Rails.logger.info ">> Gihub commits API: path: #{path}"
-      @connection.get(path, params).map do |commit_data|        
+      @connection.get(path, params).map do |commit_data|
         GitHubApi::Commit.new(self, commit_data)
       end
     end
@@ -30,7 +37,7 @@ class GitHubApi
     # +repo_name+:: the string ID of the repository, e.g. "hello-world"
     # +id+:: the integer ID of the commit, e.g. 42
     def get(user, repo_name, sha)
-      
+
       commit_data = @connection.get("/repos/#{user}/#{repo_name}/commits/#{sha}", params)
       GitHubApi::Commit.new_with_all_data(self, commit_data)
     rescue RestClient::ResourceNotFound

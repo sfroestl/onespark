@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The OrgsAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Provides access to the GitHub Orgs API (http://developer.github.com/v3/orgs/)
   #

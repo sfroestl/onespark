@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The Org Model class
+#
+# this sub class represents a GitHubApi Org resource
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Represents a single GitHub Org and provides access to its data attributes.
   class Org < Entity
@@ -26,7 +33,7 @@ class GitHubApi
       api.list_public_members(login)
     end
 
-    private 
+    private
 
     def natural_key
       [data['login']]

@@ -1,4 +1,11 @@
-# See GitHubApi documentation in lib/github_v3_api.rb
+##
+# The EventsAPI sub-class
+#
+# only used via GitHubApi
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
 class GitHubApi
   # Provides access to the GitHub Issues API (http://developer.github.com/v3/events/)
   #
@@ -15,15 +22,15 @@ class GitHubApi
     # user's events or events for a repo
     def list(options, params={})
       Rails.logger.info ">> Gihub events API: #{options[:user]} #{options[:repo]}"
-      path = 
-        # if params[:page] 
+      path =
+        # if params[:page]
           "/repos/#{options[:user]}/#{options[:repo]}/events?page='1'"
         # else
           # "/repos/#{options[:user]}/#{options[:repo]}/events"
         # end
 
       Rails.logger.info ">> Gihub events API: path: #{path}"
-      @connection.get(path, params).map do |event_data|        
+      @connection.get(path, params).map do |event_data|
         GitHubApi::Event.new(self, event_data)
       end
     end

@@ -1,9 +1,16 @@
+##
+# The Tasklist Model class
+#
+# Author::    Sebastian Fröstl  (mailto:sebastian@froestl.com)
+# Last Edit:: 21.07.2012
+
+
 class Tasklist < ActiveRecord::Base
 	attr_accessible :desc, :due_date, :title
 
 	has_many :tasks, dependent: :destroy
   has_many :comments, :as => :commentable
-  
+
   belongs_to :project
   belongs_to :creator, class_name: 'User', primary_key:'id', foreign_key: 'creator_id'
 
