@@ -36,19 +36,6 @@ ActiveRecord::Schema.define(:version => 20120721114035) do
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
-  create_table "milestones", :force => true do |t|
-    t.string   "title"
-    t.text     "desc"
-    t.text     "goal"
-    t.date     "due_date"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-  end
-
-  add_index "milestones", ["user_id"], :name => "index_milestones_on_user_id"
-
   create_table "postings", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -84,20 +71,18 @@ ActiveRecord::Schema.define(:version => 20120721114035) do
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "project_coworkers", ["project_id", "user_id"], :name => "index_project_coworkers_on_project_id_and_user_id"
-  add_index "project_coworkers", ["project_id"], :name => "index_project_permissions_on_project_id"
-  add_index "project_coworkers", ["user_id"], :name => "index_project_permissions_on_user_id"
+  add_index "project_coworkers", ["project_id", "user_id"], :name => "index_project_coworkers_on_project_id_and_user_id", :unique => true
+  add_index "project_coworkers", ["project_id"], :name => "index_project_coworkers_on_project_id"
+  add_index "project_coworkers", ["user_id"], :name => "index_project_coworkers_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "desc"
     t.datetime "due_date"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
   end
-
-  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "tasklists", :force => true do |t|
     t.text     "title"

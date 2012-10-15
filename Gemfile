@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'oauth2'
 gem 'bootstrap-sass', '2.0.0'
-gem 'therubyracer'
+gem 'therubyracer', :platform => :ruby
 gem 'populator'
 gem 'faker'
 gem 'rest-client', '~> 1.6.7'
@@ -12,7 +12,8 @@ gem 'rest-client', '~> 1.6.7'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'thin'
+gem 'thin', "1.3.1"
+gem "eventmachine", "1.0.0.rc.1"
 
 group :development do
   gem 'sqlite3', '1.3.5'
